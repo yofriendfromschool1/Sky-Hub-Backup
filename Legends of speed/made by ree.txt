@@ -1,0 +1,337 @@
+-- Made By Ree
+local autofarm = Instance.new("ScreenGui")
+local main = Instance.new("Frame")
+local title = Instance.new("TextLabel")
+local rebirthmainoff = Instance.new("Frame")
+local rebirthoff = Instance.new("TextButton")
+local rebithmainon = Instance.new("Frame")
+local rebirthon = Instance.new("TextButton")
+local hoopmainoff = Instance.new("Frame")
+local hoopoff = Instance.new("TextButton")
+local gemmainoff = Instance.new("Frame")
+local gemoff = Instance.new("TextButton")
+local orbmainoff = Instance.new("Frame")
+local orboff = Instance.new("TextButton")
+local orbmainon = Instance.new("Frame")
+local orbon = Instance.new("TextButton")
+local gemmainon = Instance.new("Frame")
+local gemon = Instance.new("TextButton")
+local hoopmainon = Instance.new("Frame")
+local hoopon = Instance.new("TextButton")
+local credits = Instance.new("TextLabel")
+--Properties:
+autofarm.Name = "autofarm"
+autofarm.Parent = game.CoreGui
+
+main.Name = "main"
+main.Parent = autofarm
+main.BackgroundColor3 = Color3.new(1, 0.333333, 1)
+main.Position = UDim2.new(0.141270816, 0, 0.617936134, 0)
+main.Size = UDim2.new(0, 394, 0, 256)
+main.Active = true
+main.Draggable = true
+
+title.Name = "title"
+title.Parent = main
+title.BackgroundColor3 = Color3.new(0.333333, 1, 1)
+title.Size = UDim2.new(0, 394, 0, 40)
+title.Font = Enum.Font.GothamBold
+title.Text = "Legends Of Speed Auto Farm"
+title.TextColor3 = Color3.new(0, 0, 0)
+title.TextSize = 14
+
+rebirthmainoff.Name = "rebirthmainoff"
+rebirthmainoff.Parent = main
+rebirthmainoff.BackgroundColor3 = Color3.new(1, 1, 1)
+rebirthmainoff.Position = UDim2.new(0.0710659921, 0, 0.65234375, 0)
+rebirthmainoff.Size = UDim2.new(0, 338, 0, 39)
+
+rebirthoff.Name = "rebirthoff"
+rebirthoff.Parent = rebirthmainoff
+rebirthoff.BackgroundColor3 = Color3.new(1, 0, 0)
+rebirthoff.Size = UDim2.new(0, 338, 0, 39)
+rebirthoff.Font = Enum.Font.GothamBlack
+rebirthoff.Text = "AutoRebirth (Off)"
+rebirthoff.TextColor3 = Color3.new(0, 0, 0)
+rebirthoff.TextSize = 14
+rebirthoff.MouseButton1Down:connect(function()
+rebirthmainoff.Visible = false
+rebithmainon.Visible = true
+
+wait(1)
+_G.Rebirth = true
+
+while _G.Rebirth == true do wait(5)
+local tbl_main = 
+{
+      "rebirthRequest"
+}
+game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer(unpack(tbl_main))
+end
+end)
+
+rebithmainon.Name = "rebithmainon"
+rebithmainon.Parent = main
+rebithmainon.BackgroundColor3 = Color3.new(1, 1, 1)
+rebithmainon.Position = UDim2.new(0.0710659027, 0, 0.65234375, 0)
+rebithmainon.Size = UDim2.new(0, 338, 0, 39)
+rebithmainon.Visible = false
+
+rebirthon.Name = "rebirthon"
+rebirthon.Parent = rebithmainon
+rebirthon.BackgroundColor3 = Color3.new(0, 1, 0)
+rebirthon.Size = UDim2.new(0, 338, 0, 39)
+rebirthon.Font = Enum.Font.GothamBlack
+rebirthon.Text = "AutoRebirth (On)"
+rebirthon.TextColor3 = Color3.new(0, 0, 0)
+rebirthon.TextSize = 14
+rebirthon.MouseButton1Down:connect(function()
+rebithmainon.Visible = false
+rebirthmainoff.Visible = true
+
+wait(1)
+_G.Rebirth = false
+
+while _G.Rebirth == true do wait(5)
+local tbl_main = 
+{
+      "rebirthRequest"
+}
+game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer(unpack(tbl_main))
+end
+end)
+
+hoopmainoff.Name = "hoopmainoff"
+hoopmainoff.Parent = main
+hoopmainoff.BackgroundColor3 = Color3.new(1, 1, 1)
+hoopmainoff.Position = UDim2.new(0.0482233502, 0, 0.25, 0)
+hoopmainoff.Size = UDim2.new(0, 109, 0, 50)
+
+hoopoff.Name = "hoopoff"
+hoopoff.Parent = hoopmainoff
+hoopoff.BackgroundColor3 = Color3.new(1, 0, 0)
+hoopoff.Position = UDim2.new(0, 0, -0.00941181183, 0)
+hoopoff.Size = UDim2.new(0, 109, 0, 50)
+hoopoff.Font = Enum.Font.GothamBlack
+hoopoff.Text = "Hoopfarm (Off)"
+hoopoff.TextColor3 = Color3.new(0, 0, 0)
+hoopoff.TextSize = 14
+hoopoff.MouseButton1Down:connect(function()
+hoopmainoff.Visible = false
+hoopmainon.Visible = true
+
+wait(1)
+_G.Farm3 = true
+
+while _G.Farm3 == true do wait()
+for i,v in pairs(game.Workspace.Hoops:GetChildren()) do
+v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+end
+end
+end)
+
+gemmainoff.Name = "gemmainoff"
+gemmainoff.Parent = main
+gemmainoff.BackgroundColor3 = Color3.new(1, 1, 1)
+gemmainoff.Position = UDim2.new(0.360406041, 0, 0.25, 0)
+gemmainoff.Size = UDim2.new(0, 109, 0, 50)
+
+gemoff.Name = "gemoff"
+gemoff.Parent = gemmainoff
+gemoff.BackgroundColor3 = Color3.new(1, 0, 0)
+gemoff.Size = UDim2.new(0, 109, 0, 50)
+gemoff.Font = Enum.Font.GothamBlack
+gemoff.Text = "Gemfarm (Off)"
+gemoff.TextColor3 = Color3.new(0, 0, 0)
+gemoff.TextSize = 14
+gemoff.MouseButton1Down:connect(function()
+gemmainoff.Visible = false
+gemmainon.Visible = true
+
+wait(1)
+_G.Farm2 = true
+
+while _G.Farm2 == true do wait()
+for i,v in pairs(game.Workspace.orbFolder.City:GetChildren()) do
+if v.Name == "Gem" then
+v.outerGem.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+end
+end
+end
+end)
+
+orbmainoff.Name = "orbmainoff"
+orbmainoff.Parent = main
+orbmainoff.BackgroundColor3 = Color3.new(1, 1, 1)
+orbmainoff.Position = UDim2.new(0.667512774, 0, 0.25, 0)
+orbmainoff.Size = UDim2.new(0, 109, 0, 50)
+
+orboff.Name = "orboff"
+orboff.Parent = orbmainoff
+orboff.BackgroundColor3 = Color3.new(1, 0, 0)
+orboff.Position = UDim2.new(-2.38418579e-07, 0, 0, 0)
+orboff.Size = UDim2.new(0, 109, 0, 50)
+orboff.Font = Enum.Font.GothamBlack
+orboff.Text = "Orbfarm (Off)"
+orboff.TextColor3 = Color3.new(0, 0, 0)
+orboff.TextSize = 14
+orboff.MouseButton1Down:connect(function()
+orbmainoff.Visible = false
+orbmainon.Visible = true
+
+wait(1)
+_G.Farm1 = true
+
+while _G.Farm1 == true do wait()
+for i,v in pairs(game.Workspace.orbFolder.City:GetChildren()) do
+if v.Name ~= "Gem" then
+v.outerOrb.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+end
+end
+end
+end)
+
+orbmainon.Name = "orbmainon"
+orbmainon.Parent = main
+orbmainon.BackgroundColor3 = Color3.new(1, 1, 1)
+orbmainon.Position = UDim2.new(0.667512536, 0, 0.25, 0)
+orbmainon.Size = UDim2.new(0, 109, 0, 50)
+orbmainon.Visible = false
+
+orbon.Name = "orbon"
+orbon.Parent = orbmainon
+orbon.BackgroundColor3 = Color3.new(0, 1, 0)
+orbon.Size = UDim2.new(0, 109, 0, 50)
+orbon.Font = Enum.Font.GothamBlack
+orbon.Text = "Orbfarm (On)"
+orbon.TextColor3 = Color3.new(0, 0, 0)
+orbon.TextSize = 14
+orbon.MouseButton1Down:connect(function()
+orbmainon.Visible = false
+orbmainoff.Visible = true
+
+wait(1)
+_G.Farm1 = false
+
+while _G.Farm1 == true do wait()
+for i,v in pairs(game.Workspace.orbFolder.City:GetChildren()) do
+if v.Name ~= "Gem" then
+v.outerOrb.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+end
+end
+end
+end)
+
+gemmainon.Name = "gemmainon"
+gemmainon.Parent = main
+gemmainon.BackgroundColor3 = Color3.new(1, 1, 1)
+gemmainon.Position = UDim2.new(0.357867986, 0, 0.25, 0)
+gemmainon.Size = UDim2.new(0, 109, 0, 50)
+gemmainon.Visible = false
+
+gemon.Name = "gemon"
+gemon.Parent = gemmainon
+gemon.BackgroundColor3 = Color3.new(0, 1, 0)
+gemon.Position = UDim2.new(0.00917410851, 0, 0, 0)
+gemon.Size = UDim2.new(0, 109, 0, 50)
+gemon.Font = Enum.Font.GothamBlack
+gemon.Text = "Gemfarm (On)"
+gemon.TextColor3 = Color3.new(0, 0, 0)
+gemon.TextSize = 14
+gemon.MouseButton1Down:connect(function()
+gemmainon.Visible = false
+gemmainoff.Visible = true
+
+wait(1)
+_G.Farm2 = false
+
+while _G.Farm2 == true do wait()
+for i,v in pairs(game.Workspace.orbFolder.City:GetChildren()) do
+if v.Name == "Gem" then
+v.outerGem.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+end
+end
+end
+end)
+
+hoopmainon.Name = "hoopmainon"
+hoopmainon.Parent = main
+hoopmainon.BackgroundColor3 = Color3.new(1, 1, 1)
+hoopmainon.Position = UDim2.new(0.0482233465, 0, 0.24609375, 0)
+hoopmainon.Size = UDim2.new(0, 109, 0, 50)
+hoopmainon.Visible = false
+
+hoopon.Name = "hoopon"
+hoopon.Parent = hoopmainon
+hoopon.BackgroundColor3 = Color3.new(0, 1, 0)
+hoopon.Position = UDim2.new(0, 0, 0.0199999809, 0)
+hoopon.Size = UDim2.new(0, 109, 0, 50)
+hoopon.Font = Enum.Font.GothamBlack
+hoopon.Text = "Hoopfarm (On)"
+hoopon.TextColor3 = Color3.new(0, 0, 0)
+hoopon.TextSize = 14
+hoopon.MouseButton1Down:connect(function()
+hoopmainon.Visible = false
+hoopmainoff.Visible = true
+
+wait(1)
+_G.Farm3 = false
+
+while _G.Farm3 == true do wait()
+for i,v in pairs(game.Workspace.Hoops:GetChildren()) do
+v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+end
+end
+end)
+
+credits.Name = "credits"
+credits.Parent = main
+credits.BackgroundColor3 = Color3.new(0.333333, 0, 0.498039)
+credits.Position = UDim2.new(0, 0, 0.83984375, 0)
+credits.Size = UDim2.new(0, 393, 0, 41)
+credits.Font = Enum.Font.GothamBlack
+credits.Text = "Made By Ree"
+credits.TextColor3 = Color3.new(0.333333, 1, 1)
+credits.TextSize = 14
+_G.Loll = true
+while _G.Loll == true do wait(0.01)
+for i=1,500 do
+local tbl_main = 
+{
+      "collectOrb", 
+      "Red Orb", 
+      "City"
+}
+game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(tbl_main))
+
+local tbl_main = 
+{
+      "collectOrb", 
+      "Yellow Orb", 
+      "City"
+}
+game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(tbl_main))
+
+local tbl_main = 
+{
+      "collectOrb", 
+      "Gem", 
+      "City"
+}
+game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(tbl_main))
+
+local tbl_main = 
+{
+      "collectOrb", 
+      "Orange Orb", 
+      "City"
+}
+game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(tbl_main))
+
+local tbl_main = 
+{
+      "rebirthRequest"
+}
+game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer(unpack(tbl_main))
+end
+end

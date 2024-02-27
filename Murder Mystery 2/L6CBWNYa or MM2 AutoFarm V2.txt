@@ -1,0 +1,974 @@
+--[[
+   
+  __  __ __  __ ___                  _         __      _____  
+ |  \/  |  \/  |__ \      /\        | |        \ \    / /__ \
+ | \  / | \  / |  ) |    /  \  _   _| |_ ___    \ \  / /   ) |
+ | |\/| | |\/| | / /    / /\ \| | | | __/ _ \    \ \/ /   / /
+ | |  | | |  | |/ /_   / ____ \ |_| | || (_) |    \  /   / /_
+ |_|  |_|_|  |_|____| /_/    \_\__,_|\__\___/      \/   |____|
+                                                             
+ 
+--]]
+ 
+if game.GameId == 66654135 then
+local blur = Instance.new("BlurEffect")
+local Intro = Instance.new("ScreenGui")
+local Header = Instance.new("TextLabel")
+local SubHeader = Instance.new("TextLabel")
+ 
+blur.Parent = game.Lighting
+blur.Size = 0
+ 
+Intro.Name = "Intro"
+Intro.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Intro.ResetOnSpawn = false
+ 
+Header.Name = "Header"
+Header.Parent = Intro
+Header.AnchorPoint = Vector2.new(0.5, 0.5)
+Header.BackgroundColor3 = Color3.new(1, 1, 1)
+Header.BackgroundTransparency = 1
+Header.BorderSizePixel = 0
+Header.Position = UDim2.new(0.5, 0, 0.5, 0)
+Header.Size = UDim2.new(0.300000012, 0, 0.100000001, 0)
+Header.Font = Enum.Font.SourceSansBold
+Header.Text = "MM2 Auto V2"
+Header.TextColor3 = Color3.new(1, 1, 1)
+Header.TextScaled = true
+Header.TextSize = 14
+Header.TextTransparency = 1
+Header.TextWrapped = true
+ 
+SubHeader.Name = "SubHeader"
+SubHeader.Parent = Intro
+SubHeader.AnchorPoint = Vector2.new(0.5, 0.5)
+SubHeader.BackgroundColor3 = Color3.new(1, 1, 1)
+SubHeader.BackgroundTransparency = 1
+SubHeader.BorderSizePixel = 0
+SubHeader.Position = UDim2.new(0.5, 0, 0.58395803, 0)
+SubHeader.Size = UDim2.new(0.200000003, 0, 0.0700000003, 0)
+SubHeader.Font = Enum.Font.SourceSansSemibold
+SubHeader.Text = "Made by DemonizedFetus"
+SubHeader.TextColor3 = Color3.new(0, 0, 0)
+SubHeader.TextScaled = true
+SubHeader.TextSize = 14
+SubHeader.TextTransparency = 1
+SubHeader.TextWrapped = true
+ 
+for i = 0,20 do
+    wait()
+    blur.Size = i
+end
+for i = 10,1,-1 do
+    Header.TextTransparency = i/10
+    SubHeader.TextTransparency = i/10
+    wait()
+end
+
+wait(3.2)
+ 
+for i = 0,10 do
+    Header.TextTransparency = i/10
+    SubHeader.TextTransparency = i/10
+    wait()
+end
+for i = 20,1,-1 do
+    wait()
+    blur.Size = i
+end
+ 
+local MM2AutoV2 = Instance.new("ScreenGui")
+local Hub = Instance.new("Frame")
+local Info = Instance.new("TextButton")
+local Icon = Instance.new("ImageLabel")
+local Title = Instance.new("TextLabel")
+local Settings = Instance.new("TextButton")
+local Icon_2 = Instance.new("ImageLabel")
+local Title_2 = Instance.new("TextLabel")
+local Donate = Instance.new("TextButton")
+local Icon_3 = Instance.new("ImageLabel")
+local Title_3 = Instance.new("TextLabel")
+local Header = Instance.new("TextLabel")
+local Task = Instance.new("TextLabel")
+local Settings_2 = Instance.new("Frame")
+local Title_4 = Instance.new("Frame")
+local Title_5 = Instance.new("TextLabel")
+local SettingsHolder = Instance.new("Frame")
+local UIGridLayout = Instance.new("UIGridLayout")
+local Info_2 = Instance.new("Frame")
+local InfoHolder = Instance.new("Frame")
+local Credits = Instance.new("TextLabel")
+local YtInfo = Instance.new("TextLabel")
+local YtHeader = Instance.new("TextLabel")
+local CopyHeader = Instance.new("TextLabel")
+local CopyInfo = Instance.new("TextLabel")
+local Title_6 = Instance.new("Frame")
+local Title_7 = Instance.new("TextLabel")
+local Donate_2 = Instance.new("Frame")
+local DonateHolder = Instance.new("Frame")
+local Info_3 = Instance.new("TextLabel")
+local DonationButtons = Instance.new("Frame")
+local UIGridLayout_2 = Instance.new("UIGridLayout")
+local Donate5 = Instance.new("TextButton")
+local Donate10 = Instance.new("TextButton")
+local Donate50 = Instance.new("TextButton")
+local Donate100 = Instance.new("TextButton")
+local Donate500 = Instance.new("TextButton")
+local Donate1000 = Instance.new("TextButton")
+local Title_8 = Instance.new("Frame")
+local Title_9 = Instance.new("TextLabel")
+ 
+MM2AutoV2.Name = "MM2AutoV2"
+MM2AutoV2.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+MM2AutoV2.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+MM2AutoV2.ResetOnSpawn = false
+ 
+Hub.Name = "Hub"
+Hub.Parent = MM2AutoV2
+Hub.BackgroundColor3 = Color3.new(0.101961, 0.101961, 0.101961)
+Hub.BackgroundTransparency = 0.5
+Hub.BorderSizePixel = 0
+Hub.Position = UDim2.new(0.17, 0,1, -55)
+Hub.Size = UDim2.new(0, 150, 0, 50)
+ 
+Info.Name = "Info"
+Info.Parent = Hub
+Info.BackgroundColor3 = Color3.new(1, 1, 1)
+Info.BackgroundTransparency = 1
+Info.Position = UDim2.new(0, 50, 0, 0)
+Info.Size = UDim2.new(0, 50, 0, 50)
+Info.ZIndex = 2
+Info.Font = Enum.Font.SourceSansBold
+Info.Text = ""
+Info.TextColor3 = Color3.new(1, 1, 1)
+Info.TextSize = 14
+Info.TextStrokeTransparency = 0.69999998807907
+Info.TextWrapped = true
+Info.TextYAlignment = Enum.TextYAlignment.Bottom
+ 
+Icon.Name = "Icon"
+Icon.Parent = Info
+Icon.BackgroundColor3 = Color3.new(1, 1, 1)
+Icon.BackgroundTransparency = 1
+Icon.Position = UDim2.new(0, 3, 0, 3)
+Icon.Size = UDim2.new(1, -6, 1, -6)
+Icon.Image = "rbxassetid://2979400646"
+ 
+Title.Name = "Title"
+Title.Parent = Info
+Title.BackgroundColor3 = Color3.new(1, 1, 1)
+Title.BackgroundTransparency = 1
+Title.Size = UDim2.new(1, 0, 1, -3)
+Title.Font = Enum.Font.SourceSansBold
+Title.Text = "Info"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.TextSize = 14
+Title.TextStrokeTransparency = 0.69999998807907
+Title.TextWrapped = true
+Title.TextYAlignment = Enum.TextYAlignment.Bottom
+ 
+Settings.Name = "Settings"
+Settings.Parent = Hub
+Settings.BackgroundColor3 = Color3.new(1, 1, 1)
+Settings.BackgroundTransparency = 1
+Settings.Size = UDim2.new(0, 50, 0, 50)
+Settings.Font = Enum.Font.SourceSansBold
+Settings.Text = ""
+Settings.TextColor3 = Color3.new(1, 1, 1)
+Settings.TextSize = 14
+Settings.TextStrokeTransparency = 0.69999998807907
+Settings.TextYAlignment = Enum.TextYAlignment.Bottom
+ 
+Icon_2.Name = "Icon"
+Icon_2.Parent = Settings
+Icon_2.BackgroundColor3 = Color3.new(1, 1, 1)
+Icon_2.BackgroundTransparency = 1
+Icon_2.Position = UDim2.new(0, 2, 0, 2)
+Icon_2.Size = UDim2.new(1, -4, 1, -4)
+Icon_2.Image = "rbxassetid://2979397756"
+ 
+Title_2.Name = "Title"
+Title_2.Parent = Settings
+Title_2.BackgroundColor3 = Color3.new(1, 1, 1)
+Title_2.BackgroundTransparency = 1
+Title_2.Size = UDim2.new(1, 0, 1, -3)
+Title_2.Font = Enum.Font.SourceSansBold
+Title_2.Text = "Settings"
+Title_2.TextColor3 = Color3.new(1, 1, 1)
+Title_2.TextSize = 14
+Title_2.TextStrokeTransparency = 0.69999998807907
+Title_2.TextYAlignment = Enum.TextYAlignment.Bottom
+ 
+Donate.Name = "Donate"
+Donate.Parent = Hub
+Donate.BackgroundColor3 = Color3.new(1, 1, 1)
+Donate.BackgroundTransparency = 1
+Donate.Position = UDim2.new(0, 100, 0, 0)
+Donate.Size = UDim2.new(0, 50, 0, 50)
+Donate.ZIndex = 2
+Donate.Font = Enum.Font.SourceSansBold
+Donate.Text = ""
+Donate.TextColor3 = Color3.new(1, 1, 1)
+Donate.TextSize = 14
+Donate.TextStrokeTransparency = 0.69999998807907
+Donate.TextWrapped = true
+Donate.TextYAlignment = Enum.TextYAlignment.Bottom
+ 
+Icon_3.Name = "Icon"
+Icon_3.Parent = Donate
+Icon_3.BackgroundColor3 = Color3.new(1, 1, 1)
+Icon_3.BackgroundTransparency = 1
+Icon_3.Position = UDim2.new(0, 3, 0, 3)
+Icon_3.Size = UDim2.new(1, -6, 1, -6)
+Icon_3.Image = "rbxassetid://2979370758"
+ 
+Title_3.Name = "Title"
+Title_3.Parent = Donate
+Title_3.BackgroundColor3 = Color3.new(1, 1, 1)
+Title_3.BackgroundTransparency = 1
+Title_3.Size = UDim2.new(1, 0, 1, -3)
+Title_3.Font = Enum.Font.SourceSansBold
+Title_3.Text = "Donate"
+Title_3.TextColor3 = Color3.new(1, 1, 1)
+Title_3.TextSize = 14
+Title_3.TextStrokeTransparency = 0.69999998807907
+Title_3.TextWrapped = true
+Title_3.TextYAlignment = Enum.TextYAlignment.Bottom
+ 
+Header.Name = "Header"
+Header.Parent = Hub
+Header.AnchorPoint = Vector2.new(0, 1)
+Header.BackgroundColor3 = Color3.new(1, 1, 1)
+Header.BackgroundTransparency = 1
+Header.Position = UDim2.new(0, 0, -0.300000012, 0)
+Header.Size = UDim2.new(1, 0, 0.300000012, 0)
+Header.Font = Enum.Font.SourceSansBold
+Header.Text = "MM2 Auto V2"
+Header.TextColor3 = Color3.new(1, 1, 1)
+Header.TextSize = 14
+Header.TextStrokeTransparency = 0.69999998807907
+ 
+Task.Name = "Task"
+Task.Parent = Hub
+Task.AnchorPoint = Vector2.new(0, 1)
+Task.BackgroundColor3 = Color3.new(1, 1, 1)
+Task.BackgroundTransparency = 1
+Task.Size = UDim2.new(1, 0, 0.300000012, 0)
+Task.Font = Enum.Font.SourceSansItalic
+Task.Text = "Task: None"
+Task.TextColor3 = Color3.new(1, 1, 1)
+Task.TextScaled = true
+Task.TextSize = 14
+Task.TextStrokeTransparency = 0.69999998807907
+Task.TextWrapped = true
+ 
+Settings_2.Name = "Settings"
+Settings_2.Parent = MM2AutoV2
+Settings_2.BackgroundColor3 = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Settings_2.BackgroundTransparency = 0.10000000149012
+Settings_2.BorderColor3 = Color3.new(0, 0, 0)
+Settings_2.BorderSizePixel = 0
+Settings_2.ClipsDescendants = true
+Settings_2.Position = UDim2.new(0.5, -250, 0.5, -200)
+Settings_2.Size = UDim2.new(0, 500, 0, 400)
+Settings_2.Visible = false
+ 
+Title_4.Name = "Title"
+Title_4.Parent = Settings_2
+Title_4.BackgroundColor3 = Color3.new(1, 1, 1)
+Title_4.Size = UDim2.new(1.62, -310, 0, 45)
+Title_4.Style = Enum.FrameStyle.DropShadow
+ 
+Title_5.Name = "Title"
+Title_5.Parent = Title_4
+Title_5.BackgroundColor3 = Color3.new(1, 1, 1)
+Title_5.BackgroundTransparency = 1
+Title_5.Size = UDim2.new(1, 0, 1, 0)
+Title_5.Font = Enum.Font.SourceSansBold
+Title_5.Text = "MM2 Auto V2 - Settings"
+Title_5.TextColor3 = Color3.new(1, 1, 1)
+Title_5.TextScaled = true
+Title_5.TextSize = 32
+Title_5.TextStrokeTransparency = 0.69999998807907
+Title_5.TextWrapped = true
+ 
+SettingsHolder.Name = "SettingsHolder"
+SettingsHolder.Parent = Settings_2
+SettingsHolder.BackgroundColor3 = Color3.new(1, 1, 1)
+SettingsHolder.Position = UDim2.new(0, 0, 0.100000001, 0)
+SettingsHolder.Size = UDim2.new(0, 500, 0, 360)
+SettingsHolder.Style = Enum.FrameStyle.DropShadow
+ 
+UIGridLayout.Parent = SettingsHolder
+UIGridLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIGridLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+UIGridLayout.CellSize = UDim2.new(0, 170, 0, 50)
+ 
+Info_2.Name = "Info"
+Info_2.Parent = MM2AutoV2
+Info_2.BackgroundColor3 = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Info_2.BackgroundTransparency = 0.10000000149012
+Info_2.BorderColor3 = Color3.new(0, 0, 0)
+Info_2.BorderSizePixel = 0
+Info_2.Position = UDim2.new(0.5, -200, 0.5, -150)
+Info_2.Size = UDim2.new(0, 400, 0, 300)
+Info_2.Visible = false
+ 
+InfoHolder.Name = "InfoHolder"
+InfoHolder.Parent = Info_2
+InfoHolder.BackgroundColor3 = Color3.new(1, 1, 1)
+InfoHolder.Position = UDim2.new(0, 0, 0, 45)
+InfoHolder.Size = UDim2.new(1, 0, 1, -45)
+InfoHolder.Style = Enum.FrameStyle.DropShadow
+ 
+Credits.Name = "Credits"
+Credits.Parent = InfoHolder
+Credits.BackgroundColor3 = Color3.new(1, 1, 1)
+Credits.BackgroundTransparency = 1
+Credits.BorderSizePixel = 0
+Credits.Size = UDim2.new(1, 0, 0.200000003, 0)
+Credits.Font = Enum.Font.SourceSansItalic
+Credits.Text = "MM2 Auto V2™ was developed and designed by DemonizedFetus. No code has been taken from any other source and was written by none other than DemonizedFetus. "
+Credits.TextColor3 = Color3.new(1, 1, 1)
+Credits.TextScaled = true
+Credits.TextSize = 14
+Credits.TextWrapped = true
+Credits.TextXAlignment = Enum.TextXAlignment.Left
+Credits.TextYAlignment = Enum.TextYAlignment.Top
+ 
+YtInfo.Name = "YtInfo"
+YtInfo.Parent = InfoHolder
+YtInfo.BackgroundColor3 = Color3.new(1, 1, 1)
+YtInfo.BackgroundTransparency = 1
+YtInfo.BorderSizePixel = 0
+YtInfo.Position = UDim2.new(0, 0, 0.349999994, 0)
+YtInfo.Size = UDim2.new(1, 0, 0.200000003, 0)
+YtInfo.Font = Enum.Font.SourceSansItalic
+YtInfo.Text = "We appreciate any content on Youtube/any other media sharing sites. Although we do ask that you give credit where it is due and link the original V3rmillion thread in your video."
+YtInfo.TextColor3 = Color3.new(1, 1, 1)
+YtInfo.TextScaled = true
+YtInfo.TextSize = 14
+YtInfo.TextWrapped = true
+YtInfo.TextXAlignment = Enum.TextXAlignment.Left
+YtInfo.TextYAlignment = Enum.TextYAlignment.Top
+ 
+YtHeader.Name = "YtHeader"
+YtHeader.Parent = InfoHolder
+YtHeader.BackgroundColor3 = Color3.new(1, 1, 1)
+YtHeader.BackgroundTransparency = 1
+YtHeader.BorderSizePixel = 0
+YtHeader.Position = UDim2.new(0, 0, 0.25, 0)
+YtHeader.Size = UDim2.new(1, 0, 0.100000001, 0)
+YtHeader.Font = Enum.Font.SourceSansBold
+YtHeader.Text = "Youtube Policy"
+YtHeader.TextColor3 = Color3.new(1, 0, 0)
+YtHeader.TextScaled = true
+YtHeader.TextSize = 14
+YtHeader.TextWrapped = true
+YtHeader.TextYAlignment = Enum.TextYAlignment.Top
+ 
+CopyHeader.Name = "CopyHeader"
+CopyHeader.Parent = InfoHolder
+CopyHeader.BackgroundColor3 = Color3.new(1, 1, 1)
+CopyHeader.BackgroundTransparency = 1
+CopyHeader.BorderSizePixel = 0
+CopyHeader.Position = UDim2.new(0, 0, 0.649999976, 0)
+CopyHeader.Size = UDim2.new(1, 0, 0.100000001, 0)
+CopyHeader.Font = Enum.Font.SourceSansBold
+CopyHeader.Text = "Open-Source/Copying Policy"
+CopyHeader.TextColor3 = Color3.new(0.333333, 0, 1)
+CopyHeader.TextScaled = true
+CopyHeader.TextSize = 14
+CopyHeader.TextWrapped = true
+CopyHeader.TextYAlignment = Enum.TextYAlignment.Top
+ 
+CopyInfo.Name = "CopyInfo"
+CopyInfo.Parent = InfoHolder
+CopyInfo.BackgroundColor3 = Color3.new(1, 1, 1)
+CopyInfo.BackgroundTransparency = 1
+CopyInfo.BorderSizePixel = 0
+CopyInfo.Position = UDim2.new(0, 0, 0.75, 0)
+CopyInfo.Size = UDim2.new(1, 0, 0.200000003, 0)
+CopyInfo.Font = Enum.Font.SourceSansItalic
+CopyInfo.Text = "MM2 Auto V2™ is an open source script, it is completely acceptable to copy some of the code into your work but we do ask that you give credit for taking our code."
+CopyInfo.TextColor3 = Color3.new(1, 1, 1)
+CopyInfo.TextScaled = true
+CopyInfo.TextSize = 14
+CopyInfo.TextWrapped = true
+CopyInfo.TextXAlignment = Enum.TextXAlignment.Left
+CopyInfo.TextYAlignment = Enum.TextYAlignment.Top
+ 
+Title_6.Name = "Title"
+Title_6.Parent = Info_2
+Title_6.BackgroundColor3 = Color3.new(1, 1, 1)
+Title_6.Size = UDim2.new(1, 0, 0, 50)
+Title_6.Style = Enum.FrameStyle.DropShadow
+ 
+Title_7.Name = "Title"
+Title_7.Parent = Title_6
+Title_7.BackgroundColor3 = Color3.new(1, 1, 1)
+Title_7.BackgroundTransparency = 1
+Title_7.Size = UDim2.new(1, 0, 1, 0)
+Title_7.Font = Enum.Font.SourceSansBold
+Title_7.Text = "MM2 Auto V2 - Info"
+Title_7.TextColor3 = Color3.new(1, 1, 1)
+Title_7.TextScaled = true
+Title_7.TextSize = 32
+Title_7.TextStrokeTransparency = 0.69999998807907
+Title_7.TextWrapped = true
+ 
+Donate_2.Name = "Donate"
+Donate_2.Parent = MM2AutoV2
+Donate_2.BackgroundColor3 = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Donate_2.BackgroundTransparency = 0.10000000149012
+Donate_2.BorderColor3 = Color3.new(0, 0, 0)
+Donate_2.BorderSizePixel = 0
+Donate_2.Position = UDim2.new(0.5, -200, 0.5, -150)
+Donate_2.Size = UDim2.new(0, 400, 0, 300)
+Donate_2.Visible = false
+ 
+DonateHolder.Name = "DonateHolder"
+DonateHolder.Parent = Donate_2
+DonateHolder.BackgroundColor3 = Color3.new(1, 1, 1)
+DonateHolder.Position = UDim2.new(0, 0, 0, 45)
+DonateHolder.Size = UDim2.new(1, 0, 1, -45)
+DonateHolder.Style = Enum.FrameStyle.DropShadow
+ 
+Info_3.Name = "Info"
+Info_3.Parent = DonateHolder
+Info_3.BackgroundColor3 = Color3.new(1, 1, 1)
+Info_3.BackgroundTransparency = 1
+Info_3.BorderSizePixel = 0
+Info_3.Size = UDim2.new(1, 0, 0.25, 0)
+Info_3.Font = Enum.Font.SourceSansItalic
+Info_3.Text = "Countless hours have been spent developing this GUI but this was not created with the intent to profit, any donations would be greatly appreciated as it is a great motivator for updates. I received quite a few donations from the original MM2 Auto and that was what motivated me to make this one"
+Info_3.TextColor3 = Color3.new(1, 1, 1)
+Info_3.TextScaled = true
+Info_3.TextSize = 14
+Info_3.TextWrapped = true
+Info_3.TextXAlignment = Enum.TextXAlignment.Left
+Info_3.TextYAlignment = Enum.TextYAlignment.Top
+ 
+DonationButtons.Name = "DonationButtons"
+DonationButtons.Parent = DonateHolder
+DonationButtons.BackgroundColor3 = Color3.new(0.254902, 0.254902, 0.254902)
+DonationButtons.BorderSizePixel = 0
+DonationButtons.Position = UDim2.new(0, 0, 0.270000011, 0)
+DonationButtons.Size = UDim2.new(1, 0, 0.730000019, 0)
+ 
+UIGridLayout_2.Parent = DonationButtons
+UIGridLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIGridLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+UIGridLayout_2.VerticalAlignment = Enum.VerticalAlignment.Center
+UIGridLayout_2.CellSize = UDim2.new(0.400000006, -4, 0.200000003, -4)
+ 
+Donate5.Name = "Donate5"
+Donate5.Parent = DonationButtons
+Donate5.BackgroundColor3 = Color3.new(1, 1, 1)
+Donate5.Size = UDim2.new(0, 200, 0, 50)
+Donate5.Style = Enum.ButtonStyle.RobloxRoundDefaultButton
+Donate5.Font = Enum.Font.SourceSansSemibold
+Donate5.Text = "5R$"
+Donate5.TextColor3 = Color3.new(0.254902, 0.254902, 0.254902)
+Donate5.TextScaled = true
+Donate5.TextSize = 14
+Donate5.TextWrapped = true
+ 
+Donate10.Name = "Donate10"
+Donate10.Parent = DonationButtons
+Donate10.BackgroundColor3 = Color3.new(1, 1, 1)
+Donate10.Size = UDim2.new(0, 200, 0, 50)
+Donate10.Style = Enum.ButtonStyle.RobloxRoundDefaultButton
+Donate10.Font = Enum.Font.SourceSansSemibold
+Donate10.Text = "10R$"
+Donate10.TextColor3 = Color3.new(0.254902, 0.254902, 0.254902)
+Donate10.TextScaled = true
+Donate10.TextSize = 14
+Donate10.TextWrapped = true
+ 
+Donate50.Name = "Donate50"
+Donate50.Parent = DonationButtons
+Donate50.BackgroundColor3 = Color3.new(1, 1, 1)
+Donate50.Size = UDim2.new(0, 200, 0, 50)
+Donate50.Style = Enum.ButtonStyle.RobloxRoundDefaultButton
+Donate50.Font = Enum.Font.SourceSansSemibold
+Donate50.Text = "50R$"
+Donate50.TextColor3 = Color3.new(0.254902, 0.254902, 0.254902)
+Donate50.TextScaled = true
+Donate50.TextSize = 14
+Donate50.TextWrapped = true
+ 
+Donate100.Name = "Donate100"
+Donate100.Parent = DonationButtons
+Donate100.BackgroundColor3 = Color3.new(1, 1, 1)
+Donate100.Size = UDim2.new(0, 200, 0, 50)
+Donate100.Style = Enum.ButtonStyle.RobloxRoundDefaultButton
+Donate100.Font = Enum.Font.SourceSansSemibold
+Donate100.Text = "100R$"
+Donate100.TextColor3 = Color3.new(0.254902, 0.254902, 0.254902)
+Donate100.TextScaled = true
+Donate100.TextSize = 14
+Donate100.TextWrapped = true
+ 
+Donate500.Name = "Donate500"
+Donate500.Parent = DonationButtons
+Donate500.BackgroundColor3 = Color3.new(1, 1, 1)
+Donate500.Size = UDim2.new(0, 200, 0, 50)
+Donate500.Style = Enum.ButtonStyle.RobloxRoundDefaultButton
+Donate500.Font = Enum.Font.SourceSansSemibold
+Donate500.Text = "500R$"
+Donate500.TextColor3 = Color3.new(0.254902, 0.254902, 0.254902)
+Donate500.TextScaled = true
+Donate500.TextSize = 14
+Donate500.TextWrapped = true
+ 
+Donate1000.Name = "Donate1000"
+Donate1000.Parent = DonationButtons
+Donate1000.BackgroundColor3 = Color3.new(1, 1, 1)
+Donate1000.Size = UDim2.new(0, 200, 0, 50)
+Donate1000.Style = Enum.ButtonStyle.RobloxRoundDefaultButton
+Donate1000.Font = Enum.Font.SourceSansSemibold
+Donate1000.Text = "1000R$"
+Donate1000.TextColor3 = Color3.new(0.254902, 0.254902, 0.254902)
+Donate1000.TextScaled = true
+Donate1000.TextSize = 14
+Donate1000.TextWrapped = true
+ 
+Title_8.Name = "Title"
+Title_8.Parent = Donate_2
+Title_8.BackgroundColor3 = Color3.new(1, 1, 1)
+Title_8.Size = UDim2.new(1, 0, 0, 50)
+Title_8.Style = Enum.FrameStyle.DropShadow
+ 
+Title_9.Name = "Title"
+Title_9.Parent = Title_8
+Title_9.BackgroundColor3 = Color3.new(1, 1, 1)
+Title_9.BackgroundTransparency = 1
+Title_9.Size = UDim2.new(1, 0, 1, 0)
+Title_9.Font = Enum.Font.SourceSansBold
+Title_9.Text = "MM2 Auto V2 - Donate"
+Title_9.TextColor3 = Color3.new(1, 1, 1)
+Title_9.TextScaled = true
+Title_9.TextSize = 32
+Title_9.TextStrokeTransparency = 0.69999998807907
+Title_9.TextWrapped = true
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+--UI Toggling
+local openUI
+ 
+Donate.MouseButton1Click:Connect(function()
+    if openUI ~= Donate_2 then
+        if openUI ~= nil then
+            openUI.Visible = false
+        end
+        Donate_2.Visible = true
+        openUI = Donate_2
+    else
+        openUI = nil
+        Donate_2.Visible = false
+    end
+end)
+ 
+Info.MouseButton1Click:Connect(function()
+    if openUI ~= Info_2 then
+        if openUI ~= nil then
+            openUI.Visible = false
+        end
+        Info_2.Visible = true
+        openUI = Info_2
+    else
+        openUI = nil
+        Info_2.Visible = false
+    end
+end)
+ 
+Settings.MouseButton1Click:Connect(function()
+    if openUI ~= Settings_2 then
+        if openUI ~= nil then
+            openUI.Visible = false
+        end
+        Settings_2.Visible = true
+        openUI = Settings_2
+    else
+        openUI = nil
+        Settings_2.Visible = false
+    end
+end)
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+--Settings/Variables
+ 
+local Players = game.Players
+local Player = Players.LocalPlayer
+local Lobby = true
+local Dead = true
+local lobby
+ 
+local function newTask(msg)
+    Task.Text = "Task: "..msg
+end
+local SettingsTable = {
+    GuiRunning = {
+        Name = "GUI Running",
+        Default = true,
+        Value = true,
+    },
+    FindNewServer = {
+        Name = "Find new server",
+        Default = false,
+        Btn1 = "Join",
+        Btn2 = "Joining..",
+        Func = function() newTask("Teleporting") game:GetService("TeleportService"):Teleport(142823291, Player) end
+    },
+    CustomLobby = {
+        Name = "Custom Lobby",
+        Default = true,
+        Value = true,
+        Func = function(unload) print("Lobby action") if unload == true then lobby = game:GetObjects("rbxassetid://2988765860")[1] lobby.Parent = workspace lobby:MoveTo(Vector3.new(-243.793, 379.8, 139.683)) else lobby:Destroy() end end
+    },
+    ResetCharacter = {
+        Name = "Reset Character",
+        Default = false,
+        Btn1 = "Reset",
+        Btn2 = "Reset",
+        Func = function() newTask("Waiting for character") repeat wait() until Player.Character Player.Character.Humanoid.Health = 0 end
+    },
+    AutoKillAsMurderer = {
+        Name = "Auto Kill As Murderer",
+        Default = true,
+        Value = true,
+    },
+    AutoKillAsSheriff = {
+        Name = "Auto Kill As Sheriff",
+        Default = true,
+        Value = true,
+    },
+    AutoGrabGun = {
+        Name = "Auto Grab Gun",
+        Default = true,
+        Value = true,
+    },
+    AutoCollectCoins = {
+        Name = "Auto Collect Coins",
+        Default = true,
+        Value = true,
+    },
+    AutoNoYou = {
+        Name = "Auto 'No u'",
+        Default = true,
+        Value = true
+    },
+}
+ 
+local function newSetting(n,Data)
+    local Setting = Instance.new("Frame")
+    local SettingName = Instance.new("TextLabel")
+    local SettingToggle = Instance.new("TextButton")
+    Setting.Name = n
+    Setting.Parent = SettingsHolder
+    Setting.BackgroundColor3 = Color3.new(1, 1, 1)
+    Setting.BackgroundTransparency = 0.75
+    Setting.BorderSizePixel = 0
+    Setting.Size = UDim2.new(0, 100, 0, 100)
+    SettingName.Name = "SettingName"
+    SettingName.Parent = Setting
+    SettingName.BackgroundColor3 = Color3.new(1, 1, 1)
+    SettingName.BackgroundTransparency = 1
+    SettingName.BorderSizePixel = 0
+    SettingName.Size = UDim2.new(1, 0, 0.300000012, 0)
+    SettingName.Font = Enum.Font.SourceSansBold
+    SettingName.Text = Data.Name
+    SettingName.TextColor3 = Color3.new(1, 1, 1)
+    SettingName.TextScaled = true
+    SettingName.TextSize = 14
+    SettingName.TextStrokeTransparency = 0.69999998807907
+    SettingName.TextWrapped = true
+    SettingToggle.Name = "SettingToggle"
+    SettingToggle.Parent = Setting
+    SettingToggle.AnchorPoint = Vector2.new(0.5, 0)
+    SettingToggle.BackgroundColor3 = Color3.new(1, 1, 1)
+    SettingToggle.BorderSizePixel = 0
+    SettingToggle.Position = UDim2.new(0.5, 0, 0.400000006, 0)
+    SettingToggle.Size = UDim2.new(0.899999976, 0, 0.5, 0)
+    SettingToggle.Style = Enum.ButtonStyle.RobloxRoundDropdownButton
+    SettingToggle.Font = Enum.Font.SourceSansSemibold
+    if Data.Default == true then
+        if Data.Value == true then
+            SettingToggle.Text = "On"
+        else
+            SettingToggle.Text = "Off"
+        end
+    else
+        SettingToggle.Text = Data.Btn1
+    end
+    SettingToggle.TextColor3 = Color3.new(0.168627, 0.164706, 0.164706)
+    SettingToggle.TextSize = 14
+    SettingToggle.TextWrapped = true
+    if Data.Default == true and Data.Func then
+        Data.Func(Data.Value)
+    end
+    SettingToggle.MouseButton1Click:Connect(function()
+        if Data.Default == true then
+            if Data.Value == true then
+                Data.Value = false
+                SettingToggle.Text = "Off"
+            else
+                Data.Value = true
+                SettingToggle.Text = "On"
+            end
+            if Data.Func then
+                Data.Func(Data.Value)
+            end
+        else
+            SettingToggle.Text = Data.Btn2
+            Data.Func()
+        end
+    end)
+end
+ 
+for i,tab in pairs(SettingsTable) do
+    newSetting(i,tab)
+end
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+--Automatic no u to hacking accusations
+ 
+local function bindPlayer(Plr)
+    if Plr and SettingsTable.AutoNoYou.Value == true then
+        Plr.Chatted:Connect(function(msg)
+            if string.match(string.lower(msg),string.lower(Player.Name)) or string.match(string.lower(msg), "hacker") then
+                game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("No u", "normalchat")
+            end
+        end)
+    end
+end
+ 
+for _,v in pairs(game.Players:GetChildren()) do
+    if v ~= Player then
+        bindPlayer(v)
+    end
+end
+ 
+game.Players.PlayerAdded:Connect(function(plr)
+    bindPlayer(plr)
+end)
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+--Donations
+ 
+local DonationItems = {
+    [Donate5] = 2342466498,
+    [Donate10] = 2770616801,
+    [Donate50] = 2992188070,
+    [Donate100] = 2992193055,
+    [Donate500] = 2992194970,
+    [Donate1000] = 2992198744
+}
+ 
+for i,v in pairs(DonationItems) do
+    i.MouseButton1Click:Connect(function()
+        game:GetService("MarketplaceService"):PromptPurchase(Player, v)
+    end)
+end
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+--Functions
+ 
+local function weaponCheck()
+    local Sheriff
+    local Murderer
+    for _,v in pairs(Players:GetChildren()) do
+        if v.Character then
+            if v.Backpack:FindFirstChild("Gun") then Sheriff = v end
+            if v.Character:FindFirstChild("Revolver") then Sheriff = v end
+            if v.Backpack:FindFirstChild("Revolver") then Sheriff = v end
+            if v.Character:FindFirstChild("Gun") then Sheriff = v end
+            if v.Backpack:FindFirstChild("Knife") and Sheriff ~= v then Murderer = v end
+            if v.Character:FindFirstChild("Knife") and Sheriff ~= v then Murderer = v end
+        end
+        wait()
+    end
+    return Sheriff, Murderer
+end
+ 
+local function getCoins()
+    local max = 0
+    local current = 0
+    local roundOver = false
+    local owns = game:GetService("MarketplaceService"):UserOwnsGamePassAsync(Player.UserId, 429957)
+    if owns then
+        max = 15
+    else
+        max = 10
+    end
+    repeat wait()
+        if Player.Character then
+            local char = Player.Character
+            for _,v in pairs(workspace:GetDescendants()) do
+                if v.Name == "Coin" then
+                    v.CFrame = char.HumanoidRootPart.CFrame
+                end
+            end
+        end
+        if Player.PlayerGui.MainGUI.Game.Waiting.Visible == true then roundOver = true end
+        local s,m = weaponCheck()
+        if m == nil then roundOver = true end
+        wait(0.5)
+    until tonumber(Player.PlayerGui.MainGUI.Game.CashBag.Coins.Text) == max or roundOver == true
+end
+ 
+local function getEquipped()
+    local weapon
+    local equipped = false
+    for i = 1,4 do
+        if Player.Backpack:FindFirstChild("Gun") then weapon = Player.Backpack:FindFirstChild("Gun") end
+        if Player.Backpack:FindFirstChild("Revolver") then weapon = Player.Backpack:FindFirstChild("Revolver") end
+        if Player.Character:FindFirstChild("Revolver") then weapon = Player.Character:FindFirstChild("Revolver") equipped = true end
+        if Player.Character:FindFirstChild("Gun") then weapon = Player.Character:FindFirstChild("Gun") equipped = true end
+        if Player.Backpack:FindFirstChild("Knife") then weapon = Player.Backpack:FindFirstChild("Knife") end
+        if Player.Character:FindFirstChild("Knife") then weapon = Player.Character:FindFirstChild("Knife") equipped = true end
+        wait()
+    end
+    return weapon, equipped
+end
+ 
+local function killMurderer(override)
+    newTask("Checking character")
+    wait()
+    repeat wait() until Player.Character
+    if SettingsTable.AutoCollectCoins.Value == true and not override then
+        getCoins()
+    end
+    local w,e = getEquipped()
+    if e == false then
+        Player.Character.Humanoid:EquipTool(w)
+    end
+    local done = false
+    pcall(function()
+    repeat
+        local s,m = weaponCheck()
+        if m == nil then
+             done = true
+        else
+            Player.Character.HumanoidRootPart.CFrame = m.Character.HumanoidRootPart.CFrame * CFrame.new(-1.5,0,4)
+            wait(0.2)
+            pcall(function()
+                if w and w.Handle then
+                    local c = (w.Handle.CFrame * CFrame.new(0,1,0)).p
+                    w.KnifeServer.SlashStart:FireServer(1,c)
+                end
+            end)
+        end
+        wait()
+    until done == true or not w or not w:FindFirstChild("Handle")
+    end)
+end
+ 
+local function killAll()
+    newTask("Checking character")
+    wait()
+    repeat wait() until Player.Character
+    if SettingsTable.AutoCollectCoins.Value == true then
+        getCoins()
+    end
+    local w,e = getEquipped()
+    if e == false then
+        Player.Character.Humanoid:EquipTool(w)
+    end
+    local done = false
+    repeat
+        local s,m = weaponCheck()
+        if m == nil then
+             done = true
+        else
+            for _,v in pairs(game.Players:GetChildren()) do
+                if v.Character and Player.Character then
+                    Player.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,1)
+                    pcall(function()
+                        w.Stab:FireServer()
+                    end)
+                    wait(0.2)
+                end
+            end
+        end
+        wait()
+    until done == true
+end
+ 
+local function grabGun()
+    newTask("Grab gun attempt")
+    if workspace:FindFirstChild("GunDrop") then
+        newTask("Grabbing gun")
+        workspace:FindFirstChild("GunDrop").CFrame = Player.Character.HumanoidRootPart.CFrame
+        wait(0.1)
+        Player.Character.HumanoidRootPart.CFrame = CFrame.new(-117.138885, 137.671158, 30.7387695, -0.707485378, -5.87169557e-09, 0.706727982, 1.58277551e-08, 1, 2.41529996e-08, -0.706727982, 2.82738117e-08, -0.707485378)
+        killMurderer(true)
+    end
+end
+ 
+local function hide(override)
+    newTask("Waiting for character")
+    wait()
+    repeat wait() until Player.Character
+    if SettingsTable.CustomLobby.Value == false then
+        Player.Character.HumanoidRootPart.CFrame = CFrame.new(-117.138885, 137.671158, 30.7387695, -0.707485378, -5.87169557e-09, 0.706727982, 1.58277551e-08, 1, 2.41529996e-08, -0.706727982, 2.82738117e-08, -0.707485378)
+    else
+        Player.Character.HumanoidRootPart.CFrame = lobby.Attach.CFrame
+    end
+    if SettingsTable.AutoCollectCoins.Value == true then
+        getCoins()
+    end
+    local d
+    repeat
+        local s,m = weaponCheck()
+        if m == nil then d = true end
+        if not override and SettingsTable.AutoGrabGun.Value == true then
+            print("Grab Attempt")
+            grabGun()
+        end
+        wait(0.5)
+    until d
+end
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+--Loop
+ 
+while true do
+    if SettingsTable.GuiRunning.Value == true then
+        local s,m = weaponCheck()
+        if Player.Character and m then
+            Player.Character.Humanoid.Died:Connect(function()
+                Dead = true
+            end)
+        end
+        if m == nil then
+            Lobby = true
+            Dead = false
+        elseif Dead == true and m ~= nil then
+            print("Dead, game running")
+        else
+            local w,e = getEquipped()
+            Lobby = false
+            if w == nil then
+                print("Innocent")
+                hide()
+            elseif w.Name ~= "Knife" then
+                print("Sheriff")
+                if SettingsTable.AutoKillAsSheriff.Value == true then
+                    killMurderer()
+                else
+                    hide(true)
+                end
+            elseif w.Name == "Knife" then
+                if SettingsTable.AutoKillAsMurderer.Value == true then
+                    killAll()
+                else
+                    hide(true)
+                end
+            end
+        end
+    end
+    wait(0.5)
+end
+end

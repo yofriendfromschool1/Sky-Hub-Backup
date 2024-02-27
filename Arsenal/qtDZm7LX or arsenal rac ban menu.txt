@@ -1,0 +1,54 @@
+repeat wait() until game.Players.LocalPlayer
+
+m = game.Players.LocalPlayer:GetMouse()
+
+m.KeyDown:connect(function(key)
+ if key == "e" then --"Shift to run" 0 == shift
+  print("BanBoi Gui Is now open,")
+  game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Visible = true 
+ end
+end)
+
+m.KeyUp:connect(function(key)
+ if key == "r" then
+   game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Visible = false --change "16" to your speed you want when you stop running
+ local but = game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Ban
+ but.MouseButton1Click:connect(function()
+game.ReplicatedStorage.Events.PlayerChatted:FireServer(" ", false, true, false)
+  game:GetService("Players").LocalPlayer.PlayerGui.GUI.Main.Chats.Line1.Text = "Server: "..game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Username.Text.." was RAC banned."
+  game:GetService("Players").LocalPlayer.PlayerGui.GUI.Main.Chats.Line1.TextColor3 = Color3.fromRGB(255, 255, 0)
+  if game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Username.Text == game.Players.LocalPlayer.Name then
+	game.Players.LocalPlayer:Kick("RAC BANNED")
+	end
+ end)
+end
+end)
+
+local lock = game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Lock
+lock.MouseButton1Click:Connect(function()
+    if lock.BackgroundColor3 == "255, 0, 0" then
+        lock.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+        else
+        lock.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    end
+end)
+
+local aimbotreason = game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Reasons.Aimbot
+aimbotreason.MouseButton1Click:Connect(function()
+    game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Reason.Text = aimbotreason.Name
+end)
+
+local exploitingreason = game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Reasons.Exploiting
+exploitingreason.MouseButton1Click:Connect(function()
+    game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Reason.Text = exploitingreason.Name
+end)
+
+local noclipreason = game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Reasons.Noclip
+noclipreason.MouseButton1Click:Connect(function()
+    game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Reason.Text = noclipreason.Name
+end)
+
+local teleportingreason = game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Reasons.Teleport
+teleportingreason.MouseButton1Click:Connect(function()
+    game:GetService("Players").LocalPlayer.PlayerGui.BanBoi.Ban.Reason.Text = teleportingreason.Name
+end)
