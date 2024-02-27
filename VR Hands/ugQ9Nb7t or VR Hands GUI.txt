@@ -1,0 +1,554 @@
+local bryh = Instance.new("ScreenGui")
+local Bar = Instance.new("Frame")
+local Main = Instance.new("Frame")
+local pg1 = Instance.new("Frame")
+local vrName = Instance.new("TextBox")
+local annoy = Instance.new("TextButton")
+local plrpickup = Instance.new("TextButton")
+local nocliphands = Instance.new("TextButton")
+local weldtohands = Instance.new("TextButton")
+local remprops = Instance.new("TextButton")
+local nextp = Instance.new("TextButton")
+local prev = Instance.new("TextButton")
+local page = Instance.new("TextLabel")
+local pg2 = Instance.new("Frame")
+local noclipprops = Instance.new("TextButton")
+local noclipheads = Instance.new("TextButton")
+local killplr = Instance.new("TextButton")
+local playerName = Instance.new("TextBox")
+local TextLabel = Instance.new("TextLabel")
+local close = Instance.new("TextButton")
+local mini = Instance.new("TextButton")
+local Shadow = Instance.new("Frame")
+
+bryh.Name = "bryh"
+bryh.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+bryh.ResetOnSpawn = false
+
+Bar.Name = "Bar"
+Bar.Parent = bryh
+Bar.BackgroundColor3 = Color3.fromRGB(124, 9, 9)
+Bar.BorderSizePixel = 0
+Bar.Position = UDim2.new(0.254468083, 0, 0.142506137, 0)
+Bar.Size = UDim2.new(0, 375, 0, 35)
+Bar.Selectable = true
+Bar.Active = true
+Bar.Draggable = true
+
+Main.Name = "Main"
+Main.Parent = Bar
+Main.BackgroundColor3 = Color3.fromRGB(172, 13, 13)
+Main.BorderSizePixel = 0
+Main.Position = UDim2.new(0, 0, 0.972270846, 0)
+Main.Size = UDim2.new(0, 375, 0, 378)
+
+pg1.Name = "pg1"
+pg1.Parent = Main
+pg1.BackgroundColor3 = Color3.fromRGB(153, 11, 11)
+pg1.BorderSizePixel = 0
+pg1.Position = UDim2.new(0, 0, -0.00127414928, 0)
+pg1.Size = UDim2.new(0, 375, 0, 347)
+
+vrName.Name = "vrName"
+vrName.Parent = pg1
+vrName.BackgroundColor3 = Color3.fromRGB(218, 36, 36)
+vrName.BorderSizePixel = 0
+vrName.Position = UDim2.new(0.0320000015, 0, 0.0259365998, 0)
+vrName.Size = UDim2.new(0, 350, 0, 50)
+vrName.Font = Enum.Font.Gotham
+vrName.Text = "VR Player's name"
+vrName.TextColor3 = Color3.fromRGB(255, 255, 255)
+vrName.TextScaled = true
+vrName.TextSize = 14.000
+vrName.TextWrapped = true
+
+local annoying = false
+annoy.Name = "annoy"
+annoy.Parent = pg1
+annoy.BackgroundColor3 = Color3.fromRGB(218, 36, 36)
+annoy.BorderSizePixel = 0
+annoy.Position = UDim2.new(0.0320000015, 0, 0.18731989, 0)
+annoy.Size = UDim2.new(0, 350, 0, 50)
+annoy.Font = Enum.Font.Gotham
+annoy.Text = "Annoy Player"
+annoy.TextColor3 = Color3.fromRGB(255, 255, 255)
+annoy.TextScaled = true
+annoy.TextSize = 14.000
+annoy.TextWrapped = true
+annoy.MouseButton1Down:Connect(function()
+	if annoying == false then
+		annoying = true
+		annoy.Text = "Stop Annoying Player"
+		for i = 1, 500 do
+			wait()
+			local plr = vrName.Text
+
+			part = Instance.new("Part", game.Workspace)
+			part.Size = Vector3.new(1,1,1)
+			part.CanCollide = false
+			local w = Instance.new("Weld", part)
+			w.Part0 = part
+			w.Part1 = game.Players.LocalPlayer.Character.HumanoidRootPart
+
+			local plrId = game.Players[plr].UserId
+			local head = game.Workspace[plrId .. "Head"].REAL
+			local bp = Instance.new("BodyPosition", part)
+
+			bp.D = 10000
+			bp.P = 1000000
+			while wait() do
+				bp.Position = head.Position + head.CFrame.LookVector * 30 + head.CFrame.RightVector * 2
+			end
+		end
+	else
+		annoying = false
+		annoy.Text = "Annoy Player"
+		part:Destroy()
+	end
+end)
+
+local pickup = true
+plrpickup.Name = "plrpickup"
+plrpickup.Parent = pg1
+plrpickup.BackgroundColor3 = Color3.fromRGB(218, 36, 36)
+plrpickup.BorderSizePixel = 0
+plrpickup.Position = UDim2.new(0.0320000015, 0, 0.348703176, 0)
+plrpickup.Size = UDim2.new(0, 350, 0, 50)
+plrpickup.Font = Enum.Font.Gotham
+plrpickup.Text = "Disable VR Pickup"
+plrpickup.TextColor3 = Color3.fromRGB(255, 255, 255)
+plrpickup.TextScaled = true
+plrpickup.TextSize = 14.000
+plrpickup.TextWrapped = true
+plrpickup.MouseButton1Down:Connect(function()
+	if pickup == true then
+		pickup = false
+		game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").Name = "lol"
+		plrpickup.Text = "Enable VR Pickup"
+	else
+		pickup = true
+		game.Players.LocalPlayer.Character:FindFirstChild("lol").Name = "Humanoid"
+		plrpickup.Text = "Disable VR Pickup"
+	end
+end)
+
+local nocliphand = false
+nocliphands.Name = "nocliphands"
+nocliphands.Parent = pg1
+nocliphands.BackgroundColor3 = Color3.fromRGB(218, 36, 36)
+nocliphands.BorderSizePixel = 0
+nocliphands.Position = UDim2.new(0.0320000015, 0, 0.510086477, 0)
+nocliphands.Size = UDim2.new(0, 350, 0, 50)
+nocliphands.Font = Enum.Font.Gotham
+nocliphands.Text = "Noclip VR Hands"
+nocliphands.TextColor3 = Color3.fromRGB(255, 255, 255)
+nocliphands.TextScaled = true
+nocliphands.TextSize = 14.000
+nocliphands.TextWrapped = true
+nocliphands.MouseButton1Down:connect(function()
+	if nocliphand == false then
+		nocliphand = true
+		for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+			if v.Name == "RightHand" then
+				for i,p in pairs(v:GetChildren()) do
+					if p.Name == "REAL" then
+						p.CanCollide = false
+					end
+					if p.Name == "Base" then
+						p.CanCollide = false
+					end
+					for i,t in pairs(p:GetChildren()) do
+						if t:IsA("MeshPart") then
+							t.CanCollide = false
+						end
+					end
+				end
+			end
+			if v.Name == "LeftHand" then
+				for i,p in pairs(v:GetChildren()) do
+					if p.Name == "REAL" then
+						p.CanCollide = false
+					end
+					if p.Name == "Base" then
+						p.CanCollide = false
+					end
+					for i,t in pairs(p:GetChildren()) do
+						if t:IsA("MeshPart") then
+							t.CanCollide = false
+						end
+					end
+				end
+			end
+		end
+		nocliphands.Text = "Clip VR Hands"
+	else
+		nocliphand = false
+		for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+			if v.Name == "RightHand" then
+				for i,p in pairs(v:GetChildren()) do
+					if p.Name == "REAL" then
+						p.CanCollide = true
+					end
+					if p.Name == "Base" then
+						p.CanCollide = true
+					end
+					for i,t in pairs(p:GetChildren()) do
+						if t:IsA("MeshPart") then
+							t.CanCollide = true
+						end
+					end
+				end
+			end
+			if v.Name == "LeftHand" then
+				for i,p in pairs(v:GetChildren()) do
+					if p.Name == "REAL" then
+						p.CanCollide = true
+					end
+					if p.Name == "Base" then
+						p.CanCollide = true
+					end
+					for i,t in pairs(p:GetChildren()) do
+						if t:IsA("MeshPart") then
+							t.CanCollide = true
+						end
+					end
+				end
+			end
+		end
+		nocliphands.Text = "Noclip VR Hands"
+	end
+end)
+
+local weldtohand = false
+weldtohands.Name = "weldtohands"
+weldtohands.Parent = pg1
+weldtohands.BackgroundColor3 = Color3.fromRGB(218, 36, 36)
+weldtohands.BorderSizePixel = 0
+weldtohands.Position = UDim2.new(0.0320000015, 0, 0.668587923, 0)
+weldtohands.Size = UDim2.new(0, 350, 0, 50)
+weldtohands.Font = Enum.Font.Gotham
+weldtohands.Text = "Weld to a VR Players hand"
+weldtohands.TextColor3 = Color3.fromRGB(255, 255, 255)
+weldtohands.TextScaled = true
+weldtohands.TextSize = 14.000
+weldtohands.TextWrapped = true
+weldtohands.MouseButton1Down:connect(function()
+	if weldtohand == false then
+		weldtohand = true
+		weld = Instance.new("Weld", game.Players.LocalPlayer.Character.HumanoidRootPart)
+		weld.Part0 = game.Players.LocalPlayer.Character.HumanoidRootPart
+		weld.Part1 = game.Workspace:FindFirstChild("RightHand")["Finger_1"]["Finger_1"]
+		weldtohands.Text = "Remove weld"
+	else
+		weldtohands.Text = "Weld to a VR Players hand"
+		weld:Destroy()
+		weldtohand = false
+	end
+end)
+
+local removedprops = false
+remprops.Name = "remprops"
+remprops.Parent = pg1
+remprops.BackgroundColor3 = Color3.fromRGB(218, 36, 36)
+remprops.BorderSizePixel = 0
+remprops.Position = UDim2.new(0.0320000015, 0, 0.829971194, 0)
+remprops.Size = UDim2.new(0, 350, 0, 50)
+remprops.Font = Enum.Font.Gotham
+remprops.Text = "Remove props"
+remprops.TextColor3 = Color3.fromRGB(255, 255, 255)
+remprops.TextScaled = true
+remprops.TextSize = 14.000
+remprops.TextWrapped = true
+remprops.MouseButton1Down:connect(function()
+	if removedprops == false then
+		removedprops = true
+		game:GetService("Workspace").Props.Parent = game.Lighting
+		remprops.Text = "Add props"
+	else
+		removedprops = false
+		game:GetService("Lighting").Props.Parent = game.Workspace
+		remprops.Text = "Remove props"
+	end
+end)
+
+nextp.Name = "next"
+nextp.Parent = Main
+nextp.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+nextp.BackgroundTransparency = 1.000
+nextp.Position = UDim2.new(0.901333332, 0, 0.91534394, 0)
+nextp.Size = UDim2.new(0, 37, 0, 32)
+nextp.Font = Enum.Font.SourceSans
+nextp.Text = ">"
+nextp.TextColor3 = Color3.fromRGB(255, 255, 255)
+nextp.TextScaled = true
+nextp.TextSize = 14.000
+nextp.TextWrapped = true
+nextp.MouseButton1Down:connect(function()
+	pg1.Visible = false
+	pg2.Visible = true
+end)
+
+prev.Name = "prev"
+prev.Parent = Main
+prev.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+prev.BackgroundTransparency = 1.000
+prev.Position = UDim2.new(0, 0, 0.91534394, 0)
+prev.Size = UDim2.new(0, 37, 0, 32)
+prev.Font = Enum.Font.SourceSans
+prev.Text = "<"
+prev.TextColor3 = Color3.fromRGB(255, 255, 255)
+prev.TextScaled = true
+prev.TextSize = 14.000
+prev.TextWrapped = true
+prev.MouseButton1Down:connect(function()
+	pg1.Visible = true
+	pg2.Visible = false
+end)
+
+page.Name = "page"
+page.Parent = Main
+page.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+page.BackgroundTransparency = 1.000
+page.Position = UDim2.new(0.0986666679, 0, 0.916715264, 0)
+page.Size = UDim2.new(0, 301, 0, 31)
+page.Font = Enum.Font.Gotham
+page.Text = "v.1.2.0 - IsaaaKK"
+page.TextColor3 = Color3.fromRGB(255, 255, 255)
+page.TextScaled = true
+page.TextSize = 14.000
+page.TextWrapped = true
+
+pg2.Name = "pg2"
+pg2.Parent = Main
+pg2.BackgroundColor3 = Color3.fromRGB(153, 11, 11)
+pg2.BorderSizePixel = 0
+pg2.Position = UDim2.new(0, 0, -0.00127414928, 0)
+pg2.Size = UDim2.new(0, 375, 0, 347)
+pg2.Visible = false
+
+propnoclip = false
+noclipprops.Name = "noclipprops"
+noclipprops.Parent = pg2
+noclipprops.BackgroundColor3 = Color3.fromRGB(218, 36, 36)
+noclipprops.BorderSizePixel = 0
+noclipprops.Position = UDim2.new(0.0320000015, 0, 0.0230547637, 0)
+noclipprops.Size = UDim2.new(0, 350, 0, 50)
+noclipprops.Font = Enum.Font.Gotham
+noclipprops.Text = "Noclip Props"
+noclipprops.TextColor3 = Color3.fromRGB(255, 255, 255)
+noclipprops.TextScaled = true
+noclipprops.TextSize = 14.000
+noclipprops.TextWrapped = true
+noclipprops.MouseButton1Down:connect(function()
+	if propnoclip == false then
+		if game.Workspace:FindFirstChild("Props") then
+			propnoclip = true
+			noclipprops.Text = "Clip Props"
+			for i,v in pairs(game.Workspace:FindFirstChild("Props"):GetChildren()) do
+				for i,p in pairs(v:GetChildren()) do
+					if p:IsA("Part") then
+						p.CanCollide = false
+					else if p:IsA("MeshPart") then
+							p.CanCollide = false
+						end
+					end
+
+				end
+			end
+		end
+	else
+		if game.Workspace:FindFirstChild("Props") then
+			propnoclip = false
+			noclipprops.Text = "Noclip Props"
+			for i,v in pairs(game.Workspace:FindFirstChild("Props"):GetChildren()) do
+				for i,p in pairs(v:GetChildren()) do
+					if p:IsA("Part") then
+						p.CanCollide = true
+					else if p:IsA("MeshPart") then
+							p.CanCollide = true
+						end
+					end
+				end
+			end
+		end
+	end
+end)
+
+headnoclip = false
+noclipheads.Name = "noclipheads"
+noclipheads.Parent = pg2
+noclipheads.BackgroundColor3 = Color3.fromRGB(218, 36, 36)
+noclipheads.BorderSizePixel = 0
+noclipheads.Position = UDim2.new(0.0320000015, 0, 0.187319919, 0)
+noclipheads.Size = UDim2.new(0, 350, 0, 50)
+noclipheads.Font = Enum.Font.Gotham
+noclipheads.Text = "Noclip VR Heads"
+noclipheads.TextColor3 = Color3.fromRGB(255, 255, 255)
+noclipheads.TextScaled = true
+noclipheads.TextSize = 14.000
+noclipheads.TextWrapped = true
+noclipheads.MouseButton1Down:connect(function()
+	if headnoclip == false then
+		headnoclip = true
+		for i,v in pairs(game.Players:GetChildren()) do
+			if game.Workspace:FindFirstChild(v.UserId.."Head") then
+				game.Workspace:FindFirstChild(v.UserId.."Head").Head.CanCollide = false
+			end
+		end
+		noclipheads.Text = "Clip VR Heads"
+	else
+		headnoclip = false
+		for i,v in pairs(game.Players:GetChildren()) do
+			if game.Workspace:FindFirstChild(v.UserId.."Head") then
+				game.Workspace:FindFirstChild(v.UserId.."Head").Head.CanCollide = false
+			end
+		end
+		noclipheads.Text = "Noclip VR Heads"
+	end
+end)
+
+TextLabel.Parent = Bar
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(-0.00232625334, 0, -0.000350952148, 0)
+TextLabel.Size = UDim2.new(0, 302, 0, 35)
+TextLabel.Font = Enum.Font.Gotham
+TextLabel.Text = "VR Hands Trolling GUI"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+close.Name = "close"
+close.Parent = Bar
+close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+close.BackgroundTransparency = 1.000
+close.Position = UDim2.new(0.901333332, 0, 0, 0)
+close.Size = UDim2.new(0, 37, 0, 34)
+close.Font = Enum.Font.SourceSans
+close.Text = "x"
+close.TextColor3 = Color3.fromRGB(255, 255, 255)
+close.TextScaled = true
+close.TextSize = 14.000
+close.TextWrapped = true
+close.MouseButton1Down:connect(function()
+	bryh:Destroy()
+end)
+
+local minimized = false
+mini.Name = "mini"
+mini.Parent = Bar
+mini.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+mini.BackgroundTransparency = 1.000
+mini.Position = UDim2.new(0.802666664, 0, -0.0285714287, 0)
+mini.Size = UDim2.new(0, 37, 0, 34)
+mini.Font = Enum.Font.SourceSans
+mini.Text = "-"
+mini.TextColor3 = Color3.fromRGB(255, 255, 255)
+mini.TextScaled = true
+mini.TextSize = 14.000
+mini.TextWrapped = true
+mini.MouseButton1Down:connect(function()
+	if minimized == false then
+		minimized = true
+		Main.Visible = false
+		Shadow.Visible = false
+	else
+		minimized = false
+		Main.Visible = true
+		Shadow.Visible = true
+	end
+end)
+
+Shadow.Name = "Shadow"
+Shadow.Parent = Bar
+Shadow.BackgroundColor3 = Color3.fromRGB(34, 2, 2)
+Shadow.BackgroundTransparency = 0.500
+Shadow.BorderSizePixel = 0
+Shadow.Position = UDim2.new(0.0320000015, 0, 0.224789754, 0)
+Shadow.Size = UDim2.new(0, 374, 0, 418)
+Shadow.ZIndex = 0
+
+playerName.Name = "playerName"
+playerName.Parent = pg2
+playerName.BackgroundColor3 = Color3.fromRGB(218, 36, 36)
+playerName.BorderSizePixel = 0
+playerName.Position = UDim2.new(0.0320000015, 0, 0.348703176, 0)
+playerName.Size = UDim2.new(0, 350, 0, 50)
+playerName.Font = Enum.Font.Gotham
+playerName.Text = "Player's Name"
+playerName.TextColor3 = Color3.fromRGB(255, 255, 255)
+playerName.TextScaled = true
+playerName.TextSize = 14.000
+playerName.TextWrapped = true
+
+local killing = false
+killplr.Name = "killplr"
+killplr.Parent = pg2
+killplr.BackgroundColor3 = Color3.fromRGB(218, 36, 36)
+killplr.BorderSizePixel = 0
+killplr.Position = UDim2.new(0.0320000015, 0, 0.510086536, 0)
+killplr.Size = UDim2.new(0, 350, 0, 50)
+killplr.Font = Enum.Font.Gotham
+killplr.Text = "KILL PLAYER! (Unstable)"
+killplr.TextColor3 = Color3.fromRGB(255, 255, 255)
+killplr.TextScaled = true
+killplr.TextSize = 14.000
+killplr.TextWrapped = true
+killplr.MouseButton1Down:connect(function()
+	if killing == false then
+		if game.Players:FindFirstChild(playerName.Text) then
+			killing = true
+			for i,v in pairs(game.Workspace.Ships:GetChildren()) do
+				if v.Name == "RedShip" then
+					for i,s in pairs(v:GetChildren()) do
+						if s.Name == "Cannon" then
+							if game.Players[playerName.Text].Character.Humanoid.Health ~= 0 then
+								if game.Players[playerName.Text].Character:FindFirstChild("ForceField") then
+									killplr.Text = "Player currently has forcefield."
+									wait(2)
+									killplr.Text = "KILL PLAYER! (Unstable)"
+								else
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(s.Main.Position)
+									wait(.5)
+									s.Parent = game.Workspace
+									game:GetService("ReplicatedStorage").COM.Cannon:FireServer(game.Workspace.Cannon)
+									wait(.5)
+									if game.Workspace.Shots:FindFirstChild("Part") then
+										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Workspace.Shots.Part.Position + Vector3.new(0,5,0))
+										wait(.3)
+										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players[playerName.Text].Character.HumanoidRootPart.Position)
+										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position + s.Main.CFrame.LookVector.Unit * 10 + Vector3.new(0, 2, 0))
+										game.Workspace.Shots.Part.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0,10,0))
+										wait()
+										s.Parent = v
+										wait(.3)
+									end
+									for i,p in pairs(game.Workspace.Shots:GetChildren()) do
+										p:Destroy()
+									end
+								end
+							else
+								wait(3)
+								killing = false
+							end
+						end
+					end
+				end
+			end
+			for i,p in pairs(game.Workspace.Shots:GetChildren()) do
+				p:Destroy()
+			end
+			killing = false
+		else
+			killplr.Text = "Cant find player."
+			wait(2)
+			killplr.Text = "KILL PLAYER! (Unstable)"
+		end
+	else
+		killplr.Text = "Already killing... Please wait!"
+		wait(3)
+		killplr.Text = "KILL PLAYER! (Unstable)"
+	end
+end)
