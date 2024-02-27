@@ -1,0 +1,1 @@
+return "This script is open source, so it has no VIP or Premium users and you can modify it!"

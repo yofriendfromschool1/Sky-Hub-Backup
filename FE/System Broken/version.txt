@@ -1,0 +1,22 @@
+local Players = game:GetService("Players")
+
+
+if _G.SystemFound ~= true then
+	for i,v in pairs(Players:GetPlayers()) do
+		if v.Name == "System_CaliX" then
+    		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "System note",Text = "Owner System_CaliX is on the server.",Duration = 7;})
+			_G.SystemFound = true
+		end
+	end
+end
+
+if Players.LocalPlayer.Name == "Lufabil" then
+	for i = 1,6 do
+		local args = {[1] = "System_CaliX doesnt allow that. Sorry babe",[2] = "All"}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+	end
+	task.wait(1)
+	Players.LocalPlayer:Kick("Sorry guy")
+end
+
+return 2
