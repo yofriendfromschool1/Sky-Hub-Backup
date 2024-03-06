@@ -1,0 +1,602 @@
+--// GabX, the script hub that has all you need! \\--
+-- Made by Darion#8863
+		local tabs = {
+			{
+				name = "Scripts",
+				comingsoon = false,
+				scripts = {
+					{
+						"R2S (EnvEdit)",
+						"https://pastebin.com/raw/ZAHTikfe"
+					},
+					{
+						"Old R2S",
+						"https://pastebin.com/raw/jXh45kfE"
+					},
+					{
+						"Grab Knife V4",
+						"https://pastebin.com/raw/7zK1Swpt"
+					},
+					{
+						"Grab Knife V3",
+						"https://pastebin.com/raw/TPZXG8fH"
+					},
+					{
+						"R6 Fly(E)",
+						"https://pastebin.com/raw/hTJsM2jV"
+					},
+					{
+						"Speed",
+						"https://pastebin.com/raw/mrdWh73D"
+					},
+					{
+						"JumpPower",
+						"https://pastebin.com/raw/sA5xym2V"
+					},
+					{
+						"Loopheal",
+						"https://pastebin.com/raw/vD9zjBQx"
+					},
+					{
+						"Chat Logs",
+						"https://pastebin.com/raw/mtGM0Dkh"
+					},
+					{
+						"Audio Stealer",
+						"https://pastebin.com/raw/ABRqgZ3L"
+					},
+					{
+						"FE Check (F9)",
+						"https://pastebin.com/raw/SRibuFiK"
+					},
+					{
+						"No clip (F)",
+						"https://pastebin.com/raw/bnqAE95f"
+					},
+					{
+						"Bomb Vest",
+						"https://pastebin.com/raw/S7vdifqp"
+					},
+					{
+						"Robux Troll",
+						"https://pastebin.com/raw/BHjfPXC6"
+					}
+				}
+			},
+			{
+				name = "FeScripts",
+				comingsoon = false,
+				scripts = {
+					{
+						"FE God",
+						"https://pastebin.com/raw/p814kXmM"
+					},
+					{
+						"Kill/Fling",
+						"https://pastebin.com/raw/Pb3PR6EL"
+					},
+					{
+						"Shutdown",
+						"https://pastebin.com/raw/RELufQFM"
+					},
+					{
+						"Hat Spin",
+						"https://pastebin.com/raw/Y8iEYKZD"
+					},
+					{
+						"Suicide Gun",
+						"https://pastebin.com/raw/SeRxrgci"
+					},
+					{
+						"Click TP Tool",
+						"https://pastebin.com/raw/16tXkJjD"
+					},
+					{
+						"OOF Spam",
+						"https://pastebin.com/raw/JaMbzp0B"
+					},
+					{
+						"Respawn",
+						"https://pastebin.com/raw/61WmHqNp"
+					}
+				}
+			},
+			{
+				name = "GUIs",
+				comingsoon = false,
+				scripts = {
+					{
+						"Topk3k V4",
+						"https://pastebin.com/raw/bEmmF8UH"
+					},
+					{
+						"Arosia",
+						"https://pastebin.com/raw/Nwit6ZqP"
+					},
+					{
+						"Equinox",
+						"https://pastebin.com/raw/scYFbHQb"
+					},
+					{
+						"Ani's(R15)",
+						"https://pastebin.com/raw/MenK10Ak"
+					},
+					{
+						"Ani's(R6)",
+						"https://pastebin.com/raw/Ydt76Kep"
+					},
+					{
+						"Rose Hub",
+						"https://pastebin.com/raw/1BJj0fB4"
+					},
+					{
+						"OPFinality",
+						"https://pastebin.com/raw/fG5b1zrM"
+					},
+					{
+						"Old OPHub",
+						"https://pastebin.com/raw/FxhQbqsp"
+					},
+					{
+						"HyperTotal",
+						"https://pastebin.com/raw/aYdepQa0"
+					},
+					{
+						"Clown Van",
+						"https://pastebin.com/raw/0uJXBEmN"
+					},
+					{
+						"Sern Hub",
+						"https://pastebin.com/raw/8sD7V8xp"
+					},
+					{
+						"Cooler Kids V2",
+						"https://pastebin.com/raw/GGQeWXSL"
+					},
+					{
+						"Ping/FPS",
+						"https://pastebin.com/raw/Qh8eeWF7"
+					},
+					{
+						"Spectate",
+						"https://pastebin.com/raw/WgpJfMGS"
+					},
+					{
+						"Ro-xploit",
+						"https://pastebin.com/raw/ZkhCcaa5"
+					},
+					{
+						"TP GUI",
+						"https://pastebin.com/raw/EBhdqeWb"
+					}
+				}
+			},
+			{
+				name = "Commands",
+				comingsoon = false,
+				scripts = {
+					{
+						"BTools",
+						"https://pastebin.com/raw/752Gzv1G"
+					},
+					{
+						"Ghost",
+						"https://pastebin.com/raw/aiYL4LKV"
+					},
+					{
+						"Big pp",
+						"https://pastebin.com/raw/xAcpS2Ze"
+					},
+					{
+						"Inf Jump",
+						"https://pastebin.com/raw/Dz61QSir"
+					}
+				}
+			},
+			{
+				name = "Stat Change",
+				comingsoon = false,
+				scripts = {
+					{
+						"Clone Tycoon 2",
+						"https://pastebin.com/raw/ga02bJq5"
+					},
+					{
+						"Naruto Final Bond LVL",
+						"https://pastebin.com/raw/j5gYsnxM"
+					},
+					{
+						"Shinobi Life",
+						"https://pastebin.com/raw/rpWG7xBj"
+					},
+					{
+						"Rocitizens",
+						"https://pastebin.com/raw/P3WAujA9"
+					},
+					{
+						"Naruto New Gen",
+						"https://pastebin.com/raw/34Fdq480"
+					},
+					{
+						"False DBFP",
+						"https://pastebin.com/raw/tTCcVDAf"
+					},
+					{
+						"Jaws",
+						"https://pastebin.com/raw/RkNJ3jn2"
+					},
+					{
+						"Giant Survival 2",
+						"https://pastebin.com/raw/sbme5pNF"
+					},
+					{
+						"One Piece Unleashed 2",
+						"https://pastebin.com/raw/QAgtrGdX"
+					},
+					{
+						"Tuber Simulator",
+						"https://pastebin.com/raw/zy1dFtrc"
+					},
+					{
+						"Yard Work Simulator",
+						"https://pastebin.com/raw/udKYdRpW"
+					},
+					{
+						"Dragon Ball Super 2",
+						"https://pastebin.com/raw/U5i77x2T"
+					},
+					{
+						"Avatar: Legend of Kora",
+						"https://pastebin.com/raw/ggcfAQcH"
+					}
+				}
+			},
+			{
+				name = "Games",
+				comingsoon = false,
+				scripts = {
+					{
+						"NRPG Beyond Fast Shoot",
+						"https://pastebin.com/raw/zXCvQxRF"
+					},
+					{
+						"The Streets",
+						"https://pastebin.com/raw/xZyABVJ1"
+					},
+					{
+						"Jailbreak AFK",
+						"https://pastebin.com/raw/hhRca3cj"
+					},
+					{
+						"Jailbreak GUI",
+						"https://pastebin.com/raw/CQFw06tN"
+					},
+					{
+						"The Streets",
+						"https://pastebin.com/raw/xZyABVJ1"
+					},
+					{
+						"Lumber Tycoon",
+						"https://pastebin.com/raw/33kYAahS"
+					},
+					{
+						"Phantom Forces",
+						"https://pastebin.com/raw/LgQEjvxS"
+					},
+					{
+						"Hilton Hotels",
+						"https://pastebin.com/raw/QfHywxaZ"
+					},
+					{
+						"Work At A Pizza Place",
+						"https://pastebin.com/raw/KyfBZCKL"
+					},
+					{
+						"Prison Royale",
+						"https://pastebin.com/raw/0W4QBB5C"
+					},
+					{
+						"Greenwood Town",
+						"https://pastebin.com/raw/96JTe9Gd"
+					},
+					{
+						"Naruto Final Bond",
+						"https://pastebin.com/raw/ujKgVWBn"
+					},
+					{
+						"Project Pokemon",
+						"https://pastebin.com/raw/jDTLJf9Z"
+					},
+					{
+						"Scuba Diving",
+						"https://pastebin.com/raw/NwSeijRv"
+					}
+				}
+			},
+			{
+				name = "Admins",
+				comingsoon = false,
+				scripts = {
+					{
+						"Infinite Yield",
+						"https://pastebin.com/raw/MjBzRjmT"
+					},
+					{
+						"Rocky's",
+						"https://pastebin.com/raw/3V4s9UPx"
+					},
+					{
+						"Dex Explorer",
+						"https://pastebin.com/raw/eqy8yt4q"
+					},
+					{
+						"N3xulis",
+						"https://pastebin.com/raw/eKkbtM3A"
+					},
+					{
+						"ARX Admin",
+						"https://pastebin.com/raw/4PGmJv5R"
+					},
+					{
+						"Shattervast",
+						"https://pastebin.com/raw/44bNjECt"
+					},
+					{
+						"Filter My Ass",
+						"https://pastebin.com/raw/Tn1xz43y"
+					},
+					{
+						"C00lgui",
+						"https://pastebin.com/raw/Xt0S28mx"
+					},
+					{
+						"Mayem",
+						"https://pastebin.com/raw/tWQnvRqH"
+					},
+					{
+						"Nosyliam",
+						"https://pastebin.com/raw/FmeiVpiE"
+					},
+					{
+						"Your Mom V2",
+						"https://pastebin.com/raw/1FsNUZHq"
+					},
+					{
+						"PME Safazi",
+						"https://pastebin.com/raw/yrnDMLYs"
+					}
+				}
+			},
+			{
+				name = "Forms",
+				comingsoon = false,
+				scripts = {
+					{
+						"Madara",
+						"https://pastebin.com/raw/LYjZdycr"
+					},
+					{
+						"Shadow Titan",
+						"https://pastebin.com/raw/E7b9cy1h"
+					},
+					{
+						"Assasin",
+						"https://pastebin.com/raw/bKu2GuzN"
+					},
+					{
+						"Beast Claws",
+						"https://pastebin.com/raw/0AH8SZTJ"
+					},
+					{
+						"6 Swords",
+						"https://pastebin.com/raw/80juE2kw"
+					},
+					{
+						"Goku SSJ3",
+						"https://pastebin.com/raw/vFmVuXk4"
+					},
+					{
+						"OmagaV2",
+						"https://pastebin.com/raw/VSerZV3e"
+					},
+					{
+						"Absalom Titan",
+						"https://pastebin.com/raw/ZmySaMrb"
+					},
+					{
+						"Ace",
+						"https://pastebin.com/raw/fA4XSTY1"
+					},
+					{
+						"Beerus",
+						"https://pastebin.com/raw/c1TGDAKC"
+					},
+					{
+						"DSSJ4",
+						"https://pastebin.com/raw/pfdud8wK"
+					},
+					{
+						"Zenatic",
+						"https://pastebin.com/raw/wTJxmWyG"
+					},
+					{
+						"Naruto",
+						"https://pastebin.com/raw/eEN5mC9u"
+					}
+				}
+			},
+			{
+				name = "Extra",
+				comingsoon = true
+			}
+		}
+		local othertabs = {
+			{
+				name = "Info",
+				text = "GabX was made by a new learning scripter named Darion. It started off as a simple project to learn scripting just for myself, but I decided to release it anyways just for fun. It received quite a bit of attention and several youtube videos were made on it. I felt like I didn't deserve the support because nothing was actually made by me, I just added buttons. I decided to rewrite the UI all by myself! I did get some help in the scripting part because I'm not the best in scripting since I'm new to making scripts and exploiting related stuff in general. Now GabX has been updated and the UI was all self made! Also, when I wanted to release it I didn't know any good name for it. I asked my friend and he didn't know either, so I just chose my friends name and added an X to it! :D",
+			},
+			{
+				name = "Help",
+				text = "If there is anything patched, not the most recent update, broken or anything else please DM Darion#8863 and join the server. http://discord.gg/E64Jd89"
+			},
+			{
+				name = "Credits",
+				text = "GabX was made by Darion#8863."
+			}
+		}
+		local gui = Instance.new("ScreenGui")
+		gui.Parent = game.CoreGui
+		local openclose = Instance.new("TextButton")
+		openclose.Parent = gui
+		openclose.Name = "OpenClose"
+		openclose.Style = Enum.ButtonStyle.RobloxRoundButton
+		openclose.Font = Enum.Font.SciFi
+		openclose.TextSize = 25
+		openclose.Text = "OPEN"
+		openclose.ZIndex = 12
+		openclose.Size = UDim2.new(0, 110, 0, 45)
+		openclose.Position = UDim2.new(0, 0, 0.791, 0)
+		local top = Instance.new("Frame")
+		top.Parent = gui
+		top.Name = "Topbar"
+		top.BorderSizePixel = 0
+		top.BackgroundColor3 = Color3.new((192 / 255), (225 / 255), (237 / 255))
+		top.Size = UDim2.new(0, 500, 0, 36)
+		top.Position = UDim2.new(0, -505, 0.5, -218)
+		top.Draggable = true
+		top.Active = true
+		top.ZIndex = 10
+		top.Visible = false
+		local logo = Instance.new("ImageLabel")
+		logo.Parent = top
+		logo.Name = "Logo"
+		logo.BorderSizePixel = 0
+		logo.BackgroundTransparency = 1
+		logo.Image = "rbxassetid://1902404068"
+		logo.ScaleType = Enum.ScaleType.Crop
+		logo.Size = UDim2.new(0, 140, 0, 36)
+		logo.Position = UDim2.new(0.5, -70, 0, 0)
+		logo.ZIndex = 11
+		local main = Instance.new("Frame")
+		main.Parent = top
+		main.Name = "MainFrame"
+		main.BorderSizePixel = 0
+		main.BackgroundColor3 = Color3.new(1, 1, 1)
+		main.BackgroundTransparency = 0.2
+		main.Position = UDim2.new(0, 0, 1, 0)
+		main.Size = UDim2.new(1, 0, 0, 400)
+		main.ZIndex = 10
+		local tabsf = Instance.new("Frame")
+		tabsf.Parent = main
+		tabsf.Name = "Tabs"
+		tabsf.BorderSizePixel = 0
+		tabsf.BackgroundTransparency = 1
+		tabsf.Position = UDim2.new(0, 0, 0, 0)
+		tabsf.Size = UDim2.new(0, 100, 1, 0)
+		openclose.MouseButton1Click:connect(function()
+			if top.Visible then
+				openclose.Text = "OPEN"
+				top:TweenPosition(UDim2.new(0, -505, 0.5, -218))
+				wait(1.05)
+				top.Visible = false
+			else
+				openclose.Text = "CLOSE"
+				top.Visible = true
+				top:TweenPosition(UDim2.new(0.5, -250, 0.5, -218))
+				wait(1.05)
+			end
+		end)
+		local current = "Scripts"
+		for i1, tab in ipairs(tabs) do
+			local tabbtn = Instance.new("TextButton")
+			tabbtn.Parent = tabsf
+			tabbtn.Name = tab.name
+			tabbtn.Style = Enum.ButtonStyle.RobloxRoundDropdownButton
+			tabbtn.Size = UDim2.new(1, 0, 0, 26)
+			tabbtn.Position = UDim2.new(0, 0, 0, (i1 - 1) * 30)
+			tabbtn.Font = Enum.Font.SciFi
+			tabbtn.TextSize = 16
+			tabbtn.Text = tab.name
+			tabbtn.ZIndex = 11
+			local tabfr = Instance.new("Frame")
+			tabfr.Parent = main
+			tabfr.Name = tab.name
+			tabfr.BorderSizePixel = 0
+			tabfr.BackgroundTransparency = 1
+			tabfr.Size = UDim2.new(0, 390, 1, -10)
+			tabfr.Position = UDim2.new(0, 105, 0, 5)
+			if tab.name ~= current then
+				tabfr.Visible = false
+			end
+			tabbtn.MouseButton1Click:connect(function()
+				main[current].Visible = false
+				current = tab.name
+				tabfr.Visible = true
+			end)
+			if tab.comingsoon then
+				local text = Instance.new("TextLabel")
+				text.Parent = tabfr
+				text.BorderSizePixel = 0
+				text.BackgroundTransparency = 1
+				text.BackgroundColor3 = Color3.new(1, 1, 1)
+				text.Font = Enum.Font.SciFi
+				text.TextSize = 60
+				text.Text = "Coming Soon!"
+				text.Position = UDim2.new(0, 0, 0, 0)
+				text.Size = UDim2.new(1, 0, 0, 100)
+				text.ZIndex = 11
+			else
+				for i2, scr in ipairs(tab.scripts) do
+					local scrbtn = Instance.new("TextButton")
+					scrbtn.Parent = tabfr
+					scrbtn.Name = scr[1]
+					scrbtn.Style = Enum.ButtonStyle.RobloxRoundDropdownButton
+					scrbtn.Position = UDim2.new(0, ((i2 - 1) % 4) * 100, 0, math.floor((i2 - 1) / 4) * 50)
+					scrbtn.Size = UDim2.new(0, 90, 0, 40)
+					scrbtn.TextSize = 14
+					scrbtn.TextScaled = true
+					scrbtn.TextScaled = false
+					scrbtn.Font = Enum.Font.SciFi
+					scrbtn.Text = scr[1]
+					scrbtn.ZIndex = 11
+					scrbtn.MouseButton1Click:connect(function()
+						loadstring(game:HttpGet(scr[2], true))()
+					end)
+				end
+			end
+		end
+		for i, tab in ipairs(othertabs) do
+			local tabbtn = Instance.new("TextButton")
+			tabbtn.Parent = tabsf
+			tabbtn.Name = tab.name
+			tabbtn.Style = Enum.ButtonStyle.RobloxRoundDropdownButton
+			tabbtn.Size = UDim2.new(1, 0, 0, 26)
+			tabbtn.Position = UDim2.new(0, 0, 0, 314 + ((i - 1) * 30))
+			tabbtn.Font = Enum.Font.SciFi
+			tabbtn.TextSize = 16
+			tabbtn.Text = tab.name
+			tabbtn.ZIndex = 11
+			local text = Instance.new("TextLabel")
+			text.Parent = main
+			text.Name = tab.name
+			text.BorderSizePixel = 0
+			text.BackgroundTransparency = 0.2
+			text.BackgroundColor3 = Color3.new(1, 1, 1)
+			text.Size = UDim2.new(0, 390, 1, -10)
+			text.Position = UDim2.new(0, 105, 0, 5)
+			text.Text = tab.text
+			text.Font = Enum.Font.SciFi
+			text.TextSize = 20
+			text.TextXAlignment = Enum.TextXAlignment.Center
+			text.TextYAlignment = Enum.TextYAlignment.Top
+			text.TextWrapped = true
+			text.ZIndex = 11
+			if tab.name ~= current then
+				text.Visible = false
+			end
+			tabbtn.MouseButton1Click:connect(function()
+				main[current].Visible = false
+				current = tab.name
+				text.Visible = true
+			end)
+		end
