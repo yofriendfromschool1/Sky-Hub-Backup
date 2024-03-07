@@ -7052,7 +7052,10 @@ else
 		end
 	})
 
-	local Obbys = Window:NewTab("Obbys")
+	local Obbys = Window:AddTab({
+		Title = "Obbys",
+		Icon = "globe"
+	})
 	Obbys:AddButton({
 		Title = "Method 1",
 		Description = "auto farm/tp to end if supported game",
