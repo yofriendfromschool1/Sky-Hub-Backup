@@ -248,10 +248,10 @@ if game.PlaceId == 2788229376 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 	
 --Arsenal
@@ -538,10 +538,10 @@ elseif game.PlaceId == 1962086868 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- KAT!
 elseif game.PlaceId == 621129760 then
@@ -723,14 +723,14 @@ elseif game.PlaceId == 621129760 then
 		function nearestPlayerToRay()
 			local dist = math.huge
 			local ray
-			for i, v in pairs(game.Players:GetChildren()) do
-				if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Character:FindFirstChild("Head") and not v.Character:FindFirstChild("ForceField") then
+			for i, v in pairs(game:GetService("Players"):GetChildren()) do
+				if v ~= game:GetService("Players").LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Character:FindFirstChild("Head") and not v.Character:FindFirstChild("ForceField") then
 					if v.Character.Humanoid.Health > 0 and v.Character:FindFirstChild("Head") then -- needed..
-						local newVec = (v.Character.Head.Position - game.Players.LocalPlayer.Character.Head.Position)
+						local newVec = (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position)
 						if newVec.magnitude < dist then
-							local toRay = Ray.new(game.Players.LocalPlayer.Character.Head.Position, newVec)
+							local toRay = Ray.new(game:GetService("Players").LocalPlayer.Character.Head.Position, newVec)
 							if not workspace:FindPartOnRayWithIgnoreList(toRay, {
-								game.Players.LocalPlayer.Character,
+								game:GetService("Players").LocalPlayer.Character,
 								v.Character,
 								workspace.WorldIgnore,
 								workspace.CurrentCamera
@@ -746,7 +746,7 @@ elseif game.PlaceId == 621129760 then
 		end
 		local ray
 		function init()
-			local knife = game.Players.LocalPlayer.Character:WaitForChild("Knife")
+			local knife = game:GetService("Players").LocalPlayer.Character:WaitForChild("Knife")
 			local scr = getsenv(knife.KnifeServer.KnifeClient)
 			if scr then
 				local ir = scr.inputReleased
@@ -765,7 +765,7 @@ elseif game.PlaceId == 621129760 then
 					end
 				}))
 				while wait(.1) do
-					if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+					if game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 then
 						break
 					end
 					ray = nearestPlayerToRay()
@@ -778,7 +778,7 @@ elseif game.PlaceId == 621129760 then
 			end
 		end
 		init()
-		game.Players.LocalPlayer.CharacterAdded:connect(function()
+		game:GetService("Players").LocalPlayer.CharacterAdded:connect(function()
 			print("hi")
 			wait()
 			init()
@@ -790,10 +790,10 @@ elseif game.PlaceId == 621129760 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
  -- Fencing
 elseif game.PlaceId == 12109643 then
@@ -886,7 +886,7 @@ elseif game.PlaceId == 12109643 then
 	MainSection:NewButton("FE Brick Spam", "spams bricks", function()
    -- https://www.roblox.com/games/12109643/Fencing
 		game:GetService('RunService').Stepped:connect(function()
-			for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+			for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
 				if v.Name == "Spray" then
 					if v.Handle.Mesh then
 						v.Handle.Mesh:Destroy()
@@ -898,18 +898,18 @@ elseif game.PlaceId == 12109643 then
 		local function paint()
 			for i, v in pairs(game.Workspace:GetChildren()) do
 				if v.Name == "Handle" then
-					v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+					v.CFrame = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
 					v.Transparency = 1
 					v.CanCollide = false
 					wait()
-					v.CFrame = game.Players.LocalPlayer.Character["Left Leg"].CFrame
+					v.CFrame = game:GetService("Players").LocalPlayer.Character["Left Leg"].CFrame
 				end
 			end
 		end
 		local function equip()
-			for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+			for i, v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 				if v.Name == "Spray" then
-					game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+					game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(v)
 				end
 			end
 		end
@@ -919,482 +919,482 @@ elseif game.PlaceId == 12109643 then
 		end
 	end)
 	MainSection:NewButton("FE Gain Double Health", "bruh", function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(56, 3.5, 124.5)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(56, 3.5, 124.5)
 		wait()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-130, 3.5, 30)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-130, 3.5, 30)
 	end)
 	MainSection:NewButton("FE Give SprayPaint", "SprayPaint", function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(188, 3.5, 106)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(188, 3.5, 106)
 		wait()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-130, 3.5, 30)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-130, 3.5, 30)
 	end)
 	MainSection:NewButton("FE Perm God Mode", "permeanent God mode", function()
 		button              = workspace.Button
 		button.CanCollide   = false
 		button.Transparency = 1
 		game:GetService("RunService").Heartbeat:connect(function(step)
-			button.CFrame = CFrame.new(game.Players.LocalPlayer.Character.Head.Position)
+			button.CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character.Head.Position)
 			button.Size   = Vector3.new(math.random(0, 0), math.random(0, 0), math.random(1, 5))
 			wait()
-			button.CFrame = CFrame.new(game.Players.LocalPlayer.Character["Right Arm"].Position)
+			button.CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character["Right Arm"].Position)
 			button.Size = Vector3.new(math.random(0, 0), math.random(0, 0), math.random(0, 0))
 			wait()
-			button.CFrame = CFrame.new(game.Players.LocalPlayer.Character.Torso.Position)
+			button.CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character.Torso.Position)
 			button.Size = Vector3.new(math.random(0, 0), math.random(0, 0), math.random(0, 0))
 			wait()
-			button.CFrame = CFrame.new(game.Players.LocalPlayer.Character["Left Arm"].Position)
+			button.CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character["Left Arm"].Position)
 			button.Size = Vector3.new(math.random(0, 0), math.random(0, 0), math.random(0, 0))
 			wait()
 			button.Size = Vector3.new(math.random(0, 0), math.random(0, 0), math.random(0, 0))
-			button.CFrame = CFrame.new(game.Players.LocalPlayer.Character["Left Leg"].Position)
+			button.CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character["Left Leg"].Position)
 			wait()
 			button.Size   = Vector3.new(math.random(0, 0), math.random(0, 0), math.random(0, 0))
-			button.CFrame = CFrame.new(game.Players.LocalPlayer.Character["Right Leg"].Position)
+			button.CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character["Right Leg"].Position)
 		end)
 	end)
 	MainSection:NewButton("FE Reach", "Farther Reach", function()
-		a = Instance.new("SelectionBox", game.Players.LocalPlayer.Backpack.Foil.Handle)
-		a.Adornee = game.Players.LocalPlayer.Backpack.Foil.Handle
-		game.Players.LocalPlayer.Backpack.Foil.Handle.Size = Vector3.new(1, 1, 30)
+		a = Instance.new("SelectionBox", game:GetService("Players").LocalPlayer.Backpack.Foil.Handle)
+		a.Adornee = game:GetService("Players").LocalPlayer.Backpack.Foil.Handle
+		game:GetService("Players").LocalPlayer.Backpack.Foil.Handle.Size = Vector3.new(1, 1, 30)
 	end)
 	MainSection:NewButton("FE Seat Spam", "Seat Spam", function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-10, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-20, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-25, 7.5, 54)
 		wait(0.05)
-		game.Players.LocalPlayer.Character.Humanoid.Sit            = false
+		game:GetService("Players").LocalPlayer.Character.Humanoid.Sit            = false
 		wait(0.05)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30, 7.5, 54)
 		wait(0.05)
 	end)
 	MainSection:NewButton("FE Weird Broken Fencing Swords", "Swords", function()
-		game.Lighting["LinkedSword3"]:Clone().Parent = game.Players.LocalPlayer.Backpack
-		game.Lighting["LinkedSword2"]:Clone().Parent = game.Players.LocalPlayer.Backpack
-		game.Lighting["LinkedSword"]:Clone().Parent = game.Players.LocalPlayer.Backpack
+		game.Lighting["LinkedSword3"]:Clone().Parent = game:GetService("Players").LocalPlayer.Backpack
+		game.Lighting["LinkedSword2"]:Clone().Parent = game:GetService("Players").LocalPlayer.Backpack
+		game.Lighting["LinkedSword"]:Clone().Parent = game:GetService("Players").LocalPlayer.Backpack
 	end)
 	local executors2345 = Window:NewTab("Executors")
 	local executorsexec2345 = executors2345:NewSection("Executors")
@@ -1413,10 +1413,10 @@ elseif game.PlaceId == 12109643 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- Work at a Pizza Place
 elseif game.PlaceId == 192800 then
@@ -1586,7 +1586,7 @@ elseif game.PlaceId == 192800 then
 		Fly.TextSize = 14.000
 		Fly.TextWrapped = true
 		Fly.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			Fly.Visible = false
 			Stat2.Text = "On"
 			Stat2.TextColor3 = Color3.fromRGB(0, 255, 0)
@@ -1653,7 +1653,7 @@ elseif game.PlaceId == 192800 then
 		Unfly.TextSize = 14.000
 		Unfly.TextWrapped = true
 		Unfly.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			Fly.Visible = true
 			Stat2.Text = "Off"
 			Stat2.TextColor3 = Color3.fromRGB(255, 0, 0)
@@ -1733,7 +1733,7 @@ elseif game.PlaceId == 192800 then
 		W.TextSize = 14.000
 		W.TextWrapped = true
 		W.TouchLongPress:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
@@ -1757,7 +1757,7 @@ elseif game.PlaceId == 192800 then
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * 0
 		end)
 		W.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
@@ -1794,7 +1794,7 @@ elseif game.PlaceId == 192800 then
 		S.TextSize = 14.000
 		S.TextWrapped = true
 		S.TouchLongPress:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * -Speed.Text
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * -Speed.Text
@@ -1818,7 +1818,7 @@ elseif game.PlaceId == 192800 then
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * 0
 		end)
 		S.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * -Speed.Text
 			wait(.1)
@@ -1842,13 +1842,13 @@ elseif game.PlaceId == 192800 then
 		end)
 	end)
 	MainSection:NewButton("FE Open Manager's Door", "Opens Manager's Door", function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(43, 5, 7)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(43, 5, 7)
 		wait(0.2)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(42, 5, 7)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(42, 5, 7)
 		wait(0.2)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(43, 5, 7)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(43, 5, 7)
 		wait(0.2)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(51, 5, 7)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(51, 5, 7)
 	end)
 	MainSection:NewButton("FE Paint Cars Hot Pink", "Paints the cars but it can be laggy", function()
  --Change "Hot Pink" to a Roblox Color that they have.
@@ -1876,15 +1876,15 @@ elseif game.PlaceId == 192800 then
 		end
 	end)
 	MainSection:NewButton("FE Teleport To manager chair", "it tps to manager chair", function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(23, 5, 6.5)
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(23, 5, 6.5)
 	end)
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
  -- VR Hands
 elseif game.PlaceId == 4832438542 then
@@ -2425,10 +2425,10 @@ elseif game.PlaceId == 4832438542 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- Adopt me
 elseif game.PlaceId == 920587237 then
@@ -2595,7 +2595,7 @@ elseif game.PlaceId == 920587237 then
 		Fly.TextSize = 14.000
 		Fly.TextWrapped = true
 		Fly.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			Fly.Visible = false
 			Stat2.Text = "On"
 			Stat2.TextColor3 = Color3.fromRGB(0, 255, 0)
@@ -2662,7 +2662,7 @@ elseif game.PlaceId == 920587237 then
 		Unfly.TextSize = 14.000
 		Unfly.TextWrapped = true
 		Unfly.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			Fly.Visible = true
 			Stat2.Text = "Off"
 			Stat2.TextColor3 = Color3.fromRGB(255, 0, 0)
@@ -2742,7 +2742,7 @@ elseif game.PlaceId == 920587237 then
 		W.TextSize = 14.000
 		W.TextWrapped = true
 		W.TouchLongPress:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
@@ -2766,7 +2766,7 @@ elseif game.PlaceId == 920587237 then
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * 0
 		end)
 		W.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
@@ -2803,7 +2803,7 @@ elseif game.PlaceId == 920587237 then
 		S.TextSize = 14.000
 		S.TextWrapped = true
 		S.TouchLongPress:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * -Speed.Text
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * -Speed.Text
@@ -2827,7 +2827,7 @@ elseif game.PlaceId == 920587237 then
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * 0
 		end)
 		S.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * -Speed.Text
 			wait(.1)
@@ -2856,10 +2856,10 @@ elseif game.PlaceId == 920587237 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- JailBreak
 elseif game.PlaceId == 606849621 then
@@ -3292,7 +3292,7 @@ elseif game.PlaceId == 155615604 then
 		Fly.TextSize = 14.000
 		Fly.TextWrapped = true
 		Fly.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			Fly.Visible = false
 			Stat2.Text = "On"
 			Stat2.TextColor3 = Color3.fromRGB(0, 255, 0)
@@ -3359,7 +3359,7 @@ elseif game.PlaceId == 155615604 then
 		Unfly.TextSize = 14.000
 		Unfly.TextWrapped = true
 		Unfly.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			Fly.Visible = true
 			Stat2.Text = "Off"
 			Stat2.TextColor3 = Color3.fromRGB(255, 0, 0)
@@ -3439,7 +3439,7 @@ elseif game.PlaceId == 155615604 then
 		W.TextSize = 14.000
 		W.TextWrapped = true
 		W.TouchLongPress:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
@@ -3463,7 +3463,7 @@ elseif game.PlaceId == 155615604 then
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * 0
 		end)
 		W.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
@@ -3500,7 +3500,7 @@ elseif game.PlaceId == 155615604 then
 		S.TextSize = 14.000
 		S.TextWrapped = true
 		S.TouchLongPress:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * -Speed.Text
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * -Speed.Text
@@ -3524,7 +3524,7 @@ elseif game.PlaceId == 155615604 then
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * 0
 		end)
 		S.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * -Speed.Text
 			wait(.1)
@@ -3671,10 +3671,10 @@ elseif game.PlaceId == 155615604 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
     -- Build A Boat
 elseif game.PlaceId == 537413528 then
@@ -3837,7 +3837,7 @@ elseif game.PlaceId == 537413528 then
 		Fly.TextSize = 14.000
 		Fly.TextWrapped = true
 		Fly.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			Fly.Visible = false
 			Stat2.Text = "On"
 			Stat2.TextColor3 = Color3.fromRGB(0, 255, 0)
@@ -3904,7 +3904,7 @@ elseif game.PlaceId == 537413528 then
 		Unfly.TextSize = 14.000
 		Unfly.TextWrapped = true
 		Unfly.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			Fly.Visible = true
 			Stat2.Text = "Off"
 			Stat2.TextColor3 = Color3.fromRGB(255, 0, 0)
@@ -3984,7 +3984,7 @@ elseif game.PlaceId == 537413528 then
 		W.TextSize = 14.000
 		W.TextWrapped = true
 		W.TouchLongPress:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
@@ -4008,7 +4008,7 @@ elseif game.PlaceId == 537413528 then
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * 0
 		end)
 		W.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * Speed.Text
@@ -4045,7 +4045,7 @@ elseif game.PlaceId == 537413528 then
 		S.TextSize = 14.000
 		S.TextWrapped = true
 		S.TouchLongPress:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * -Speed.Text
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * -Speed.Text
@@ -4069,7 +4069,7 @@ elseif game.PlaceId == 537413528 then
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * 0
 		end)
 		S.MouseButton1Click:Connect(function()
-			local HumanoidRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local HumanoidRP = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 			wait(.1)
 			HumanoidRP.BodyVelocity.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * -Speed.Text
 			wait(.1)
@@ -4095,10 +4095,10 @@ elseif game.PlaceId == 537413528 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- Gorilla Tag Professional
 elseif game.PlaceId == 8690998110 then
@@ -4182,19 +4182,19 @@ elseif game.PlaceId == 8690998110 then
 		end)
 		window2:Button("Spectate (Easy Win)", function()
 			spawn(function()
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-39.386, 59.2163, -102.248)
+				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-39.386, 59.2163, -102.248)
 			end)
 		end)
 		window1:Button("TP All to You (Use Lava)", function()
 			spawn(function()
-				for _, player in pairs(game.Players:GetPlayers()) do
-					player.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+				for _, player in pairs(game:GetService("Players"):GetPlayers()) do
+					player.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position)
 				end
 			end)
 		end)
 		window2:Button("Become a Lava Monke", function()
 			spawn(function()
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(79.2755, 71.1624, -54.2756)
+				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(79.2755, 71.1624, -54.2756)
 			end)
 		end)
 		window1:Slider("Walkspeed", 16, 70, 5, function(value)
@@ -4215,10 +4215,10 @@ elseif game.PlaceId == 8690998110 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
         
 -- Murder Mystery 2 or MM2
@@ -4317,7 +4317,7 @@ elseif game.PlaceId == 142823291 then
 	MainSection:NewButton("XennyWare", "Takes Up hella space", function()
 		repeat
 			wait()
-		until game.Players.LocalPlayer.Character
+		until game:GetService("Players").LocalPlayer.Character
 		url = "https://raw.githubusercontent.com/xennyy/Xenny-Ware/main/loader.lua"
 		loadstring(game:HttpGet(url))()
 	end)
@@ -4333,7 +4333,7 @@ elseif game.PlaceId == 142823291 then
 					table.insert(children, child)
 				end
 				if child:IsA("BasePart") and child.Name == "Coin" then
-					child.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+					child.CFrame = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
 				end
 			end
 		end
@@ -4478,10 +4478,10 @@ elseif game.PlaceId == 142823291 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 	
         
@@ -4569,10 +4569,10 @@ elseif game.PlaceId == 2753915549 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 	 
 			-- Counter Blox
@@ -4645,10 +4645,10 @@ elseif game.PlaceId == 301549746 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 				   	-- Mic Up
 elseif game.PlaceId == 6884319169 then
@@ -4672,9 +4672,9 @@ elseif game.PlaceId == 6884319169 then
 		end
 	end)
 	MainSection:NewButton("Show admin gui Mic Up", "should be at middle right guy pose", function()
-		game.Players.LocalPlayer.PlayerGui.Admin.Enabled = true
-		game.Players.LocalPlayer.PlayerGui.Admin.Frame.Visible = true
-		game.Players.LocalPlayer.PlayerGui.Admin.OpenClose.Visible = true
+		game:GetService("Players").LocalPlayer.PlayerGui.Admin.Enabled = true
+		game:GetService("Players").LocalPlayer.PlayerGui.Admin.Frame.Visible = true
+		game:GetService("Players").LocalPlayer.PlayerGui.Admin.OpenClose.Visible = true
 	end)
 	MainSection:NewButton("FE Mic Up grab Coil Tool", "Grabs coil", function()
 		local active = true
@@ -4774,10 +4774,10 @@ elseif game.PlaceId == 6884319169 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 				    	-- Neighbors
 elseif game.PlaceId == 12699642568 then
@@ -4796,7 +4796,7 @@ elseif game.PlaceId == 12699642568 then
 		end
 	end)
 	MainSection:NewButton("Skip Player Neighbors", "if you run out of skips Basically just tps to sum and kills you", function()
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Terrain.CFrame
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Terrain.CFrame
 	end)
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
@@ -4859,10 +4859,10 @@ elseif game.PlaceId == 12699642568 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- Natural Diaster Survival
 elseif game.PlaceId == 189707 then
@@ -4873,7 +4873,7 @@ elseif game.PlaceId == 189707 then
 	MainSection:NewButton("Shows Diaster before shows all", "you need to be on the map and still alive btw", function()
 		game.StarterGui:SetCore("SendNotification",  {
 			Title = "This Diaster is";
-			Text = game.Players.LocalPlayer.Character.SurvivalTag.Value;
+			Text = game:GetService("Players").LocalPlayer.Character.SurvivalTag.Value;
 			Icon = "";
 			Duration = 5;
 			Callback = NotificationBindable;
@@ -4969,10 +4969,10 @@ elseif game.PlaceId == 189707 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- Ro-Ghoul
 elseif game.PlaceId == 914010731 then
@@ -5101,10 +5101,10 @@ elseif game.PlaceId == 914010731 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- Blade Ball
 elseif game.PlaceId == 13772394625 then
@@ -5239,10 +5239,10 @@ elseif game.PlaceId == 13772394625 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 
 -- Pet Simulator X
@@ -5321,10 +5321,10 @@ elseif game.PlaceId == 6284583030 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)	 
 
 -- Pet Simulator 99
@@ -5397,10 +5397,10 @@ elseif game.PlaceId == 8737899170 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 	
 
@@ -5442,9 +5442,9 @@ elseif game.PlaceId == 3101667897 then
 				end
 				for i, v in pairs(game:GetService("Workspace").orbFolder:GetDescendants()) do
 					if v.Name == "TouchInterest" and v.Parent then
-						firetouchinterest(game.Players.LocalPlayer.Character.Head, v.Parent, 0)
+						firetouchinterest(game:GetService("Players").LocalPlayer.Character.Head, v.Parent, 0)
 						wait(0.1)
-						firetouchinterest(game.Players.LocalPlayer.Character.Head, v.Parent, 1)
+						firetouchinterest(game:GetService("Players").LocalPlayer.Character.Head, v.Parent, 1)
 						break
 					end
 				end
@@ -5512,10 +5512,10 @@ elseif game.PlaceId == 3101667897 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 
 -- Brookhaven RP
@@ -5600,10 +5600,10 @@ elseif game.PlaceId == 4924922222 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- Bedwars
 elseif game.PlaceId == 6872265039 then
@@ -5684,10 +5684,10 @@ elseif game.PlaceId == 6872265039 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 						-- Chaos
 elseif game.PlaceId == 6441847031 then
@@ -5768,10 +5768,10 @@ elseif game.PlaceId == 6441847031 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- Ninja Legends
 elseif game.PlaceId == 3956818381 then
@@ -5844,10 +5844,10 @@ elseif game.PlaceId == 3956818381 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- Bayside High School
 elseif game.PlaceId == 12640491155 then
@@ -5880,57 +5880,57 @@ elseif game.PlaceId == 12640491155 then
 		"Aquatic Center"
 	}, function(currentOption)
 		if currentOption == "School" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-511, 13, -24)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-511, 13, -24)
 		elseif currentOption == "Dorms" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-511, 13, 356)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-511, 13, 356)
 		elseif currentOption == "Floor 1" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-510, 13, 441)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-510, 13, 441)
 		elseif currentOption == "Floor 2" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-510, 31, 441)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-510, 31, 441)
 		elseif currentOption == "Floor 3" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-510, 48, 441)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-510, 48, 441)
 		elseif currentOption == "Floor 4" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-510, 66, 441)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-510, 66, 441)
 		elseif currentOption == "Floor 5" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-510, 83, 441)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-510, 83, 441)
 		elseif currentOption == "Penthouse" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-510, 101, 441)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-510, 101, 441)
 		elseif currentOption == "Party" then 
 			for i, v in pairs(workspace:GetDescendants()) do
 				if v.Name == "PartyParticle" then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame
+					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame
 				end
 			end
 		elseif currentOption == "Football Field" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-509, 17, -400)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-509, 17, -400)
 		elseif currentOption == "Gym" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-650, 17, -195)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-650, 17, -195)
 		elseif currentOption == "Principle Office" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-635, 17, -15)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-635, 17, -15)
 		elseif currentOption == "Science/Boys Bathroom" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-640, 46, -122)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-640, 46, -122)
 		elseif currentOption == "History" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-379, 46, -49)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-379, 46, -49)
 		elseif currentOption == "English" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-641, 46, -48)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-641, 46, -48)
 		elseif currentOption == "Math/Girls Bathroom" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-379, 46, -122)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-379, 46, -122)
 		elseif currentOption == "Computer Lab" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-580, 46, -114)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-580, 46, -114)
 		elseif currentOption == "Art" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-509, 46, -114)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-509, 46, -114)
 		elseif currentOption == "Music" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-440, 46, -116)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-440, 46, -116)
 		elseif currentOption == "Library" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-399, 17, -118)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-399, 17, -118)
 		elseif currentOption == "Bus" then
 			for i, v in pairs(workspace:GetDescendants()) do
 				if v.Name == "BusSeat" then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
 				end
 			end
 		elseif currentOption == "Aquatic Center" then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-488, 20, -557)
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-488, 20, -557)
 		end
 	end)
 	MainSection:NewDropdown("Spawn/despawns Vehicle/Cars", "spawns/despawns cars", {
@@ -5973,12 +5973,12 @@ elseif game.PlaceId == 12640491155 then
 				break
 			end
 			if v.Name == "VehicleSeat" and v.Parent.Parent.Name == txt then
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
 				for i, v in pairs(v:GetDescendants()) do
 					wait(0.001)
 					if v:IsA("ProximityPrompt") then
 						fireproximityprompt(v)
-						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame
+						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame
 						stop = stop + 1
 					end
 				end
@@ -5999,7 +5999,7 @@ elseif game.PlaceId == 12640491155 then
 	local VehicleModsSection = VehicleMods:NewSection("Vehicle Mods")
 	VehicleModsSection:NewSlider("Vehicle Max Speed", "laggy idk why, Sets max speed of vehicle", 9999, 1, function(lol86)
 		for i, v in pairs(workspace:GetDescendants()) do
-			if v.Name == game.Players.LocalPlayer.Name then
+			if v.Name == game:GetService("Players").LocalPlayer.Name then
 				for i, v in pairs(v:GetChildren()) do
 					if v.Name == "Stats" then
 						for i, v in pairs(v:GetChildren()) do
@@ -6014,7 +6014,7 @@ elseif game.PlaceId == 12640491155 then
 	end)
 	VehicleModsSection:NewSlider("Vehicle Torque", "laggy idk why, Sets torque/horsepower/hp/Acceleration of vehicle", 9999, 1, function(lol86)
 		for i, v in pairs(workspace:GetDescendants()) do
-			if v.Name == game.Players.LocalPlayer.Name then
+			if v.Name == game:GetService("Players").LocalPlayer.Name then
 				for i, v in pairs(v:GetChildren()) do
 					if v.Name == "Stats" then
 						for i, v in pairs(v:GetChildren()) do
@@ -6029,7 +6029,7 @@ elseif game.PlaceId == 12640491155 then
 	end)
 	VehicleModsSection:NewSlider("Vehicle Max Turn Speed", "laggy idk why, Sets turn speed of vehicle", 9999, 1, function(lol86)
 		for i, v in pairs(workspace:GetDescendants()) do
-			if v.Name == game.Players.LocalPlayer.Name then
+			if v.Name == game:GetService("Players").LocalPlayer.Name then
 				for i, v in pairs(v:GetChildren()) do
 					if v.Name == "Stats" then
 						for i, v in pairs(v:GetChildren()) do
@@ -6269,10 +6269,10 @@ elseif game.PlaceId == 12640491155 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- Big PaintBall
 elseif game.PlaceId == 3527629287 then
@@ -6400,10 +6400,10 @@ elseif game.PlaceId == 3527629287 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- Big PaintBall 2
 elseif game.PlaceId == 9865958871 then
@@ -6482,10 +6482,10 @@ elseif game.PlaceId == 9865958871 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- Muscle Legends
 elseif game.PlaceId == 3623096087 then
@@ -6564,10 +6564,10 @@ elseif game.PlaceId == 3623096087 then
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 	end)
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
 -- Road to Grambys
 elseif game.PlaceId == 5796917097 then
@@ -6623,8 +6623,8 @@ elseif game.PlaceId == 5796917097 then
 	end)
 	MainSection:NewTextBox("Teleport to player put full user here", "have to put full user not display name", function(txt)
 		local targ = txt
-		local char = game.Players.LocalPlayer.ReplicationFocus.Parent
-		local targetchar = game.Players[targ].ReplicationFocus.Parent
+		local char = game:GetService("Players").LocalPlayer.ReplicationFocus.Parent
+		local targetchar = game:GetService("Players")[targ].ReplicationFocus.Parent
 		for i, v in pairs(char:GetChildren()) do
 			if v:IsA("BasePart") then
 				v.CFrame = targetchar.HumanoidRootPart.CFrame
@@ -7031,9 +7031,9 @@ else
 					Callback = NotificationBindable;
 				})
 				wait(15)
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Stages.Stage130.Checkpoint.Checkpoint.CFrame
+				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Stages.Stage130.Checkpoint.Checkpoint.CFrame
 				wait(2)
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Stages.END["The End Obby..!!"].Checkpoint.CFrame
+				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Stages.END["The End Obby..!!"].Checkpoint.CFrame
 			elseif game.PlaceId == 13413789725 then -- emo obby
 				getgenv().collectOrbsToggle = true
 				spawn(function()
@@ -7046,10 +7046,10 @@ else
 							break
 						end
 						for i, checkpoint in ipairs(checkpoints) do
-							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = checkpoint.CFrame
+							game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = checkpoint.CFrame
 							wait(0.05) -- Adjust the wait time as needed
 						end
-						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(160, 285, 371)
+						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(160, 285, 371)
 						wait(10.8)
 						fireproximityprompt(workspace.endlobby.Rebirth.Prompt)
 						wait(2)
@@ -7058,19 +7058,19 @@ else
 			elseif game.PlaceId == 11364184405 then -- 725 obby
 				while true do
 					wait()
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints.Floor8["725"].Detector.CFrame
+					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints.Floor8["725"].Detector.CFrame
 					wait(2)
 					game:GetService("ReplicatedStorage"):WaitForChild("Honeypot"):WaitForChild("Internal"):WaitForChild("RemoteStorage"):WaitForChild("Rebirth - RemoteEvent"):FireServer()
 				end
 			elseif game.PlaceId == 10760024537 then -- ultimate easy obby
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints["50"].DetectorPart.CFrame
+				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints["50"].DetectorPart.CFrame
 			elseif game.PlaceId == 3587619225 then -- mega easy obby 825 stages
 				local checkpoints = game:GetService("Workspace").Checkpoints:GetChildren()
 				table.sort(checkpoints, function(a, b)
 					return tonumber(a.Name) < tonumber(b.Name)
 				end)
 				for i, checkpoint in ipairs(checkpoints) do
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = checkpoint.CFrame + Vector3.new(0, 5, 0)
+					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = checkpoint.CFrame + Vector3.new(0, 5, 0)
 					wait(0.5) -- Adjust the wait time as needed
 				end
 			elseif game.PlaceId == 8472851459 then -- really easy obby
@@ -7079,28 +7079,28 @@ else
 					return tonumber(a.Name) < tonumber(b.Name)
 				end)
 				for i, checkpoint in ipairs(checkpoints) do
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = checkpoint.CFrame + Vector3.new(0, 5, 0)
+					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = checkpoint.CFrame + Vector3.new(0, 5, 0)
 					wait(0.5) -- Adjust the wait time as needed
 				end
 			elseif game.PlaceId == 12961669859 then -- Easy Fun Obby
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-301, 236, 78)
+				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-301, 236, 78)
 			elseif game.PlaceId == 8712817601 then -- barrys prison
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3781, 1072, -502)
+				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3781, 1072, -502)
 			elseif game.PlaceId == 14184086618 then -- obby but bike
 				loadstring(game:HttpGet("https://github.com/KhSaeed90/Roblox/raw/workspace/14184086618"))()
 			elseif game.PlaceId == 13326256431 then -- obby but no jump
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints["48"].CFrame
+				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints["48"].CFrame
 			elseif game.PlaceId == 1946695497 then -- escape butcher obby
 				local checkpoints = game:GetService("Workspace").Stages:GetChildren()
 				table.sort(checkpoints, function(a, b)
 					return tonumber(a.Name) < tonumber(b.Name)
 				end)
 				for i, checkpoint in ipairs(checkpoints) do
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = checkpoint.CFrame + Vector3.new(0, 5, 0)
+					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = checkpoint.CFrame + Vector3.new(0, 5, 0)
 					wait(0.5) -- Adjust the wait time as needed
 				end
 			elseif game.PlaceId == 12357508217 then
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints["60"].Detector.CFrame
+				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints["60"].Detector.CFrame
 			else -- universal
 				game.StarterGui:SetCore("SendNotification",  {
 					Title = "Game Not Supported";
@@ -7115,7 +7115,7 @@ else
 						return tonumber(a.Name) < tonumber(b.Name)
 					end)
 					for i, checkpoint in ipairs(checkpoints) do
-						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = checkpoint.CFrame
+						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = checkpoint.CFrame
 						wait(6) -- Adjust the wait time as needed
 					end
 				elseif workspace:FindFirstChild('Stages') then
@@ -7124,7 +7124,7 @@ else
 						return tonumber(a.Name) < tonumber(b.Name)
 					end)
 					for i, checkpoint in ipairs(checkpoints) do
-						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = checkpoint.CFrame
+						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = checkpoint.CFrame
 						wait(6) -- Adjust the wait time as needed
 					end
 				else
@@ -7155,7 +7155,7 @@ else
 				local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
 				return rootPart
 			end
-			local root = getRoot(game.Players.LocalPlayer.Character) or game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("BasePart")
+			local root = getRoot(game:GetService("Players").LocalPlayer.Character) or game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("BasePart")
 			local function touch(x)
 				x = x:FindFirstAncestorWhichIsA("Part")
 				if x then
@@ -7192,9 +7192,9 @@ else
 			for _, v in pairs(workspace:GetDescendants()) do
 				if v:IsA("TouchTransmitter") then
 					ftiamount = ftiamount + 1
-					firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
+					firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
 					wait()
-					firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) -- 1 is untouch
+					firetouchinterest(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) -- 1 is untouch
 				end
 			end
 		end
@@ -7213,11 +7213,11 @@ else
 		Description = "Btools",
 		Callback = function()
 			game.StarterGui:SetCoreGuiEnabled(2, true)
-		a = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+		a = Instance.new("HopperBin", game:GetService("Players").LocalPlayer.Backpack)
 		a.BinType = 2
-		b = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+		b = Instance.new("HopperBin", game:GetService("Players").LocalPlayer.Backpack)
 		b.BinType = 3
-		c = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+		c = Instance.new("HopperBin", game:GetService("Players").LocalPlayer.Backpack)
 		c.BinType = 4
 		end
 	})
@@ -7261,7 +7261,7 @@ else
 	SaveManager:SetLibrary(Fluent)
 	SaveManager:IgnoreThemeSettings()
 	SaveManager:SetIgnoreIndexes({'TextboxIdentifier'})
-	SaveManager:SetFolder("Sky Hub/Jailbreak/Configs")
+	SaveManager:SetFolder("Sky Hub/Universal/Configs")
 
 	local Config = Window:AddTab({ Title = "Config", Icon = "settings" })
 	SaveManager:BuildConfigSection(Config)
