@@ -6684,7 +6684,7 @@ else
 			setclipboard(string2)
 		end
 	})
-	local Debugs = Window:AddTab({ Title = "Discords", Icon = "globe" })
+	local Debugs = Window:AddTab({ Title = "Debuggers", Icon = "globe" })
 	Debugs:AddButton({
 		Title = "Dex",
 		Description = "Explorer",
