@@ -117,7 +117,7 @@ if game.PlaceId == 2788229376 then
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/lerkermer/lua-projects/master/OldSwagmode'))()
 	end)
 	MainSection:NewButton("Unfair hub", "unfair", function()
-		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'),true))()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'), true))()
 	end)
 	MainSection:NewButton("Rainbow Sun Aimlock by therealxora", "by therealxora", function()
 		setclipboard("https://discord.gg/iosexploiters")
@@ -785,7 +785,7 @@ elseif game.PlaceId == 621129760 then
 		end)
 	end)
 	MainSection:NewButton("Unfair hub", "unfair", function()
-		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'),true))()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'), true))()
 	end)
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
@@ -1865,7 +1865,7 @@ elseif game.PlaceId == 192800 then
 		end
 	end)
 	MainSection:NewButton("GabX", "GabX", function()
-		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/GabX'),true))()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/GabX'), true))()
 	end)
 	MainSection:NewButton("FE Pizza Toppings Troll", "troll", function()
 		for i, v in pairs(workspace.AllDough:GetChildren()) do
@@ -2499,7 +2499,7 @@ elseif game.PlaceId == 920587237 then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMae17/NewIceHub/main/Brookhaven"))()
 	end)
 	MainSection:NewButton("Unfair hub", "unfair", function()
-		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'),true))()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'), true))()
 	end)
 	MainSection:NewButton("VG Hub", "60+", function()
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
@@ -2851,7 +2851,7 @@ elseif game.PlaceId == 920587237 then
 		end)
 	end)
 	MainSection:NewButton("GabX", "GabX", function()
-		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/GabX'),true))()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/GabX'), true))()
 	end)
 	local Player = Window:NewTab("Player")
 	local PlayerSection = Player:NewSection("Player")
@@ -2875,7 +2875,10 @@ elseif game.PlaceId == 606849621 then
 		Theme = "Dark",
 		MinimizeKey = Enum.KeyCode.LeftControl
 	})
-	local Main = Window:AddTab({ Title = "Main", Icon = "globe" })
+	local Main = Window:AddTab({
+		Title = "Main",
+		Icon = "globe"
+	})
 	local Options = Fluent.Options
 	Main:AddParagraph({
 		Title = "Note",
@@ -2906,14 +2909,14 @@ elseif game.PlaceId == 606849621 then
 		Title = "EZ Hub",
 		Description = "EZ Hub",
 		Callback = function()
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug42O/Ez-Industries-Launcher-Data/master/Launcher.lua'),true))()
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug42O/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()
 		end
 	})
 	Main:AddButton({
 		Title = "GabX",
 		Description = "GabX",
 		Callback = function()
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/GabX'),true))()
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/GabX'), true))()
 		end
 	})
 	Main:AddButton({
@@ -2970,22 +2973,22 @@ elseif game.PlaceId == 606849621 then
 
 			-- Function to check if a player is within the FOV and not obstructed by walls
 			local function isPlayerVisible(targetPlayer)
-			if not targetPlayer.Character or not targetPlayer.Character:FindFirstChild("Head") then
-				return false
-			end
-			if teamCheckActive and targetPlayer.Team == localPlayer.Team then
-				return false -- Player is on the same team
-			end
-			local targetHeadPosition = targetPlayer.Character.Head.Position
-			local vectorToTarget = (targetHeadPosition - camera.CFrame.Position).unit
-			local ray = Ray.new(camera.CFrame.Position, vectorToTarget * fovRadius)
-			local part, position = game.Workspace:FindPartOnRay(ray, localPlayer.Character, false, true)
-			if part and part:IsDescendantOf(targetPlayer.Character) then
-				local dotProduct = camera.CFrame.LookVector:Dot(vectorToTarget)
-				local angle = math.deg(math.acos(dotProduct))
-				return angle <= (fovRadius / 2) -- Player is within FOV
-			end
-			return false -- Player is obstructed by walls
+				if not targetPlayer.Character or not targetPlayer.Character:FindFirstChild("Head") then
+					return false
+				end
+				if teamCheckActive and targetPlayer.Team == localPlayer.Team then
+					return false -- Player is on the same team
+				end
+				local targetHeadPosition = targetPlayer.Character.Head.Position
+				local vectorToTarget = (targetHeadPosition - camera.CFrame.Position).unit
+				local ray = Ray.new(camera.CFrame.Position, vectorToTarget * fovRadius)
+				local part, position = game.Workspace:FindPartOnRay(ray, localPlayer.Character, false, true)
+				if part and part:IsDescendantOf(targetPlayer.Character) then
+					local dotProduct = camera.CFrame.LookVector:Dot(vectorToTarget)
+					local angle = math.deg(math.acos(dotProduct))
+					return angle <= (fovRadius / 2) -- Player is within FOV
+				end
+				return false -- Player is obstructed by walls
 			end
 
 			-- Toggle button functionality
@@ -3031,7 +3034,10 @@ elseif game.PlaceId == 606849621 then
 			end)
 		end
 	})
-	local Admins = Window:AddTab({ Title = "Admins", Icon = "globe" })
+	local Admins = Window:AddTab({
+		Title = "Admins",
+		Icon = "globe"
+	})
 
 	Admins:AddButton({
 		Title = "Infinite Yield FE",
@@ -3087,7 +3093,10 @@ elseif game.PlaceId == 606849621 then
 		end
 	})
 
-	local Player = Window:AddTab({ Title = "Player", Icon = "globe" })
+	local Player = Window:AddTab({
+		Title = "Player",
+		Icon = "globe"
+	})
 	local Walkspeed = Player:AddSlider("SliderIdentifier", {
 		Title = "Walkspeed",
 		Description = "Walkspeed Changer",
@@ -3125,15 +3134,23 @@ elseif game.PlaceId == 606849621 then
 	InterfaceManager:SetLibrary(Fluent)
 	InterfaceManager:SetFolder("Sky Hub")
 
-	local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+	local Settings = Window:AddTab({
+		Title = "Settings",
+		Icon = "settings"
+	})
 	InterfaceManager:BuildInterfaceSection(Settings)
 
 	SaveManager:SetLibrary(Fluent)
 	SaveManager:IgnoreThemeSettings()
-	SaveManager:SetIgnoreIndexes({'TextboxIdentifier'})
+	SaveManager:SetIgnoreIndexes({
+		'TextboxIdentifier'
+	})
 	SaveManager:SetFolder("Sky Hub/Jailbreak/Configs")
 
-	local Config = Window:AddTab({ Title = "Config", Icon = "settings" })
+	local Config = Window:AddTab({
+		Title = "Config",
+		Icon = "settings"
+	})
 	SaveManager:BuildConfigSection(Config)
 
 	SaveManager:LoadAutoloadConfig()
@@ -5255,7 +5272,7 @@ elseif game.PlaceId == 6284583030 then
 		loadstring(game:HttpGet('https://pastebin.com/raw/2uF3iQAf', true))()
 	end)
 	MainSection:NewButton("Unfair hub", "unfair", function()
-		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'),true))()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'), true))()
 	end)
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
@@ -5431,7 +5448,7 @@ elseif game.PlaceId == 3101667897 then
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
 	end)
 	MainSection:NewButton("Unfair hub", "unfair", function()
-		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'),true))()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'), true))()
 	end)
 	MainSection:NewButton("fire all orb touch interests", "yuh", function()
 		getgenv().collectOrbsToggle = true
@@ -5537,7 +5554,7 @@ elseif game.PlaceId == 4924922222 then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/FRX397/Hydrohub/main/Hydro_hub", true))()
 	end)
 	MainSection:NewButton("Unfair hub", "unfair", function()
-		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'),true))()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'), true))()
 	end)
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
@@ -5621,7 +5638,7 @@ elseif game.PlaceId == 6872265039 then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/FRX397/Hydrohub/main/Hydro_hub", true))()
 	end)
 	MainSection:NewButton("Unfair hub", "unfair", function()
-		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'),true))()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'), true))()
 	end)
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
@@ -6333,7 +6350,7 @@ elseif game.PlaceId == 3527629287 then
 		loadstring(game:HttpGet("https://www.pastebin.com/raw/PuaaGKsT"))()
 	end)
 	MainSection:NewButton("Unfair hub", "unfair", function()
-		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'),true))()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'), true))()
 	end)
 	MainSection:NewButton("Lemonade Hub", "hub", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/xMintix/Lemonade-Hub/main/BigPaintballString.lua"))()
@@ -6668,7 +6685,10 @@ else
 		Theme = "Dark",
 		MinimizeKey = Enum.KeyCode.LeftControl
 	})
-	local Discord = Window:AddTab({ Title = "Discords", Icon = "globe" })
+	local Discord = Window:AddTab({
+		Title = "Discords",
+		Icon = "globe"
+	})
 	local Options = Fluent.Options
 	Discord:AddButton({
 		Title = "Discord Invite",
@@ -6684,7 +6704,10 @@ else
 			setclipboard(string2)
 		end
 	})
-	local Debugs = Window:AddTab({ Title = "Debuggers", Icon = "globe" })
+	local Debugs = Window:AddTab({
+		Title = "Debuggers",
+		Icon = "globe"
+	})
 	Debugs:AddButton({
 		Title = "Dex",
 		Description = "Explorer",
@@ -6720,7 +6743,10 @@ else
 		end
 	})
 
-	local Admins = Window:AddTab({ Title = "Admins", Icon = "globe" })
+	local Admins = Window:AddTab({
+		Title = "Admins",
+		Icon = "globe"
+	})
 
 	Admins:AddButton({
 		Title = "Infinite Yield FE",
@@ -6776,7 +6802,10 @@ else
 		end
 	})
 
-	local Player = Window:AddTab({ Title = "Player", Icon = "globe" })
+	local Player = Window:AddTab({
+		Title = "Player",
+		Icon = "globe"
+	})
 	local Walkspeed = Player:AddSlider("SliderIdentifier", {
 		Title = "Walkspeed",
 		Description = "Walkspeed Changer",
@@ -6810,7 +6839,10 @@ else
 			game.workspace.Gravity = Value
 		end
 	})
-	local Hubs = Window:AddTab({ Title = "Hubs", Icon = "globe" })
+	local Hubs = Window:AddTab({
+		Title = "Hubs",
+		Icon = "globe"
+	})
 	Hubs:AddButton({
 		Title = "Hoho Hub",
 		Description = "Hoho",
@@ -6894,49 +6926,49 @@ else
 					PlaceId = {
 						3183403065
 					},
-				GameName = "Anime Adventures",
-			},
-			["RoGhoul"] = {
-				FileName = "RoGhoul",
-				PlaceId = {
-					380704901
+					GameName = "Anime Adventures",
 				},
-				GameName = "RoGhoul",
-			},
-			["Blade Ball"] = {
-				FileName = "BladeBall",
-				PlaceId = {
-					4777817887
+				["RoGhoul"] = {
+					FileName = "RoGhoul",
+					PlaceId = {
+						380704901
+					},
+					GameName = "RoGhoul",
 				},
-				GameName = "Blade Ball",
-			},
-			["ASX"] = {
-				FileName = "AnimeSouls",
-				PlaceId = {
-					5300677688
+				["Blade Ball"] = {
+					FileName = "BladeBall",
+					PlaceId = {
+						4777817887
+					},
+					GameName = "Blade Ball",
 				},
-				GameName = "Anime Souls Simulator X",
-			},
-			["ALS"] = {
-				FileName = "AnimeLast",
-				PlaceId = {
-					4509896324
+				["ASX"] = {
+					FileName = "AnimeSouls",
+					PlaceId = {
+						5300677688
+					},
+					GameName = "Anime Souls Simulator X",
 				},
-				GameName = "Anime Last",
-			},
-		}
-		local function LoadScript(name)
-			local data = Games[name]
-			getgenv().GameName = data.GameName
-			loadstring(game:HttpGet(repo .. data.FileName .. ".lua"))()
-		end
-		for name, data in next, Games do
-			for _, v in next, data.PlaceId do
-				if Id == v or GameId == v then
-					LoadScript(name)
+				["ALS"] = {
+					FileName = "AnimeLast",
+					PlaceId = {
+						4509896324
+					},
+					GameName = "Anime Last",
+				},
+			}
+			local function LoadScript(name)
+				local data = Games[name]
+				getgenv().GameName = data.GameName
+				loadstring(game:HttpGet(repo .. data.FileName .. ".lua"))()
+			end
+			for name, data in next, Games do
+				for _, v in next, data.PlaceId do
+					if Id == v or GameId == v then
+						LoadScript(name)
+					end
 				end
 			end
-		end
 		end
 	})
 	Hubs:AddButton({
@@ -6972,17 +7004,17 @@ else
 		Description = "Lemonade Hub",
 		Callback = function()
 			local RHS2GameId = 2098516465
-		local TreasureHuntSimGameId = 1345139196
-		local BigPaintBallGameId = 3527629287
-		if game.PlaceId == RHS2GameId then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/xMintix/Lemonade-Hub/main/RHS2String.lua"))()
-		elseif game.PlaceId == TreasureHuntSimGameId then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/xMintix/Lemonade-Hub/main/Treasure%20Hunt%20Sim/TreasureHuntString.lua"))()
-		elseif game.PlaceId == BigPaintBallGameId then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/xMintix/Lemonade-Hub/main/BigPaintballString.lua"))()
-		else
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/xMintix/Lemonade-Hub/main/Universal.lua"))()
-		end
+			local TreasureHuntSimGameId = 1345139196
+			local BigPaintBallGameId = 3527629287
+			if game.PlaceId == RHS2GameId then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/xMintix/Lemonade-Hub/main/RHS2String.lua"))()
+			elseif game.PlaceId == TreasureHuntSimGameId then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/xMintix/Lemonade-Hub/main/Treasure%20Hunt%20Sim/TreasureHuntString.lua"))()
+			elseif game.PlaceId == BigPaintBallGameId then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/xMintix/Lemonade-Hub/main/BigPaintballString.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/xMintix/Lemonade-Hub/main/Universal.lua"))()
+			end
 		end
 	})
 	Hubs:AddButton({
@@ -7007,7 +7039,10 @@ else
 		end
 	})
 
-	local Search = Window:AddTab({ Title = "Search", Icon = "globe" })
+	local Search = Window:AddTab({
+		Title = "Search",
+		Icon = "globe"
+	})
 
 	Search:AddButton({
 		Title = "Search",
@@ -7200,7 +7235,10 @@ else
 		end
 	})
 
-	local Main = Window:AddTab({ Title = "Main", Icon = "globe" })
+	local Main = Window:AddTab({
+		Title = "Main",
+		Icon = "globe"
+	})
 	Main:AddButton({
 		Title = "FE Trolling GUI",
 		Description = "Troll",
@@ -7213,22 +7251,25 @@ else
 		Description = "Btools",
 		Callback = function()
 			game.StarterGui:SetCoreGuiEnabled(2, true)
-		a = Instance.new("HopperBin", game:GetService("Players").LocalPlayer.Backpack)
-		a.BinType = 2
-		b = Instance.new("HopperBin", game:GetService("Players").LocalPlayer.Backpack)
-		b.BinType = 3
-		c = Instance.new("HopperBin", game:GetService("Players").LocalPlayer.Backpack)
-		c.BinType = 4
+			a = Instance.new("HopperBin", game:GetService("Players").LocalPlayer.Backpack)
+			a.BinType = 2
+			b = Instance.new("HopperBin", game:GetService("Players").LocalPlayer.Backpack)
+			b.BinType = 3
+			c = Instance.new("HopperBin", game:GetService("Players").LocalPlayer.Backpack)
+			c.BinType = 4
 		end
 	})
 	Main:AddButton({
 		Title = "GabX",
 		Description = "GabX",
 		Callback = function()
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/GabX'),true))()
+			loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/GabX'), true))()
 		end
 	})
-	local executors2345 = Window:AddTab({ Title = "Executors", Icon = "globe" }) -- made by espresso0069
+	local executors2345 = Window:AddTab({
+		Title = "Executors",
+		Icon = "globe"
+	}) -- made by espresso0069
 	executors2345:AddButton({
 		Title = "Synapse X", -- made by espresso0069
 		Description = "Synapse X", -- made by espresso0069
@@ -7243,27 +7284,38 @@ else
 			loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Synapse_UI.txt'))() -- made by espresso0069
 		end -- made by espresso0069
 	})
-	local placeinfo = Window:AddTab({ Title = "Place Info", Icon = "globe" })
+	local placeinfo = Window:AddTab({
+		Title = "Place Info",
+		Icon = "globe"
+	})
 	placeinfo:AddParagraph({
 		Title = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
 		Content = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Description
 	})
 	placeinfo:AddParagraph({
-		Title = "RespectFilteringEnabled is ".._G.lmao24,
+		Title = "RespectFilteringEnabled is " .. _G.lmao24,
 		Content = "Filtering is Enabled lmao Forced"
 	})
 	InterfaceManager:SetLibrary(Fluent)
 	InterfaceManager:SetFolder("Sky Hub")
 
-	local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+	local Settings = Window:AddTab({
+		Title = "Settings",
+		Icon = "settings"
+	})
 	InterfaceManager:BuildInterfaceSection(Settings)
 
 	SaveManager:SetLibrary(Fluent)
 	SaveManager:IgnoreThemeSettings()
-	SaveManager:SetIgnoreIndexes({'TextboxIdentifier'})
+	SaveManager:SetIgnoreIndexes({
+		'TextboxIdentifier'
+	})
 	SaveManager:SetFolder("Sky Hub/Universal/Configs")
 
-	local Config = Window:AddTab({ Title = "Config", Icon = "settings" })
+	local Config = Window:AddTab({
+		Title = "Config",
+		Icon = "settings"
+	})
 	SaveManager:BuildConfigSection(Config)
 
 	SaveManager:LoadAutoloadConfig()
