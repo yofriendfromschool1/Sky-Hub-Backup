@@ -6727,3 +6727,19 @@ local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/
 	end)()))()
 		end
 	})
+	InterfaceManager:SetLibrary(Fluent)
+	InterfaceManager:SetFolder("Trollolo")
+
+	local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+	InterfaceManager:BuildInterfaceSection(Settings)
+
+	SaveManager:SetLibrary(Fluent)
+	SaveManager:IgnoreThemeSettings()
+	SaveManager:SetIgnoreIndexes({'TextboxIdentifier'})
+	SaveManager:SetFolder("Trollolo/Configs")
+
+	local Config = Window:AddTab({ Title = "Config", Icon = "settings" })
+	SaveManager:BuildConfigSection(Config)
+
+	SaveManager:LoadAutoloadConfig()
+	Window:SelectTab(1)
