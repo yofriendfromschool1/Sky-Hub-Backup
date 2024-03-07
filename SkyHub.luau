@@ -3091,23 +3091,23 @@ elseif game.PlaceId == 606849621 then
 	local Walkspeed = Player:AddSlider("SliderIdentifier", {
 		Title = "Walkspeed",
 		Description = "Walkspeed Changer",
-		Default = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed,
+		Default = game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed,
 		Min = 0,
 		Max = 5000,
 		Rounding = 1,
 		Callback = function(Value)
-			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+			game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = Value
 		end
 	})
 	local JumpPower = Player:AddSlider("SliderIdentifier", {
 		Title = "JumpPower",
 		Description = "JumpPower Changer",
-		Default = game.Players.LocalPlayer.Character.Humanoid.JumpPower,
+		Default = game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower,
 		Min = 0,
 		Max = 5000,
 		Rounding = 1,
 		Callback = function(Value)
-			game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+			game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = Value
 		end
 	})
 	local GravityC = Player:AddSlider("SliderIdentifier", {
@@ -6780,23 +6780,23 @@ else
 	local Walkspeed = Player:AddSlider("SliderIdentifier", {
 		Title = "Walkspeed",
 		Description = "Walkspeed Changer",
-		Default = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed,
+		Default = game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed,
 		Min = 0,
 		Max = 5000,
 		Rounding = 1,
 		Callback = function(Value)
-			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+			game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = Value
 		end
 	})
 	local JumpPower = Player:AddSlider("SliderIdentifier", {
 		Title = "JumpPower",
 		Description = "JumpPower Changer",
-		Default = game.Players.LocalPlayer.Character.Humanoid.JumpPower,
+		Default = game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower,
 		Min = 0,
 		Max = 5000,
 		Rounding = 1,
 		Callback = function(Value)
-			game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+			game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = Value
 		end
 	})
 	local GravityC = Player:AddSlider("SliderIdentifier", {
