@@ -5,7 +5,7 @@ Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends
 30+ games (Including some obbys)
 Rebuilt On IllusionHub
 
-Last Updated 3/3/2024
+Last Updated 3/6/2024
 
 Rewrote Jailbreak Section using fluent library and more scripts including autorob and removed least imporant stuff like fps stuff also added fluent lib to universal
 
@@ -7252,4 +7252,20 @@ else
 		Title = "RespectFilteringEnabled is ".._G.lmao24,
 		Content = "Filtering is Enabled lmao Forced"
 	})
+	InterfaceManager:SetLibrary(Fluent)
+	InterfaceManager:SetFolder("Sky Hub")
+
+	local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+	InterfaceManager:BuildInterfaceSection(Settings)
+
+	SaveManager:SetLibrary(Fluent)
+	SaveManager:IgnoreThemeSettings()
+	SaveManager:SetIgnoreIndexes({'TextboxIdentifier'})
+	SaveManager:SetFolder("Sky Hub/Jailbreak/Configs")
+
+	local Config = Window:AddTab({ Title = "Config", Icon = "settings" })
+	SaveManager:BuildConfigSection(Config)
+
+	SaveManager:LoadAutoloadConfig()
+	Window:SelectTab(1)
 end
