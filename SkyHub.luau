@@ -6182,6 +6182,21 @@ else
 			end)
 		end
 	})
+	Main:AddButton({
+		Title = "Close",
+		Description = "Closes UI if X or close button isnt working",
+		Callback = function()
+			for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+				if v.Name == "ScreenGui" then
+					for i,v in pairs(v:GetDescendants()) do
+						if v.Name == "Frame" then
+							v.Parent:Destroy()
+						end
+					end
+				end
+			end
+		end
+	})
 	local executors2345 = Window:AddTab({
 		Title = "Executors",
 		Icon = "globe"
