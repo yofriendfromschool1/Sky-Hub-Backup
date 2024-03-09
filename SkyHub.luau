@@ -6043,6 +6043,15 @@ else
 		Description = "Troll",
 		Callback = function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
+			for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+				if v.Name == "ScreenGui" then
+					for i,v in pairs(v:GetDescendants()) do
+						if v.Name == "Frame" then
+							v.Parent:Destroy()
+						end
+					end
+				end
+			end
 		end
 	})
 	Main:AddButton({
