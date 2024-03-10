@@ -1,0 +1,1222 @@
+-- Services
+local cs = game:GetService("CollectionService")
+local ts = game:GetService("TweenService")
+local de = game:GetService("Debris")
+-- Objs
+local player = game.Players.LocalPlayer
+warn("'Speedy thing goes in, speedy thing comes out.'")
+warn("Controls: LMB: Blue Portal | RMB: Orange Portal | R: Fizzle Portals | F: Flashlight | E: Pick Up Unanchored Parts")
+local mouse = player:GetMouse()
+local portal1 = nil
+local portal2 = nil
+local tpcd = false
+local toolequipped = false
+local character = player.Character
+local GrabObject = nil 
+local GrabStart = false 
+local Dragger = nil
+local isHolding = false
+local camera = game.Workspace.CurrentCamera
+--TeleportSound
+Teleport = Instance.new("Sound", workspace)
+Teleport.Name = "woosh"
+-- Functions
+local function createportal(rootpos,tpos,hitpart,ptype)
+	local params = RaycastParams.new()
+	params.FilterDescendantsInstances = {player.Character,portal1,portal2}
+	params.FilterType = Enum.RaycastFilterType.Blacklist
+	local ray = workspace:Raycast(rootpos,CFrame.new(rootpos,tpos).LookVector*9999999999,params)
+	if ray then
+		local rpos = ray.Position
+		local rnorm = ray.Normal
+		local dist = (rootpos-rpos).Magnitude
+		-- Tween info
+		local info = TweenInfo.new(dist/1070687350,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut)
+		local info2 = TweenInfo.new(0.333,Enum.EasingStyle.Circular,Enum.EasingDirection.Out)
+		local orb = Instance.new("Part")
+		orb.Size = Vector3.new(.7,.7,.7)
+		orb.Position = rootpos
+		orb.Anchored = true
+		orb.Name = "PortalOrb"
+		orb.CanCollide = false
+		orb.Shape = Enum.PartType.Ball
+		de:AddItem(orb,dist/1070687350)
+		if ptype == 1 then
+			orb.BrickColor = BrickColor.new("Bright blue")
+		elseif ptype == 2 then
+			orb.BrickColor = BrickColor.new("Neon orange")
+		end
+		orb.Material = Enum.Material.Neon
+		orb.Parent = workspace
+		local tween = ts:Create(orb,info,{Position=rpos})
+		tween:Play()
+		tween.Completed:Wait()
+		if ptype == 1 then
+			if portal1 == nil then
+				portal1 = Instance.new("Part")
+				portal1.Name = ("Blue1")
+				sp1 = Instance.new("SpecialMesh", portal1)
+				sp1.MeshType = "Sphere"
+				sp1.Scale = Vector3.new(1,1.33,.05)
+				sp1.Offset = Vector3.new(0,0,-0.02)
+				idle1 = Instance.new("Sound", portal1)
+				idle1.SoundId = "rbxassetid://148894502"
+				idle1.Looped = true
+				idle1.Volume = 0.2
+				open1 = Instance.new("Sound", portal1)
+				open1.SoundId = "rbxassetid://182981587"
+				open1.PlaybackSpeed = 1.02
+				open1.Volume = 0.35
+				open1.PlayOnRemove = true 
+				soundopen1 = Instance.new("Sound", portal1)
+				soundopen1.SoundId = "rbxassetid://171399373"
+				soundopen1.RollOffMinDistance = 30
+				soundopen1.Volume = 0.6
+				soundopen1:Play()
+				portal1.Size = Vector3.new(.7,.7,.7)
+				portal1.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				portal1.Anchored = true
+				portal1.CanCollide = false	
+				portal1.BrickColor = BrickColor.new("Bright blue")
+				portal1.Material = Enum.Material.Neon
+				portal1.Parent = workspace
+				TP1 = Instance.new("Part", portal1)
+				TP1.Transparency = 1
+				TP1.CanCollide = false
+				TP1.Size = Vector3.new(.5,.5,.5)
+				TP1.Anchored = true 
+				TP1.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				TP1.Orientation = Vector3.new(0,-90,0)
+				portalin1 = Instance.new("Part", portal1)
+				portalin1.Size = Vector3.new(.5,.5,.5)
+				portalin1.CanCollide = false
+				portalin1.BrickColor = BrickColor.new("Bright blue")
+				portalin1.Material = Enum.Material.Neon
+				portalin1.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				portalin1.Orientation = Vector3.new(90,0,0)
+				portalin1.Anchored = true 
+				portalmesh1 = Instance.new("SpecialMesh", portalin1)
+				portalmesh1.MeshType = "Sphere"
+				portalmesh1.Scale = Vector3.new(1.1,6,.05)
+				portalmesh1.Offset = Vector3.new(0,0,-0.02)
+				portalin1.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				ESP1 = Instance.new("Highlight", portal1)
+				ESP1.FillTransparency = 1
+				ESP1.OutlineColor = Color3.fromRGB(65,222,253)
+				if portal2 then
+					portalin1.BrickColor = BrickColor.new("Really black")
+					portalin2.BrickColor = BrickColor.new("Really black")
+					game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683216197"
+				else
+					portalin1.BrickColor = BrickColor.new("Bright blue")
+					portalin1.Material = Enum.Material.Neon
+					game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683350503"
+				end
+				local tween = ts:Create(portalin1,info2,{Size=Vector3.new(4.1,1.23,2.5),Transparency=0})
+				tween:Play()
+				local tween = ts:Create(portal1,info2,{Size=Vector3.new(5,6,1),Transparency=0})
+				tween:Play()
+				idle1:Play()
+				portal1.Touched:Connect(function(hit)
+					local velocity = player.Character.HumanoidRootPart.AssemblyLinearVelocity.Magnitude
+					if hit.Parent == player.Character and portal2 and tpcd == false then
+						tpcd = true
+						SoundRNG = math.random(1, 2)
+						if SoundRNG == 2 then
+							Teleport.SoundId = "rbxassetid://232806289"
+						else 
+							Teleport.SoundId = "rbxassetid://2769872789"
+						end
+						Teleport:Play()
+						player.Character.HumanoidRootPart.CFrame = TP2.CFrame
+						player.Character.HumanoidRootPart.AssemblyLinearVelocity = portal2.CFrame.LookVector*(velocity*2)
+						workspace.CurrentCamera.CFrame =  portal2.CFrame
+						wait(0.2)
+						tpcd = false
+					end
+				end)
+			else
+				open1:Destroy()
+				open1 = Instance.new("Sound", portal1)
+				open1.SoundId = "rbxassetid://182981587"
+				open1.PlaybackSpeed = 1.02
+				open1.Volume = 0.35
+				open1.PlayOnRemove = true 
+				soundopen1:Play()
+				portalin1:Destroy()
+				TP1:Destroy()
+				TP1 = Instance.new("Part", portal1)
+				TP1.Transparency = 1
+				TP1.CanCollide = false
+				TP1.Size = Vector3.new(.5,.5,.5)
+				TP1.Anchored = true 
+				TP1.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				TP1.Orientation = Vector3.new(0,-90,0)
+				portalin1 = Instance.new("Part", portal1)
+				portalin1.Size = Vector3.new(.5,.5,.5)
+				portalin1.BrickColor = BrickColor.new("Bright blue")
+				portalin1.Material = Enum.Material.Neon
+				portalin1.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				portalin1.Orientation = Vector3.new(90,0,0)
+				portalin1.Anchored = true 
+				portalin1.CanCollide = false
+				portalmesh1 = Instance.new("SpecialMesh", portalin1)
+				portalmesh1.MeshType = "Sphere"
+				portalmesh1.Scale = Vector3.new(1.1,6,.05)
+				portalmesh1.Offset = Vector3.new(0,0,-0.02)
+				portalin1.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				portal1.Size = Vector3.new(.7,.7,.7)
+				portal1.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				if portal2 then
+					portalin1.BrickColor = BrickColor.new("Really black")
+					portalin2.BrickColor = BrickColor.new("Really black")
+				else
+					portalin1.BrickColor = BrickColor.new("Bright blue")
+					portalin1.Material = Enum.Material.Neon
+				end
+				local tween = ts:Create(portal1,info2,{Size=Vector3.new(5,6,1),Transparency=0})
+				tween:Play()
+				local tween = ts:Create(portalin1,info2,{Size=Vector3.new(4.1,1.23,2.5),Transparency=0})
+				tween:Play()
+			end
+		elseif ptype == 2 then
+			if portal2 == nil then
+				portal2 = Instance.new("Part")
+				portal2.Name = ("Orange2")
+				sp2 = Instance.new("SpecialMesh", portal2)
+				sp2.MeshType = "Sphere"
+				sp2.Scale = Vector3.new(1,1.33,0.05)
+				sp2.Offset = Vector3.new(0,0,-0.02)
+				idle2 = Instance.new("Sound", portal2)
+				idle2.SoundId = "rbxassetid://148894502"
+				idle2.Looped = true
+				idle2.Volume = 0.2
+				open2 = Instance.new("Sound", portal2)
+				open2.SoundId = "rbxassetid://182981587"
+				open2.Volume = 0.35
+				open2.PlayOnRemove = true 
+				soundopen2 = Instance.new("Sound", portal2)
+				soundopen2.SoundId = "rbxassetid://171399373"
+				soundopen2.RollOffMinDistance = 30
+				soundopen2.Pitch = 1.02	
+				soundopen2.Volume = 0.6
+				soundopen2:Play()
+				portal2.Size = Vector3.new(.7,.7,.7)
+				portal2.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				portal2.Anchored = true
+				portal2.CanCollide = false
+				portal2.BrickColor = BrickColor.new("Neon orange")
+				portal2.Material = Enum.Material.Neon
+				portal2.Parent = workspace
+				TP2 = Instance.new("Part", portal2)
+				TP2.Transparency = 1
+				TP2.CanCollide = false
+				TP2.Size = Vector3.new(.5,.5,.5)
+				TP2.Anchored = true 
+				TP2.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				TP2.Orientation = Vector3.new(0,-90,0)
+				portalin2 = Instance.new("Part", portal2)
+				portalin2.Size = Vector3.new(.5,.5,.5)
+				portalin2.CanCollide = false
+				portalin2.BrickColor = BrickColor.new("Neon orange")
+				portalin2.Material = Enum.Material.Neon
+				portalin2.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				portalin2.Orientation = Vector3.new(90,0,0)
+				portalin2.Anchored = true 
+				portalmesh2 = Instance.new("SpecialMesh", portalin2)
+				portalmesh2.MeshType = "Sphere"
+				portalmesh2.Scale = Vector3.new(1.1,6,.05)
+				portalmesh2.Offset = Vector3.new(0,0,-0.02)
+				portalin2.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				ESP2 = Instance.new("Highlight", portal2)
+				ESP2.FillTransparency = 1
+				ESP2.OutlineColor = Color3.fromRGB(255,225,58)
+				if portal1 then
+					portalin2.BrickColor = BrickColor.new("Really black")
+					portalin1.BrickColor = BrickColor.new("Really black")
+					game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683216197"
+				else
+					portalin2.BrickColor = BrickColor.new("Neon orange")
+					portalin2.Material = Enum.Material.Neon
+					game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683371140"
+				end
+				local tween = ts:Create(portalin2,info2,{Size=Vector3.new(4.1,1.23,2.5),Transparency=0})
+				tween:Play()
+				local tween = ts:Create(portal2,info2,{Size=Vector3.new(5,6,1),Transparency=0})
+				tween:Play()
+				idle2:Play()
+				portal2.Touched:Connect(function(hit)
+					local velocity = player.Character.HumanoidRootPart.AssemblyLinearVelocity.Magnitude
+					if hit.Parent == player.Character and portal1 and tpcd == false then
+						tpcd = true
+						SoundRNG = math.random(1, 2)
+						if SoundRNG == 2 then
+							Teleport.SoundId = "rbxassetid://232806289"
+						else 
+							Teleport.SoundId = "rbxassetid://2769872789"
+						end
+						Teleport:Play()
+						player.Character.HumanoidRootPart.CFrame = TP1.CFrame
+						player.Character.HumanoidRootPart.AssemblyLinearVelocity = portal1.CFrame.LookVector*(velocity*2)
+						workspace.CurrentCamera.CFrame =  portal1.CFrame
+						wait(0.2)
+						tpcd = false
+					end
+				end)
+			else
+				open2:Destroy()
+				open2 = Instance.new("Sound", portal2)
+				open2.SoundId = "rbxassetid://182981587"
+				open2.Volume = 0.35
+				open2.PlayOnRemove = true 
+				soundopen2:Play()
+				portal2.Size = Vector3.new(.7,.7,.7)
+				portal2.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				TP2:Destroy()
+				TP2 = Instance.new("Part", portal2)
+				TP2.Transparency = 1
+				TP2.CanCollide = false
+				TP2.Size = Vector3.new(.5,.5,.5)
+				TP2.Anchored = true 
+				TP2.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				TP2.Orientation= Vector3.new(0,-90,0)
+				portalin2:Destroy()
+				portalin2 = Instance.new("Part", portal2)
+				portalin2.Size = Vector3.new(.5,.5,.5)
+				portalin2.CanCollide = false
+				portalin2.BrickColor = BrickColor.new("Neon orange")
+				portalin2.Material = Enum.Material.Neon
+				portalin2.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				portalin2.Orientation = Vector3.new(90,0,0)
+				portalin2.Anchored = true 
+				portalmesh2 = Instance.new("SpecialMesh", portalin2)
+				portalmesh2.MeshType = "Sphere"
+				portalmesh2.Scale = Vector3.new(1.1,6,.05)
+				portalmesh2.Offset = Vector3.new(0,0,-0.02)
+				portalin2.CFrame = CFrame.lookAt(rpos,rpos+rnorm)
+				if portal1 then
+					portalin2.BrickColor = BrickColor.new("Really black")
+					portalin1.BrickColor = BrickColor.new("Really black")
+				else
+					portalin2.BrickColor = BrickColor.new("Neon orange")
+					portalin2.Material = Enum.Material.Neon
+				end
+				local tween = ts:Create(portalin2,info2,{Size=Vector3.new(4.1,1.23,2.5),Transparency=0})
+				tween:Play()
+				local tween = ts:Create(portal2,info2,{Size=Vector3.new(5,6,1),Transparency=0})
+				tween:Play()
+			end
+		end
+	end
+end
+-- Character
+player.CharacterAdded:Connect(function(char)
+	if portal1 then
+		portal1:Destroy()
+		portalin1:Destroy()
+	end
+	if portal2 then
+		portal2:Destroy()
+		portalin2:Destroy()
+	end
+	portal1 = nil
+	portal2 = nil
+	tpcd = false
+	toolequipped = false
+	GrabObject = nil --stop grab
+	isHolding = false
+	GrabStart = false
+	if Dragger then
+		Dragger:Destroy()
+		Dragger = nil
+	end
+	local Humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+	-- Create tool
+	local tool = Instance.new("Tool")
+	local handle = Instance.new("Part")
+	handle.CanCollide = false
+	tool.TextureId = "rbxassetid://13684639970"
+	tool.CanBeDropped = false
+	local mesh = Instance.new("SpecialMesh", handle)
+	mesh.MeshId = "rbxassetid://10017565642"
+	mesh.TextureId = "rbxassetid://10017566144"
+	mesh.Scale = Vector3.new(0.2,0.2,0.2)
+	local cylinder1  = Instance.new("Part", handle)
+	cylinder1.Shape = "Cylinder" --Blue Cylinder
+	cylinder1.Position = Vector3.new(0,-0.1,0)
+	cylinder1.Orientation = Vector3.new(0,90,0)
+	cylinder1.Position = Vector3.new(0,-0.1,0)
+	cylinder1.Size = Vector3.new(2,.5,.5)
+	cylinder1.Material = Enum.Material.SmoothPlastic
+	cylinder1.Color = Color3.fromRGB(50,50,50)
+	cylinder1.CanCollide = false -- Cylinder
+	local cylinder2  = Instance.new("Part", handle) --cylinder2
+	cylinder2.Shape = "Cylinder" 
+	cylinder2.Position = Vector3.new(0,0,0.88)
+	cylinder2.Orientation = Vector3.new(0,0,-90)
+	cylinder2.Size = Vector3.new(1,.2,.2)
+	cylinder2.Material = Enum.Material.Neon
+	cylinder2.BrickColor = BrickColor.new("Really black") 
+	cylinder2.CanCollide = false -- Cylinder
+	local GGblock1 = Instance.new("Part", handle) -- GG Field
+	GGblock1.CanCollide = false 
+	GGblock1.BrickColor = BrickColor.new("Pastel Blue")
+	GGblock1.Material = Enum.Material.Neon
+	GGblock1.Position = Vector3.new(0.025,0.355,-2.277)
+	GGblock1.Size = Vector3.new(0.05, 0.743, 0.05)
+	local GGblock2 = Instance.new("Part", handle) 
+	GGblock2.CanCollide = false 
+	GGblock2.BrickColor = BrickColor.new("Pastel Blue")
+	GGblock2.Material = Enum.Material.Neon
+	GGblock2.Position = Vector3.new(-0.433, -0.377, -2.26)
+	GGblock2.Orientation = Vector3.new(39.204, -86.193, -4.388)
+	GGblock2.Size = Vector3.new(0.05, 0.05, 1.222)
+	local GGblock3 = Instance.new("Part", handle) 
+	GGblock3.CanCollide = false 
+	GGblock3.BrickColor = BrickColor.new("Pastel Blue")
+	GGblock3.Material = Enum.Material.Neon
+	GGblock3.Position = Vector3.new(0.486, -0.37, -2.258)
+	GGblock3.Orientation = Vector3.new(37.547, 86.861, 176.758)
+	GGblock3.Size = Vector3.new(0.05, 0.05, 1.222)
+	local GGBall1 = Instance.new("Part", handle) 
+	GGBall1.Shape = Enum.PartType.Ball
+	GGBall1.CanCollide = false 
+	GGBall1.Material = Enum.Material.Neon
+	GGBall1.BrickColor = BrickColor.new("Pastel Blue")
+	GGBall1.Size = Vector3.new(0.224,0.224,0.224)
+	GGBall1.Position = Vector3.new(0.051, 0.699, -2.306)
+	local GGBall2 = Instance.new("Part", handle) 
+	GGBall2.Shape = Enum.PartType.Ball
+	GGBall2.CanCollide = false 
+	GGBall2.Material = Enum.Material.Neon
+	GGBall2.BrickColor = BrickColor.new("Pastel Blue")
+	GGBall2.Size = Vector3.new(0.224,0.224,0.224)
+	GGBall2.Position = Vector3.new(-0.93, -0.765, -2.23)
+	local GGBall3 = Instance.new("Part", handle) 
+	GGBall3.Shape = Enum.PartType.Ball
+	GGBall3.CanCollide = false 
+	GGBall3.Material = Enum.Material.Neon
+	GGBall3.BrickColor = BrickColor.new("Pastel Blue")
+	GGBall3.Size = Vector3.new(0.224,0.224,0.224)
+	GGBall3.Position = Vector3.new(0.931, -0.743, -2.23) -- GG Field
+	local weld = Instance.new("WeldConstraint", tool) --Welds
+	weld.Part0 = handle
+	weld.Part1 = cylinder2 
+	local weld1 = Instance.new("WeldConstraint", tool)
+	weld1.Part0 = handle
+	weld1.Part1 = cylinder1 
+	local weld2 = Instance.new("WeldConstraint", tool)
+	weld2.Part0 = handle
+	weld2.Part1 = GGblock1
+	local weld3 = Instance.new("WeldConstraint", tool)
+	weld3.Part0 = handle
+	weld3.Part1 = GGblock2
+	local weld4 = Instance.new("WeldConstraint", tool)
+	weld4.Part0 = handle
+	weld4.Part1 = GGblock3
+	local weld5 = Instance.new("WeldConstraint", tool)
+	weld5.Part0 = handle
+	weld5.Part1 = GGBall1
+	local weld6 = Instance.new("WeldConstraint", tool)
+	weld6.Part0 = handle
+	weld6.Part1 = GGBall2
+	local weld7 = Instance.new("WeldConstraint", tool)
+	weld7.Part0 = handle
+	weld7.Part1 = GGBall3 --Welds 
+	GGblock1.Transparency = 1
+	GGblock2.Transparency = 1
+	GGblock3.Transparency = 1
+	GGBall1.Transparency = 1
+	GGBall2.Transparency = 1
+	GGBall3.Transparency = 1
+	BShoot = Instance.new("Sound", handle)
+	BShoot.SoundId = "rbxassetid://182981554"
+	OShoot = Instance.new("Sound", handle)
+	OShoot.SoundId = "rbxassetid://142774034"
+	local gravitygun = Instance.new("Sound", handle)
+	gravitygun.Looped = true
+	gravitygun.SoundId = "rbxassetid://7449423195"
+	handle.Name = "Handle"
+	handle.Color = Color3.fromRGB(255,255,255)
+	handle.Size = Vector3.new(1.1,1.1,2.8)
+	handle.Material = Enum.Material.SmoothPlastic
+	handle.Parent = tool
+	tool.Name = "Portal Gun"
+	if char.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+		tool.GripPos = Vector3.new(0.35,0.25,0.25)
+	else
+		tool.GripPos = Vector3.new(0.2,0.25,-0.1)
+	end
+	tool.Parent = player.Backpack
+	local light = Instance.new("SpotLight", handle)
+	light.Angle = 45
+	light.Brightness = 2
+	light.Range = 60
+	light.Enabled = false
+	local click = Instance.new("Sound", handle)
+	click.SoundId = "rbxassetid://5991592592"
+	mouse.KeyDown:Connect(function(key)
+		if key == "f" then 
+			if tool.parent == char and toolequipped == true and isHolding == false then
+				click:Play()
+				if light.Enabled == false then
+					light.Enabled = true
+				else
+					light.Enabled = false
+				end
+			end
+		end
+	end)	
+	tool.Equipped:Connect(function(mouse)
+		toolequipped = true
+		if portal1 then
+			game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683350503"
+		end 
+		if portal2 then
+			game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683371140"
+		end 
+		if portal1 and portal2 then 
+			game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683216197"
+		end 
+		if portal1 == nil and portal2 == nil then 
+			game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683282532"
+		end
+		if isHolding == true then
+			game.Players.LocalPlayer:GetMouse().Icon = ""
+		end
+	end)
+	tool.Unequipped:Connect(function(mouse)
+		game.Players.LocalPlayer:GetMouse().Icon = ""
+		toolequipped = false 
+		GrabObject = nil --stop grab
+		isHolding = false
+		GrabStart = false
+		if Dragger then
+			Dragger:Destroy()
+			Dragger = nil
+		end
+		gravitygun:Stop()
+		GGblock1.Transparency = 1
+		GGblock2.Transparency = 1
+		GGblock3.Transparency = 1
+		GGBall1.Transparency = 1
+		GGBall2.Transparency = 1
+		GGBall3.Transparency = 1
+	end)
+	-- Activate
+	mouse.Button1Down:Connect(function()
+		if tool.Parent == char and toolequipped == true and isHolding == false then
+			BShoot:Play()
+			createportal(cylinder1.CFrame*CFrame.new(0,0,-2.7).Position,mouse.Hit.Position,mouse.Target,1)
+			cylinder1.BrickColor = BrickColor.new("Bright blue")
+			cylinder1.Material = Enum.Material.Neon
+			cylinder2.BrickColor = BrickColor.new("Bright blue") 
+		end
+	end)
+	mouse.Button2Down:Connect(function()
+		if tool.Parent == char and toolequipped == true and isHolding == false then
+			OShoot:Play()
+			createportal(cylinder1.CFrame*CFrame.new(0,0,-2.7).Position,mouse.Hit.Position,mouse.Target,2)
+			cylinder1.BrickColor = BrickColor.new("Neon orange")
+			cylinder1.Material = Enum.Material.Neon
+			cylinder2.BrickColor = BrickColor.new("Neon orange") 
+		end
+	end)
+	char.Humanoid.Died:Connect(function()
+		if tool then	
+			tool:Destroy()
+		end
+		if portal1 then
+			portal1:Destroy()
+		end
+		if portal2 then
+			portal2:Destroy()
+		end
+		if portalin1 then
+			portalin1:Destroy()
+		end
+		if portalin2 then
+			portalin2:Destroy()
+		end
+		GrabObject = nil --stop grab
+		isHolding = false
+		GrabStart = false
+		if Dragger then
+			Dragger:Destroy()
+			Dragger = nil
+		end
+	end)
+	--Reseting Portals
+	mouse.KeyDown:Connect(function(key)
+		if key == "r" then 
+			if tool.parent == char and toolequipped == true and isHolding == false then
+				if portal1 then
+					portal1:Destroy()
+					portalin1:Destroy()
+				end
+				if portal2 then
+					portal2:Destroy()
+					portalin2:Destroy()
+				end
+				portal1 = nil
+				portal2 = nil
+				tpcd = false
+				cylinder1.Material = Enum.Material.SmoothPlastic
+				cylinder1.Color = Color3.fromRGB(50,50,50)
+				cylinder2.BrickColor = BrickColor.new("Really black") 
+				if portal1 == nil and portal2 == nil then 
+					game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683282532"
+				end
+			end
+		end
+	end)
+	--Gravity Gun
+	mouse.KeyDown:Connect(function(key)
+		if key == "e" then 
+			if tool.parent == char and toolequipped == true then
+				if isHolding == false then 
+					--start grab
+					local Magnitude = (mouse.Hit.Position - char.Head.CFrame.Position).magnitude
+					if Magnitude < 10 then
+
+						if not mouse.Target.Anchored then
+							GrabObject = mouse.Target
+							GrabStart = true
+							isHolding = true	
+							gravitygun:Play()
+							GGblock1.Transparency = 0
+							GGblock2.Transparency = 0
+							GGblock3.Transparency = 0
+							GGBall1.Transparency = 0
+							GGBall2.Transparency = 0
+							GGBall3.Transparency = 0
+							game.Players.LocalPlayer:GetMouse().Icon = ""
+
+							local DragBall = createDragBall()
+							DragBall.CFrame = mouse.hit
+							Dragger = DragBall
+
+							mouse.TargetFilter = GrabObject
+
+							local DragBallWeld = weldBetween(DragBall,GrabObject)
+							addMover(DragBall)
+
+							while Dragger do
+								--Create a ray from the users head to the mouse
+								local cf = CFrame.new(char.Head.Position, mouse.Hit.Position)
+								Dragger.Mover.Position = (cf + (cf.LookVector * 10)).Position
+								Dragger.RotMover.CFrame = camera.CFrame * CFrame.Angles(Dragger.RotOffset.Value.X,Dragger.RotOffset.Value.Y, Dragger.RotOffset.Value.Z)
+								wait()
+							end
+							mouse.TargetFilter = nil
+						end
+					end
+				else
+					GrabObject = nil --stop grab
+					isHolding = false
+					GrabStart = false
+					gravitygun:Stop()
+					if Dragger then
+						Dragger:Destroy()
+						Dragger = nil
+					end
+					GGblock1.Transparency = 1
+					GGblock2.Transparency = 1
+					GGblock3.Transparency = 1
+					GGBall1.Transparency = 1
+					GGBall2.Transparency = 1
+					GGBall3.Transparency = 1
+					if portal1 then
+						game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683350503"
+					end 
+					if portal2 then
+						game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683371140"
+					end 
+					if portal1 and portal2 then 
+						game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683216197"
+					end 
+					if portal1 == nil and portal2 == nil then 
+						game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683282532"
+					end
+				end
+			end
+		end
+	end)
+
+
+	function weldBetween(a, b)
+		local weld = Instance.new("ManualWeld", a)
+		weld.C0 = a.CFrame:inverse() * b.CFrame
+		weld.Part0 = a
+		weld.Part1 = b
+		return weld
+	end
+
+
+	function addMover(part)
+		local newMover = Instance.new("BodyPosition")
+		newMover.Parent = part
+		newMover.MaxForce = Vector3.new(40000,40000,40000)
+		newMover.P = 40000
+		newMover.D = 1000
+		newMover.Position = part.Position
+		newMover.Name = "Mover"
+
+		local newRot = Instance.new("BodyGyro")
+		newRot.Parent = part
+		newRot.MaxTorque = Vector3.new(3000,3000,3000)
+		newRot.P = 3000
+		newRot.D = 500
+		newRot.CFrame = game.Workspace.CurrentCamera.CFrame
+		newRot.Name ="RotMover"
+
+		local RotOffset = Instance.new("CFrameValue")
+		RotOffset.Name = "RotOffset"
+		RotOffset.Parent = part
+	end
+
+
+	function createDragBall()
+		local DragBall = Instance.new("Part")
+		DragBall.Transparency = 1
+		DragBall.CanCollide = false
+		DragBall.Size = Vector3.new(.2,.2,.2)
+		DragBall.Shape = "Ball"
+		DragBall.Name = "DragBall"
+		DragBall.Parent = workspace
+		return DragBall
+	end
+	--Arm Animation
+	if char.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+		--- Services ---
+		local Players = game:GetService("Players");
+		local RunService = game:GetService("RunService");
+		wait();
+
+		--- Declarations ---
+		local Player = Players.LocalPlayer;
+		local Character = Player.Character or Player.CharacterAdded:Wait();
+
+		local Mouse = Player:GetMouse();
+
+		--- Character ---
+		local RightUpperArm = Character:WaitForChild("RightUpperArm");
+		local RightShoulder = RightUpperArm:WaitForChild("RightShoulder");
+		local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart");
+
+		--- Execution ---
+		RunService.Stepped:Connect(function()
+			if toolequipped == true then
+				local hit = Mouse.Hit;
+
+				-- add the lookVector * 5000 to the hit.p to make the point more "dramatic" (remove it and you'll see why I did this)
+				local direction = (hit.lookVector * 5000);
+
+				-- get the rotation offset (so the arm points correctly depending on your rotation)
+				local rootCFrame = HumanoidRootPart.CFrame;
+				local rotationOffset = (rootCFrame - rootCFrame.p):inverse();
+
+				-- since CFrames are relative, put the rotationOffset first, and then multiple by the point CFrame, and then multiple by the CFrame.Angles so the arm points in the right direction
+				RightShoulder.Transform = rotationOffset * CFrame.new(Vector3.new(0, 0, 0), direction) * CFrame.Angles(math.pi / 2, 0, 0);
+			end
+		end)
+	else
+		plr = game.Players.LocalPlayer;
+		repeat
+			wait()
+		until plr.Character
+		char = plr.Character
+		m = plr:GetMouse()
+
+
+		local origRightS = char:WaitForChild("Torso"):WaitForChild("Right Shoulder").C0
+		local origLeftS = char:WaitForChild("Torso"):WaitForChild("Left Shoulder").C0
+		local origNeck = char:WaitForChild("Torso"):WaitForChild("Neck").C0
+		local camera = game.Workspace.CurrentCamera
+
+		local UIS = game:GetService("UserInputService")
+
+		local c = game.Workspace.CurrentCamera
+
+		game:GetService("RunService").RenderStepped:Connect(function(delta)
+
+
+
+
+			if toolequipped == true then
+
+				if char.Torso:FindFirstChild("Right Shoulder") then
+					char.Torso["Right Shoulder"].C0 = char.Torso["Right Shoulder"].C0:Lerp(CFrame.new(1, .65, 0) * CFrame.Angles(-math.asin((m.Origin.p - m.Hit.p).unit.y), 1.55, 0, 0) , 0.1)
+				end
+				if char.Torso:FindFirstChild("Left Shoulder") then
+					char.Torso["Left Shoulder"].C0 = char.Torso["Left Shoulder"].C0:Lerp(CFrame.new(-1, .65, 0) * CFrame.Angles(-math.asin((m.Origin.p - m.Hit.p).unit.y), -1.55, 0, 0) , 0.1)
+				end
+				if char.Torso:FindFirstChild("Neck") then
+					char.Torso["Neck"].C0 = char.Torso["Neck"].C0:Lerp(CFrame.new(0, 1, 0) * CFrame.Angles(-math.asin((m.Origin.p - m.Hit.p).unit.y) + 1.55, 3.15, 0), 0.2)
+				end
+
+			else
+
+				if char.Torso:FindFirstChild("Right Shoulder") then
+					char.Torso["Right Shoulder"].C0 = char.Torso["Right Shoulder"].C0:lerp(origRightS, 0.1)
+				end
+
+
+				if char.Torso:FindFirstChild("Left Shoulder") then
+					char.Torso["Left Shoulder"].C0 = char.Torso["Left Shoulder"].C0:lerp(origLeftS, 0.1)
+				end
+
+
+
+				if char.Torso:FindFirstChild("Neck") then
+					char.Torso["Neck"].C0 = char.Torso["Neck"].C0:lerp(origNeck, 0.1)
+				end
+			end
+		end)
+	end
+end)	
+--ExecuteSound
+Execute = Instance.new("Sound", workspace)
+Execute.SoundId = "rbxassetid://2765274358"
+Execute.Name = "GLaDOS was here"
+Execute:Play()
+--GiveToolOnExecution
+local tool = Instance.new("Tool")
+local handle = Instance.new("Part")
+handle.CanCollide = false
+tool.TextureId = "rbxassetid://13684639970"
+tool.CanBeDropped = false
+local mesh = Instance.new("SpecialMesh", handle)
+mesh.MeshId = "rbxassetid://10017565642"
+mesh.TextureId = "rbxassetid://10017566144"
+mesh.Scale = Vector3.new(0.2,0.2,0.2)
+local cylinder1  = Instance.new("Part", handle)
+cylinder1.Shape = "Cylinder" --Blue Cylinder
+cylinder1.Orientation = Vector3.new(0,90,0)
+cylinder1.Position = Vector3.new(0,-0.1,0)
+cylinder1.Size = Vector3.new(2,.5,.5)
+cylinder1.Material = Enum.Material.SmoothPlastic
+cylinder1.Color = Color3.fromRGB(50,50,50)
+cylinder1.CanCollide = false -- Cylinder
+local cylinder2  = Instance.new("Part", handle) --cylinder2
+cylinder2.Shape = "Cylinder" 
+cylinder2.Position = Vector3.new(0,0,0.88)
+cylinder2.Orientation = Vector3.new(0,0,-90)
+cylinder2.Size = Vector3.new(1,.2,.2)
+cylinder2.Material = Enum.Material.Neon
+cylinder2.BrickColor = BrickColor.new("Really black") 
+cylinder2.CanCollide = false -- Cylinder
+local GGblock1 = Instance.new("Part", handle) -- GG Field
+GGblock1.CanCollide = false 
+GGblock1.BrickColor = BrickColor.new("Pastel Blue")
+GGblock1.Material = Enum.Material.Neon
+GGblock1.Position = Vector3.new(0.025,0.355,-2.277)
+GGblock1.Size = Vector3.new(0.05, 0.743, 0.05)
+local GGblock2 = Instance.new("Part", handle) 
+GGblock2.CanCollide = false 
+GGblock2.BrickColor = BrickColor.new("Pastel Blue")
+GGblock2.Material = Enum.Material.Neon
+GGblock2.Position = Vector3.new(-0.433, -0.377, -2.26)
+GGblock2.Orientation = Vector3.new(39.204, -86.193, -4.388)
+GGblock2.Size = Vector3.new(0.05, 0.05, 1.222)
+local GGblock3 = Instance.new("Part", handle) 
+GGblock3.CanCollide = false 
+GGblock3.BrickColor = BrickColor.new("Pastel Blue")
+GGblock3.Material = Enum.Material.Neon
+GGblock3.Position = Vector3.new(0.486, -0.37, -2.258)
+GGblock3.Orientation = Vector3.new(37.547, 86.861, 176.758)
+GGblock3.Size = Vector3.new(0.05, 0.05, 1.222)
+local GGBall1 = Instance.new("Part", handle) 
+GGBall1.Shape = Enum.PartType.Ball
+GGBall1.CanCollide = false 
+GGBall1.Material = Enum.Material.Neon
+GGBall1.BrickColor = BrickColor.new("Pastel Blue")
+GGBall1.Size = Vector3.new(0.224,0.224,0.224)
+GGBall1.Position = Vector3.new(0.051, 0.699, -2.306)
+local GGBall2 = Instance.new("Part", handle) 
+GGBall2.Shape = Enum.PartType.Ball
+GGBall2.CanCollide = false 
+GGBall2.Material = Enum.Material.Neon
+GGBall2.BrickColor = BrickColor.new("Pastel Blue")
+GGBall2.Size = Vector3.new(0.224,0.224,0.224)
+GGBall2.Position = Vector3.new(-0.93, -0.765, -2.23)
+local GGBall3 = Instance.new("Part", handle) 
+GGBall3.Shape = Enum.PartType.Ball
+GGBall3.CanCollide = false 
+GGBall3.Material = Enum.Material.Neon
+GGBall3.BrickColor = BrickColor.new("Pastel Blue")
+GGBall3.Size = Vector3.new(0.224,0.224,0.224)
+GGBall3.Position = Vector3.new(0.931, -0.743, -2.23) -- GG Field
+local weld = Instance.new("WeldConstraint", tool) --Welds
+weld.Part0 = handle
+weld.Part1 = cylinder2 
+local weld1 = Instance.new("WeldConstraint", tool)
+weld1.Part0 = handle
+weld1.Part1 = cylinder1 
+local weld2 = Instance.new("WeldConstraint", tool)
+weld2.Part0 = handle
+weld2.Part1 = GGblock1
+local weld3 = Instance.new("WeldConstraint", tool)
+weld3.Part0 = handle
+weld3.Part1 = GGblock2
+local weld4 = Instance.new("WeldConstraint", tool)
+weld4.Part0 = handle
+weld4.Part1 = GGblock3
+local weld5 = Instance.new("WeldConstraint", tool)
+weld5.Part0 = handle
+weld5.Part1 = GGBall1
+local weld6 = Instance.new("WeldConstraint", tool)
+weld6.Part0 = handle
+weld6.Part1 = GGBall2
+local weld7 = Instance.new("WeldConstraint", tool)
+weld7.Part0 = handle
+weld7.Part1 = GGBall3 --Welds 
+GGblock1.Transparency = 1
+GGblock2.Transparency = 1
+GGblock3.Transparency = 1
+GGBall1.Transparency = 1
+GGBall2.Transparency = 1
+GGBall3.Transparency = 1
+BShoot = Instance.new("Sound", handle)
+BShoot.SoundId = "rbxassetid://182981554"
+OShoot = Instance.new("Sound", handle)
+OShoot.SoundId = "rbxassetid://142774034"
+local gravitygun = Instance.new("Sound", handle)
+gravitygun.Looped = true
+gravitygun.SoundId = "rbxassetid://7449423195"
+handle.Name = "Handle"
+handle.Color = Color3.fromRGB(255,255,255)
+handle.Size = Vector3.new(1.1,1.1,2.8)
+handle.Material = Enum.Material.SmoothPlastic
+handle.Parent = tool
+tool.Name = "Portal Gun"
+if character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+	tool.GripPos = Vector3.new(0.35,0.25,0.25)
+else
+	tool.GripPos = Vector3.new(0.2,0.25,-0.1)
+end
+tool.Parent = player.Backpack
+local light = Instance.new("SpotLight", handle)
+light.Angle = 45
+light.Brightness = 2
+light.Range = 60
+light.Enabled = false
+local click = Instance.new("Sound", handle)
+click.SoundId = "rbxassetid://5991592592"	
+mouse.KeyDown:Connect(function(key)
+	if key == "f" then 
+		if tool.parent == player.Character and toolequipped == true and isHolding == false then
+			click:Play()
+			if light.Enabled == false then
+				light.Enabled = true
+			else
+				light.Enabled = false
+			end
+		end
+	end
+end)
+tool.Equipped:Connect(function(mouse)
+	if portal1 then
+		game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683350503"
+	end 
+	if portal2 then
+		game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683371140"
+	end 
+	if portal1 and portal2 then 
+		game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683216197"
+	end 
+	if portal1 == nil and portal2 == nil then 
+		game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683282532"
+	end
+	toolequipped = true
+end)
+tool.Unequipped:Connect(function(mouse)
+	game.Players.LocalPlayer:GetMouse().Icon = ""
+	toolequipped = false
+	GrabObject = nil --stop grab
+	isHolding = false
+	GrabStart = false
+	if Dragger then
+		Dragger:Destroy()
+		Dragger = nil
+	end
+	gravitygun:Stop()
+	GGblock1.Transparency = 1
+	GGblock2.Transparency = 1
+	GGblock3.Transparency = 1
+	GGBall1.Transparency = 1
+	GGBall2.Transparency = 1
+	GGBall3.Transparency = 1
+end)
+-- Activate
+mouse.Button1Down:Connect(function()
+	if tool.parent == player.Character and toolequipped == true and isHolding == false then
+		BShoot:Play()
+		createportal(cylinder1.CFrame*CFrame.new(0,0,-2.7).Position,mouse.Hit.Position,mouse.Target,1)
+		cylinder1.BrickColor = BrickColor.new("Bright blue") 
+		cylinder1.Material = Enum.Material.Neon
+		cylinder2.BrickColor = BrickColor.new("Bright blue") 
+	end
+end)
+mouse.Button2Down:Connect(function()
+	if tool.parent == player.Character and toolequipped == true and isHolding == false then
+		OShoot:Play()
+		createportal(cylinder1.CFrame*CFrame.new(0,0,-2.7).Position,mouse.Hit.Position,mouse.Target,2)
+		cylinder1.BrickColor = BrickColor.new("Neon orange")
+		cylinder1.Material = Enum.Material.Neon
+		cylinder2.BrickColor = BrickColor.new("Neon orange") 
+	end
+end)
+--if you died then the portals are gone lol
+character.Humanoid.Died:Connect(function()
+	if tool then	
+		tool:Destroy()
+	end
+	if portal1 then
+		portal1:Destroy()
+	end
+	if portal2 then
+		portal2:Destroy()
+	end
+	if portalin1 then
+		portalin1:Destroy()
+	end
+	if portalin2 then
+		portalin2:Destroy()
+	end
+	GrabObject = nil --stop grab
+	isHolding = false
+	GrabStart = false
+	if Dragger then
+		Dragger:Destroy()
+		Dragger = nil
+	end
+end)
+--Reseting Portals
+mouse.KeyDown:Connect(function(key)
+	if key == "r" then 
+		if tool.parent == player.Character and toolequipped == true and isHolding == false then
+			if portal1 then
+				portal1:Destroy()	
+				portalin1:Destroy()
+			end
+			if portal2 then
+				portal2:Destroy()
+				portalin2:Destroy()
+			end
+			portal1 = nil
+			portal2 = nil
+			tpcd = false
+			cylinder1.Material = Enum.Material.SmoothPlastic
+			cylinder1.Color = Color3.fromRGB(50,50,50)
+			cylinder2.BrickColor = BrickColor.new("Really black") 
+			if portal1 == nil and portal2 == nil then 
+				game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683282532"
+			end
+		end
+	end
+end)
+--Gravity Gun
+mouse.KeyDown:Connect(function(key)
+	if key == "e" then 
+		if tool.parent == player.Character and toolequipped == true then
+			if isHolding == false then 
+				--start grab
+				local Magnitude = (mouse.Hit.Position - character.Head.CFrame.Position).magnitude
+				if Magnitude < 10 then
+
+					if not mouse.Target.Anchored then
+						GrabObject = mouse.Target
+						GrabStart = true
+						isHolding = true	
+						gravitygun:Play()
+						GGblock1.Transparency = 0
+						GGblock2.Transparency = 0
+						GGblock3.Transparency = 0
+						GGBall1.Transparency = 0
+						GGBall2.Transparency = 0
+						GGBall3.Transparency = 0
+						game.Players.LocalPlayer:GetMouse().Icon = ""
+
+						local DragBall = createDragBall()
+						DragBall.CFrame = mouse.hit
+						Dragger = DragBall
+
+						mouse.TargetFilter = GrabObject
+
+						local DragBallWeld = weldBetween(DragBall,GrabObject)
+						addMover(DragBall)
+
+						while Dragger do
+							--Create a ray from the users head to the mouse
+							local cf = CFrame.new(character.Head.Position, mouse.Hit.Position)
+							Dragger.Mover.Position = (cf + (cf.LookVector * 10)).Position
+							Dragger.RotMover.CFrame = camera.CFrame * CFrame.Angles(Dragger.RotOffset.Value.X,Dragger.RotOffset.Value.Y, Dragger.RotOffset.Value.Z)
+							wait()
+						end
+						mouse.TargetFilter = nil
+					end
+				end
+			else
+				GrabObject = nil --stop grab
+				isHolding = false
+				GrabStart = false
+				gravitygun:Stop()
+				if Dragger then
+					Dragger:Destroy()
+					Dragger = nil
+				end
+				GGblock1.Transparency = 1
+				GGblock2.Transparency = 1
+				GGblock3.Transparency = 1
+				GGBall1.Transparency = 1
+				GGBall2.Transparency = 1
+				GGBall3.Transparency = 1
+				if portal1 then
+					game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683350503"
+				end 
+				if portal2 then
+					game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683371140"
+				end 
+				if portal1 and portal2 then 
+					game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683216197"
+				end 
+				if portal1 == nil and portal2 == nil then 
+					game.Players.LocalPlayer:GetMouse().Icon = "rbxassetid://13683282532"
+				end
+			end
+		end
+	end
+end)
+
+
+function weldBetween(a, b)
+	local weld = Instance.new("ManualWeld", a)
+	weld.C0 = a.CFrame:inverse() * b.CFrame
+	weld.Part0 = a
+	weld.Part1 = b
+	return weld
+end
+
+
+function addMover(part)
+	local newMover = Instance.new("BodyPosition")
+	newMover.Parent = part
+	newMover.MaxForce = Vector3.new(40000,40000,40000)
+	newMover.P = 40000
+	newMover.D = 1000
+	newMover.Position = part.Position
+	newMover.Name = "Mover"
+
+	local newRot = Instance.new("BodyGyro")
+	newRot.Parent = part
+	newRot.MaxTorque = Vector3.new(3000,3000,3000)
+	newRot.P = 3000
+	newRot.D = 500
+	newRot.CFrame = game.Workspace.CurrentCamera.CFrame
+	newRot.Name ="RotMover"
+
+	local RotOffset = Instance.new("CFrameValue")
+	RotOffset.Name = "RotOffset"
+	RotOffset.Parent = part
+end
+
+
+function createDragBall()
+	local DragBall = Instance.new("Part")
+	DragBall.Transparency = 1
+	DragBall.CanCollide = false
+	DragBall.Size = Vector3.new(.2,.2,.2)
+	DragBall.Shape = "Ball"
+	DragBall.Name = "DragBall"
+	DragBall.Parent = workspace
+	return DragBall
+end
+--Arm Animation
+if character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+	--- Services ---
+	local Players = game:GetService("Players");
+	local RunService = game:GetService("RunService");
+	wait();
+
+	--- Declarations ---
+	local Player = Players.LocalPlayer;
+	local Character = Player.Character or Player.CharacterAdded:Wait();
+
+	local Mouse = Player:GetMouse();
+
+	--- Character ---
+	local RightUpperArm = Character:WaitForChild("RightUpperArm");
+	local RightShoulder = RightUpperArm:WaitForChild("RightShoulder");
+	local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart");
+
+	--- Execution ---
+	RunService.Stepped:Connect(function()
+		if toolequipped == true then
+			local hit = Mouse.Hit;
+
+			-- add the lookVector * 5000 to the hit.p to make the point more "dramatic" (remove it and you'll see why I did this)
+			local direction = (hit.lookVector * 5000);
+
+			-- get the rotation offset (so the arm points correctly depending on your rotation)
+			local rootCFrame = HumanoidRootPart.CFrame;
+			local rotationOffset = (rootCFrame - rootCFrame.p):inverse();
+
+			-- since CFrames are relative, put the rotationOffset first, and then multiple by the point CFrame, and then multiple by the CFrame.Angles so the arm points in the right direction
+			RightShoulder.Transform = rotationOffset * CFrame.new(Vector3.new(0, 0, 0), direction) * CFrame.Angles(math.pi / 2, 0, 0);
+		end
+	end)
+else
+	plr = game.Players.LocalPlayer;
+	repeat
+		wait()
+	until plr.Character
+	char = plr.Character
+	m = plr:GetMouse()
+
+
+	local origRightS = char:WaitForChild("Torso"):WaitForChild("Right Shoulder").C0
+	local origLeftS = char:WaitForChild("Torso"):WaitForChild("Left Shoulder").C0
+	local origNeck = char:WaitForChild("Torso"):WaitForChild("Neck").C0
+	local camera = game.Workspace.CurrentCamera
+
+	local UIS = game:GetService("UserInputService")
+
+	local c = game.Workspace.CurrentCamera
+
+	game:GetService("RunService").RenderStepped:Connect(function(delta)
+
+
+
+
+		if toolequipped == true then
+
+			if char.Torso:FindFirstChild("Right Shoulder") then
+				char.Torso["Right Shoulder"].C0 = char.Torso["Right Shoulder"].C0:Lerp(CFrame.new(1, .65, 0) * CFrame.Angles(-math.asin((m.Origin.p - m.Hit.p).unit.y), 1.55, 0, 0) , 0.1)
+			end
+			if char.Torso:FindFirstChild("Left Shoulder") then
+				char.Torso["Left Shoulder"].C0 = char.Torso["Left Shoulder"].C0:Lerp(CFrame.new(-1, .65, 0) * CFrame.Angles(-math.asin((m.Origin.p - m.Hit.p).unit.y), -1.55, 0, 0) , 0.1)
+			end
+			if char.Torso:FindFirstChild("Neck") then
+				char.Torso["Neck"].C0 = char.Torso["Neck"].C0:Lerp(CFrame.new(0, 1, 0) * CFrame.Angles(-math.asin((m.Origin.p - m.Hit.p).unit.y) + 1.55, 3.15, 0), 0.2)
+			end
+
+		else
+
+			if char.Torso:FindFirstChild("Right Shoulder") then
+				char.Torso["Right Shoulder"].C0 = char.Torso["Right Shoulder"].C0:lerp(origRightS, 0.1)
+			end
+
+
+			if char.Torso:FindFirstChild("Left Shoulder") then
+				char.Torso["Left Shoulder"].C0 = char.Torso["Left Shoulder"].C0:lerp(origLeftS, 0.1)
+			end
+
+
+
+			if char.Torso:FindFirstChild("Neck") then
+				char.Torso["Neck"].C0 = char.Torso["Neck"].C0:lerp(origNeck, 0.1)
+			end
+		end
+	end)
+end
