@@ -1,13 +1,20 @@
---[[games it supports Da Hood, Arsenal, Tower of Hell, KAT!, Fencing,
+--[[
+
+Sky Hub
+
+By Sky/dsgdfs
+
+games it supports Da Hood, Arsenal, Tower of Hell, KAT!, Fencing,
 Work At A Pizza Place, VR Hands, Adopt Me, Jailbreak, Prison Life,
 Build A Boat For Treasure, Gorilla Tag Professional, Murder Mystery 2, Blox fruits, Counter Blox, Mic Up, Neighbors, Natural Diaster Survival, Ro-Ghoul, Blade Ball, Pet Simulator X,
 Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends, Bayside High School, Big PaintBall, Big PaintBall 2, Muscle Legends, Road to Grambys, Bloxburg and Universal.
 30+ games (Including some obbys)
+
 Rebuilt On IllusionHub
 
-Last Updated 3/8/2024
+Last Updated 3/9/2024
 
-Added shattervast admin
+Added Portal Gun To Universal
 
 executor ui in fencing and universal made by espresso0069
 
@@ -15,7 +22,7 @@ Road to Gramby scripts by lua_u
 
 Rainbow Sunlock by therealxora https://discord.gg/iosexploiters
 
-IF YOU WANT ME TO ADD A GAME OR REPORT A BUG JOIN MY DISCORD SERVER
+IF YOU WANT ME TO ADD A GAME OR REPORT A BUG JOIN MY DISCORD SERVER OR DM ME
 
 https://discord.gg/xwy5Cu62Vw
 
@@ -49,7 +56,7 @@ end
 -- Da Hood
 if game.PlaceId == 2788229376 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
@@ -260,7 +267,7 @@ if game.PlaceId == 2788229376 then
 --Arsenal
 elseif game.PlaceId == 286090429 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
@@ -466,7 +473,7 @@ elseif game.PlaceId == 286090429 then
 -- Tower Of Hell
 elseif game.PlaceId == 1962086868 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
@@ -558,7 +565,7 @@ elseif game.PlaceId == 1962086868 then
 -- KAT!
 elseif game.PlaceId == 621129760 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
@@ -813,7 +820,7 @@ elseif game.PlaceId == 621129760 then
  -- Fencing
 elseif game.PlaceId == 12109643 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
@@ -1439,7 +1446,7 @@ elseif game.PlaceId == 12109643 then
 -- Work at a Pizza Place
 elseif game.PlaceId == 192800 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
@@ -1575,7 +1582,7 @@ elseif game.PlaceId == 192800 then
  -- VR Hands
 elseif game.PlaceId == 4832438542 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
@@ -2122,7 +2129,7 @@ elseif game.PlaceId == 4832438542 then
 -- Adopt me
 elseif game.PlaceId == 920587237 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
@@ -2225,7 +2232,7 @@ elseif game.PlaceId == 606849621 then
 	local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 	local Window = Fluent:CreateWindow({
 		Title = "Sky Hub",
-		SubTitle = "",
+		SubTitle = "By Sky/dsgdfs",
 		TabWidth = 160,
 		Size = UDim2.fromOffset(580, 460),
 		Acrylic = false,
@@ -2530,7 +2537,7 @@ elseif game.PlaceId == 606849621 then
 --Prison Life
 elseif game.PlaceId == 155615604 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
@@ -2738,7 +2745,7 @@ elseif game.PlaceId == 155615604 then
     -- Build A Boat
 elseif game.PlaceId == 537413528 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
@@ -2833,7 +2840,7 @@ elseif game.PlaceId == 537413528 then
 -- Gorilla Tag Professional
 elseif game.PlaceId == 8690998110 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
@@ -2957,7 +2964,7 @@ elseif game.PlaceId == 8690998110 then
 -- Murder Mystery 2 or MM2
 elseif game.PlaceId == 142823291 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
@@ -3227,7 +3234,7 @@ elseif game.PlaceId == 142823291 then
 -- Blox Fruits
 elseif game.PlaceId == 2753915549 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
@@ -3323,7 +3330,7 @@ elseif game.PlaceId == 2753915549 then
 			-- Counter Blox
 elseif game.PlaceId == 301549746 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("Counter Blox Script", "Idk", function()
@@ -3401,7 +3408,7 @@ elseif game.PlaceId == 301549746 then
 				   	-- Mic Up
 elseif game.PlaceId == 6884319169 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("FE Trolling GUI", "troll", function()
@@ -3533,7 +3540,7 @@ elseif game.PlaceId == 6884319169 then
 				    	-- Neighbors
 elseif game.PlaceId == 12699642568 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("FE Trolling GUI", "troll", function()
@@ -3621,7 +3628,7 @@ elseif game.PlaceId == 12699642568 then
 -- Natural Diaster Survival
 elseif game.PlaceId == 189707 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("Shows Diaster before shows all", "you need to be on the map and still alive btw", function()
@@ -3737,7 +3744,7 @@ elseif game.PlaceId == 189707 then
 -- Ro-Ghoul
 elseif game.PlaceId == 914010731 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("Auto farm", "yuh", function()
@@ -3872,7 +3879,7 @@ elseif game.PlaceId == 914010731 then
 -- Blade Ball
 elseif game.PlaceId == 13772394625 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("Trap Hub", "yuh", function()
@@ -4014,7 +4021,7 @@ elseif game.PlaceId == 13772394625 then
 -- Pet Simulator X
 elseif game.PlaceId == 6284583030 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("Auto farm", "yuh", function()
@@ -4099,7 +4106,7 @@ elseif game.PlaceId == 6284583030 then
 -- Pet Simulator 99
 elseif game.PlaceId == 8737899170 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("RedZ Hub BETA", "yuh", function()
@@ -4179,7 +4186,7 @@ elseif game.PlaceId == 8737899170 then
 -- Legends of Speed
 elseif game.PlaceId == 3101667897 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("GUI made by Ree", "made by Ree", function()
@@ -4296,7 +4303,7 @@ elseif game.PlaceId == 3101667897 then
 -- Brookhaven RP
 elseif game.PlaceId == 4924922222 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("FE Trolling GUI", "troll", function()
@@ -4389,7 +4396,7 @@ elseif game.PlaceId == 4924922222 then
 -- Bedwars
 elseif game.PlaceId == 6872265039 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("Ice Hub", "yuh", function()
@@ -4476,7 +4483,7 @@ elseif game.PlaceId == 6872265039 then
 						-- Chaos
 elseif game.PlaceId == 6441847031 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("Chaos Admin", "type in chat !kill player or a command", function()
@@ -4563,7 +4570,7 @@ elseif game.PlaceId == 6441847031 then
 -- Ninja Legends
 elseif game.PlaceId == 3956818381 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("Proxima Hub", "idk", function()
@@ -4641,7 +4648,7 @@ elseif game.PlaceId == 3956818381 then
 -- Bayside High School
 elseif game.PlaceId == 12640491155 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewDropdown("Teleports", "Teleports to Place", {
@@ -5069,7 +5076,7 @@ elseif game.PlaceId == 12640491155 then
 -- Big PaintBall
 elseif game.PlaceId == 3527629287 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("Auto Kill", "super detected", function()
@@ -5205,7 +5212,7 @@ elseif game.PlaceId == 3527629287 then
 -- Big PaintBall 2
 elseif game.PlaceId == 9865958871 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("Gun Mods", "norecoil/RapidFire", function()
@@ -5290,7 +5297,7 @@ elseif game.PlaceId == 9865958871 then
 -- Muscle Legends
 elseif game.PlaceId == 3623096087 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("Auto Farm Gui", "read??", function()
@@ -5376,7 +5383,7 @@ elseif game.PlaceId == 3623096087 then
 elseif game.PlaceId == 5796917097 then
 	-- dont expect much kinda annoying game to script
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
@@ -5439,7 +5446,7 @@ elseif game.PlaceId == 5796917097 then
 elseif game.PlaceId == 185655149 then
 -- dont expect much kinda annoying game to script
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
-	local Window = Library.CreateLib("SkyHub", OptTheme)
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
@@ -6180,6 +6187,13 @@ else
 					end
 				end
 			end)
+		end
+	})
+	Main:AddButton({
+		Title = "Portal Gun",
+		Description = "COOL ASF",
+		Callback = function()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/portal%20gun.txt'))()
 		end
 	})
 	Main:AddButton({
