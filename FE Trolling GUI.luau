@@ -1,6 +1,16 @@
 --[[
-Last Updated 3/6/2024
-Moved to Fluent Lib
+FE Trolling GUI
+
+By Sky/dsgdfs
+
+Last Updated 3/9/2024
+
+Added Portal Gun
+
+If you want me to add anything let me know in the discord or dm me
+
+https://discord.gg/xwy5Cu62Vw
+
 ]]--
 local string = "https://discord.gg/xwy5Cu62Vw"
 local string2 = "https://discord.com/invite/jVf7eSrED9"
@@ -23,7 +33,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local Window = Fluent:CreateWindow({
 	Title = "FE Trolling GUI",
-	SubTitle = "",
+	SubTitle = "By Sky/dsgdfs",
 	TabWidth = 160,
 	Size = UDim2.fromOffset(580, 460),
 	Acrylic = false,
@@ -5910,6 +5920,13 @@ Main:AddButton({
 	Description = "FE Universal Script Hub",
 	Callback = function()
 		loadstring(game:HttpGet('https://gist.githubusercontent.com/Dvrknvss/e2a906135f9e55d0d2ae7aaf337d8937/raw/dc055592803f8418ddf8ba7b84286f47638849d4/noidea'))()
+	end
+})
+Main:AddButton({
+	Title = "Portal Gun",
+	Description = "COOL ASF",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/portal%20gun.txt'))()
 	end
 })
 Main:AddButton({
