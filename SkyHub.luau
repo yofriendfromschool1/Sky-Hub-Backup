@@ -2742,7 +2742,7 @@ elseif game.PlaceId == 155615604 then
 	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
 		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 	end)
-    -- Build A Boat
+    -- Build A Boat or BABFT
 elseif game.PlaceId == 537413528 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
@@ -2794,7 +2794,7 @@ elseif game.PlaceId == 537413528 then
 	HubsSection:NewButton("Psyhub", "idk", function()
 		loadstring(game:GetObjects("rbxassetid://3014051754")[1].Source)()
 	end)
-	HubsSection:NewButton("Ezhub", "130+ games", function()--
+	MainSection:NewButton("Ezhub", "130+ games", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()--
 	end)
 	HubsSection:NewButton("Owl Hub", "46+ how", function()
@@ -2803,7 +2803,7 @@ elseif game.PlaceId == 537413528 then
 	MainSection:NewButton("CocoHub", "idk", function()
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
 	end)
-	HubsSection:NewButton("MonkeHub", "idk", function()
+	MainSection:NewButton("MonkeHub", "idk", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeHub/main/Loader.lua"))()
 	end)
 	MainSection:NewButton("VG Hub", "60+", function()
