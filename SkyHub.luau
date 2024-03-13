@@ -30,7 +30,6 @@ https://discord.gg/xwy5Cu62Vw
 
 ]]--
 local OptTheme = "Midnight"
-local string = "https://discord.gg/xwy5Cu62Vw"
 local string2 = "https://discord.com/invite/jVf7eSrED9"
 _G.infydtype = 1
 _G.guidragtype = "https://raw.githubusercontent.com/LLua-u/aw/main/skui.lua"
@@ -62,7 +61,12 @@ if game.PlaceId == 2788229376 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -276,7 +280,12 @@ elseif game.PlaceId == 286090429 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -482,7 +491,12 @@ elseif game.PlaceId == 1962086868 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -577,7 +591,12 @@ elseif game.PlaceId == 621129760 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -835,7 +854,12 @@ elseif game.PlaceId == 12109643 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -1464,7 +1488,12 @@ elseif game.PlaceId == 192800 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -1603,7 +1632,12 @@ elseif game.PlaceId == 4832438542 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -2153,7 +2187,12 @@ elseif game.PlaceId == 920587237 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -2564,7 +2603,12 @@ elseif game.PlaceId == 155615604 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -2775,7 +2819,12 @@ elseif game.PlaceId == 537413528 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -2873,7 +2922,12 @@ elseif game.PlaceId == 8690998110 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -3000,7 +3054,12 @@ elseif game.PlaceId == 142823291 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -3272,7 +3331,12 @@ elseif game.PlaceId == 2753915549 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -3383,7 +3447,12 @@ elseif game.PlaceId == 301549746 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -3509,7 +3578,12 @@ elseif game.PlaceId == 6884319169 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -3600,7 +3674,12 @@ elseif game.PlaceId == 12699642568 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -3722,7 +3801,12 @@ elseif game.PlaceId == 189707 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -3860,7 +3944,12 @@ elseif game.PlaceId == 914010731 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -4001,7 +4090,12 @@ elseif game.PlaceId == 13772394625 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -4086,7 +4180,12 @@ elseif game.PlaceId == 6284583030 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -4174,7 +4273,12 @@ elseif game.PlaceId == 8737899170 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -4295,7 +4399,12 @@ elseif game.PlaceId == 3101667897 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -4389,7 +4498,12 @@ elseif game.PlaceId == 4924922222 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -4482,7 +4596,12 @@ elseif game.PlaceId == 6872265039 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -4569,7 +4688,12 @@ elseif game.PlaceId == 6441847031 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -4659,7 +4783,12 @@ elseif game.PlaceId == 3956818381 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -5082,7 +5211,12 @@ elseif game.PlaceId == 12640491155 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -5224,7 +5358,12 @@ elseif game.PlaceId == 3527629287 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -5309,7 +5448,12 @@ elseif game.PlaceId == 9865958871 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -5403,7 +5547,12 @@ elseif game.PlaceId == 3623096087 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -5474,7 +5623,12 @@ elseif game.PlaceId == 5796917097 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -5537,7 +5691,12 @@ elseif game.PlaceId == 185655149 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
@@ -5561,7 +5720,12 @@ else
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "Copys Discord invite link", function()
-		setclipboard(string)
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+    		invite = "https://discord.gg/xwy5Cu62Vw", 
+    		name = "Sky Hub"
+		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
 		setclipboard(string2)
