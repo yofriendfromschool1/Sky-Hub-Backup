@@ -3,9 +3,9 @@ FE Trolling GUI
 
 By Sky/dsgdfs
 
-Last Updated 3/9/2024
+Last Updated 3/12/2024
 
-Added Portal Gun
+Added FE UTG GUI V1.1
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -132,6 +132,13 @@ GUIS:AddButton({
 	Description = "Arosia FE GUI",
 	Callback = function()
 		loadstring(Game:GetObjects("rbxassetid://1255908305")[1].Source)()
+	end
+})
+GUIS:AddButton({
+	Title = "FE UTG GUI V1.1",
+	Description = "Hat Hub, pendlem hub and more",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/UTG%20FE%20script%20.txt"))()
 	end
 })
 GUIS:AddButton({
