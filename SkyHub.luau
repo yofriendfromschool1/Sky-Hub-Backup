@@ -2287,314 +2287,181 @@ elseif game.PlaceId == 920587237 then
 	end)
 -- JailBreak
 elseif game.PlaceId == 606849621 then
-	local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-	local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-	local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-	local Window = Fluent:CreateWindow({
-		Title = "Sky Hub",
-		SubTitle = "By Sky/dsgdfs",
-		TabWidth = 160,
-		Size = UDim2.fromOffset(580, 460),
-		Acrylic = false,
-		Theme = "Dark",
-		MinimizeKey = Enum.KeyCode.LeftControl
-	})
-	local Main = Window:AddTab({
-		Title = "Main",
-		Icon = "globe"
-	})
-	local Options = Fluent.Options
-	Main:AddParagraph({
-		Title = "Note",
-		Content = "The reason for new lib is because some games detect Kavo library and this is one of those games so let me know if that is the case for your game and ill replace the ui for that game for this ui and have scripts for that game and have it supported"
-	})
-	Main:AddButton({
-		Title = "Project Auto V4",
-		Description = "Auto Rob and Kill Aura USE ALT!!!",
-		Callback = function()
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/Pxsta72/ProjectAuto/main/AutoRobV4Release"))()
-		end
-	})
-	Main:AddButton({
-		Title = "Owl Hub",
-		Description = "Owl Hub",
-		Callback = function()
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))();
-		end
-	})
-	Main:AddButton({
-		Title = "VG Hub",
-		Description = "VG Hub",
-		Callback = function()
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
-		end
-	})
-	Main:AddButton({
-		Title = "EZ Hub",
-		Description = "EZ Hub",
-		Callback = function()
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug42O/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()
-		end
-	})
-	Main:AddButton({
-		Title = "CocoHub",
-		Description = "CocoHub",
-		Callback = function()
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
-		end
-	})
-	Main:AddButton({
-		Title = "GabX",
-		Description = "GabX",
-		Callback = function()
-			loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/GabX'), true))()
-		end
-	})
-	Main:AddButton({
-		Title = "Chaos Hub",
-		Description = "Chaos Hub",
-		Callback = function()
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/xChaoticVoid/Chaos-Hub-v1/main/ChaosHub.lua"))()
-		end
-	})
-	Main:AddButton({
-		Title = "JailMonkey",
-		Description = "JailMonkey",
-		Callback = function()
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeyScripts/main/JailMonkey.lua"))()
-		end
-	})
-	Main:AddButton({
-		Title = "Mobile Aimbot",
-		Description = "Aimbot For mobile",
-		Callback = function()
-			local Players = game:GetService("Players")
-			local UserInputService = game:GetService("UserInputService")
-			local RunService = game:GetService("RunService")
-			local localPlayer = Players.LocalPlayer
-			local camera = game.Workspace.CurrentCamera
-			local lockOnActive = false
-			local teamCheckActive = false
-			local currentTouch = nil
-			local fovRadius = 125
-			local screenGui = Instance.new("ScreenGui")
-			screenGui.Parent = game:GetService("CoreGui")
-			local toggleButton = Instance.new("TextButton")
-			toggleButton.Parent = screenGui
-			toggleButton.Size = UDim2.new(0, 150, 0, 50)
-			toggleButton.Position = UDim2.new(0, 100, 0, 100)
-			toggleButton.Text = "Toggle Lock-On"
-			toggleButton.Draggable = true
-			local toggleTeamButton = Instance.new("TextButton")
-			toggleTeamButton.Parent = screenGui
-			toggleTeamButton.Size = UDim2.new(0, 150, 0, 50)
-			toggleTeamButton.Position = UDim2.new(0, 100, 0, 160)
-			toggleTeamButton.Text = "Toggle Team Check"
-			toggleTeamButton.Draggable = true
-			local fovCircleGui = Instance.new("ImageLabel")
-			fovCircleGui.Parent = screenGui
-			fovCircleGui.AnchorPoint = Vector2.new(0.5, 0.5)
-			fovCircleGui.Size = UDim2.new(0, fovRadius * 2, 0, fovRadius * 2)
-			fovCircleGui.Image = "rbxassetid://432312433"
-			fovCircleGui.ImageTransparency = 0.5
-			fovCircleGui.ImageColor3 = Color3.new(1, 1, 1)
-			fovCircleGui.BackgroundTransparency = 1
-			fovCircleGui.Visible = false
-			fovCircleGui.ZIndex = 0 -- Ensure it's behind other GUI elements
+	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 
-			-- Function to check if a player is within the FOV and not obstructed by walls
-			local function isPlayerVisible(targetPlayer)
-				if not targetPlayer.Character or not targetPlayer.Character:FindFirstChild("Head") then
-					return false
-				end
-				if teamCheckActive and targetPlayer.Team == localPlayer.Team then
-					return false -- Player is on the same team
-				end
-				local targetHeadPosition = targetPlayer.Character.Head.Position
-				local vectorToTarget = (targetHeadPosition - camera.CFrame.Position).unit
-				local ray = Ray.new(camera.CFrame.Position, vectorToTarget * fovRadius)
-				local part, position = game.Workspace:FindPartOnRay(ray, localPlayer.Character, false, true)
-				if part and part:IsDescendantOf(targetPlayer.Character) then
-					local dotProduct = camera.CFrame.LookVector:Dot(vectorToTarget)
-					local angle = math.deg(math.acos(dotProduct))
-					return angle <= (fovRadius / 2) -- Player is within FOV
-				end
-				return false -- Player is obstructed by walls
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
+	local Main = Window:NewTab("Main")
+	local MainSection = Main:NewSection("Main")
+	MainSection:NewButton("Project Auto V4", "Auto Rob and Kill Aura USE ALT!!!", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Pxsta72/ProjectAuto/main/AutoRobV4Release"))()
+	end)
+	MainSection:NewButton("Owl Hub", "Owl Hub", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))();
+	end)
+	MainSection:NewButton("VG Hub", "VG Hub", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
+	end)
+	MainSection:NewButton("EZ Hub", "EZ Hub", function()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug42O/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()
+	end)
+	MainSection:NewButton("CocoHub", "CocoHub", function()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
+	end)
+	MainSection:NewButton("GabX", "GabX", function()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/GabX'), true))()
+	end)
+	MainSection:NewButton("Chaos Hub", "Chaos Hub", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/xChaoticVoid/Chaos-Hub-v1/main/ChaosHub.lua"))()
+	end)
+	MainSection:NewButton("JailMonkey", "JailMonkey", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeyScripts/main/JailMonkey.lua"))()
+	end)
+	MainSection:NewButton("Mobile Aimbot", "Mobile Aimbot", function()
+		local Players = game:GetService("Players")
+		local UserInputService = game:GetService("UserInputService")
+		local RunService = game:GetService("RunService")
+		local localPlayer = Players.LocalPlayer
+		local camera = game.Workspace.CurrentCamera
+		local lockOnActive = false
+		local teamCheckActive = false
+		local currentTouch = nil
+		local fovRadius = 125
+		local screenGui = Instance.new("ScreenGui")
+		screenGui.Parent = game:GetService("CoreGui")
+		local toggleButton = Instance.new("TextButton")
+		toggleButton.Parent = screenGui
+		toggleButton.Size = UDim2.new(0, 150, 0, 50)
+		toggleButton.Position = UDim2.new(0, 100, 0, 100)
+		toggleButton.Text = "Toggle Lock-On"
+		toggleButton.Draggable = true
+		local toggleTeamButton = Instance.new("TextButton")
+		toggleTeamButton.Parent = screenGui
+		toggleTeamButton.Size = UDim2.new(0, 150, 0, 50)
+		toggleTeamButton.Position = UDim2.new(0, 100, 0, 160)
+		toggleTeamButton.Text = "Toggle Team Check"
+		toggleTeamButton.Draggable = true
+		local fovCircleGui = Instance.new("ImageLabel")
+		fovCircleGui.Parent = screenGui
+		fovCircleGui.AnchorPoint = Vector2.new(0.5, 0.5)
+		fovCircleGui.Size = UDim2.new(0, fovRadius * 2, 0, fovRadius * 2)
+		fovCircleGui.Image = "rbxassetid://432312433"
+		fovCircleGui.ImageTransparency = 0.5
+		fovCircleGui.ImageColor3 = Color3.new(1, 1, 1)
+		fovCircleGui.BackgroundTransparency = 1
+		fovCircleGui.Visible = false
+		fovCircleGui.ZIndex = 0 -- Ensure it's behind other GUI elements
+
+		-- Function to check if a player is within the FOV and not obstructed by walls
+		local function isPlayerVisible(targetPlayer)
+			if not targetPlayer.Character or not targetPlayer.Character:FindFirstChild("Head") then
+				return false
 			end
-
-			-- Toggle button functionality
-			toggleButton.MouseButton1Click:Connect(function()
-				lockOnActive = not lockOnActive
-				toggleButton.Text = lockOnActive and "Lock-On Active" or "Toggle Lock-On"
-				fovCircleGui.Visible = lockOnActive
-			end)
-			toggleTeamButton.MouseButton1Click:Connect(function()
-				teamCheckActive = not teamCheckActive
-				toggleTeamButton.Text = teamCheckActive and "Team Check Active" or "Toggle Team Check"
-			end)
-
-			-- Function to handle touch input
-			local function onTouchStarted(touch)
-				currentTouch = touch.Position
-				fovCircleGui.Position = UDim2.new(0, touch.Position.X - fovRadius, 0, touch.Position.Y - fovRadius)
-				fovCircleGui.Visible = true
+			if teamCheckActive and targetPlayer.Team == localPlayer.Team then
+				return false -- Player is on the same team
 			end
-
-			-- Function to handle touch ended
-			local function onTouchEnded(touch)
-				if currentTouch and currentTouch == touch.Position then
-					currentTouch = nil
-					fovCircleGui.Visible = false
-				end
+			local targetHeadPosition = targetPlayer.Character.Head.Position
+			local vectorToTarget = (targetHeadPosition - camera.CFrame.Position).unit
+			local ray = Ray.new(camera.CFrame.Position, vectorToTarget * fovRadius)
+			local part, position = game.Workspace:FindPartOnRay(ray, localPlayer.Character, false, true)
+			if part and part:IsDescendantOf(targetPlayer.Character) then
+				local dotProduct = camera.CFrame.LookVector:Dot(vectorToTarget)
+				local angle = math.deg(math.acos(dotProduct))
+				return angle <= (fovRadius / 2) -- Player is within FOV
 			end
+			return false -- Player is obstructed by walls
+		end
 
-			-- Connect the touch event handlers
-			UserInputService.TouchStarted:Connect(onTouchStarted)
-			UserInputService.TouchEnded:Connect(onTouchEnded)
-			RunService.RenderStepped:Connect(function()
-				if lockOnActive then
-					for _, player in ipairs(Players:GetPlayers()) do
-						if player ~= localPlayer and isPlayerVisible(player) then
-							local head = player.Character.Head
-							local direction = (head.Position - camera.CFrame.Position).unit
-							camera.CFrame = CFrame.new(camera.CFrame.Position, camera.CFrame.Position + direction * 10)
-							break
-						end
+		-- Toggle button functionality
+		toggleButton.MouseButton1Click:Connect(function()
+			lockOnActive = not lockOnActive
+			toggleButton.Text = lockOnActive and "Lock-On Active" or "Toggle Lock-On"
+			fovCircleGui.Visible = lockOnActive
+		end)
+		toggleTeamButton.MouseButton1Click:Connect(function()
+			teamCheckActive = not teamCheckActive
+			toggleTeamButton.Text = teamCheckActive and "Team Check Active" or "Toggle Team Check"
+		end)
+
+		-- Function to handle touch input
+		local function onTouchStarted(touch)
+			currentTouch = touch.Position
+			fovCircleGui.Position = UDim2.new(0, touch.Position.X - fovRadius, 0, touch.Position.Y - fovRadius)
+			fovCircleGui.Visible = true
+		end
+
+		-- Function to handle touch ended
+		local function onTouchEnded(touch)
+			if currentTouch and currentTouch == touch.Position then
+				currentTouch = nil
+				fovCircleGui.Visible = false
+			end
+		end
+
+		-- Connect the touch event handlers
+		UserInputService.TouchStarted:Connect(onTouchStarted)
+		UserInputService.TouchEnded:Connect(onTouchEnded)
+		RunService.RenderStepped:Connect(function()
+			if lockOnActive then
+				for _, player in ipairs(Players:GetPlayers()) do
+					if player ~= localPlayer and isPlayerVisible(player) then
+						local head = player.Character.Head
+						local direction = (head.Position - camera.CFrame.Position).unit
+						camera.CFrame = CFrame.new(camera.CFrame.Position, camera.CFrame.Position + direction * 10)
+						break
 					end
 				end
-			end)
-		end
-	})
-	local Admins = Window:AddTab({
-		Title = "Admins",
-		Icon = "globe"
-	})
+			end
+		end)
+	end)
 
-	Admins:AddButton({
-		Title = "Infinite Yield FE",
-		Description = "Infinite Yield FE",
-		Callback = function()
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-		end
-	})
-	Admins:AddButton({
-		Title = "Infinite Store",
-		Description = "loads a store to browse for plugins for Infinite Yield",
-		Callback = function()
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/Infinite-Store/Infinite-Store/main/main.lua"))()
-		end
-	})
-	Admins:AddButton({
-		Title = "Nameless Admin",
-		Description = "Nameless Admin",
-		Callback = function()
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source'))()
-		end
-	})
-	Admins:AddButton({
-		Title = "Fates Admin",
-		Description = "Fates Admin",
-		Callback = function()
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
-		end
-	})
-	Admins:AddButton({
-		Title = "Shattervast Admin",
-		Description = "Shattervast Admin",
-		Callback = function()
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/%5BFE%5D%20Shattervast.lua'))()
-		end
-	})
-	Admins:AddButton({
-		Title = "Proton Free Admin",
-		Description = "Proton Free Admin",
-		Callback = function()
-			_G.UI_Id = "default" --set this to "default" for the default ui
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Proton%20Free'))()
-		end
-	})
-	Admins:AddButton({
-		Title = "Proton 2 free Admin",
-		Description = "Proton 2 free Admin",
-		Callback = function()
-			-- DEFAULT CMD BAR PREFIX IS ;
-			-- DEFAULT CHAT PREFIX IS /
-			_G.UI_Id = "default" --set this to "default" for the default ui
-			loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
-		end
-	})
-	Admins:AddButton({
-		Title = "Reviz Admin V2",
-		Description = "Reviz Admin V2",
-		Callback = function()
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Reviz%20AdminV2"))()
-		end
-	})
 
-	local Player = Window:AddTab({
-		Title = "Player",
-		Icon = "globe"
-	})
-	local Walkspeed = Player:AddSlider("SliderIdentifier", {
-		Title = "Walkspeed",
-		Description = "Walkspeed Changer",
-		Default = game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed,
-		Min = 0,
-		Max = 5000,
-		Rounding = 1,
-		Callback = function(Value)
-			game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = Value
-		end
-	})
-	local JumpPower = Player:AddSlider("SliderIdentifier", {
-		Title = "JumpPower",
-		Description = "JumpPower Changer",
-		Default = game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower,
-		Min = 0,
-		Max = 5000,
-		Rounding = 1,
-		Callback = function(Value)
-			game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = Value
-		end
-	})
-	local GravityC = Player:AddSlider("SliderIdentifier", {
-		Title = "Gravity",
-		Description = "Gravity Changer",
-		Default = game.workspace.Gravity,
-		Min = 0,
-		Max = 1000,
-		Rounding = 1,
-		Callback = function(Value)
-			game.workspace.Gravity = Value
-		end
-	})
+	
+	local Admins = Window:NewTab("Admins", 10016551771)
+	local AdminsSection = Admins:NewSection("Admins")
+	AdminsSection:NewButton("Infinite Yield FE", "Admin", function()
+		loadstring(game:HttpGet(_G.infydtype))()
+	end)
+	AdminsSection:NewButton("Infinite Store", "Archived", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Infinite-Store/Infinite-Store/main/main.lua"))()
+	end)
+	AdminsSection:NewButton("Nameless Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source'))()
+	end)
+	AdminsSection:NewButton("fates admin", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+	end)
+	AdminsSection:NewButton("Shattervast Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/%5BFE%5D%20Shattervast.lua'))()
+	end)
+	AdminsSection:NewButton("Proton Free Admin", "Admin", function()
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Proton%20Free'))()
+	end)
+	AdminsSection:NewButton("Proton 2 free Admin", "Admin", function()
+			 -- DEFAULT CMD BAR PREFIX IS ;
+			 -- DEFAULT CHAT PREFIX IS /
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
+	end)
+	AdminsSection:NewButton("Reviz Admin V2", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Reviz%20AdminV2"))()
+	end)
 
-	InterfaceManager:SetLibrary(Fluent)
-	InterfaceManager:SetFolder("Sky Hub")
+	local Player = Window:NewTab("Player", 2795572800)
+	local PlayerSection = Player:NewSection("Player")
+	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
+	end)
+	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
+	end)
+	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
+		game:GetService("Workspace").Gravity = v
+	end)
 
-	local Settings = Window:AddTab({
-		Title = "Settings",
-		Icon = "settings"
-	})
-	InterfaceManager:BuildInterfaceSection(Settings)
+	
 
-	SaveManager:SetLibrary(Fluent)
-	SaveManager:IgnoreThemeSettings()
-	SaveManager:SetIgnoreIndexes({
-		'TextboxIdentifier'
-	})
-	SaveManager:SetFolder("Sky Hub/Jailbreak/Configs")
-
-	local Config = Window:AddTab({
-		Title = "Config",
-		Icon = "settings"
-	})
-	SaveManager:BuildConfigSection(Config)
-
-	SaveManager:LoadAutoloadConfig()
-	Window:SelectTab(1)
-
---Prison Life
+-- Prison Life
 elseif game.PlaceId == 155615604 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
