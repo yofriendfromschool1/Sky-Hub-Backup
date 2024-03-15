@@ -3,9 +3,9 @@ FE Trolling GUI
 
 By Sky/dsgdfs
 
-Last Updated 3/12/2024
+Last Updated 3/15/2024
 
-Added FE UTG GUI V1.1
+Added mobile minimize support
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -14,7 +14,6 @@ https://discord.gg/xwy5Cu62Vw
 ]]--
 local string = "https://discord.gg/xwy5Cu62Vw"
 local string2 = "https://discord.com/invite/jVf7eSrED9"
-_G.guidragtype = 1
 UserInputService = game:GetService("UserInputService")
 local IsOnMobile = table.find({
 	Enum.Platform.IOS,
@@ -23,10 +22,35 @@ local IsOnMobile = table.find({
 
 if IsOnMobile then
 	_G.infydtype = "https://raw.githubusercontent.com/yofriendfromschool1/mobile-delta-inf-yield/main/deltainfyield.txt"
-	_G.guidragtype = "https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Kavolibupdate"
 else
 	_G.infydtype = "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"
-	_G.guidragtype = "https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"
+end
+local Sky = {}
+if IsOnMobile then
+	Sky["Ui"] = Instance.new("ScreenGui", gethui())
+	Sky["Ui"].Name = "skyhubtoggle"
+
+	Sky["DaIcon"] = Instance.new("ImageButton", Sky["Ui"])
+	Sky["DaIcon"].Size = UDim2.new(0,45,0,45)
+	Sky["DaIcon"].Position = UDim2.new(.001,0,0.5,0)
+	Sky["DaIcon"].Draggable = true
+	Sky["DaIcon"].Image = "http://www.roblox.com/asset/?id=16710334936"
+	Sky["DaIcon"].BackgroundColor3 = Color3.fromRGB(17, 36, 66)
+	Sky["das"] = Instance.new("UICorner", Sky["DaIcon"]);
+	Sky["das"]["CornerRadius"] = UDim.new(0.20000000298023224, 0);
+	Sky["DaIcon"].MouseButton1Click:Connect(function()
+		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+			if v.Name == "ScreenGui" then
+				for i,v in pairs(v:GetDescendants()) do
+					if v.Name == "Frame" then
+						v.Visible = true
+					end
+				end
+			end
+		end
+	end)
+else
+
 end
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
@@ -5918,6 +5942,11 @@ Main:AddButton({
 						v.Parent:Destroy()
 					end
 				end
+			end
+		end
+		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+			if v.Name == "skyhubtoggle" then
+				v:Destroy()
 			end
 		end
 	end
