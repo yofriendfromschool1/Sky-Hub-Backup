@@ -64,8 +64,8 @@ if game.PlaceId == 2788229376 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -283,8 +283,8 @@ elseif game.PlaceId == 286090429 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -494,8 +494,8 @@ elseif game.PlaceId == 1962086868 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -594,8 +594,8 @@ elseif game.PlaceId == 621129760 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -857,8 +857,8 @@ elseif game.PlaceId == 12109643 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -1491,8 +1491,8 @@ elseif game.PlaceId == 192800 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -1635,8 +1635,8 @@ elseif game.PlaceId == 4832438542 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -2190,8 +2190,8 @@ elseif game.PlaceId == 920587237 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -2473,8 +2473,8 @@ elseif game.PlaceId == 155615604 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -2689,8 +2689,8 @@ elseif game.PlaceId == 537413528 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -2733,6 +2733,157 @@ elseif game.PlaceId == 537413528 then
 	end)
 	HubsSection:NewButton("Psyhub", "idk", function()
 		loadstring(game:GetObjects("rbxassetid://3014051754")[1].Source)()
+	end)
+	MainSection:NewToggle("Auto Farm", "yay", function(state)
+		if state then
+			-- // Custom Settings
+			getgenv().TreasureAutoFarm = {
+				Enabled = true, -- // Toggle the auto farm on and off
+				Teleport = 2, -- // How fast between each teleport between the stages and stuff
+				TimeBetweenRuns = 5 -- // How long to wait until it goes to the next run
+			}
+
+			-- // Services
+			local Players = game:GetService("Players")
+			local Workspace = game:GetService("Workspace")
+			local Lighting = game:GetService("Lighting")
+
+			-- // Vars
+			local LocalPlayer = Players.LocalPlayer
+
+			-- // Goes through all of the stages
+			local autoFarm = function(currentRun)
+				-- // Variables
+				local Character = LocalPlayer.Character
+				local NormalStages = Workspace.BoatStages.NormalStages
+
+				-- // Go to each stage thing
+				for i = 1, 10 do
+					local Stage = NormalStages["CaveStage" .. i]
+					local DarknessPart = Stage:FindFirstChild("DarknessPart")
+
+					if (DarknessPart) then
+						-- // Teleport to next stage
+						print("Teleporting to next stage: Stage " .. i)
+						Character.HumanoidRootPart.CFrame = DarknessPart.CFrame
+
+						-- // Create a temp part under you
+						local Part = Instance.new("Part", LocalPlayer.Character)
+						Part.Anchored = true
+						Part.Position = LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 6, 0)
+
+						-- // Wait and remove temp part
+						wait(getgenv().TreasureAutoFarm.Teleport)
+						Part:Destroy()
+					end
+				end
+
+				-- // Go to end
+				print("Teleporting to the end")
+				repeat
+					wait()
+					Character.HumanoidRootPart.CFrame = NormalStages.TheEnd.GoldenChest.Trigger.CFrame
+				until Lighting.ClockTime ~= 14
+
+				-- // Wait until you have respawned
+				local Respawned = false
+				local Connection
+				Connection = LocalPlayer.CharacterAdded:Connect(function()
+					Respawned = true
+					Connection:Disconnect()
+				end)
+
+				repeat
+					wait()
+				until Respawned
+				wait(getgenv().TreasureAutoFarm.TimeBetweenRuns)
+				print("Auto Farm: Run " .. currentRun .. " finished")
+			end
+
+			-- // Whilst the autofarm is enable, constantly do it
+			local autoFarmRun = 1
+			while wait() do
+				if (getgenv().TreasureAutoFarm.Enabled) then
+					print("Initialising Auto Farm: Run " .. autoFarmRun)
+					autoFarm(autoFarmRun)
+					autoFarmRun = autoFarmRun + 1
+				end
+			end
+		else
+			-- // Custom Settings
+			getgenv().TreasureAutoFarm = {
+				Enabled = false, -- // Toggle the auto farm on and off
+				Teleport = 2, -- // How fast between each teleport between the stages and stuff
+				TimeBetweenRuns = 5 -- // How long to wait until it goes to the next run
+			}
+
+			-- // Services
+			local Players = game:GetService("Players")
+			local Workspace = game:GetService("Workspace")
+			local Lighting = game:GetService("Lighting")
+
+			-- // Vars
+			local LocalPlayer = Players.LocalPlayer
+
+			-- // Goes through all of the stages
+			local autoFarm = function(currentRun)
+				-- // Variables
+				local Character = LocalPlayer.Character
+				local NormalStages = Workspace.BoatStages.NormalStages
+
+				-- // Go to each stage thing
+				for i = 1, 10 do
+					local Stage = NormalStages["CaveStage" .. i]
+					local DarknessPart = Stage:FindFirstChild("DarknessPart")
+
+					if (DarknessPart) then
+						-- // Teleport to next stage
+						print("Teleporting to next stage: Stage " .. i)
+						Character.HumanoidRootPart.CFrame = DarknessPart.CFrame
+
+						-- // Create a temp part under you
+						local Part = Instance.new("Part", LocalPlayer.Character)
+						Part.Anchored = true
+						Part.Position = LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 6, 0)
+
+						-- // Wait and remove temp part
+						wait(getgenv().TreasureAutoFarm.Teleport)
+						Part:Destroy()
+					end
+				end
+
+				-- // Go to end
+				print("Teleporting to the end")
+				repeat
+					wait()
+					Character.HumanoidRootPart.CFrame = NormalStages.TheEnd.GoldenChest.Trigger.CFrame
+				until Lighting.ClockTime ~= 14
+
+				-- // Wait until you have respawned
+				local Respawned = false
+				local Connection
+				Connection = LocalPlayer.CharacterAdded:Connect(function()
+					Respawned = true
+					Connection:Disconnect()
+				end)
+
+				repeat
+					wait()
+				until Respawned
+				wait(getgenv().TreasureAutoFarm.TimeBetweenRuns)
+				print("Auto Farm: Run " .. currentRun .. " finished")
+			end
+
+			-- // Whilst the autofarm is enable, constantly do it
+			local autoFarmRun = 1
+			while wait() do
+				if (getgenv().TreasureAutoFarm.Enabled) then
+					print("Initialising Auto Farm: Run " .. autoFarmRun)
+					autoFarm(autoFarmRun)
+					autoFarmRun = autoFarmRun + 1
+				end
+			end
+		end
 	end)
 	MainSection:NewButton("Ezhub", "130+ games", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()--
@@ -2792,8 +2943,8 @@ elseif game.PlaceId == 8690998110 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -2924,8 +3075,8 @@ elseif game.PlaceId == 142823291 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -3201,8 +3352,8 @@ elseif game.PlaceId == 2753915549 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -3317,8 +3468,8 @@ elseif game.PlaceId == 301549746 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -3448,8 +3599,8 @@ elseif game.PlaceId == 6884319169 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -3544,8 +3695,8 @@ elseif game.PlaceId == 12699642568 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -3671,8 +3822,8 @@ elseif game.PlaceId == 189707 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -3814,8 +3965,8 @@ elseif game.PlaceId == 914010731 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -3960,8 +4111,8 @@ elseif game.PlaceId == 13772394625 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -4050,8 +4201,8 @@ elseif game.PlaceId == 6284583030 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -4143,8 +4294,8 @@ elseif game.PlaceId == 8737899170 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -4269,8 +4420,8 @@ elseif game.PlaceId == 3101667897 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -4368,8 +4519,8 @@ elseif game.PlaceId == 4924922222 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -4466,8 +4617,8 @@ elseif game.PlaceId == 6872265039 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -4558,8 +4709,8 @@ elseif game.PlaceId == 6441847031 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -4635,6 +4786,43 @@ elseif game.PlaceId == 3956818381 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
+	MainSection:NewToggle("auto farm", "autofarm", function(state)
+		if state then
+			getgenv().swing = true
+			spawn(function()
+				while true do
+					wait()
+					if not getgenv().swing then
+						break
+					end
+					local args = {
+						[1] = "swingKatana"
+					}
+					game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(91, 91246, 144)
+					wait(0.01)
+					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(88, 91246, 137)
+				end
+			end)
+		else
+			getgenv().swing = false
+			spawn(function()
+				while true do
+					wait()
+					if not getgenv().swing then
+						break
+					end
+					local args = {
+						[1] = "swingKatana"
+					}
+					game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(91, 91246, 144)
+					wait(0.01)
+					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(88, 91246, 137)
+				end
+			end)
+		end
+	end)
 	MainSection:NewButton("Proxima Hub", "idk", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/TrixAde/Proxima-Hub/main/Main.lua"))()
 	end)
@@ -4653,8 +4841,8 @@ elseif game.PlaceId == 3956818381 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -5081,8 +5269,8 @@ elseif game.PlaceId == 12640491155 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -5228,8 +5416,8 @@ elseif game.PlaceId == 3527629287 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -5318,8 +5506,8 @@ elseif game.PlaceId == 9865958871 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -5417,8 +5605,8 @@ elseif game.PlaceId == 3623096087 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -5493,8 +5681,8 @@ elseif game.PlaceId == 5796917097 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -5561,8 +5749,8 @@ elseif game.PlaceId == 185655149 then
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -5590,8 +5778,8 @@ else
 		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
 
 		Module.Prompt({
-    		invite = "https://discord.gg/xwy5Cu62Vw", 
-    		name = "Sky Hub"
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
 		})
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
