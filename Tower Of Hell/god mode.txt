@@ -1,0 +1,7 @@
+if game:GetService("Players").LocalPlayer.Character:FindFirstChild('KillScript') then -- path here
+	for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+		if v.Name == "KillScript" then
+			v:Destroy()
+		end
+	end
+end

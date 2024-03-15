@@ -1,0 +1,26 @@
+if workspace.tower.walls["2"]:FindFirstChild('killwall') then -- path here
+    for i,v in pairs(workspace.tower.walls["2"]:GetChildren()) do
+        if v.Name == "killwall" then
+            v:Destroy()
+        end
+    end
+end
+if game:GetService("Players").LocalPlayer.Character:FindFirstChild('KillScript') then -- path here
+    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+        if v.Name == "KillScript" then
+            v:Destroy()
+        end
+    end
+end
+local plr = game:service"Players".LocalPlayer;
+local tween_s = game:service"TweenService";
+local info = TweenInfo.new(5,Enum.EasingStyle.Quad);
+
+
+for i,v in pairs(workspace:GetDescendants()) do
+    if v.Name == "finishes" and v.Parent.Name == "tower" then
+        local tween = tween_s:Create(plr.Character["HumanoidRootPart"],info,{CFrame=v.Finish.CFrame});
+       tween:Play();
+        
+    end
+end
