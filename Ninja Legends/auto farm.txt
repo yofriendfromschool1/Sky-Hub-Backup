@@ -1,0 +1,15 @@
+getgenv().swing = false
+spawn(function()
+    while true do wait()
+        if not getgenv().swing then break end
+
+        local args = {
+            [1] = "swingKatana"
+        }
+
+        game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(91, 91246, 144)
+        wait(0.01)
+        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(88, 91246, 137)
+    end
+end)
