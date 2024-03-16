@@ -10,7 +10,7 @@
  
 --]]
  
-if game.GameId == 66654135 then
+if game.GameId == 142823291 then
 local blur = Instance.new("BlurEffect")
 local Intro = Instance.new("ScreenGui")
 local Header = Instance.new("TextLabel")
