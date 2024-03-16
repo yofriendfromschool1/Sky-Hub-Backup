@@ -5,7 +5,7 @@ By Sky/dsgdfs
 
 Last Updated 3/15/2024
 
-Added mobile minimize support
+Added mobile minimize support and fe spam sound
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -5947,6 +5947,28 @@ Main:AddButton({
 		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 			if v.Name == "skyhubtoggle" then
 				v:Destroy()
+			end
+		end
+	end
+})
+Main:AddButton({
+	Title = "FE Spam Sound",
+	Description = "if it says yes than everyone can hear if no then no one can hear",
+	Callback = function()
+		local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua", true))()
+		local SoundService = game:GetService("SoundService")
+		if SoundService.RespectFilteringEnabled == false then
+			Notification.new("success", "Success", "Everyone can hear the sounds in this game!")
+			Notification.new("message", "YouTube : darkModz", "YouTube - darkmodz")
+		else
+			Notification.new("warning", "Warning", "Unfortunately no one else can hear it in this game, try a different one.\nMaybe an older game will work.")
+		end
+		while wait() do
+			for _, sound in next, workspace:GetDescendants() do
+				if sound:IsA("Sound") then
+					sound.Volume = 10
+					sound:Play()
+				end
 			end
 		end
 	end
