@@ -105,7 +105,7 @@ Admins:AddButton({
 	Title = "Nameless Admin",
 	Description = "Nameless Admin",
 	Callback = function()
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source'))()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/NamelessAdmin-NO-BYFRON-GUI/main/Source'))()
 	end
 })
 Admins:AddButton({
