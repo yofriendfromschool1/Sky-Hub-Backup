@@ -2559,7 +2559,7 @@ elseif game.PlaceId == 155615604 then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
 	end)
 	MainSection:NewButton("Tiger Admin", "idk", function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/tiger%20admin.txt"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Prison%20Life/TigerAdmin.lua.txt"))()
 	end)
 	MainSection:NewButton("Astral Hub", "hub", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/AstralHub/main/Loader.lua"))()
