@@ -5074,13 +5074,13 @@ elseif game.PlaceId == 12640491155 then
 		for i, v in pairs(workspace.Vehicles:GetChildren()) do
 			local player = txt
 			local targname = ""
-			for i, v in pairs(game.Players:GetPlayers()) do
+			for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 				if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) or string.sub(string.lower(v.Character.Head:WaitForChild("PlayerHover").Frame.RPName.Text), 0, #player) == string.lower(player) then
 					targname = v.Name
 				end
 			end
 			if v.Name == targname then
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Body.VehicleSeat.CFrame
+				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Body.VehicleSeat.CFrame
 				wait(0.25)
 				fireproximityprompt(v.Body.VehicleSeat.ButtonPrompt)
 			end
@@ -5090,13 +5090,13 @@ elseif game.PlaceId == 12640491155 then
 		for i, v in pairs(workspace:GetChildren()) do
 			local player = txt
 			local targname = ""
-			for i, v in pairs(game.Players:GetPlayers()) do
+			for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 				if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) or string.sub(string.lower(v.Character.Head:WaitForChild("PlayerHover").Frame.RPName.Text), 0, #player) == string.lower(player) then
 					targname = v.Name
 				end
 			end
 			if v.Name == targname then
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:WaitForChild("HumanoidRootPart").CFrame
+				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v:WaitForChild("HumanoidRootPart").CFrame
 			end
 		end
 	end)
@@ -5837,7 +5837,7 @@ elseif game.PlaceId == 14426444782 then
 		getgenv().lol = state
 		for _, tool in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 			if tool:IsA("Tool") and tool:FindFirstChild("combatClient") then
-				tool.Parent = game.Players.LocalPlayer.Character
+				tool.Parent = game:GetService("Players").LocalPlayer.Character
 			end
 		end
 		local function delplrs()
@@ -5893,7 +5893,7 @@ elseif game.PlaceId == 14426444782 then
 		game:GetService("Players").LocalPlayer.CharacterAdded:Connect(function(character)
 			for _, tool in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 				if tool:IsA("Tool") and tool:FindFirstChild("combatClient") then
-					tool.Parent = game.Players.LocalPlayer.Character
+					tool.Parent = game:GetService("Players").LocalPlayer.Character
 				end
 			end
 		end)
