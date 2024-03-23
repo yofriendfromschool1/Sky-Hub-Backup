@@ -7,14 +7,14 @@ By Sky/dsgdfs
 games it supports Da Hood, Arsenal, Tower of Hell, KAT!, Fencing,
 Work At A Pizza Place, VR Hands, Adopt Me, Jailbreak, Prison Life,
 Build A Boat For Treasure, Gorilla Tag Professional, Murder Mystery 2, Blox fruits, Counter Blox, Mic Up, Neighbors, Natural Diaster Survival, Ro-Ghoul, Blade Ball, Pet Simulator X,
-Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends, Bayside High School, Big PaintBall, Big PaintBall 2, Muscle Legends, Road to Grambys, Bloxburg and Universal.
+Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends, Bayside High School, Big PaintBall, Big PaintBall 2, Muscle Legends, Road to Grambys, Bloxburg, Cursed Sea and Universal.
 30+ games (Including some obbys)
 
 Rebuilt On IllusionHub
 
-Last Updated 3/15/2024
+Last Updated 3/23/2024
 
-CE Support/Edition Soon.
+added another game: Cursed Sea, and fixed fake byfron gui by nameless admin
 
 Library by Lua_u
 
@@ -5826,6 +5826,175 @@ elseif game.PlaceId == 185655149 then
 	end)
 	MainSection:NewButton("CocoHub", "idk", function()
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
+	end)
+	-- Cursed Sea 
+elseif game.PlaceId == 14426444782 then
+	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
+	local Main = Window:NewTab("Main")
+	local MainSection = Main:NewSection("Main")
+	MainSection:NewToggle("Auto Farm", "must be in first person or shift lock", function(state)
+		getgenv().lol = state
+		for _, tool in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+			if tool:IsA("Tool") and tool:FindFirstChild("combatClient") then
+				tool.Parent = game.Players.LocalPlayer.Character
+			end
+		end
+		local function delplrs()
+			for i, v in pairs(game:GetService("Workspace").entities:GetDescendants()) do
+				if v.Name == "scripts" and v.ClassName == "Folder" then
+					if v.Parent.Name ~= game:GetService("Players").LocalPlayer.Name then
+						v.Parent:Destroy()
+					end
+				end
+			end
+		end
+		delplrs()
+		local function getTarget()
+			for _, v in pairs(workspace.entities:GetDescendants()) do
+				if v.Name == "HumanoidRootPart" then
+					return v
+				end
+			end
+			return nil
+		end
+		spawn(function()
+			local currentTarget = nil
+			while wait() do
+				if not getgenv().lol then
+					break
+				end
+				if currentTarget == nil or not currentTarget:IsDescendantOf(workspace) then
+					currentTarget = getTarget()
+				end
+				if currentTarget then
+					local player = game:GetService("Players").LocalPlayer
+					local character = player.Character
+					local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
+					local targetPosition = currentTarget.Position
+					local parent = currentTarget.Parent
+					if humanoidRootPart then
+						local direction = (targetPosition - humanoidRootPart.Position).unit
+						local lookAt = CFrame.new(humanoidRootPart.Position, targetPosition)
+						local rotation = CFrame.Angles(0, math.atan2(-direction.Z, -direction.X) + math.pi, 0)
+						humanoidRootPart.CFrame = lookAt * rotation
+						game:GetService("Workspace").CurrentCamera.CFrame = CFrame.new(game:GetService("Workspace").CurrentCamera.CFrame.p, currentTarget.Position)
+						humanoidRootPart.CFrame = currentTarget.CFrame * CFrame.new(0, 0, 5) * CFrame.Angles(0, math.pi, 0)
+						local args = {
+							[1] = "M1"
+						}
+						game:GetService("ReplicatedStorage"):WaitForChild("remotes"):WaitForChild("combat"):FireServer(unpack(args))
+					end
+				else
+					wait(0.5)
+				end
+			end
+		end)
+		game:GetService("Players").LocalPlayer.CharacterAdded:Connect(function(character)
+			for _, tool in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+				if tool:IsA("Tool") and tool:FindFirstChild("combatClient") then
+					tool.Parent = game.Players.LocalPlayer.Character
+				end
+			end
+		end)
+		game:GetService("Players").PlayerAdded:Connect(function(player)
+			delplrs()
+		end)
+		game:GetService("Players").CharacterAdded:Connect(function(player)
+			delplrs()
+		end)
+	end)
+	MainSection:NewButton("Anti-afk", "no kick after 20 mins", function()
+		Players = game:GetService("Players")
+		local GC = getconnections or get_signal_cons
+		if GC then
+			for i, v in pairs(GC(Players.LocalPlayer.Idled)) do
+				if v["Disable"] then
+					v["Disable"](v)
+				elseif v["Disconnect"] then
+					v["Disconnect"](v)
+				end
+			end
+		else
+			Players.LocalPlayer.Idled:Connect(function()
+				local VirtualUser = game:GetService("VirtualUser")
+				VirtualUser:CaptureController()
+				VirtualUser:ClickButton2(Vector2.new())
+			end)
+		end
+	end)
+	
+
+	local Discord = Window:NewTab("Discords")
+	local DiscordSection = Discord:NewSection("Discords")
+	DiscordSection:NewButton("Discord Invite", "wait a few secs will prompt ui", function()
+		local Module = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
+		Module.Prompt({
+			invite = "https://discord.gg/xwy5Cu62Vw",
+			name = "Sky Hub"
+		})
+	end)
+	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
+		setclipboard(string2)
+	end)
+	local Admins = Window:NewTab("Admins", 10016551771)
+	local AdminsSection = Admins:NewSection("Admins")
+	AdminsSection:NewButton("Infinite Yield FE", "Admin", function()
+		loadstring(game:HttpGet(_G.infydtype))()
+	end)
+	AdminsSection:NewButton("Infinite Store", "Archived", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Infinite-Store/Infinite-Store/main/main.lua"))()
+	end)
+	AdminsSection:NewButton("Nameless Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/NamelessAdmin-NO-BYFRON-GUI/main/Source'))()
+	end)
+	AdminsSection:NewButton("fates admin", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+	end)
+	AdminsSection:NewButton("Shattervast Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/%5BFE%5D%20Shattervast.lua'))()
+	end)
+	AdminsSection:NewButton("Proton Free Admin", "Admin", function()
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Proton%20Free'))()
+	end)
+	AdminsSection:NewButton("Proton 2 free Admin", "Admin", function()
+																											 -- DEFAULT CMD BAR PREFIX IS ;
+																											 -- DEFAULT CHAT PREFIX IS /
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
+	end)
+	AdminsSection:NewButton("Reviz Admin V2", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Reviz%20AdminV2"))()
+	end)
+	local Hubs = Window:NewTab("Hubs", 7360649366)
+	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
+	end)
+	HubsSection:NewButton("Psyhub", "idk", function()
+		loadstring(game:GetObjects("rbxassetid://3014051754")[1].Source)()
+	end)
+	HubsSection:NewButton("Ezhub", "130+ games", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()--
+	end)
+	HubsSection:NewButton("CocoHub", "idk", function()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
+	end)
+	HubsSection:NewButton("MonkeHub", "idk", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeHub/main/Loader.lua"))()
+	end)
+	local Player = Window:NewTab("Player", 2795572800)
+	local PlayerSection = Player:NewSection("Player")
+	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
+	end)
+	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
+	end)
+	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
+		game:GetService("Workspace").Gravity = v
 	end)
 
 -- Universal
