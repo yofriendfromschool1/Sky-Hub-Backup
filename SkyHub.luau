@@ -112,6 +112,9 @@ if game.PlaceId == 2788229376 then
 	HubsSection:NewButton("Ezhub", "130+ games", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()--
 	end)
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Owl Hub", "46+ how", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))();
 	end)
@@ -328,6 +331,9 @@ elseif game.PlaceId == 286090429 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -543,6 +549,9 @@ elseif game.PlaceId == 1962086868 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -643,6 +652,9 @@ elseif game.PlaceId == 621129760 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -911,6 +923,9 @@ elseif game.PlaceId == 12109643 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -1545,6 +1560,9 @@ elseif game.PlaceId == 192800 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -1689,6 +1707,9 @@ elseif game.PlaceId == 4832438542 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -2245,6 +2266,9 @@ elseif game.PlaceId == 920587237 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -2532,6 +2556,9 @@ elseif game.PlaceId == 155615604 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -2753,6 +2780,9 @@ elseif game.PlaceId == 537413528 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -3007,6 +3037,9 @@ elseif game.PlaceId == 8690998110 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -3144,6 +3177,9 @@ elseif game.PlaceId == 142823291 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -3426,6 +3462,9 @@ elseif game.PlaceId == 2753915549 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	MainSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -3547,6 +3586,9 @@ elseif game.PlaceId == 301549746 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -3678,6 +3720,9 @@ elseif game.PlaceId == 6884319169 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -3774,6 +3819,9 @@ elseif game.PlaceId == 12699642568 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -3901,6 +3949,9 @@ elseif game.PlaceId == 189707 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -4044,6 +4095,9 @@ elseif game.PlaceId == 914010731 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -4190,6 +4244,9 @@ elseif game.PlaceId == 13772394625 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	MainSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -4280,6 +4337,9 @@ elseif game.PlaceId == 6284583030 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -4373,6 +4433,9 @@ elseif game.PlaceId == 8737899170 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	MainSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -4499,6 +4562,9 @@ elseif game.PlaceId == 3101667897 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	MainSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -4598,6 +4664,9 @@ elseif game.PlaceId == 4924922222 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	MainSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -4701,6 +4770,9 @@ elseif game.PlaceId == 6872265039 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	MainSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -4798,6 +4870,9 @@ elseif game.PlaceId == 6441847031 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -4930,6 +5005,9 @@ elseif game.PlaceId == 3956818381 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -5358,6 +5436,9 @@ elseif game.PlaceId == 12640491155 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -5510,6 +5591,9 @@ elseif game.PlaceId == 3527629287 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -5605,6 +5689,9 @@ elseif game.PlaceId == 9865958871 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -5704,6 +5791,9 @@ elseif game.PlaceId == 3623096087 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -5970,6 +6060,9 @@ elseif game.PlaceId == 14426444782 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -6079,6 +6172,9 @@ else
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "Hoho", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
