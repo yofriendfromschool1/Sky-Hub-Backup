@@ -5,7 +5,7 @@ By Sky/dsgdfs
 
 Last Updated 3/23/2024
 
-added harked guis and comet
+added harked guis and comet fe bring player and fe part mover
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -27911,6 +27911,20 @@ Main:AddButton({
 				v:Destroy()
 			end
 		end
+	end
+})
+Main:AddButton({
+	Title = "FE Bring Player",
+	Description = "bring player",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/febringplayer.txt", true))()
+	end
+})
+Main:AddButton({
+	Title = "FE part mover",
+	Description = "unanchored part mover",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/partmove.lua.txt", true))()
 	end
 })
 Main:AddButton({
