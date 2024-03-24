@@ -29383,6 +29383,13 @@ Main:AddButton({
 	end
 })
 Main:AddButton({
+	Title = "fork of backdoor.exe?",
+	Description = "Scans for backdoors",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Its-LALOL/LALOL-Hub/main/Backdoor-Scanner/script"))()
+	end
+})
+Main:AddButton({
 	Title = "Blackhole",
 	Description = "unanchored objects",
 	Callback = function()
