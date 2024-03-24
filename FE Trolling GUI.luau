@@ -20925,6 +20925,20 @@ end
 	end
 })
 GUIS:AddButton({
+	Title = "Quirky Cmd",
+	Description = "harked cmds?",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/qcmd.txt"))()
+	end
+})
+GUIS:AddButton({
+	Title = "destruct hex fe gui",
+	Description = "sorta like harked",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/destructhexfegui.txt"))()
+	end
+})
+GUIS:AddButton({
 	Title = "Comet",
 	Description = "like harked",
 	Callback = function()
