@@ -12,9 +12,9 @@ Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends
 
 Rebuilt On IllusionHub
 
-Last Updated 3/23/2024
+Last Updated 3/24/2024
 
-added another game: Cursed Sea, and fixed fake byfron gui by nameless admin
+Added sensation: discord.gg/sensation to jailbreak: https://scriptblox.com/script/Jailbreak-Sensation-V2-11619
 
 Library by Lua_u
 
@@ -2355,6 +2355,11 @@ elseif game.PlaceId == 606849621 then
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/GabX'), true))()
 	end)
 	MainSection:NewButton("Chaos Hub", "Chaos Hub", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/xChaoticVoid/Chaos-Hub-v1/main/ChaosHub.lua"))()
+	end)
+	MainSection:NewButton("Sensation V2", "discord.gg/sensation", function()
+		-- This script is an early version of the soon to come sensation v2.
+		-- discord.gg/sensation
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/xChaoticVoid/Chaos-Hub-v1/main/ChaosHub.lua"))()
 	end)
 	MainSection:NewButton("JailMonkey", "JailMonkey", function()
