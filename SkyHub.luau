@@ -12,9 +12,9 @@ Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends
 
 Rebuilt On IllusionHub
 
-Last Updated 3/24/2024
+Last Updated 3/25/2024
 
-Added sensation: discord.gg/sensation to jailbreak: https://scriptblox.com/script/Jailbreak-Sensation-V2-11619
+Added FE Crash Server script to prison life.
 
 Library by Lua_u
 
@@ -2592,6 +2592,9 @@ elseif game.PlaceId == 155615604 then
 	end)
 	MainSection:NewButton("Tiger Admin", "idk", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Prison%20Life/TigerAdmin.lua.txt"))()
+	end)
+	MainSection:NewButton("Crash Server", "Crashes game you need Remington/Shotgun", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Prison%20Life/crash.txt"))()
 	end)
 	MainSection:NewButton("Astral Hub", "hub", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/AstralHub/main/Loader.lua"))()
