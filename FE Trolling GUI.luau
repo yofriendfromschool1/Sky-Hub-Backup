@@ -3,9 +3,9 @@ FE Trolling GUI
 
 By Sky/dsgdfs
 
-Last Updated 3/24/2024
+Last Updated 3/25/2024
 
-added harked guis and comet, qcmds fe bring player and fe part mover added low ping server joiners, queueonteleport and like 5 more backdoor scanners
+Added all Genesis Scripts.
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -74,6 +74,12 @@ Discord:AddButton({
 	Description = "Copys Discord invite link",
 	Callback = function()
 		setclipboard(string)
+		Fluent:Notify({
+			Title = "Copied Discord invite link",
+			Content = "",
+			SubContent = "", -- Optional
+			Duration = 5 -- Set to nil to make the notification not disappear
+		})
 	end
 })
 Discord:AddButton({
@@ -81,6 +87,12 @@ Discord:AddButton({
 	Description = "Copys OLD Discord invite link",
 	Callback = function()
 		setclipboard(string2)
+		Fluent:Notify({
+			Title = "Copied Discord invite link",
+			Content = "",
+			SubContent = "", -- Optional
+			Duration = 5 -- Set to nil to make the notification not disappear
+		})
 	end
 })
 local Admins = Window:AddTab({
@@ -30023,6 +30035,287 @@ GUIS:AddButton({
 			end;
 			return a
 		end)()))()
+	end
+})
+local GENESIS = Window:AddTab({
+	Title = "GENESIS",
+	Icon = "globe"
+})
+GENESIS:AddParagraph({
+    Title = "Warning",
+    Content = "You need hats for these scripts btw"
+})
+GENESIS:AddButton({
+	Title = "Genesis Game",
+	Description = "Free hats in game for the scripts required to run sum scripts also can get hats for the scripts here",
+	Callback = function()
+		local x = {}
+		for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/14133411956/servers/Public?sortOrder=Asc&limit=100")).data) do
+			if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+				x[#x + 1] = v.id
+			end
+		end
+		if #x > 0 then
+			game:GetService("TeleportService"):TeleportToPlaceInstance(14133411956, x[math.random(1, #x)])
+		else
+			return error("Serverhop","Couldn't find a server.")
+		end
+	end
+})
+GENESIS:AddButton({
+	Title = "Genesis Discord",
+	Description = "stay updated on scripts",
+	Callback = function()
+		if IsOnMobile then
+			setclipboard("https://discord.com/invite/aEZpBEHgMT")
+			Fluent:Notify({
+				Title = "Copied Discord invite link",
+				Content = "",
+				SubContent = "", -- Optional
+				Duration = 5 -- Set to nil to make the notification not disappear
+			})
+		else
+			setclipboard("https://discord.com/invite/aEZpBEHgMT")
+			Fluent:Notify({
+				Title = "Copied Discord invite link",
+				Content = "",
+				SubContent = "", -- Optional
+				Duration = 5 -- Set to nil to make the notification not disappear
+			})
+		end
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Neko",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		DisableFlingHealthBar = false
+
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Neko"))()
+		Fluent:Notify({
+			Title = "Controls",
+			Content = ([[Script Moves: (USE A KEYBOARD SCRIPT IF MOVE REQUIRES A KEYBOARD KEY)
+			- Click: Punch Kick Combo
+			- F: Equip knives
+			- Click (Knives Equipped): Knife Slash Combo
+			- R: Lay Down & Kick Feet
+			- T: Taunt]]),
+			SubContent = "", -- Optional
+			Duration = 15 -- Set to nil to make the notification not disappear
+		})
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Goner",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		
+	DisableFlingHealthBar = false
+
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Goner"))()
+		Fluent:Notify({
+			Title = "Controls",
+			Content = ([[Script Moves: (USE A KEYBOARD SCRIPT IF MOVE REQUIRES A KEYBOARD KEY)
+			- Click: Slash
+			- Q: Ink Underground]]),
+			SubContent = "", -- Optional
+			Duration = 15 -- Set to nil to make the notification not disappear
+		})
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Linked Sword",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		DisableFlingHealthBar = false
+
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Linked%20Sword"))()
+		Fluent:Notify({
+			Title = "Controls",
+			Content = ([[Script Moves: (USE A KEYBOARD SCRIPT IF MOVE REQUIRES A KEYBOARD KEY)
+			- Click: Sword Slash Combo
+			- Z: Baller Ball
+			- X: Rocket Launcher
+			- C: Bomb]]),
+			SubContent = "", -- Optional
+			Duration = 15 -- Set to nil to make the notification not disappear
+		})
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Star Glitcher",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		-- SET THE VARIABLE BELOW TO TRUE TO DISABLE ALL EFFECTS, COULD HELP WITH PERFORMANCE ISSUES
+		if IsOnMobile then
+			DisableFX = true
+		else
+			DisableFX = false
+		end
+
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Star%20Glitcher"))()
+		Fluent:Notify({
+			Title = "Controls",
+			Content = ([[Script Moves: (USE A KEYBOARD SCRIPT IF MOVE REQUIRES A KEYBOARD KEY)
+			- Click: Impale Combo
+			- Modes: The script has a ton of modes, I recommend watching the video on our channel for the full move list]]),
+			SubContent = "", -- Optional
+			Duration = 15 -- Set to nil to make the notification not disappear
+		})
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Gale Fighter",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Gale%20Fighter"))()
+		Fluent:Notify({
+			Title = "Controls",
+			Content = ([[Script Moves: (USE A KEYBOARD SCRIPT IF MOVE REQUIRES A KEYBOARD KEY)
+			- Click: Punch/Kick Combo
+			- R: Kick Combo
+			- F: Hyper Kick Combo
+			- T: Taunt]]),
+			SubContent = "", -- Optional
+			Duration = 15 -- Set to nil to make the notification not disappear
+		})
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Motorcycle",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Motorcycle"))()
+		Fluent:Notify({
+			Title = "Controls",
+			Content = ([[Script Moves: (USE A KEYBOARD SCRIPT IF MOVE REQUIRES A KEYBOARD KEY)
+			- Click: Shoot
+			- Z: Boost]]),
+			SubContent = "", -- Optional
+			Duration = 15 -- Set to nil to make the notification not disappear
+		})
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Ban Hammer",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Ban%20Hammer"))()
+		Fluent:Notify({
+			Title = "Controls",
+			Content = ([[Script Moves: (USE A KEYBOARD SCRIPT IF MOVE REQUIRES A KEYBOARD KEY)
+			- Click: Ban
+			- E: Ban 2
+			- R: Ban 3]]),
+			SubContent = "", -- Optional
+			Duration = 15 -- Set to nil to make the notification not disappear
+		})
+	end
+})
+GENESIS:AddButton({
+	Title = "FE AK47",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/AK-47"))()
+		Fluent:Notify({
+			Title = "Controls",
+			Content = ([[Script Moves:
+			- Click: Shoot]]),
+			SubContent = "", -- Optional
+			Duration = 15 -- Set to nil to make the notification not disappear
+		})
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Neptunian V",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Neptunian%20V"))()
+		Fluent:Notify({
+			Title = "Controls",
+			Content = ([[Script Moves: (USE A KEYBOARD SCRIPT IF MOVE REQUIRES A KEYBOARD KEY)
+			- F: Equip
+			- R: Jump
+			*MUST BE EQUIPPED*
+			- Click: Slash
+			- Z: Charge dash
+			- X: Big Diamond Sword Projectile
+			- C: Spin sword strike]]),
+			SubContent = "", -- Optional
+			Duration = 15 -- Set to nil to make the notification not disappear
+		})
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Krystal Dance",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Krystal%20Dance"))()
+		Fluent:Notify({
+			Title = "Controls",
+			Content = ([[Script Moves: (USE A KEYBOARD SCRIPT IF MOVE REQUIRES A KEYBOARD KEY)
+			- Q: The Swoosher
+			- E: The nutty
+			- R: Spin me right round!
+			- T: Plum juice dance
+			- Y: Moonwalk
+			- U: Slav dance
+			- P: Barrel roll
+			- F: The Jerky
+			- G: The Shuffle
+			- H: The Spongebob
+			- J: Here comes the money!
+			- K: Runnin' in the 90's]]),
+			SubContent = "", -- Optional
+			Duration = 15 -- Set to nil to make the notification not disappear
+		})
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Sniper",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sniper"))()
+		Fluent:Notify({
+			Title = "Controls",
+			Content = ([[Script Moves: (USE A KEYBOARD SCRIPT IF MOVE REQUIRES A KEYBOARD KEY)
+			- Z: Shoot
+			- X: Jump Forward Shoot
+			- C: Jump Backwards Shoot
+			- V: Spam Shoot
+			- B: Mortar Shoot
+			- J: Dash]]),
+			SubContent = "", -- Optional
+			Duration = 15 -- Set to nil to make the notification not disappear
+		})
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Banisher",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Banisher"))()
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Lightning Cannon",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Lightning%20Cannon"))()
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Pistol",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Pistol"))()
+	end
+})
+GENESIS:AddButton({
+	Title = "FE Studio Dummy",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Studio%20Dummy"))()
 	end
 })
 InterfaceManager:SetLibrary(Fluent)
