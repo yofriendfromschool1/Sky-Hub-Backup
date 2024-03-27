@@ -5951,7 +5951,11 @@ else
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
 	end)
 	DebugsSection:NewButton("SimpleSpy V3", "Logs Remotes", function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/SimpleSpyV3/main.lua"))()
+		if IsOnMobile then
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/SimpleSpyV3/mobilemain.lua"))()
+		else
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/SimpleSpyV3/main.lua"))()
+		end
 	end)
 	DebugsSection:NewButton("Hydroxide", "Ultimate Debugging", function()
 		local owner = "Upbolt"
