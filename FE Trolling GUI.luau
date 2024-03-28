@@ -3,9 +3,9 @@ FE Trolling GUI
 
 By Sky/dsgdfs
 
-Last Updated 3/27/2024
+Last Updated 3/28/2024
 
-Added zeroday backdoor scanner
+Added another chat bypass
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -29451,6 +29451,13 @@ Main:AddButton({
 	Description = "Bypasses Chat Filter",
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/wspo23e/SDL-Roblox-ChatBypasser/main/SDL-NoFilterV2.5"))()
+	end
+})
+Main:AddButton({
+	Title = "FE Chat Bypass 5",
+	Description = "Bypasses Chat Filter",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Chat/NoTagScript.txt'))();
 	end
 })
 Main:AddButton({
