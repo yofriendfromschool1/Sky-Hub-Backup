@@ -3,9 +3,9 @@ FE Trolling GUI
 
 By Sky/dsgdfs
 
-Last Updated 3/25/2024
+Last Updated 3/27/2024
 
-Added all Genesis Scripts.
+Added zeroday backdoor scanner
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -22002,6 +22002,13 @@ GUIS:AddButton({
 	Description = "sorta like harked",
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/destructhexfegui.txt"))()
+	end
+})
+GUIS:AddButton({
+	Title = "Zeroday",
+	Description = "sorta like harked",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/zeroday/zeroday.lua"))()
 	end
 })
 GUIS:AddButton({
