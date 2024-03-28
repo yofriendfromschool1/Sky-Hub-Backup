@@ -245,7 +245,7 @@ zeroday = {
 	["Commands"] = {},
 
 	["Libraries"] = {
-		["Notifications"] = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
+		["Notifications"] = loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/zeroday/AkaliNotif.lua"))()
 	},
 
 	["Services"] = {
