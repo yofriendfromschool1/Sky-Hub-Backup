@@ -30097,7 +30097,7 @@ GENESIS:AddButton({
 	end
 })
 GENESIS:AddButton({
-	Title = "FE Neko",
+	Title = "FE Good Cop Bad Cop",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
 		if IsOnMobile then
