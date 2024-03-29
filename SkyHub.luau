@@ -12,9 +12,9 @@ Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends
 
 Rebuilt On IllusionHub
 
-Last Updated 3/25/2024
+Last Updated 3/28/2024
 
-Added FE Crash Server script to prison life.
+Added Orca
 
 Library by Lua_u
 
@@ -109,6 +109,9 @@ if game.PlaceId == 2788229376 then
 	end)
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Owl Hub", "46+ how", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))();
@@ -324,6 +327,9 @@ elseif game.PlaceId == 286090429 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -537,6 +543,9 @@ elseif game.PlaceId == 1962086868 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -634,6 +643,9 @@ elseif game.PlaceId == 621129760 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -900,6 +912,9 @@ elseif game.PlaceId == 12109643 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -1533,6 +1548,9 @@ elseif game.PlaceId == 192800 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -1674,6 +1692,9 @@ elseif game.PlaceId == 4832438542 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -2229,6 +2250,9 @@ elseif game.PlaceId == 920587237 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -2519,6 +2543,9 @@ elseif game.PlaceId == 155615604 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -2740,6 +2767,9 @@ elseif game.PlaceId == 537413528 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -2993,6 +3023,9 @@ elseif game.PlaceId == 8690998110 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -3127,6 +3160,9 @@ elseif game.PlaceId == 142823291 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -3408,6 +3444,9 @@ elseif game.PlaceId == 2753915549 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	MainSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -3526,6 +3565,9 @@ elseif game.PlaceId == 301549746 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -3656,6 +3698,9 @@ elseif game.PlaceId == 6884319169 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -3749,6 +3794,9 @@ elseif game.PlaceId == 12699642568 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -3874,6 +3922,9 @@ elseif game.PlaceId == 189707 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -4015,6 +4066,9 @@ elseif game.PlaceId == 914010731 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -4160,6 +4214,9 @@ elseif game.PlaceId == 13772394625 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	MainSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -4247,6 +4304,9 @@ elseif game.PlaceId == 6284583030 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -4338,6 +4398,9 @@ elseif game.PlaceId == 8737899170 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	MainSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -4463,6 +4526,9 @@ elseif game.PlaceId == 3101667897 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	MainSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -4559,6 +4625,9 @@ elseif game.PlaceId == 4924922222 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	MainSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -4661,6 +4730,9 @@ elseif game.PlaceId == 6872265039 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	MainSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -4755,6 +4827,9 @@ elseif game.PlaceId == 6441847031 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -4885,6 +4960,9 @@ elseif game.PlaceId == 3956818381 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -5312,6 +5390,9 @@ elseif game.PlaceId == 12640491155 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -5462,6 +5543,9 @@ elseif game.PlaceId == 3527629287 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -5554,6 +5638,9 @@ elseif game.PlaceId == 9865958871 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -5651,6 +5738,9 @@ elseif game.PlaceId == 3623096087 then
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
@@ -5906,6 +5996,9 @@ elseif game.PlaceId == 14426444782 then
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
 	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
 	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
 	end)
@@ -6016,6 +6109,9 @@ else
 	local HubsSection = Hubs:NewSection("Hubs")
 	HubsSection:NewButton("Sirius", "cool asl", function()--
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
 	end)
 	HubsSection:NewButton("Hoho Hub", "Hoho", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
