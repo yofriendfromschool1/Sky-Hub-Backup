@@ -5,7 +5,7 @@ By Sky/dsgdfs
 
 Last Updated 3/28/2024
 
-Added another chat bypass
+Added another chat bypass and FE Chat Haxx V3.5
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -29423,6 +29423,13 @@ GUIS:AddButton({
 	Description = "idk",
 	Callback = function()
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/sushi/main/X'), true))()
+	end
+})
+Main:AddButton({
+	Title = "FE Chat Haxx V3.5",
+	Description = "Bypasses Chat Filter",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Chat/FE%20Chat%20Haxx%20V3.5.txt'))();
 	end
 })
 Main:AddButton({
