@@ -30354,6 +30354,22 @@ GENESIS:AddButton({
 	end
 })
 GENESIS:AddButton({
+	Title = "FE Karambit",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		if IsOnMobile then
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+			Flunet:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+		end
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Karambit"))()
+	end
+})
+GENESIS:AddButton({
 	Title = "FE Krystal Dance",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
