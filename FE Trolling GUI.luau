@@ -3,9 +3,9 @@ FE Trolling GUI
 
 By Sky/dsgdfs
 
-Last Updated 3/28/2024
+Last Updated 3/30/2024
 
-Added another chat bypass and FE Chat Haxx V3.5
+Fixed closing uis on mobile just do close in main then fixed running genesis scripts on mobile
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -28982,8 +28982,16 @@ local Main = Window:AddTab({
 })
 Main:AddButton({
 	Title = "Close",
-	Description = "Closes UI if X or close button isnt working",
+	Description = "Closes UI if X or close button isnt working and closes keyboard script if u on mobile n ran genesis script and bring back ui button",
 	Callback = function()
+		if game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			game:GetService("CoreGui")["Keyboard gui WarriorRoberr Version"]:Destroy()
+		end
+		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+			if v.Name == "skyhubtoggle" then
+				v:Destroy()
+			end
+		end
 		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
 			if v.Name == "ScreenGui" then
 				for i,v in pairs(v:GetDescendants()) do
@@ -28991,11 +28999,6 @@ Main:AddButton({
 						v.Parent:Destroy()
 					end
 				end
-			end
-		end
-		for i,v in pairs(game:GetService("CoreGui"):GetDescendants()) do
-			if v.Name == "skyhubtoggle" then
-				v:Destroy()
 			end
 		end
 	end
@@ -30070,17 +30073,7 @@ GENESIS:AddButton({
 	Title = "Genesis Game",
 	Description = "Free hats in game for the scripts required to run sum scripts also can get hats for the scripts here",
 	Callback = function()
-		local x = {}
-		for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/14133411956/servers/Public?sortOrder=Asc&limit=100")).data) do
-			if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
-				x[#x + 1] = v.id
-			end
-		end
-		if #x > 0 then
-			game:GetService("TeleportService"):TeleportToPlaceInstance(14133411956, x[math.random(1, #x)])
-		else
-			return error("Serverhop","Couldn't find a server.")
-		end
+		game:GetService("TeleportService"):Teleport(14133411956,game:GetService("Players").LocalPlayer)
 	end
 })
 GENESIS:AddButton({
@@ -30100,31 +30093,22 @@ GENESIS:AddButton({
 	Title = "FE Good Cop Bad Cop",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Good%20Cop%20Bad%20Cop"))()
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
 				Title = "Loaded Keyboard Script",
 				Content = "Reason: Because Your on mobile so more support.",
 				SubContent = "",
 				Duration = 15
 			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
 		end
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Good%20Cop%20Bad%20Cop"))()
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Neko",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
-				Title = "Loaded Keyboard Script",
-				Content = "Reason: Because Your on mobile so more support.",
-				SubContent = "",
-				Duration = 15
-			})
-		end
 		DisableFlingHealthBar = false
 
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Neko"))()
@@ -30139,22 +30123,23 @@ GENESIS:AddButton({
 			SubContent = "", -- Optional
 			Duration = 15 -- Set to nil to make the notification not disappear
 		})
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
+		
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Goner",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
-				Title = "Loaded Keyboard Script",
-				Content = "Reason: Because Your on mobile so more support.",
-				SubContent = "",
-				Duration = 15
-			})
-		end
-	DisableFlingHealthBar = false
+		DisableFlingHealthBar = false
 
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Goner"))()
 		Fluent:Notify({
@@ -30165,21 +30150,21 @@ GENESIS:AddButton({
 			SubContent = "", -- Optional
 			Duration = 15 -- Set to nil to make the notification not disappear
 		})
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Linked Sword",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
-				Title = "Loaded Keyboard Script",
-				Content = "Reason: Because Your on mobile so more support.",
-				SubContent = "",
-				Duration = 15
-			})
-		end
 		DisableFlingHealthBar = false
 
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Linked%20Sword"))()
@@ -30193,6 +30178,15 @@ GENESIS:AddButton({
 			SubContent = "", -- Optional
 			Duration = 15 -- Set to nil to make the notification not disappear
 		})
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
 	end
 })
 GENESIS:AddButton({
@@ -30205,15 +30199,6 @@ GENESIS:AddButton({
 		else
 			DisableFX = false
 		end
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
-				Title = "Loaded Keyboard Script",
-				Content = "Reason: Because Your on mobile so more support.",
-				SubContent = "",
-				Duration = 15
-			})
-		end
 
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Star%20Glitcher"))()
 		Fluent:Notify({
@@ -30224,21 +30209,21 @@ GENESIS:AddButton({
 			SubContent = "", -- Optional
 			Duration = 15 -- Set to nil to make the notification not disappear
 		})
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Gale Fighter",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
-				Title = "Loaded Keyboard Script",
-				Content = "Reason: Because Your on mobile so more support.",
-				SubContent = "",
-				Duration = 15
-			})
-		end
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Gale%20Fighter"))()
 		Fluent:Notify({
 			Title = "Controls",
@@ -30250,21 +30235,21 @@ GENESIS:AddButton({
 			SubContent = "", -- Optional
 			Duration = 15 -- Set to nil to make the notification not disappear
 		})
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Motorcycle",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
-				Title = "Loaded Keyboard Script",
-				Content = "Reason: Because Your on mobile so more support.",
-				SubContent = "",
-				Duration = 15
-			})
-		end
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Motorcycle"))()
 		Fluent:Notify({
 			Title = "Controls",
@@ -30274,21 +30259,21 @@ GENESIS:AddButton({
 			SubContent = "", -- Optional
 			Duration = 15 -- Set to nil to make the notification not disappear
 		})
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Ban Hammer",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
-				Title = "Loaded Keyboard Script",
-				Content = "Reason: Because Your on mobile so more support.",
-				SubContent = "",
-				Duration = 15
-			})
-		end
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Ban%20Hammer"))()
 		Fluent:Notify({
 			Title = "Controls",
@@ -30299,21 +30284,22 @@ GENESIS:AddButton({
 			SubContent = "", -- Optional
 			Duration = 15 -- Set to nil to make the notification not disappear
 		})
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
+		
 	end
 })
 GENESIS:AddButton({
 	Title = "FE AK47",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
-				Title = "Loaded Keyboard Script",
-				Content = "Reason: Because Your on mobile so more support.",
-				SubContent = "",
-				Duration = 15
-			})
-		end
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/AK-47"))()
 		Fluent:Notify({
 			Title = "Controls",
@@ -30322,21 +30308,21 @@ GENESIS:AddButton({
 			SubContent = "", -- Optional
 			Duration = 15 -- Set to nil to make the notification not disappear
 		})
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Neptunian V",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
-				Title = "Loaded Keyboard Script",
-				Content = "Reason: Because Your on mobile so more support.",
-				SubContent = "",
-				Duration = 15
-			})
-		end
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Neptunian%20V"))()
 		Fluent:Notify({
 			Title = "Controls",
@@ -30351,37 +30337,38 @@ GENESIS:AddButton({
 			SubContent = "", -- Optional
 			Duration = 15 -- Set to nil to make the notification not disappear
 		})
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
+		
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Karambit",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Karambit"))()
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
 				Title = "Loaded Keyboard Script",
 				Content = "Reason: Because Your on mobile so more support.",
 				SubContent = "",
 				Duration = 15
 			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
 		end
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Karambit"))()
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Krystal Dance",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
-				Title = "Loaded Keyboard Script",
-				Content = "Reason: Because Your on mobile so more support.",
-				SubContent = "",
-				Duration = 15
-			})
-		end
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Krystal%20Dance"))()
 		Fluent:Notify({
 			Title = "Controls",
@@ -30401,21 +30388,21 @@ GENESIS:AddButton({
 			SubContent = "", -- Optional
 			Duration = 15 -- Set to nil to make the notification not disappear
 		})
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Sniper",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
-				Title = "Loaded Keyboard Script",
-				Content = "Reason: Because Your on mobile so more support.",
-				SubContent = "",
-				Duration = 15
-			})
-		end
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sniper"))()
 		Fluent:Notify({
 			Title = "Controls",
@@ -30429,70 +30416,80 @@ GENESIS:AddButton({
 			SubContent = "", -- Optional
 			Duration = 15 -- Set to nil to make the notification not disappear
 		})
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
+		
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Banisher",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Banisher"))()
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
 				Title = "Loaded Keyboard Script",
 				Content = "Reason: Because Your on mobile so more support.",
 				SubContent = "",
 				Duration = 15
 			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
 		end
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Banisher"))()
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Lightning Cannon",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Lightning%20Cannon"))()
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
 				Title = "Loaded Keyboard Script",
 				Content = "Reason: Because Your on mobile so more support.",
 				SubContent = "",
 				Duration = 15
 			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
 		end
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Lightning%20Cannon"))()
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Pistol",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Pistol"))()
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
 				Title = "Loaded Keyboard Script",
 				Content = "Reason: Because Your on mobile so more support.",
 				SubContent = "",
 				Duration = 15
 			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
 		end
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Pistol"))()
 	end
 })
 GENESIS:AddButton({
 	Title = "FE Studio Dummy",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
-			Flunet:Notify({
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Studio%20Dummy"))()
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
 				Title = "Loaded Keyboard Script",
 				Content = "Reason: Because Your on mobile so more support.",
 				SubContent = "",
 				Duration = 15
 			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
 		end
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Studio%20Dummy"))()
 	end
 })
 InterfaceManager:SetLibrary(Fluent)
