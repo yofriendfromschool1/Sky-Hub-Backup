@@ -12,9 +12,9 @@ Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends
 
 Rebuilt On IllusionHub
 
-Last Updated 3/28/2024
+Last Updated 3/31/2024
 
-Added Orca
+Added another bloxburg script and another lock script and fixed some stuff
 
 Library by Lua_u
 
@@ -146,7 +146,14 @@ if game.PlaceId == 2788229376 then
 	-- https://discord.gg/iosexploiters
 	-- made by therealxora
    -- Rainbow Sun Aimlock [ Works on 80-90% of dahood games ]
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/TheRealXORA/Roblox-Scripts/main/Rainbow%20Sun%20Aimlock.lua", true))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/TheRealXORA/Roblox-Scripts/main/Rainbow%20Sunshine%20Aimlock.lua", true))()
+	end)
+	MainSection:NewButton("Ravenhook Free lock", "by Leadmarker", function()
+		setclipboard("discord.gg/QaR8d56B8W")
+		loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Ravenhook-FREE-10990", true))()
+	end)
+	MainSection:NewButton("Ravenhook Free lock updated?", "by Leadmarker", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/LeadMarker/raven/main/settings_table.lua", true))()
 	end)
 	MainSection:NewButton("Hydro Hub", "Hub", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/FRX397/Hydrohub/main/Hydro_hub", true))()
@@ -469,7 +476,13 @@ elseif game.PlaceId == 286090429 then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))();
 	end)
 	MainSection:NewButton("Thunder Client", "OP ASF", function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/AndrewDarkyy/ThunderClient/main/main.lua", true))()
+		if getgenv().thunderclient then return end
+
+		repeat task.wait() until game:IsLoaded()
+		task.wait(1)
+
+		getgenv().thunderclient = true
+		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/verified/dca3e69649ed196af0ac6577f743a0ae.lua"))()
 	end)
 	MainSection:NewButton("Arsenal FE audio + more!", "NOTE: you can get banned from some of these scripts", function()
 		value = "2038227137" --song id here
@@ -5849,8 +5862,11 @@ elseif game.PlaceId == 185655149 then
 	MainSection:NewButton("Vedrox Free", "Free", function()
 		loadstring(game:HttpGet("https://vedrox.com/data/scripts/free/script.lua"))()
 	end)
+	MainSection:NewButton("Vysor Free", "Free", function()
+		loadstring(game:HttpGet("https://vedrox.com/data/scripts/free/script.lua"))()
+	end)
 	MainSection:NewButton("VG Hub", "60+", function()
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
+		loadstring(game:HttpGet("https://vysorbloxburg.vercel.app/free.lua", true))()
 	end)
 	MainSection:NewButton("CocoHub", "idk", function()
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
