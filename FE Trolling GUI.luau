@@ -3,9 +3,9 @@ FE Trolling GUI
 
 By Sky/dsgdfs
 
-Last Updated 3/30/2024
+Last Updated 3/31/2024
 
-Fixed closing uis on mobile just do close in main then fixed running genesis scripts on mobile
+added fling click unanchored parts
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -29703,6 +29703,34 @@ Main:AddButton({
 	Description = "makes ur character a kinda shaky on other ppls screens",
 	Callback = function()
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/obf_5wpM7bBcOPspmX7lQ3m75SrYNWqxZ858ai3tJdEAId6jSI05IOUB224FQ0VSAswH.lua.txt'), true))()
+	end
+})
+Main:AddButton({
+	Title = "Fling Click unanchored parts",
+	Description = "fling unanchored parts tool",
+	Callback = function()
+		
+		local lp = game.Players.LocalPlayer
+		local mouse = lp:GetMouse()
+
+		local ft = Instance.new("Tool")
+		ft.Name = "Fling Tool"
+		ft.RequiresHandle = false
+		ft.Parent = lp.Backpack
+		ft.Activated:Connect(function()
+			local obj = mouse.Target
+			if obj:IsA("BasePart") or obj:IsA("Part") or obj:IsA("MeshPart") or obj:IsA("CornerWedgePart") or obj:IsA("TrussPart") or obj:IsA("WedgePart") then
+				if not obj.Anchored then
+					local bambam = Instance.new("BodyAngularVelocity")
+					bambam.Name = "BAM BAM AHAHHAHAHHAHAH"
+					bambam.Parent = obj
+					bambam.AngularVelocity = Vector3.new(99999,99999,99999)
+					bambam.MaxTorque = Vector3.new(math.huge,math.huge,math.huge)
+					bambam.P = math.huge
+				end
+			end
+		end)
+
 	end
 })
 Main:AddButton({
