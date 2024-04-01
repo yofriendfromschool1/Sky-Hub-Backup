@@ -30094,6 +30094,21 @@ GUIS:AddButton({
 	Description = "Reanimations",
 	Callback = function()
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/Tescalus/Pendulum-Hubs-Source/main/Pendulum%20Hub%20V5.lua'))()
+		Fluent:Notify({
+			Title = "Warning",
+			Content = "You Need hats for this idk where to get them but um go find them?",
+			SubContent = "", -- Optional
+			Duration = 5 -- Set to nil to make the notification not disappear
+		})
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
 	end
 })
 local GENESIS = Window:AddTab({
