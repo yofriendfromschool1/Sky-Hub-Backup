@@ -5,7 +5,7 @@ By Sky/dsgdfs
 
 Last Updated 3/31/2024
 
-added fling click unanchored parts
+added fling click unanchored parts & Pendulum hub
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -30087,6 +30087,13 @@ GUIS:AddButton({
 			end;
 			return a
 		end)()))()
+	end
+})
+GUIS:AddButton({
+	Title = "Pendulum Hub V3",
+	Description = "Reanimations",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/Tescalus/Pendulum-Hubs-Source/main/Pendulum%20Hub%20V5.lua'))()
 	end
 })
 local GENESIS = Window:AddTab({
