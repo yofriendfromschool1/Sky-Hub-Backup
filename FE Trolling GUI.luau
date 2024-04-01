@@ -5,7 +5,7 @@ By Sky/dsgdfs
 
 Last Updated 3/31/2024
 
-added fling click unanchored parts & Pendulum hub
+added fling click unanchored parts & Pendulum hub & Bru GUI
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -21988,6 +21988,1069 @@ end)
 
 end
 end
+	end
+})
+GUIS:AddButton({
+	Title = "Bru GUI",
+	Description = "like harked",
+	Callback = function()
+		-- bru 2.3.0
+		-- reggie#1000
+
+		if not game:IsLoaded() then
+			game.Loaded:Wait() -- repeat task.wait() until game:IsLoaded() == true
+		end
+
+		-- Services
+		local Lighting = game:GetService('Lighting')
+		local Players = game:GetService('Players')
+		local UserInputService = game:GetService('UserInputService')
+		local TweenService = game:GetService('TweenService')
+		local ReplicatedStorage = game:GetService('ReplicatedStorage')
+
+		local LocalPlayer = Players.LocalPlayer
+		local CoreGui = game:GetService('CoreGui')
+
+		local Keys = {
+			[''] = '',
+		}
+
+		local Authenticated = false
+
+		local function RandomStr(Args)
+			local FullString = ''
+			local CharacterList = 'abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+			local Length = 20
+
+			for i = 1, Length do
+				local CharacterNumber = math.random(1, string.len(CharacterList))
+				local DecidedCharacter = CharacterList:sub(CharacterNumber, CharacterNumber)
+				FullString = FullString .. DecidedCharacter
+			end
+
+			return FullString
+		end
+
+		local function DragElement(DragFrame, FrameToDrag, DragSpeed)
+			local DragToggle = nil
+			local DragInput = nil
+			local DragStart = nil
+			local DragPos = nil
+			local StartPos = nil
+
+			local function UpdateInput(Input)
+				local Delta = Input.Position - DragStart
+				local Position = UDim2.new(StartPos.X.Scale, StartPos.X.Offset + Delta.X, StartPos.Y.Scale, StartPos.Y.Offset + Delta.Y)
+				TweenService:Create(FrameToDrag, TweenInfo.new(DragSpeed), {Position = Position}):Play()
+			end
+
+			DragFrame.InputBegan:Connect(function(Input)
+				if (Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch) and UserInputService:GetFocusedTextBox() == nil then
+					DragToggle = true
+					DragStart = Input.Position
+					StartPos = FrameToDrag.Position
+					Input.Changed:Connect(function()
+						if Input.UserInputState == Enum.UserInputState.End then
+							DragToggle = false
+						end
+					end)
+				end
+			end)
+
+			DragFrame.InputChanged:Connect(function(Input)
+				if Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
+					DragInput = Input
+				end
+			end)
+
+			UserInputService.InputChanged:Connect(function(Input)
+				if Input == DragInput and DragToggle then
+					UpdateInput(Input)
+				end
+			end)
+		end
+
+		-- Base UI
+		local BruUI = {
+			ScreenGui = Instance.new('ScreenGui'),
+			FrameHolder = Instance.new('Frame'),
+			Topbar = Instance.new('Frame'),
+			TopbarStatus = Instance.new('Frame'),
+			TopbarStatusCommandCount = Instance.new('TextLabel'),
+			TopbarStatusLogin = Instance.new('TextLabel'),
+			TopbarStatusWatermark = Instance.new('TextLabel'),
+			TopbarTitle = Instance.new('TextLabel'),
+			Body = Instance.new('Frame'),
+			LoginFrame = Instance.new('Frame'),
+			LoginFramePasswordTextBox = Instance.new('TextBox'),
+			LoginFrameUsernameTextBox = Instance.new('TextBox'),
+			LoginFrameSubmitButton = Instance.new('TextButton'),
+			LoginFrameCorrectLabel = Instance.new('TextLabel'),
+			LoginFrameIncorrectLabel = Instance.new('TextLabel'),
+		}
+
+		for i,v in pairs(BruUI) do
+			v.Name = RandomStr()
+			v.Archivable = false
+		end
+
+		BruUI.ScreenGui.DisplayOrder = 2147483647
+		BruUI.ScreenGui.IgnoreGuiInset = true
+		BruUI.ScreenGui.ResetOnSpawn = false 
+		BruUI.ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
+
+		BruUI.FrameHolder.AnchorPoint = Vector2.new(0.5, 0.5)
+		BruUI.FrameHolder.BackgroundColor3 = Color3.fromRGB(20,20,20)
+		BruUI.FrameHolder.BackgroundTransparency = 0.2
+		BruUI.FrameHolder.BorderSizePixel = 0
+		BruUI.FrameHolder.Position = UDim2.new(0.5, 0, 0.5, 0)
+		BruUI.FrameHolder.Size = UDim2.new(0, 250, 0, 309)
+		BruUI.FrameHolder.ClipsDescendants = true
+		BruUI.FrameHolder.Parent = BruUI.ScreenGui
+
+		BruUI.Topbar.Active = true
+		BruUI.Topbar.BackgroundTransparency = 0.9
+		BruUI.Topbar.BorderSizePixel = 0
+		BruUI.Topbar.Size = UDim2.new(1, 0, 0, 45)
+		BruUI.Topbar.ZIndex = 2
+		BruUI.Topbar.Parent = BruUI.FrameHolder
+
+		BruUI.TopbarStatus.BackgroundTransparency = 0.9
+		BruUI.TopbarStatus.BorderSizePixel = 0
+		BruUI.TopbarStatus.Position = UDim2.new(0, 0, 1, -15)
+		BruUI.TopbarStatus.Size = UDim2.new(1, 0, 0, 15)
+		BruUI.TopbarStatus.ZIndex = 3
+		BruUI.TopbarStatus.Parent = BruUI.Topbar
+
+		BruUI.TopbarStatusCommandCount.BackgroundTransparency = 1
+		BruUI.TopbarStatusCommandCount.Position = UDim2.new(1, -120, 0, 0)
+		BruUI.TopbarStatusCommandCount.Size = UDim2.new(0, 108, 1, 0)
+		BruUI.TopbarStatusCommandCount.ZIndex = 4
+		BruUI.TopbarStatusCommandCount.Visible = false
+		BruUI.TopbarStatusCommandCount.Font = Enum.Font.SourceSans
+		BruUI.TopbarStatusCommandCount.Text = 'Commands: 0'
+		BruUI.TopbarStatusCommandCount.TextColor3 = Color3.fromRGB(220,220,220)
+		BruUI.TopbarStatusCommandCount.TextSize = 14
+		BruUI.TopbarStatusCommandCount.TextXAlignment = Enum.TextXAlignment.Right
+		BruUI.TopbarStatusCommandCount.Parent = BruUI.TopbarStatus
+
+		BruUI.TopbarStatusLogin.BackgroundTransparency = 1
+		BruUI.TopbarStatusLogin.Position = UDim2.new(1, -120, 0, 0)
+		BruUI.TopbarStatusLogin.Size = UDim2.new(0, 108, 1, 0)
+		BruUI.TopbarStatusLogin.ZIndex = 4
+		BruUI.TopbarStatusLogin.Font = Enum.Font.SourceSans
+		BruUI.TopbarStatusLogin.Text = 'Login'
+		BruUI.TopbarStatusLogin.TextColor3 = Color3.fromRGB(220,220,220)
+		BruUI.TopbarStatusLogin.TextSize = 14
+		BruUI.TopbarStatusLogin.TextXAlignment = Enum.TextXAlignment.Right
+		BruUI.TopbarStatusLogin.Parent = BruUI.TopbarStatus
+
+		BruUI.TopbarStatusWatermark.BackgroundTransparency = 1
+		BruUI.TopbarStatusWatermark.Position = UDim2.new(0, 12, 0, 0)
+		BruUI.TopbarStatusWatermark.Size = UDim2.new(0, 71, 1, 0)
+		BruUI.TopbarStatusWatermark.ZIndex = 4
+		BruUI.TopbarStatusWatermark.Font = Enum.Font.SourceSans
+		BruUI.TopbarStatusWatermark.Text = 'reggie#1000 & xaro#2846'
+		BruUI.TopbarStatusWatermark.TextColor3 = Color3.fromRGB(220,220,220)
+		BruUI.TopbarStatusWatermark.TextSize = 14
+		BruUI.TopbarStatusWatermark.TextXAlignment = Enum.TextXAlignment.Left
+		BruUI.TopbarStatusWatermark.Parent = BruUI.TopbarStatus
+
+		BruUI.TopbarTitle.BackgroundTransparency = 1
+		BruUI.TopbarTitle.Position = UDim2.new(0, 0, 0, 2)
+		BruUI.TopbarTitle.Size = UDim2.new(1, 0, 1, -17)
+		BruUI.TopbarTitle.ZIndex = 3
+		BruUI.TopbarTitle.Font = Enum.Font.SourceSans
+		BruUI.TopbarTitle.Text = 'bru'
+		BruUI.TopbarTitle.TextColor3 = Color3.fromRGB(235,235,235)
+		BruUI.TopbarTitle.TextSize = 28
+		BruUI.TopbarTitle.Parent = BruUI.Topbar
+
+		BruUI.Body.BackgroundTransparency = 1
+		BruUI.Body.Position = UDim2.new(0, 0, 0, 45)
+		BruUI.Body.Size = UDim2.new(1, 0, 1, -45)
+		BruUI.Body.ZIndex = 2
+		BruUI.Body.ClipsDescendants = true
+		BruUI.Body.Parent = BruUI.FrameHolder
+
+		BruUI.LoginFrame.BackgroundTransparency = 1
+		BruUI.LoginFrame.Size = UDim2.new(1, 0, 1, 0)
+		BruUI.LoginFrame.ZIndex = 3
+		BruUI.LoginFrame.Parent = BruUI.Body
+
+		BruUI.LoginFramePasswordTextBox.BackgroundColor3 = Color3.fromRGB(200,200,200)
+		BruUI.LoginFramePasswordTextBox.BackgroundTransparency = 0.7
+		BruUI.LoginFramePasswordTextBox.BorderSizePixel = 0
+		BruUI.LoginFramePasswordTextBox.ClearTextOnFocus = false
+		BruUI.LoginFramePasswordTextBox.Position = UDim2.new(0, 12, 0, 64)
+		BruUI.LoginFramePasswordTextBox.Size = UDim2.new(1, -24, 0, 40)
+		BruUI.LoginFramePasswordTextBox.ZIndex = 4
+		BruUI.LoginFramePasswordTextBox.Font = Enum.Font.SourceSansSemibold
+		BruUI.LoginFramePasswordTextBox.PlaceholderColor3 = Color3.fromRGB(170,170,170)
+		BruUI.LoginFramePasswordTextBox.PlaceholderText = 'Password'
+		BruUI.LoginFramePasswordTextBox.Text = ''
+		BruUI.LoginFramePasswordTextBox.TextColor3 = Color3.fromRGB(220,220,200)
+		BruUI.LoginFramePasswordTextBox.TextSize = 18
+		BruUI.LoginFramePasswordTextBox.TextWrapped = true
+		BruUI.LoginFramePasswordTextBox.Parent = BruUI.LoginFrame
+
+		BruUI.LoginFrameUsernameTextBox.BackgroundColor3 = Color3.fromRGB(200,200,200)
+		BruUI.LoginFrameUsernameTextBox.BackgroundTransparency = 0.7
+		BruUI.LoginFrameUsernameTextBox.BorderSizePixel = 0
+		BruUI.LoginFrameUsernameTextBox.ClearTextOnFocus = false
+		BruUI.LoginFrameUsernameTextBox.Position = UDim2.new(0, 12, 0, 12)
+		BruUI.LoginFrameUsernameTextBox.Size = UDim2.new(1, -24, 0, 40)
+		BruUI.LoginFrameUsernameTextBox.ZIndex = 4
+		BruUI.LoginFrameUsernameTextBox.Font = Enum.Font.SourceSansSemibold
+		BruUI.LoginFrameUsernameTextBox.PlaceholderColor3 = Color3.fromRGB(170,170,170)
+		BruUI.LoginFrameUsernameTextBox.PlaceholderText = 'Username'
+		BruUI.LoginFrameUsernameTextBox.Text = ''
+		BruUI.LoginFrameUsernameTextBox.TextColor3 = Color3.fromRGB(220,220,200)
+		BruUI.LoginFrameUsernameTextBox.TextSize = 18
+		BruUI.LoginFrameUsernameTextBox.TextWrapped = true
+		BruUI.LoginFrameUsernameTextBox.Parent = BruUI.LoginFrame
+
+		BruUI.LoginFrameSubmitButton.BackgroundColor3 = Color3.fromRGB(200,200,200)
+		BruUI.LoginFrameSubmitButton.BackgroundTransparency = 0.7
+		BruUI.LoginFrameSubmitButton.BorderSizePixel = 0
+		BruUI.LoginFrameSubmitButton.Position = UDim2.new(0, 12, 1, -54)
+		BruUI.LoginFrameSubmitButton.Size = UDim2.new(1, -24, 0, 40)
+		BruUI.LoginFrameSubmitButton.ZIndex = 4
+		BruUI.LoginFrameSubmitButton.Font = Enum.Font.SourceSansSemibold
+		BruUI.LoginFrameSubmitButton.Text = 'Submit'
+		BruUI.LoginFrameSubmitButton.TextColor3 = Color3.fromRGB(220,220,200)
+		BruUI.LoginFrameSubmitButton.TextSize = 18
+		BruUI.LoginFrameSubmitButton.TextWrapped = true
+		BruUI.LoginFrameSubmitButton.Parent = BruUI.LoginFrame
+
+		BruUI.LoginFrameCorrectLabel.BackgroundTransparency = 1
+		BruUI.LoginFrameCorrectLabel.Position = UDim2.new(0, 0, 1, -70)
+		BruUI.LoginFrameCorrectLabel.Size = UDim2.new(1, 0, 0, 10)
+		BruUI.LoginFrameCorrectLabel.ZIndex = 4
+		BruUI.LoginFrameCorrectLabel.Visible = false
+		BruUI.LoginFrameCorrectLabel.Font = Enum.Font.SourceSansSemibold
+		BruUI.LoginFrameCorrectLabel.Text = 'Authenticated successfully, please wait.'
+		BruUI.LoginFrameCorrectLabel.TextColor3 = Color3.fromRGB(46,204,113)
+		BruUI.LoginFrameCorrectLabel.TextSize = 14
+		BruUI.LoginFrameCorrectLabel.Parent = BruUI.LoginFrame
+
+		BruUI.LoginFrameIncorrectLabel.BackgroundTransparency = 1
+		BruUI.LoginFrameIncorrectLabel.Position = UDim2.new(0, 0, 1, -70)
+		BruUI.LoginFrameIncorrectLabel.Size = UDim2.new(1, 0, 0, 10)
+		BruUI.LoginFrameIncorrectLabel.ZIndex = 4
+		BruUI.LoginFrameIncorrectLabel.Visible = false
+		BruUI.LoginFrameIncorrectLabel.Font = Enum.Font.SourceSansSemibold
+		BruUI.LoginFrameIncorrectLabel.Text = 'Username or password is incorrect.'
+		BruUI.LoginFrameIncorrectLabel.TextColor3 = Color3.fromRGB(255,82,66)
+		BruUI.LoginFrameIncorrectLabel.TextSize = 14
+		BruUI.LoginFrameIncorrectLabel.Parent = BruUI.LoginFrame
+
+		DragElement(BruUI.Topbar, BruUI.FrameHolder, 0)
+
+		BruUI.LoginFrameSubmitButton.MouseButton1Click:Connect(function()
+			for a,b in pairs(Keys) do
+				if string.lower(BruUI.LoginFrameUsernameTextBox.Text) == a and string.lower(BruUI.LoginFramePasswordTextBox.Text) == b then
+					Authenticated = true
+					BruUI.LoginFrameIncorrectLabel.Visible = false
+					BruUI.LoginFrameCorrectLabel.Visible = true
+					wait(1)
+
+					-- Dashboard UI
+					local DashboardUI = {
+						Dashboard = Instance.new('Frame'),
+						Buttons = Instance.new('ScrollingFrame'),
+						UIGridLayout = Instance.new('UIGridLayout'),
+						ValueBox = Instance.new('TextBox'),
+					}
+
+					for i,v in pairs(DashboardUI) do
+						v.Name = RandomStr()
+						v.Archivable = false
+					end
+
+					DashboardUI.Dashboard.BackgroundTransparency = 1
+					DashboardUI.Dashboard.Position = UDim2.new(1, 0, 0, 0)
+					DashboardUI.Dashboard.Size = UDim2.new(1, 0, 1, 0)
+					DashboardUI.Dashboard.ZIndex = 3
+					DashboardUI.Dashboard.ClipsDescendants = true
+					
+					DashboardUI.Buttons.BorderSizePixel = 0
+					DashboardUI.Buttons.BackgroundTransparency = 1
+					DashboardUI.Buttons.Position = UDim2.new(0, 12, 0, 12)
+					DashboardUI.Buttons.Size = UDim2.new(1, -24, 1, -76)
+					DashboardUI.Buttons.ZIndex = 4
+					DashboardUI.Buttons.ClipsDescendants = true
+					DashboardUI.Buttons.AutomaticCanvasSize = Enum.AutomaticSize.Y
+					DashboardUI.Buttons.CanvasSize = UDim2.new(0, 0, 0, 0)
+					DashboardUI.Buttons.BottomImage = 'rbxasset://textures/ui/Scroll/scroll-middle.png'
+					DashboardUI.Buttons.MidImage = 'rbxasset://textures/ui/Scroll/scroll-middle.png'
+					DashboardUI.Buttons.TopImage = 'rbxasset://textures/ui/Scroll/scroll-middle.png'
+					DashboardUI.Buttons.ScrollBarThickness = 8
+					DashboardUI.Buttons.ScrollingDirection = Enum.ScrollingDirection.Y
+					DashboardUI.Buttons.Parent = DashboardUI.Dashboard
+
+					DashboardUI.UIGridLayout.CellPadding = UDim2.new(0, 11, 0, 11)
+					DashboardUI.UIGridLayout.CellSize = UDim2.new(0, 107, 0, 40)
+					DashboardUI.UIGridLayout.Parent = DashboardUI.Buttons
+					
+					DashboardUI.ValueBox.BackgroundColor3 = Color3.fromRGB(200,200,200)
+					DashboardUI.ValueBox.BackgroundTransparency = 0.7
+					DashboardUI.ValueBox.BorderSizePixel = 0
+					DashboardUI.ValueBox.Position = UDim2.new(0, 12, 1, -52)
+					DashboardUI.ValueBox.Size = UDim2.new(1, -24, 0, 40)
+					DashboardUI.ValueBox.ZIndex = 4
+					DashboardUI.ValueBox.ClipsDescendants = true
+					DashboardUI.ValueBox.Font = Enum.Font.SourceSansSemibold
+					DashboardUI.ValueBox.PlaceholderColor3 = Color3.fromRGB(170,170,170)
+					DashboardUI.ValueBox.PlaceholderText = 'Value'
+					DashboardUI.ValueBox.Text = ''
+					DashboardUI.ValueBox.TextColor3 = Color3.fromRGB(220,220,200)
+					DashboardUI.ValueBox.TextSize = 18
+					DashboardUI.ValueBox.TextWrapped = true
+					DashboardUI.ValueBox.Parent = DashboardUI.Dashboard
+
+					DashboardUI.Dashboard.Parent = BruUI.Body
+
+					BruUI.LoginFrame:TweenPosition(UDim2.new(-1, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.7)
+					wait(0.7)
+					BruUI.LoginFrame:Destroy()
+					DashboardUI.Dashboard:TweenPosition(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.7)
+					wait(0.8)
+					
+					BruUI.TopbarStatusLogin.Visible = false
+					BruUI.TopbarStatusCommandCount.Visible = true
+
+					local Buttons = {}
+					local Bru = {}
+					local Commands = {}
+
+					Bru.Username = a
+					Bru.CommandCount = #Commands
+					Bru.Input = DashboardUI.ValueBox.Text
+					
+					local function UpdateCommandCount()
+						BruUI.TopbarStatusCommandCount.Text = 'Commands: ' .. tostring(#DashboardUI.Buttons:GetChildren() - 1)
+					end
+					
+					DashboardUI.Buttons.ChildAdded:Connect(UpdateCommandCount)
+					DashboardUI.Buttons.ChildRemoved:Connect(UpdateCommandCount)
+					
+					function Bru:AddButton(Name, OnClicked)
+						local ReturnTable = {}
+
+						local Button = Instance.new('TextButton')
+						Button.Name = RandomStr()
+						Button.Archivable = false
+						Button.AutoButtonColor = true
+						Button.BackgroundColor3 = Color3.new(200,200,200)
+						Button.BackgroundTransparency = 0.7
+						Button.BorderSizePixel = 0
+						Button.ZIndex = 5
+						Button.Font = Enum.Font.SourceSansSemibold
+						Button.Text = tostring(Name)
+						Button.TextColor3 = Color3.fromRGB(220,220,220)
+						Button.TextSize = 18
+						Button.TextScaled = false
+						Button.TextWrapped = true
+						Button.Parent = DashboardUI.Buttons
+						
+						Button.MouseButton1Click:Connect(function()
+							local Command = Instance.new('StringValue')
+							Command.Value = DashboardUI.ValueBox.Text
+							
+							OnClicked(Command.Value)
+						end)
+						
+						function ReturnTable:Destroy()
+							Button:Destroy()
+							OnClicked = function() end
+						end
+						
+						return ReturnTable
+					end
+
+					function Bru:AddToggle(Name, OnClicked)
+						local ReturnTable = {}
+
+						local Button = Instance.new('TextButton')
+						Button.Name = RandomStr()
+						Button.Archivable = false
+						Button.AutoButtonColor = true
+						Button.BackgroundColor3 = Color3.new(200,200,200)
+						Button.BackgroundTransparency = 0.7
+						Button.BorderSizePixel = 0
+						Button.ZIndex = 5
+						Button.Font = Enum.Font.SourceSansSemibold
+						Button.Text = tostring(Name)
+						Button.TextColor3 = Color3.fromRGB(220,220,220)
+						Button.TextSize = 18
+						Button.TextScaled = false
+						Button.TextWrapped = true
+						Button.Parent = DashboardUI.Buttons
+						
+						local function ToggleButton(Bool)
+							if not Bool then -- nil
+								if Button.BackgroundTransparency == 0.7 then
+									Bool = true
+								elseif Button.BackgroundTransparency == 0.5 then
+									Bool = false
+								end
+							end
+							
+							if Bool == true then
+								Button.BackgroundTransparency = 0.5
+							else -- also if it's none lol
+								Button.BackgroundTransparency = 0.7
+							end
+							
+							local Command = Instance.new('StringValue')
+							Command.Value = DashboardUI.ValueBox.Text
+							
+							return {
+								BoolSet = Bool,
+								CommandValue = Command.Value,
+							}
+						end
+						
+						Button.MouseButton1Click:Connect(function()
+							local ToggleStatus = ToggleButton()
+							OnClicked(ToggleStatus.CommandValue, ToggleStatus.BoolSet)
+						end)
+
+						function ReturnTable:Destroy()
+							Button:Destroy()
+							OnClicked = function() end
+						end
+						
+						function ReturnTable:Toggle(...) -- Bool
+							local ToggleStatus = ToggleButton(...)
+							return {ToggleStatus.CommandValue, ToggleStatus.BoolSet}
+						end
+
+						return ReturnTable
+					end
+					
+					-- Extensions
+					if readfile and isfolder and listfiles and makefolder then
+						pcall(function()
+							if isfolder('Bru Extensions') then
+								for _, BruExtensionName in pairs(listfiles('Bru Extensions')) do
+									if BruExtensionName:sub(-4) == '.bru' then
+										pcall(function()
+											local LoadFunc = loadstring(readfile('Bru Extensions\\' .. BruExtension), {})
+											local LoadFuncEnv = getfenv(LoadFunc)
+											LoadFuncEnv.Bru = Bru
+											setfenv(LoadFunc, LoadFuncEnv)
+											LoadFunc()
+										end)
+									end
+								end
+							else
+								makefolder('Bru Extensions')
+							end
+						end)
+					end
+
+					local GameFuncs = {
+						[292628125] = function() -- Keystone
+							local BoomboxRemote = ReplicatedStorage:FindFirstChild('Boombox')
+							local NickRemote = ReplicatedStorage:FindFirstChild('Nickname')
+
+							Bru:AddButton('Play Sound', function(Command)
+								local SoundId = tonumber(Command)
+
+								if SoundId then
+									repeat
+										task.wait()
+									until BoomboxRemote
+
+									BoomboxRemote:FireServer(SoundId)
+								end
+							end)
+
+							Bru:AddButton('Stop Sound', function()
+								repeat
+									task.wait()
+								until BoomboxRemote
+
+								BoomboxRemote:FireServer(1)
+							end)
+						end,
+					}
+					
+					for i,v in pairs(GameFuncs) do
+						if i == game.PlaceId then
+							pcall(v)
+						end
+					end
+
+					-- Segway Stuff
+					pcall(function()
+						local Segways = {}
+						local MySegways = {}
+
+						local function GetSegway()
+							local DecidedSegway = nil
+
+							if #MySegways >= 1 then
+								for _, Segway in pairs(MySegways) do
+									if Segway.Parent ~= nil and (Segway:IsDescendantOf(workspace) or Segway:IsDescendantOf(Lighting) or Segway:IsDescendantOf(Players)) then
+										DecidedSegway = Segway
+									end
+								end
+							end
+
+							if DecidedSegway == nil then
+								for _, Segway in pairs(Segways) do
+									if Segway.Parent ~= nil and (Segway:IsDescendantOf(workspace) or Segway:IsDescendantOf(Lighting) or Segway:IsDescendantOf(Players)) then
+										DecidedSegway = Segway
+									end
+								end
+							end
+
+							return DecidedSegway -- if not decided, returns nil
+						end
+
+						local FlattenButton = Bru:AddButton('Flatten', function(CommandValue)
+							local Segway = GetSegway()
+
+							if Segway then
+								local UndoHasWeldedRemote = Segway.RemoteEvents:FindFirstChild('UndoHasWelded')
+
+								if UndoHasWeldedRemote then
+									if UndoHasWeldedRemote.ClassName == 'RemoteEvent' then
+										if CommandValue:lower():sub(1, 3) == 'all' then
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyDepthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										elseif CommandValue:lower():sub(1, 6) == 'others' then
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player ~= LocalPlayer and Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyDepthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										elseif #CommandValue >= 1 then
+											local PlayersChosen = {}
+
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player.Name:lower():sub(1, #CommandValue) == CommandValue:lower() then
+													table.insert(PlayersChosen, Player)
+												end
+											end
+
+											for _, Player in pairs(PlayersChosen) do
+												if Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyDepthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										end
+									end
+								end
+							end
+						end)
+
+						local StickButton = Bru:AddButton('Stick', function(CommandValue)
+							local Segway = GetSegway()
+
+							if Segway then
+								local UndoHasWeldedRemote = Segway.RemoteEvents:FindFirstChild('UndoHasWelded')
+
+								if UndoHasWeldedRemote then
+									if UndoHasWeldedRemote.ClassName == 'RemoteEvent' then
+										if CommandValue:lower():sub(1, 3) == 'all' then
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyDepthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyWidthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										elseif CommandValue:lower():sub(1, 6) == 'others' then
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player ~= LocalPlayer and Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyDepthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyWidthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										elseif #CommandValue >= 1 then
+											local PlayersChosen = {}
+
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player.Name:lower():sub(1, #CommandValue) == CommandValue:lower() then
+													table.insert(PlayersChosen, Player)
+												end
+											end
+
+											for _, Player in pairs(PlayersChosen) do
+												if Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyDepthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyWidthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										end
+									end
+								end
+							end
+						end)
+
+						local RemoveBodyButton = Bru:AddButton('Remove Body', function(CommandValue)
+							local Segway = GetSegway()
+
+							if Segway then
+								local UndoHasWeldedRemote = Segway.RemoteEvents:FindFirstChild('UndoHasWelded')
+
+								if UndoHasWeldedRemote then
+									if UndoHasWeldedRemote.ClassName == 'RemoteEvent' then
+										if CommandValue:lower():sub(1, 3) == 'all' then
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyHeightScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										elseif CommandValue:lower():sub(1, 6) == 'others' then
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player ~= LocalPlayer and Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyHeightScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										elseif #CommandValue >= 1 then
+											local PlayersChosen = {}
+
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player.Name:lower():sub(1, #CommandValue) == CommandValue:lower() then
+													table.insert(PlayersChosen, Player)
+												end
+											end
+
+											for _, Player in pairs(PlayersChosen) do
+												if Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyHeightScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										end
+									end
+								end
+							end
+						end)
+
+						local HeadlessButton = Bru:AddButton('Headless', function(CommandValue)
+							local Segway = GetSegway()
+
+							if Segway then
+								local UndoHasWeldedRemote = Segway.RemoteEvents:FindFirstChild('UndoHasWelded')
+
+								if UndoHasWeldedRemote then
+									if UndoHasWeldedRemote.ClassName == 'RemoteEvent' then
+										if CommandValue:lower():sub(1, 3) == 'all' then
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').HeadScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										elseif CommandValue:lower():sub(1, 6) == 'others' then
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player ~= LocalPlayer and Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').HeadScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										elseif #CommandValue >= 1 then
+											local PlayersChosen = {}
+
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player.Name:lower():sub(1, #CommandValue) == CommandValue:lower() then
+													table.insert(PlayersChosen, Player)
+												end
+											end
+
+											for _, Player in pairs(PlayersChosen) do
+												if Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').HeadScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										end
+									end
+								end
+							end
+						end)
+
+						local InvisibleButton = Bru:AddButton('Invisible', function(CommandValue)
+							local Segway = GetSegway()
+
+							if Segway then
+								local UndoHasWeldedRemote = Segway.RemoteEvents:FindFirstChild('UndoHasWelded')
+
+								if UndoHasWeldedRemote then
+									if UndoHasWeldedRemote.ClassName == 'RemoteEvent' then
+										if CommandValue:lower():sub(1, 3) == 'all' then
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').HeadScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyHeightScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyWidthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyDepthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										elseif CommandValue:lower():sub(1, 6) == 'others' then
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player ~= LocalPlayer and Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').HeadScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyHeightScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyWidthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyWidthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										elseif #CommandValue >= 1 then
+											local PlayersChosen = {}
+
+											for _, Player in pairs(Players:GetPlayers()) do
+												if Player.Name:lower():sub(1, #CommandValue) == CommandValue:lower() then
+													table.insert(PlayersChosen, Player)
+												end
+											end
+
+											for _, Player in pairs(PlayersChosen) do
+												if Player.Character then
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').HeadScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyHeightScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyWidthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+													pcall(function()
+														UndoHasWeldedRemote:FireServer({
+															Value = {
+																Parent = {
+																	HasWelded = Player.Character:FindFirstChildWhichIsA('Humanoid').BodyWidthScale
+																}, Name = 'Seater'
+															}
+														})
+													end)
+												end
+											end
+										end
+									end
+								end
+							end
+						end)
+						
+						local ViewButton = Bru:AddButton('View', function(CommandValue)
+							if #CommandValue >= 1 then
+								local ChosenPlayer = nil
+
+								for _, Player in pairs(Players:GetPlayers()) do
+									if Player.Name:lower():sub(1, #CommandValue) == CommandValue:lower() then
+										ChosenPlayer = Player
+									end
+								end
+
+								if ChosenPlayer then
+									if ChosenPlayer.Character then
+										pcall(function()
+											workspace.CurrentCamera.CameraSubject = ChosenPlayer.Character:FindFirstChildWhichIsA('Humanoid')
+										end)
+									end
+								end
+							end
+						end)
+
+						local UnviewButton = Bru:AddButton('Unview', function(CommandValue)
+							if LocalPlayer.Character then
+								pcall(function()
+									workspace.CurrentCamera.CameraSubject = LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid')
+								end)
+							end
+						end)
+								
+						-- Add segways !!!111
+						Lighting.DescendantAdded:Connect(function(Descendant)
+							if Descendant.Name == 'HandlessSegway' then
+								if not Segways[table.find(Segways, Descendant)] then
+									table.insert(Segways, #Segways + 1, Descendant)
+								end
+							end
+						end)
+
+						for _, Descendant in pairs(Lighting:GetDescendants()) do
+							if Descendant.Name == 'HandlessSegway' then
+								if not Segways[table.find(Segways, Descendant)] then
+									table.insert(Segways, #Segways + 1, Descendant)
+								end
+							end
+						end
+
+						for _, Player in pairs(Players:GetPlayers()) do
+							local Segways = Segways -- if the player is localplayer, we want the chooser to default to that
+
+							if Player == LocalPlayer then
+								Segways = MySegways
+							end
+
+							Player.Backpack.DescendantAdded:Connect(function(Descendant)
+								if Descendant.Name == 'HandlessSegway' then
+									if not Segways[table.find(Segways, Descendant)] then
+										table.insert(Segways, #Segways + 1, Descendant)
+									end
+								end
+							end)
+
+							Player.CharacterAdded:Connect(function(Char)
+								Char.DescendantAdded:Connect(function(Descendant)
+									if Descendant.Name == 'HandlessSegway' then
+										if not Segways[table.find(Segways, Descendant)] then
+											table.insert(Segways, #Segways + 1, Descendant)
+										end
+									end
+								end)
+							end)
+
+							for _, Descendant in pairs(Player.Backpack:GetDescendants()) do
+								if Descendant.Name == 'HandlessSegway' then
+									if not Segways[table.find(Segways, Descendant)] then
+										table.insert(Segways, #Segways + 1, Descendant)
+									end
+								end
+							end
+
+							if Player.Character then
+								for _, Descendant in pairs(Player.Character:GetDescendants()) do
+									if Descendant.Name == 'HandlessSegway' then
+										if not Segways[table.find(Segways, Descendant)] then
+											table.insert(Segways, #Segways + 1, Descendant)
+										end
+									end
+								end
+							end
+						end
+					end)
+				elseif Authenticated ~= true then
+					BruUI.LoginFrameIncorrectLabel.Visible = true
+				end
+			end
+		end)
+
+		-- Parent base UI after unpacking.
+		if syn then
+			pcall(function()
+				syn.protect_gui(BruUI.ScreenGui)
+			end)
+			BruUI.ScreenGui.Parent = CoreGui
+		elseif gethui then
+			local success,err = pcall(function()
+				BruUI.ScreenGui.Parent = gethui()
+			end)
+			if not success and err then
+				BruUI.ScreenGui.Parent = CoreGui
+			end
+		else
+			BruUI.ScreenGui.Parent = CoreGui
+		end
+
 	end
 })
 GUIS:AddButton({
