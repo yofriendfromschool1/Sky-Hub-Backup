@@ -30090,7 +30090,7 @@ GUIS:AddButton({
 	end
 })
 GUIS:AddButton({
-	Title = "Pendulum Hub V3",
+	Title = "Pendulum Hub V5",
 	Description = "Reanimations",
 	Callback = function()
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/Tescalus/Pendulum-Hubs-Source/main/Pendulum%20Hub%20V5.lua'))()
