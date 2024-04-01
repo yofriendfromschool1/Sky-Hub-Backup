@@ -31219,6 +31219,22 @@ GENESIS:AddButton({
 	end
 })
 GENESIS:AddButton({
+	Title = "FE Dearsister",
+	Description = "need hats btw join Genesis game if you do not have hats for this script.",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Dearsister"))()
+		if IsOnMobile and not game:GetService("CoreGui"):FindFirstChild("Keyboard gui WarriorRoberr Version") then
+			Fluent:Notify({
+				Title = "Loaded Keyboard Script",
+				Content = "Reason: Because Your on mobile so more support.",
+				SubContent = "",
+				Duration = 15
+			})
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+		end
+	end
+})
+GENESIS:AddButton({
 	Title = "FE Neko",
 	Description = "need hats btw join Genesis game if you do not have hats for this script.",
 	Callback = function()
