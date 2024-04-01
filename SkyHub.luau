@@ -2357,6 +2357,9 @@ elseif game.PlaceId == 606849621 then
 	MainSection:NewButton("Sensation V2", "discord.gg/sensation", function()
 		-- This script is an early version of the soon to come sensation v2.
 		-- discord.gg/sensation
+		setclipboard("xaSdW23ld")
+		local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua", true))() 
+		Notification.new("set key to clipboard just paste it in if asks for key")
 		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/730854e5b6499ee91deb1080e8e12ae3.lua"))()
 	end)
 	MainSection:NewButton("JailMonkey", "JailMonkey", function()
