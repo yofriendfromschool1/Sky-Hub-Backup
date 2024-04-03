@@ -4749,18 +4749,6 @@ elseif game.PlaceId == 12640491155 then
 			end)	
 		else
 			getgenv().whaterv = false -- set to false when you want it to stop and true when you want it to start again
-			spawn(function()
-				while wait() do
-					if not getgenv().whaterv then
-						break
-					end
-					local args = {
-						[1] = "Paint",
-						[2] = Color3.new(math.random(), math.random(), math.random())
-					}
-					game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Vehicle"):FireServer(unpack(args))
-				end
-			end)
 		end
 	end)
 	VehicleModsSection:NewToggle("FE Spam Horn", "annoying asf", function(state)
@@ -4779,18 +4767,40 @@ elseif game.PlaceId == 12640491155 then
 			end)
 		else
 			getgenv().whaterv3 = false -- set to false when you want it to stop and true when you want it to start again
-			spawn(function()
-				while wait() do
-					if not getgenv().whaterv3 then
-						break
-					end
-					local args = {
-						[1] = "Horn"
-					}
-					game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Vehicle"):FireServer(unpack(args))
-				end
-			end)
 		end
+	end)
+	VehicleModsSection:NewToggle("Steal Color", "changes color of car to whatever part you click on", function(state)
+			if state then
+				local player = game.Players.LocalPlayer
+				local mouse = player:GetMouse()
+				getgenv().stealcolor = true
+				local cptsOnMouseClick
+
+				cptsOnMouseClick = mouse.Button1Down:Connect(function()
+					if not getgenv().stealcolor then
+						return
+					end
+					pcall(function()
+						local object = mouse.Target
+						if object and object.BrickColor then
+							local args = {
+								[1] = "Paint",
+								[2] = object.BrickColor.Color
+							}
+							game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Vehicle"):FireServer(unpack(args))
+						end
+					end)
+				end)
+			else
+				getgenv().stealcolor = false
+			end
+	end)
+	VehicleModsSection:NewButton("Lock/Unlock Car", "Lock/unlock car", function()
+		local args = {
+			[1] = "Lock"
+		}
+		
+		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Vehicle"):FireServer(unpack(args))		
 	end)
 	MainSection:NewButton("FE Trolling GUI", "troll", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
@@ -4845,48 +4855,6 @@ elseif game.PlaceId == 12640491155 then
 			end)
 		else
 			getgenv().whaterv2 = false -- set to false when you want it to stop and true when you want it to start again
-			spawn(function()
-				while wait() do
-					if not getgenv().whaterv2 then
-						break
-					end
-					local args = {
-						[1] = "Theme",
-						[2] = "Default"
-					}
-					game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Backpack"):FireServer(unpack(args))
-					local args = {
-						[1] = "Theme",
-						[2] = "Patched"
-					}
-					wait(0.51)
-					game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Backpack"):FireServer(unpack(args))
-					local args = {
-						[1] = "Theme",
-						[2] = "Checkered Luxury"
-					}
-					wait(0.51)
-					game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Backpack"):FireServer(unpack(args))
-					local args = {
-						[1] = "Theme",
-						[2] = "Gingham"
-					}
-					wait(0.51)
-					game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Backpack"):FireServer(unpack(args))
-					local args = {
-						[1] = "Theme",
-						[2] = "Hypebeast"
-					}
-					wait(0.51)
-					game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Backpack"):FireServer(unpack(args))
-					local args = {
-						[1] = "Theme",
-						[2] = "Preppy"
-					}
-					wait(0.51)
-					game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Backpack"):FireServer(unpack(args))
-				end
-			end)
 		end
 	end)
 	Misc23Section:NewButton("Remove Most House/Dorm Doors", "Client sided ofc", function()
