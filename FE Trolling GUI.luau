@@ -31213,6 +31213,13 @@ GUIS:AddButton({
 		end
 	end
 })
+GUIS:AddButton({
+	Title = "Ultimate Trolling Gui",
+	Description = "by FE",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/Scripts/main/aaa"))()
+	end
+})
 local GENESIS = Window:AddTab({
 	Title = "GENESIS",
 	Icon = "globe"
