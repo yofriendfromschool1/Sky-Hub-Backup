@@ -5824,8 +5824,14 @@ else
 			end
 		elseif game.PlaceId == 12961669859 then -- Easy Fun Obby
 			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-301, 236, 78)
-		elseif game.PlaceId == 8712817601 then -- barrys prison
+		elseif game.PlaceId == 15736515144 then -- Barrys prison run classic V1
 			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3781, 1072, -502)
+		elseif game.PlaceId == 8712817601 then -- barrys prison V2
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(10, 677, -915)
+			wait(1.25)
+			game.Players.LocalPlayer.Character.Humanoid.Jump = true
+			wait(5)
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-331, 873, -2726)
 		elseif game.PlaceId == 14184086618 then -- obby but bike
 			loadstring(game:HttpGet("https://github.com/KhSaeed90/Roblox/raw/workspace/14184086618"))()
 		elseif game.PlaceId == 13326256431 then -- obby but no jump
