@@ -3,9 +3,9 @@ FE Trolling GUI
 
 By Sky/dsgdfs
 
-Last Updated 3/31/2024
+Last Updated 4/3/2024
 
-added fling click unanchored parts & Pendulum hub & Bru GUI
+added project ligma, fe kill all (with swords), 
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -23061,6 +23061,13 @@ GUIS:AddButton({
 	end
 })
 GUIS:AddButton({
+	Title = "Project ligma",
+	Description = "sorta like harked",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/project%20ligma.txt"))()
+	end
+})
+GUIS:AddButton({
 	Title = "destruct hex fe gui",
 	Description = "sorta like harked",
 	Callback = function()
@@ -30766,6 +30773,38 @@ Main:AddButton({
 	Description = "makes ur character a kinda shaky on other ppls screens",
 	Callback = function()
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/obf_5wpM7bBcOPspmX7lQ3m75SrYNWqxZ858ai3tJdEAId6jSI05IOUB224FQ0VSAswH.lua.txt'), true))()
+	end
+})
+Main:AddButton({
+	Title = "FE kill all",
+	Description = "U NEED SWORD AND PULL IT OUT",
+	Callback = function()
+		local range = 1000
+		local player = game:GetService("Players").LocalPlayer
+
+		local function isFriendWith(player1, player2)
+			return player1:IsFriendsWith(player2.UserId)
+		end
+
+		game:GetService("RunService").RenderStepped:Connect(function()
+			local players = game.Players:GetPlayers()
+			for i = 2, #players do
+				local otherPlayer = players[i]
+				local character = otherPlayer.Character
+				if not isFriendWith(player, otherPlayer) then
+					local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+					if tool and tool:FindFirstChild("Handle") then
+						tool:Activate()
+						for _, part in next, character:GetChildren() do
+							if part:IsA("BasePart") then
+								firetouchinterest(tool.Handle, part, 0)
+								firetouchinterest(tool.Handle, part, 1)
+							end
+						end
+					end
+				end
+			end
+		end)
 	end
 })
 Main:AddButton({
