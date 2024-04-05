@@ -5760,6 +5760,10 @@ else
 	HubsSection:NewButton("PsyHub", "PsyHub", function()
 		loadstring(game:GetObjects("rbxassetid://3014051754")[1].Source)()
 	end)
+	HubsSection:NewButton("Apple Hub", "needs key but should be easy barely 1 link", function()--
+		--Made By Kosovo#3784 Dm for support or info
+		loadstring(game:HttpGet(("https://paste.fo/raw/d6ded5a2033a"), true))()
+	end)
 	local Search = Window:NewTab("Search", 10507357657)
 	local SearchSection = Search:NewSection("Search")
 	SearchSection:NewButton("Search", "Searches online for scripts using scriptblox.com", function()
