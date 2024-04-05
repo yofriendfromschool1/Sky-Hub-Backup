@@ -50279,7 +50279,7 @@ Main:AddButton({
 
 		local function findPlayer(name)
 			for _, player in ipairs(Players:GetPlayers()) do
-				if player.Name:lower() == name:lower() then
+				if string.sub(string.lower(player.Name), 0, #name) == string.lower(name) or string.sub(string.lower(player.DisplayName), 0, #name) == string.lower(name) then
 					return player
 				end
 			end
