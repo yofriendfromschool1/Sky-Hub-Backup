@@ -3,9 +3,9 @@ FE Trolling GUI
 
 By Sky/dsgdfs
 
-Last Updated 4/3/2024
+Last Updated 4/4/2024
 
-added project ligma, fe kill all (with swords), 
+added FE lag switch, FE Lag.
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -30773,6 +30773,29 @@ Main:AddButton({
 	Description = "makes ur character a kinda shaky on other ppls screens",
 	Callback = function()
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/obf_5wpM7bBcOPspmX7lQ3m75SrYNWqxZ858ai3tJdEAId6jSI05IOUB224FQ0VSAswH.lua.txt'), true))()
+	end
+})
+Main:AddButton({
+	Title = "FE Lag",
+	Description = "makes ur character stuck",
+	Callback = function(a)
+		game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Anchored = true
+		game:GetService("Players").LocalPlayer.Character.Animate.Enabled = false
+	end
+})
+Main:AddButton({
+	Title = "FE DISABLE Lag",
+	Description = "makes ur character UN stuck",
+	Callback = function(a)
+		game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Anchored = false
+		game:GetService("Players").LocalPlayer.Character.Animate.Enabled = true
+	end
+})
+Main:AddButton({
+	Title = "FE Lag Switch",
+	Description = "makes ur character lag on other peoples screens",
+	Callback = function(a)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/FE%20lagswitch.txt"))()
 	end
 })
 Main:AddButton({
