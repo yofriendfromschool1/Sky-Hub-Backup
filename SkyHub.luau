@@ -12,9 +12,9 @@ Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends
 
 Rebuilt On IllusionHub
 
-Last Updated 3/31/2024
+Last Updated 4/4/2024
 
-Added another bloxburg script and another lock script and fixed some stuff
+Added FOV Slider in Player tab
 
 Library by Lua_u
 
@@ -283,6 +283,10 @@ if game.PlaceId == 2788229376 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	
 	
 --Arsenal
 elseif game.PlaceId == 286090429 then
@@ -608,6 +612,9 @@ elseif game.PlaceId == 1962086868 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
 -- KAT!
 elseif game.PlaceId == 621129760 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -876,6 +883,9 @@ elseif game.PlaceId == 621129760 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
  -- Fencing
 elseif game.PlaceId == 12109643 then
@@ -1512,6 +1522,9 @@ elseif game.PlaceId == 12109643 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
 -- Work at a Pizza Place
 elseif game.PlaceId == 192800 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -1657,6 +1670,9 @@ elseif game.PlaceId == 192800 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
  -- VR Hands
 elseif game.PlaceId == 4832438542 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -1746,6 +1762,9 @@ elseif game.PlaceId == 4832438542 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
 -- Adopt me
 elseif game.PlaceId == 920587237 then
@@ -1854,6 +1873,9 @@ elseif game.PlaceId == 920587237 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
 -- JailBreak
 elseif game.PlaceId == 606849621 then
@@ -2040,6 +2062,9 @@ elseif game.PlaceId == 606849621 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
 
 	
@@ -2268,6 +2293,9 @@ elseif game.PlaceId == 155615604 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
     -- Build A Boat or BABFT
 elseif game.PlaceId == 537413528 then
@@ -2524,6 +2552,9 @@ elseif game.PlaceId == 537413528 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
 -- Gorilla Tag Professional
 elseif game.PlaceId == 8690998110 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -2660,6 +2691,9 @@ elseif game.PlaceId == 8690998110 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
         
 -- Murder Mystery 2 or MM2
@@ -2944,6 +2978,9 @@ elseif game.PlaceId == 142823291 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
         
 -- Blox Fruits
 elseif game.PlaceId == 2753915549 then
@@ -3052,6 +3089,9 @@ elseif game.PlaceId == 2753915549 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
 	 
 			-- Counter Blox
 elseif game.PlaceId == 301549746 then
@@ -3144,6 +3184,9 @@ elseif game.PlaceId == 301549746 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
 				   	-- Mic Up
 elseif game.PlaceId == 6884319169 then
@@ -3286,6 +3329,9 @@ elseif game.PlaceId == 6884319169 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
 				    	-- Neighbors
 elseif game.PlaceId == 12699642568 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -3382,6 +3428,9 @@ elseif game.PlaceId == 12699642568 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
 -- Natural Diaster Survival
 elseif game.PlaceId == 189707 then
@@ -3507,6 +3556,9 @@ elseif game.PlaceId == 189707 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
 -- Ro-Ghoul
 elseif game.PlaceId == 914010731 then
@@ -3651,6 +3703,9 @@ elseif game.PlaceId == 914010731 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
 -- Blade Ball
 elseif game.PlaceId == 13772394625 then
@@ -3804,6 +3859,9 @@ elseif game.PlaceId == 13772394625 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
 
 -- Pet Simulator X
@@ -3987,6 +4045,9 @@ elseif game.PlaceId == 8737899170 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
 	
 
 -- Legends of Speed
@@ -4114,6 +4175,9 @@ elseif game.PlaceId == 3101667897 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
 
 -- Brookhaven RP
 elseif game.PlaceId == 4924922222 then
@@ -4217,6 +4281,9 @@ elseif game.PlaceId == 4924922222 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
 -- Bedwars
 elseif game.PlaceId == 6872265039 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -4318,6 +4385,9 @@ elseif game.PlaceId == 6872265039 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
 						-- Chaos
 elseif game.PlaceId == 6441847031 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -4418,6 +4488,9 @@ elseif game.PlaceId == 6441847031 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
 -- Ninja Legends
 elseif game.PlaceId == 3956818381 then
@@ -4542,6 +4615,9 @@ elseif game.PlaceId == 3956818381 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
 -- Bayside High School
 elseif game.PlaceId == 12640491155 then
@@ -4949,6 +5025,9 @@ elseif game.PlaceId == 12640491155 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
 -- Big PaintBall
 elseif game.PlaceId == 3527629287 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -5099,6 +5178,9 @@ elseif game.PlaceId == 3527629287 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
 -- Big PaintBall 2
 elseif game.PlaceId == 9865958871 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -5198,6 +5280,9 @@ elseif game.PlaceId == 9865958871 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
 -- Muscle Legends
 elseif game.PlaceId == 3623096087 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -5291,6 +5376,9 @@ elseif game.PlaceId == 3623096087 then
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
 -- Road to Grambys
 elseif game.PlaceId == 5796917097 then
@@ -5552,6 +5640,9 @@ elseif game.PlaceId == 14426444782 then
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
 	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
 
 -- Universal
 else
@@ -5631,6 +5722,9 @@ else
 	end)
 	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
 		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
