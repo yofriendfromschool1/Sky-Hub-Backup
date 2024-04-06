@@ -5659,7 +5659,11 @@ else
 	local Debugs = Window:NewTab("Debuggers", 10507357657)
 	local DebugsSection = Debugs:NewSection("Debuggers")
 	DebugsSection:NewButton("Dex", "Explorer", function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+		if IsOnMobile then
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Dex/Mobile%20Dex%20Explorer.txt"))()
+		else
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+		end
 	end)
 	DebugsSection:NewButton("SimpleSpy V3", "Logs Remotes", function()
 		if IsOnMobile then
