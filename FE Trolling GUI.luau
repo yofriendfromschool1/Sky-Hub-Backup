@@ -19,7 +19,20 @@ local IsOnMobile = table.find({
 	Enum.Platform.IOS,
 	Enum.Platform.Android
 }, UserInputService:GetPlatform())
-
+local genesis_supported = game:FindFirstChildOfClass("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid").BreakJointsOnDeath
+if genesis_supported == true then
+    genesis_supported = "Genesis will work on this game! :)"
+else
+    genesis_supported = "Genesis will sadly not work on this game :("
+end
+local genesis_hats
+if game:GetService("Players").LocalPlayer.Character:FindFirstChild("MeshPartAccessory") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Unloaded head") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Extra Right hand (Blocky)_white") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Extra Left hand (Blocky)_white") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Front") then
+    genesis_hats = "Wearing Paid Hats."
+elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("MeshPartAccessory") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("MeshPartAccessory") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("MeshPartAccessory") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("MeshPartAccessory") and game:GetService("Players").LocalPlayer.Character:FindFirstChild("MeshPartAccessory") then
+    genesis_hats = "Wearing Free Hats."
+else
+    genesis_hats = "Not wearing any supported hats, please go to the genesis game and go get them."
+end
 if IsOnMobile then
 	_G.infydtype = "https://raw.githubusercontent.com/yofriendfromschool1/mobile-delta-inf-yield/main/deltainfyield.txt"
 else
@@ -50920,6 +50933,14 @@ local GENESIS = Window:AddTab({
 GENESIS:AddParagraph({
     Title = "Warning",
     Content = "You need hats for these scripts btw"
+})
+GENESIS:AddParagraph({
+    Title = "Warning: Game Supported?",
+    Content = genesis_supported
+})
+GENESIS:AddParagraph({
+    Title = "Warning: Do you have correct hats?",
+    Content = genesis_hats
 })
 GENESIS:AddButton({
 	Title = "Genesis Game",
