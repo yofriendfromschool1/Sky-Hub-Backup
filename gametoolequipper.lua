@@ -48,7 +48,7 @@ TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.Position = UDim2.new(-0.00129664713, 0, -0.000140406293, 0)
 TextLabel.Size = UDim2.new(0, 218, 0, 25)
 TextLabel.Font = Enum.Font.SourceSans
-TextLabel.Text = "Tool Giver"
+TextLabel.Text = "Tool Equipper"
 TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.TextSize = 14.000
 
