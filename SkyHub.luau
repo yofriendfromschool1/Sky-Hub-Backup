@@ -12,9 +12,9 @@ Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends
 
 Rebuilt On IllusionHub
 
-Last Updated 4/4/2024
+Last Updated 4/8/2024
 
-Added FOV Slider in Player tab
+Fixed most scripts not running on the Exeuctor known as Wave. And changed up ui a bit.
 
 Library by Lua_u
 
@@ -29,6 +29,13 @@ IF YOU WANT ME TO ADD A GAME OR REPORT A BUG JOIN MY DISCORD SERVER OR DM ME
 https://discord.gg/xwy5Cu62Vw
 
 ]]--
+local iswave = false
+if detourfunction then
+	iswave = true
+end
+httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
+HttpService = game:GetService("HttpService")
+everyClipboard = everyClipboard or toclipboard or set_clipboard or setrbxclipboard or (Clipboard and Clipboard.set)
 local OptTheme = "Midnight"
 local string2 = "https://discord.com/invite/jVf7eSrED9"
 _G.infydtype = 1
@@ -41,6 +48,8 @@ local IsOnMobile = table.find({
 
 if IsOnMobile then
 	_G.infydtype = "https://raw.githubusercontent.com/yofriendfromschool1/mobile-delta-inf-yield/main/deltainfyield.txt"
+elseif iswave then
+	_G.infydtype = "https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/iy.lua"
 else
 	_G.infydtype = "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"
 end
@@ -51,20 +60,55 @@ if game:GetService("SoundService").RespectFilteringEnabled == true then
 else
 	_G.lmao24 = "Disabled"
 end
-
 -- Da Hood
 if game.PlaceId == 2788229376 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -140,7 +184,7 @@ if game.PlaceId == 2788229376 then
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'), true))()
 	end)
 	MainSection:NewButton("Rainbow Sun Aimlock by therealxora", "by therealxora", function()
-		setclipboard("https://discord.gg/iosexploiters")
+		everyClipboard("https://discord.gg/iosexploiters")
 		print("https://discord.gg/iosexploiters")
 		print("https://discord.gg/iosexploiters Copied to clipboard")
 	-- https://discord.gg/iosexploiters
@@ -149,7 +193,7 @@ if game.PlaceId == 2788229376 then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/TheRealXORA/Roblox-Scripts/main/Rainbow%20Sunshine%20Aimlock.lua", true))()
 	end)
 	MainSection:NewButton("Ravenhook Free lock", "by Leadmarker", function()
-		setclipboard("discord.gg/QaR8d56B8W")
+		everyClipboard("discord.gg/QaR8d56B8W")
 		loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Ravenhook-FREE-10990", true))()
 	end)
 	MainSection:NewButton("Ravenhook Free lock updated?", "by Leadmarker", function()
@@ -291,16 +335,52 @@ if game.PlaceId == 2788229376 then
 --Arsenal
 elseif game.PlaceId == 286090429 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -514,16 +594,52 @@ elseif game.PlaceId == 286090429 then
 -- Tower Of Hell
 elseif game.PlaceId == 1962086868 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -618,16 +734,52 @@ elseif game.PlaceId == 1962086868 then
 -- KAT!
 elseif game.PlaceId == 621129760 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -890,16 +1042,52 @@ elseif game.PlaceId == 621129760 then
  -- Fencing
 elseif game.PlaceId == 12109643 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -1528,16 +1716,52 @@ elseif game.PlaceId == 12109643 then
 -- Work at a Pizza Place
 elseif game.PlaceId == 192800 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -1676,16 +1900,52 @@ elseif game.PlaceId == 192800 then
  -- VR Hands
 elseif game.PlaceId == 4832438542 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -1769,16 +2029,52 @@ elseif game.PlaceId == 4832438542 then
 -- Adopt me
 elseif game.PlaceId == 920587237 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -1880,6 +2176,15 @@ elseif game.PlaceId == 920587237 then
 -- JailBreak
 elseif game.PlaceId == 606849621 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -1913,7 +2218,7 @@ elseif game.PlaceId == 606849621 then
 	MainSection:NewButton("Sensation V2", "discord.gg/sensation", function()
 		-- This script is an early version of the soon to come sensation v2.
 		-- discord.gg/sensation
-		setclipboard("xaSdW23ld")
+		everyClipboard("xaSdW23ld")
 		local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua", true))() 
 		Notification.new("set key to clipboard just paste it in if asks for key")
 		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/730854e5b6499ee91deb1080e8e12ae3.lua"))()
@@ -2072,16 +2377,52 @@ elseif game.PlaceId == 606849621 then
 -- Prison Life
 elseif game.PlaceId == 155615604 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -2300,16 +2641,52 @@ elseif game.PlaceId == 155615604 then
     -- Build A Boat or BABFT
 elseif game.PlaceId == 537413528 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -2558,16 +2935,52 @@ elseif game.PlaceId == 537413528 then
 -- Gorilla Tag Professional
 elseif game.PlaceId == 8690998110 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -2699,16 +3112,52 @@ elseif game.PlaceId == 8690998110 then
 -- Murder Mystery 2 or MM2
 elseif game.PlaceId == 142823291 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -2985,16 +3434,52 @@ elseif game.PlaceId == 142823291 then
 -- Blox Fruits
 elseif game.PlaceId == 2753915549 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -3096,6 +3581,15 @@ elseif game.PlaceId == 2753915549 then
 			-- Counter Blox
 elseif game.PlaceId == 301549746 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -3119,10 +3613,37 @@ elseif game.PlaceId == 301549746 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -3191,6 +3712,15 @@ elseif game.PlaceId == 301549746 then
 				   	-- Mic Up
 elseif game.PlaceId == 6884319169 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -3254,10 +3784,37 @@ elseif game.PlaceId == 6884319169 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -3335,6 +3892,15 @@ elseif game.PlaceId == 6884319169 then
 				    	-- Neighbors
 elseif game.PlaceId == 12699642568 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -3354,10 +3920,37 @@ elseif game.PlaceId == 12699642568 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -3435,6 +4028,15 @@ elseif game.PlaceId == 12699642568 then
 -- Natural Diaster Survival
 elseif game.PlaceId == 189707 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -3485,10 +4087,37 @@ elseif game.PlaceId == 189707 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -3563,6 +4192,15 @@ elseif game.PlaceId == 189707 then
 -- Ro-Ghoul
 elseif game.PlaceId == 914010731 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -3632,10 +4270,37 @@ elseif game.PlaceId == 914010731 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -3710,6 +4375,15 @@ elseif game.PlaceId == 914010731 then
 -- Blade Ball
 elseif game.PlaceId == 13772394625 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -3785,10 +4459,37 @@ elseif game.PlaceId == 13772394625 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -3867,6 +4568,15 @@ elseif game.PlaceId == 13772394625 then
 -- Pet Simulator X
 elseif game.PlaceId == 6284583030 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -3879,10 +4589,37 @@ elseif game.PlaceId == 6284583030 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -3961,6 +4698,15 @@ elseif game.PlaceId == 6284583030 then
 -- Pet Simulator 99
 elseif game.PlaceId == 8737899170 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -3973,10 +4719,37 @@ elseif game.PlaceId == 8737899170 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -4053,6 +4826,15 @@ elseif game.PlaceId == 8737899170 then
 -- Legends of Speed
 elseif game.PlaceId == 3101667897 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -4103,10 +4885,37 @@ elseif game.PlaceId == 3101667897 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -4182,6 +4991,15 @@ elseif game.PlaceId == 3101667897 then
 -- Brookhaven RP
 elseif game.PlaceId == 4924922222 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -4206,10 +5024,37 @@ elseif game.PlaceId == 4924922222 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -4287,6 +5132,15 @@ elseif game.PlaceId == 4924922222 then
 -- Bedwars
 elseif game.PlaceId == 6872265039 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -4313,10 +5167,37 @@ elseif game.PlaceId == 6872265039 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -4391,6 +5272,15 @@ elseif game.PlaceId == 6872265039 then
 						-- Chaos
 elseif game.PlaceId == 6441847031 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -4414,10 +5304,37 @@ elseif game.PlaceId == 6441847031 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -4495,6 +5412,15 @@ elseif game.PlaceId == 6441847031 then
 -- Ninja Legends
 elseif game.PlaceId == 3956818381 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -4550,10 +5476,37 @@ elseif game.PlaceId == 3956818381 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -4622,6 +5575,15 @@ elseif game.PlaceId == 3956818381 then
 -- Bayside High School
 elseif game.PlaceId == 12640491155 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -4950,10 +5912,37 @@ elseif game.PlaceId == 12640491155 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -5031,6 +6020,15 @@ elseif game.PlaceId == 12640491155 then
 -- Big PaintBall
 elseif game.PlaceId == 3527629287 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -5106,10 +6104,37 @@ elseif game.PlaceId == 3527629287 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -5184,6 +6209,15 @@ elseif game.PlaceId == 3527629287 then
 -- Big PaintBall 2
 elseif game.PlaceId == 9865958871 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -5205,10 +6239,37 @@ elseif game.PlaceId == 9865958871 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -5286,6 +6347,15 @@ elseif game.PlaceId == 9865958871 then
 -- Muscle Legends
 elseif game.PlaceId == 3623096087 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -5308,10 +6378,37 @@ elseif game.PlaceId == 3623096087 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -5388,10 +6485,37 @@ elseif game.PlaceId == 5796917097 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -5451,10 +6575,37 @@ elseif game.PlaceId == 185655149 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -5473,6 +6624,15 @@ elseif game.PlaceId == 185655149 then
 	-- Cursed Sea 
 elseif game.PlaceId == 14426444782 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -5571,10 +6731,37 @@ elseif game.PlaceId == 14426444782 then
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -5647,14 +6834,50 @@ elseif game.PlaceId == 14426444782 then
 -- Universal
 else
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-		setclipboard("https://discord.gg/xwy5Cu62Vw")
+		if httprequest then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord open and if u on mobile then copied to clipboard",5)
+			if IsOnMobile then
+				if everyClipboard then
+					everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				else
+					Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+				end
+			end
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard")
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-		setclipboard(string2)
+		everyClipboard(string2)
 	end)
 	local Debugs = Window:NewTab("Debuggers", 10507357657)
 	local DebugsSection = Debugs:NewSection("Debuggers")
@@ -6175,7 +7398,7 @@ else
 	local PlaceInfo = Window:NewTab("Place Info", 10507357657)
 	local PlaceInfoSection = PlaceInfo:NewSection("Place Info")
 	PlaceInfoSection:NewButton(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name, game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Description, function()
-		setclipboard(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Description)
+		everyClipboard(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Description)
 	end)
 	PlaceInfoSection:NewButton("RespectFilteringEnabled is " .. _G.lmao24, function()
 		
