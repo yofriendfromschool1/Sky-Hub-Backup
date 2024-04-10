@@ -12,9 +12,9 @@ Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends
 
 Rebuilt On IllusionHub
 
-Last Updated 4/8/2024
+Last Updated 4/9/2024
 
-Fixed most scripts not running on the Exeuctor known as Wave. And changed up ui a bit.
+Fixed most scripts not running on the Exeuctor known as Wave. And changed up ui a bit aswell as adding third person enabler in player section
 
 Library by Lua_u
 
@@ -329,6 +329,10 @@ if game.PlaceId == 2788229376 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
 	
 	
@@ -731,6 +735,10 @@ elseif game.PlaceId == 1962086868 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
 -- KAT!
 elseif game.PlaceId == 621129760 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -1038,6 +1046,10 @@ elseif game.PlaceId == 621129760 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
  -- Fencing
 elseif game.PlaceId == 12109643 then
@@ -1713,6 +1725,10 @@ elseif game.PlaceId == 12109643 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
 -- Work at a Pizza Place
 elseif game.PlaceId == 192800 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -1897,6 +1913,10 @@ elseif game.PlaceId == 192800 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
  -- VR Hands
 elseif game.PlaceId == 4832438542 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -2025,6 +2045,10 @@ elseif game.PlaceId == 4832438542 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
 -- Adopt me
 elseif game.PlaceId == 920587237 then
@@ -2172,6 +2196,10 @@ elseif game.PlaceId == 920587237 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
 -- JailBreak
 elseif game.PlaceId == 606849621 then
@@ -2370,6 +2398,10 @@ elseif game.PlaceId == 606849621 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
 
 	
@@ -2637,6 +2669,10 @@ elseif game.PlaceId == 155615604 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
     -- Build A Boat or BABFT
 elseif game.PlaceId == 537413528 then
@@ -2932,6 +2968,10 @@ elseif game.PlaceId == 537413528 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
 -- Gorilla Tag Professional
 elseif game.PlaceId == 8690998110 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -3107,6 +3147,10 @@ elseif game.PlaceId == 8690998110 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
         
 -- Murder Mystery 2 or MM2
@@ -3430,6 +3474,10 @@ elseif game.PlaceId == 142823291 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
         
 -- Blox Fruits
 elseif game.PlaceId == 2753915549 then
@@ -3577,6 +3625,10 @@ elseif game.PlaceId == 2753915549 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
 	 
 			-- Counter Blox
 elseif game.PlaceId == 301549746 then
@@ -3708,6 +3760,10 @@ elseif game.PlaceId == 301549746 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
 				   	-- Mic Up
 elseif game.PlaceId == 6884319169 then
@@ -3889,6 +3945,10 @@ elseif game.PlaceId == 6884319169 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
 				    	-- Neighbors
 elseif game.PlaceId == 12699642568 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -4024,6 +4084,10 @@ elseif game.PlaceId == 12699642568 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
 -- Natural Diaster Survival
 elseif game.PlaceId == 189707 then
@@ -4188,6 +4252,10 @@ elseif game.PlaceId == 189707 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
 -- Ro-Ghoul
 elseif game.PlaceId == 914010731 then
@@ -4371,6 +4439,10 @@ elseif game.PlaceId == 914010731 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
 -- Blade Ball
 elseif game.PlaceId == 13772394625 then
@@ -4563,6 +4635,10 @@ elseif game.PlaceId == 13772394625 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
 
 -- Pet Simulator X
@@ -4821,6 +4897,10 @@ elseif game.PlaceId == 8737899170 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
 	
 
 -- Legends of Speed
@@ -4987,6 +5067,10 @@ elseif game.PlaceId == 3101667897 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
 
 -- Brookhaven RP
 elseif game.PlaceId == 4924922222 then
@@ -5129,6 +5213,10 @@ elseif game.PlaceId == 4924922222 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
 -- Bedwars
 elseif game.PlaceId == 6872265039 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -5269,6 +5357,10 @@ elseif game.PlaceId == 6872265039 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
 						-- Chaos
 elseif game.PlaceId == 6441847031 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -5408,6 +5500,10 @@ elseif game.PlaceId == 6441847031 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
 -- Ninja Legends
 elseif game.PlaceId == 3956818381 then
@@ -5571,6 +5667,10 @@ elseif game.PlaceId == 3956818381 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
 -- Bayside High School
 elseif game.PlaceId == 12640491155 then
@@ -6017,6 +6117,10 @@ elseif game.PlaceId == 12640491155 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
 -- Big PaintBall
 elseif game.PlaceId == 3527629287 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -6206,6 +6310,10 @@ elseif game.PlaceId == 3527629287 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
 -- Big PaintBall 2
 elseif game.PlaceId == 9865958871 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -6344,6 +6452,10 @@ elseif game.PlaceId == 9865958871 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
 -- Muscle Legends
 elseif game.PlaceId == 3623096087 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -6476,6 +6588,10 @@ elseif game.PlaceId == 3623096087 then
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
 -- Road to Grambys
 elseif game.PlaceId == 5796917097 then
@@ -6830,6 +6946,10 @@ elseif game.PlaceId == 14426444782 then
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
 	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
 
 -- Universal
 else
@@ -6952,6 +7072,10 @@ else
 	end)
 	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
 		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
