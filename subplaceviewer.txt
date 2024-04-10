@@ -1,0 +1,105 @@
+game:GetService("StarterGui").ResetPlayerGuiOnSpawn = false 
+
+local TeleportService = game:GetService("TeleportService")
+local UserInputService = game:GetService("UserInputService")
+
+local pages = game:GetService("AssetService"):GetGamePlacesAsync()
+
+local gui = Instance.new("ScreenGui")
+gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local outerFrame = Instance.new("Frame")
+outerFrame.Size = UDim2.new(0.5, 0, 0.5, 0)
+outerFrame.Position = UDim2.new(0.25, 0, 0.25, 0)
+outerFrame.BorderSizePixel = 5
+outerFrame.BackgroundColor3 = Color3.new(1, 0.5, 0) 
+outerFrame.Parent = gui
+
+local title = Instance.new("TextLabel") 
+title.Text = "Teleport To Subplaces By Your Name" 
+title.Size = UDim2.new(1, 0, 0, 30)
+title.TextSize = 15
+title.TextColor3 = Color3.new(1, 1, 1)
+title.BackgroundColor3 = Color3.new(1, 0.5, 0) 
+title.Parent = outerFrame
+
+local closeButton = Instance.new("TextButton") 
+closeButton.Text = "X"
+closeButton.Size = UDim2.new(0, 30, 0, 30)
+closeButton.Position = UDim2.new(1, -30, 0, 0)
+closeButton.TextSize = 20
+closeButton.TextColor3 = Color3.new(1, 1, 1) 
+closeButton.BackgroundColor3 = Color3.new(1, 0.5, 0) 
+closeButton.Parent = title
+closeButton.MouseButton1Click:Connect(function()
+    gui:Destroy()
+end)
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(1, -10, 1, -40) 
+frame.Position = UDim2.new(0, 5, 0, 35) 
+frame.BackgroundColor3 = Color3.new(1, 0.5, 0)
+frame.Parent = outerFrame
+
+local scrollFrame = Instance.new("ScrollingFrame")
+scrollFrame.Size = UDim2.new(0.9, 0, 0.9, 0)
+scrollFrame.Position = UDim2.new(0.05, 0, 0.05, 0)
+scrollFrame.BackgroundColor3 = Color3.new(1, 0.8, 0.4) 
+scrollFrame.Parent = frame
+
+local function updateGUI()
+    for _, place in pairs(pages:GetCurrentPage()) do
+        local placeLabel = Instance.new("TextLabel")
+        placeLabel.Text = "Name: " .. place.Name .. "\nPlaceId: " .. tostring(place.PlaceId)
+        placeLabel.Size = UDim2.new(1, 0, 0, 30)
+        placeLabel.Position = UDim2.new(0, 0, 0, (#scrollFrame:GetChildren() + 1) * 30)
+        placeLabel.TextColor3 = Color3.new(1, 1, 1) 
+        placeLabel.BackgroundColor3 = Color3.new(1, 0.5, 0) 
+        placeLabel.Parent = scrollFrame
+
+        local teleportButton = Instance.new("TextButton")
+        teleportButton.Text = "Teleport"
+        teleportButton.Size = UDim2.new(0.2, 0, 0, 30)
+        teleportButton.Position = UDim2.new(0.8, 0, 0, 0)
+        teleportButton.BackgroundColor3 = Color3.new(1, 0.8, 0.4) 
+        teleportButton.TextColor3 = Color3.new(1, 1, 1) 
+        teleportButton.Parent = placeLabel
+        teleportButton.MouseButton1Click:Connect(function()
+            TeleportService:Teleport(place.PlaceId, game.Players.LocalPlayer)
+        end)
+    end
+    if pages.IsFinished then
+        return
+    end
+    pages:AdvanceToNextPageAsync()
+end
+
+updateGUI()
+
+local dragging
+local dragStartPos
+local startPos
+
+local function updateDrag(input)
+    local delta = input.Position - dragStartPos
+    outerFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+outerFrame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStartPos = input.Position
+        startPos = outerFrame.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+outerFrame.InputChanged:Connect(function(input)
+    if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+        updateDrag(input)
+    end
+end)
