@@ -176,6 +176,15 @@ local GUIS = Window:AddTab({
 	Title = "GUIS",
 	Icon = "globe"
 })
+if IsOnMobile then
+    GUIS:AddButton({
+        Title = "Mobile Keyboard Script",
+        Description = "Since some scripts only have keyboard functions, you will need this script",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+        end
+    })
+end
 GUIS:AddButton({
 	Title = "Arosia FE GUI",
 	Description = "Arosia FE GUI",
