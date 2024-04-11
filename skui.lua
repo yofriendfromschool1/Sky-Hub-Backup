@@ -1,3 +1,4 @@
+getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
 local ScreenGui = Instance.new("ScreenGui")
 local ImageLabel = Instance.new("ImageLabel")
 local UICorner = Instance.new("UICorner")
@@ -98,7 +99,7 @@ ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 ImageLabel.Parent = ScreenGui
 ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel.BackgroundTransparency = 1.000
+ImageLabel.BackgroundTransparency = 1
 ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ImageLabel.BorderSizePixel = 0
 ImageLabel.ClipsDescendants = true
@@ -120,11 +121,11 @@ TopBar.Size = UDim2.new(1, 0, 0, 40)
 
 TextLabel.Parent = TopBar
 TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
+TextLabel.BackgroundTransparency = 1
 TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.BorderSizePixel = 0
 TextLabel.Size = UDim2.new(0, 200, 0, 40)
-TextLabel.Font = Enum.Font.Ubuntu
+TextLabel.FontFace = Font.new("rbxassetid://11702779409")
 TextLabel.Text = "Sky Hub"
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextSize = 25.000
@@ -137,12 +138,12 @@ UIGradient.Parent = TopBar
 Minimize.Name = "Minimize"
 Minimize.Parent = TopBar
 Minimize.BackgroundColor3 = Color3.fromRGB(38, 38, 38)
-Minimize.BackgroundTransparency = 1.000
+Minimize.BackgroundTransparency = 1
 Minimize.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Minimize.BorderSizePixel = 0
 Minimize.Position = UDim2.new(0, 470, 0, 0)
 Minimize.Size = UDim2.new(0, 40, 0, 40)
-Minimize.Font = Enum.Font.Ubuntu
+Minimize.FontFace = Font.new("rbxassetid://11702779409")
 Minimize.Text = ""
 Minimize.TextColor3 = Color3.fromRGB(0, 0, 0)
 Minimize.TextSize = 14.000
@@ -150,15 +151,13 @@ Minimize.TextSize = 14.000
 Rot.Name = "Rot"
 Rot.Parent = Minimize
 Rot.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Rot.BackgroundTransparency = 1.000
+Rot.BackgroundTransparency = 1
 Rot.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Rot.BorderSizePixel = 0
 Rot.Position = UDim2.new(0.125, 0, 0.125, 0)
 Rot.Rotation = 90.000
 Rot.Size = UDim2.new(0.75, 0, 0.75, 0)
 
-UICorner_2.CornerRadius = UDim.new(0, 500)
-UICorner_2.Parent = Frame
 
 Frame_2.Parent = Rot
 Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -173,13 +172,13 @@ UICorner_3.Parent = Frame_2
 Close.Name = "Close"
 Close.Parent = TopBar
 Close.BackgroundColor3 = Color3.fromRGB(38, 38, 38)
-Close.BackgroundTransparency = 1.000
+Close.BackgroundTransparency = 1
 Close.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Close.BorderSizePixel = 0
 Close.Position = UDim2.new(0, 510, 0, 0)
 Close.Rotation = 1.000
 Close.Size = UDim2.new(0, 40, 0, 40)
-Close.Font = Enum.Font.Ubuntu
+Close.FontFace = Font.new("rbxassetid://11702779409")
 Close.Text = ""
 Close.TextColor3 = Color3.fromRGB(0, 0, 0)
 Close.TextSize = 14.000
@@ -187,7 +186,7 @@ Close.TextSize = 14.000
 Rot_3.Name = "Rot"
 Rot_3.Parent = Close
 Rot_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Rot_3.BackgroundTransparency = 1.000
+Rot_3.BackgroundTransparency = 1
 Rot_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Rot_3.BorderSizePixel = 0
 Rot_3.Position = UDim2.new(0.125, 0, 0.125, 0)
@@ -218,7 +217,7 @@ UICorner_7.Parent = Frame_6
 TabList.Name = "TabList"
 TabList.Parent = ImageLabel
 TabList.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TabList.BackgroundTransparency = 1.000
+TabList.BackgroundTransparency = 1
 TabList.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TabList.BorderSizePixel = 0
 TabList.Position = UDim2.new(0, 0, 0.13333334, 0)
@@ -242,7 +241,7 @@ TabTemplates.Parent = Script
 TTemp.Name = "TTemp"
 TTemp.Parent = TabTemplates
 TTemp.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TTemp.BackgroundTransparency = 1.000
+TTemp.BackgroundTransparency = 1
 TTemp.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TTemp.BorderSizePixel = 0
 TTemp.Size = UDim2.new(0, 100, 0, 100)
@@ -256,7 +255,7 @@ Toggle.BorderSizePixel = 0
 Toggle.Position = UDim2.new(0.0395348854, 0, 0.0769233704, 0)
 Toggle.Size = UDim2.new(0, 33, 0, 33)
 Toggle.AutoButtonColor = false
-Toggle.Font = Enum.Font.Ubuntu
+Toggle.FontFace = Font.new("rbxassetid://11702779409")
 Toggle.Text = ""
 Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
 Toggle.TextSize = 30.000
@@ -267,12 +266,12 @@ UICorner_8.Parent = Toggle
 Desc.Name = "Desc"
 Desc.Parent = TTemp
 Desc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Desc.BackgroundTransparency = 1.000
+Desc.BackgroundTransparency = 1
 Desc.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Desc.BorderSizePixel = 0
 Desc.Position = UDim2.new(0.274418592, 0, 0.174999997, 0)
 Desc.Size = UDim2.new(0, 145, 0, 26)
-Desc.Font = Enum.Font.Ubuntu
+Desc.FontFace = Font.new("rbxassetid://11702779409")
 Desc.Text = "Checkmark"
 Desc.TextColor3 = Color3.fromRGB(255, 255, 255)
 Desc.TextScaled = true
@@ -283,7 +282,7 @@ Desc.TextXAlignment = Enum.TextXAlignment.Left
 ITemp.Name = "ITemp"
 ITemp.Parent = TabTemplates
 ITemp.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ITemp.BackgroundTransparency = 1.000
+ITemp.BackgroundTransparency = 1
 ITemp.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ITemp.BorderSizePixel = 0
 ITemp.Size = UDim2.new(0, 100, 0, 100)
@@ -296,7 +295,7 @@ Input.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Input.BorderSizePixel = 0
 Input.Position = UDim2.new(0.150999993, 0, 0.0769999996, 0)
 Input.Size = UDim2.new(0, 150, 0, 33)
-Input.Font = Enum.Font.Ubuntu
+Input.FontFace = Font.new("rbxassetid://11702779409")
 Input.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
 Input.PlaceholderText = "Placeholder"
 Input.Text = ""
@@ -310,7 +309,7 @@ UICorner_9.Parent = Input
 BTemp.Name = "BTemp"
 BTemp.Parent = TabTemplates
 BTemp.BackgroundColor3 = Color3.fromRGB(50, 57, 81)
-BTemp.BackgroundTransparency = 1.000
+BTemp.BackgroundTransparency = 1
 BTemp.BorderColor3 = Color3.fromRGB(0, 0, 0)
 BTemp.BorderSizePixel = 0
 BTemp.Size = UDim2.new(0, 100, 0, 100)
@@ -323,7 +322,7 @@ Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Button.BorderSizePixel = 0
 Button.Position = UDim2.new(0.151162788, 0, 0.0769233704, 0)
 Button.Size = UDim2.new(0, 150, 0, 33)
-Button.Font = Enum.Font.Ubuntu
+Button.FontFace = Font.new("rbxassetid://11702779409")
 Button.TextColor3 = Color3.fromRGB(255, 255, 255)
 Button.TextSize = 18.000
 
@@ -333,7 +332,7 @@ UICorner_10.Parent = Button
 SectionTemp.Name = "SectionTemp"
 SectionTemp.Parent = TabTemplates
 SectionTemp.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-SectionTemp.BackgroundTransparency = 1.000
+SectionTemp.BackgroundTransparency = 1
 SectionTemp.BorderColor3 = Color3.fromRGB(0, 0, 0)
 SectionTemp.BorderSizePixel = 0
 SectionTemp.Size = UDim2.new(0, 100, 0, 100)
@@ -341,12 +340,12 @@ SectionTemp.Size = UDim2.new(0, 100, 0, 100)
 Section.Name = "Section"
 Section.Parent = SectionTemp
 Section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Section.BackgroundTransparency = 1.000
+Section.BackgroundTransparency = 1
 Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Section.BorderSizePixel = 0
 Section.Position = UDim2.new(0.0500000007, 0, 0.25, 0)
 Section.Size = UDim2.new(0.899999976, 0, 0.5, 0)
-Section.Font = Enum.Font.Ubuntu
+Section.FontFace = Font.new("rbxassetid://11702779409")
 Section.Text = "Section"
 Section.TextColor3 = Color3.fromRGB(255, 255, 255)
 Section.TextScaled = true
@@ -365,7 +364,7 @@ SectionSpacer.Size = UDim2.new(0, 100, 0, 100)
 Slide.Name = "Slide"
 Slide.Parent = TabTemplates
 Slide.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Slide.BackgroundTransparency = 1.000
+Slide.BackgroundTransparency = 1
 Slide.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Slide.BorderSizePixel = 0
 Slide.Size = UDim2.new(0, 100, 0, 100)
@@ -379,7 +378,7 @@ Max.BorderSizePixel = 0
 Max.Position = UDim2.new(0.5, 0, 0.5, 0)
 Max.Size = UDim2.new(0.75, 0, 0.400000006, 0)
 Max.AutoButtonColor = false
-Max.Font = Enum.Font.Ubuntu
+Max.FontFace = Font.new("rbxassetid://11702779409")
 Max.Text = ""
 Max.TextColor3 = Color3.fromRGB(0, 0, 0)
 Max.TextSize = 14.000
@@ -401,7 +400,7 @@ UICorner_12.Parent = Max
 DTemp.Name = "DTemp"
 DTemp.Parent = TabTemplates
 DTemp.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-DTemp.BackgroundTransparency = 1.000
+DTemp.BackgroundTransparency = 1
 DTemp.BorderColor3 = Color3.fromRGB(0, 0, 0)
 DTemp.BorderSizePixel = 0
 DTemp.Position = UDim2.new(0.674208164, 0, 0.454838723, 0)
@@ -415,7 +414,7 @@ Button_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Button_2.BorderSizePixel = 0
 Button_2.Position = UDim2.new(0.151162788, 0, 0.0769233704, 0)
 Button_2.Size = UDim2.new(0, 150, 0, 33)
-Button_2.Font = Enum.Font.Ubuntu
+Button_2.FontFace = Font.new("rbxassetid://11702779409")
 Button_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 Button_2.TextSize = 18.000
 
@@ -450,7 +449,7 @@ Button_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Button_3.BorderSizePixel = 0
 Button_3.Position = UDim2.new(0.151162788, 0, 0.0769233704, 0)
 Button_3.Size = UDim2.new(0, 150, 0, 33)
-Button_3.Font = Enum.Font.Ubuntu
+Button_3.FontFace = Font.new("rbxassetid://11702779409")
 Button_3.TextColor3 = Color3.fromRGB(255, 255, 255)
 Button_3.TextSize = 18.000
 
@@ -471,23 +470,23 @@ TabTemp.Size = UDim2.new(0, 100, 0, 100)
 Button_4.Name = "Button"
 Button_4.Parent = TabTemp
 Button_4.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
-Button_4.BackgroundTransparency = 1.000
+Button_4.BackgroundTransparency = 1
 Button_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Button_4.BorderSizePixel = 0
 Button_4.Size = UDim2.new(1, 0, 1, 0)
-Button_4.Font = Enum.Font.Ubuntu
+Button_4.FontFace = Font.new("rbxassetid://11702779409")
 Button_4.Text = ""
 Button_4.TextColor3 = Color3.fromRGB(255, 255, 255)
 Button_4.TextSize = 20.000
 
 TextLabel_2.Parent = TabTemp
 TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.BackgroundTransparency = 1
 TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel_2.BorderSizePixel = 0
 TextLabel_2.Position = UDim2.new(0.333333343, 0, 0.174999997, 0)
 TextLabel_2.Size = UDim2.new(0, 80, 0, 26)
-TextLabel_2.Font = Enum.Font.Ubuntu
+TextLabel_2.FontFace = Font.new("rbxassetid://11702779409")
 TextLabel_2.Text = "Tab 1"
 TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_2.TextScaled = true
@@ -496,7 +495,7 @@ TextLabel_2.TextWrapped = true
 
 ImageLabel_2.Parent = TabTemp
 ImageLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel_2.BackgroundTransparency = 1.000
+ImageLabel_2.BackgroundTransparency = 1
 ImageLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ImageLabel_2.BorderSizePixel = 0
 ImageLabel_2.Position = UDim2.new(0.0833333358, 0, 0.125, 0)
@@ -507,7 +506,7 @@ TempTab.Name = "TempTab"
 TempTab.Parent = TabStuff
 TempTab.Active = true
 TempTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TempTab.BackgroundTransparency = 1.000
+TempTab.BackgroundTransparency = 1
 TempTab.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TempTab.BorderSizePixel = 0
 TempTab.Position = UDim2.new(0.217999995, 0, 0.133000001, 0)
@@ -537,15 +536,19 @@ local function HLBC_fake_script() -- ImageLabel.Script
 		Credits: Original Creator @googleUSE, Moder and automater thingy majingy @ImSnox
 		
 		]]
-	
-	local BlurIntensity = 0.4
-	
+	getgenv().BlurIntes = 0.4
+	local BlurIntensity = getgenv().BlurIntes task.spawn(function()
+		while task.wait() do
+			BlurIntensity = getgenv().BlurIntes
+		end
+	end)
+
 	local RunService = game:GetService('RunService')
 	local camera = workspace.CurrentCamera
-	local MTREL = "Glass"
+	local MTREL = ""
 	local binds = {}
 	local root = Instance.new('Folder', camera)
-	
+
 	local DepthOfField = Instance.new('DepthOfFieldEffect', game:GetService('Lighting'))
 	local frame = script.Parent
 	DepthOfField.FarIntensity = 0
@@ -554,7 +557,7 @@ local function HLBC_fake_script() -- ImageLabel.Script
 	DepthOfField.NearIntensity = BlurIntensity
 	DepthOfField.Name = " "
 	root.Name = 'BlurSnox'
-	
+
 	local GenUid; do -- Generate unique names for RenderStepped bindings
 		local id = 0
 		function GenUid()
@@ -562,7 +565,7 @@ local function HLBC_fake_script() -- ImageLabel.Script
 			return 'neon::'..tostring(id)
 		end
 	end
-	
+
 	do
 		local function IsNotNaN(x)
 			return x == x
@@ -573,11 +576,11 @@ local function HLBC_fake_script() -- ImageLabel.Script
 			continue = IsNotNaN(camera:ScreenPointToRay(0,0).Origin.x)
 		end
 	end
-	
+
 	local DrawQuad; do
 		local acos, max, pi, sqrt = math.acos, math.max, math.pi, math.sqrt
 		local sz = 0.2
-	
+
 		local function DrawTriangle(v1, v2, v3, p0, p1) -- I think Stravant wrote this function
 			local s1 = (v1 - v2).magnitude
 			local s2 = (v2 - v3).magnitude
@@ -591,35 +594,35 @@ local function HLBC_fake_script() -- ImageLabel.Script
 			elseif s3 == smax then
 				A, B, C = v3, v1, v2
 			end
-	
+
 			local para = ( (B-A).x*(C-A).x + (B-A).y*(C-A).y + (B-A).z*(C-A).z ) / (A-B).magnitude
 			local perp = sqrt((C-A).magnitude^2 - para*para)
 			local dif_para = (A - B).magnitude - para
-	
+
 			local st = CFrame.new(B, A)
 			local za = CFrame.Angles(pi/2,0,0)
-	
+
 			local cf0 = st
-	
+
 			local Top_Look = (cf0 * za).lookVector
 			local Mid_Point = A + CFrame.new(A, B).LookVector * para
 			local Needed_Look = CFrame.new(Mid_Point, C).LookVector
 			local dot = Top_Look.x*Needed_Look.x + Top_Look.y*Needed_Look.y + Top_Look.z*Needed_Look.z
-	
+
 			local ac = CFrame.Angles(0, 0, acos(dot))
-	
+
 			cf0 = cf0 * ac
 			if ((cf0 * za).lookVector - Needed_Look).magnitude > 0.01 then
 				cf0 = cf0 * CFrame.Angles(0, 0, -2*acos(dot))
 			end
 			cf0 = cf0 * CFrame.new(0, perp/2, -(dif_para + para/2))
-	
+
 			local cf1 = st * ac * CFrame.Angles(0, pi, 0)
 			if ((cf1 * za).lookVector - Needed_Look).magnitude > 0.01 then
 				cf1 = cf1 * CFrame.Angles(0, 0, 2*acos(dot))
 			end
 			cf1 = cf1 * CFrame.new(0, perp/2, dif_para/2)
-	
+
 			if not p0 then
 				p0 = Instance.new('Part')
 				p0.Color = Color3.fromRGB(91, 128, 130)
@@ -629,7 +632,7 @@ local function HLBC_fake_script() -- ImageLabel.Script
 				p0.Anchored = true
 				p0.CanCollide = false
 				p0.CastShadow = false
-				p0.Material = MTREL
+				p0.Material = Enum.Material.Neon
 				p0.Size = Vector3.new(sz, sz, sz)
 				local mesh = Instance.new('SpecialMesh', p0)
 				mesh.MeshType = 2
@@ -637,32 +640,32 @@ local function HLBC_fake_script() -- ImageLabel.Script
 			end
 			p0.WedgeMesh.Scale = Vector3.new(0, perp/sz, para/sz)
 			p0.CFrame = cf0
-	
+
 			if not p1 then
 				p1 = p0:clone()
 			end
 			p1.WedgeMesh.Scale = Vector3.new(0, perp/sz, dif_para/sz)
 			p1.CFrame = cf1
-	
+
 			return p0, p1
 		end
-	
+
 		function DrawQuad(v1, v2, v3, v4, parts)
 			parts[1], parts[2] = DrawTriangle(v1, v2, v3, parts[1], parts[2])
 			parts[3], parts[4] = DrawTriangle(v3, v2, v4, parts[3], parts[4])
 		end
 	end
-	
+
 	if binds[frame] then
 		return binds[frame].parts
 	end
-	
+
 	local uid = GenUid()
 	local parts = {}
 	local visible = true
 	local f = Instance.new('Folder', root)
 	f.Name = frame.Name
-	
+
 	local parents = {}
 	do
 		local function add(child)
@@ -673,11 +676,12 @@ local function HLBC_fake_script() -- ImageLabel.Script
 		end
 		add(frame)
 	end
-	
+
 	local function UpdateOrientation(fetchProps)
 		if close == true then
 			return
 		end
+		DepthOfField.NearIntensity = BlurIntensity
 		local trans = 0.99
 		if visible == false then
 			trans = 1
@@ -687,7 +691,7 @@ local function HLBC_fake_script() -- ImageLabel.Script
 			--BrickColor = BrickColor.new('Institutional white');
 		}
 		local zIndex = 1 - 0.05*frame.ZIndex
-	
+
 		local tl, br = frame.AbsolutePosition, frame.AbsolutePosition + frame.AbsoluteSize
 		local tr, bl = Vector2.new(br.x, tl.y), Vector2.new(tl.x, br.y)
 		do
@@ -723,23 +727,23 @@ local function HLBC_fake_script() -- ImageLabel.Script
 			end
 		end
 	end
-	
+
 	UpdateOrientation(true)
 	RunService:BindToRenderStep(uid, 2000, UpdateOrientation)
 	local UserInputService = game:GetService("UserInputService")
 	local runService = (game:GetService("RunService"));
-	
+
 	local gui = script.Parent
-	
+
 	local dragging
 	local dragInput
 	local dragStart
 	local startPos
-	
+
 	local function Lerp(a, b, m)
 		return a + (b - a) * m
 	end;
-	
+
 	local lastMousePos
 	local lastGoalPos
 	local DRAG_SPEED = (8); -- // The speed of the UI darg.
@@ -749,21 +753,21 @@ local function HLBC_fake_script() -- ImageLabel.Script
 			gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_SPEED))
 			return 
 		end;
-	
+
 		local delta = (lastMousePos - UserInputService:GetMouseLocation())
 		local xGoal = (startPos.X.Offset - delta.X);
 		local yGoal = (startPos.Y.Offset - delta.Y);
 		lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
 		gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, xGoal, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, yGoal, dt * DRAG_SPEED))
 	end;
-	
+
 	gui.TopBar.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			dragging = true
 			dragStart = input.Position
 			startPos = gui.Position
 			lastMousePos = UserInputService:GetMouseLocation()
-	
+
 			input.Changed:Connect(function()
 				if input.UserInputState == Enum.UserInputState.End then
 					dragging = false
@@ -771,18 +775,18 @@ local function HLBC_fake_script() -- ImageLabel.Script
 			end)
 		end
 	end)
-	
+
 	gui.TopBar.InputChanged:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 			dragInput = input
 		end
 	end)
-	
+
 	runService.Heartbeat:Connect(Update)
 	script.Parent.TopBar.Minimize.Activated:Connect(function()
 		if IsOnMobile then
 			Sky["DaIcon"].Visible = true
-    		visible = false
+			visible = false
 		else
 			visible = false
 		end
@@ -805,7 +809,7 @@ local function HLBC_fake_script() -- ImageLabel.Script
 				end
 			end)
 		else
-			if inp.KeyCode == Enum.KeyCode.RightControl then
+			if inp.KeyCode == getgenv().SkyhubKeybind then
 				visible = true
 			end
 		end
@@ -815,7 +819,7 @@ local function HLBC_fake_script() -- ImageLabel.Script
 			script.Parent.Visible = visible
 		end
 	end)
-	
+
 		--[[
 		local lib = require(script.Parent.Lib)
 		local tab = lib.AddTab("Tabs are over rated")
@@ -1241,7 +1245,7 @@ NotifLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Center.Name = "Center"
 Center.Parent = NotifLib
 Center.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Center.BackgroundTransparency = 1.000
+Center.BackgroundTransparency = 1
 Center.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Center.BorderSizePixel = 0
 Center.Position = UDim2.new(0.5, 0, 0, 0)
@@ -1250,7 +1254,7 @@ Center.Size = UDim2.new(0, 1, 0, 1)
 Holder.Name = "Holder"
 Holder.Parent = Center
 Holder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Holder.BackgroundTransparency = 1.000
+Holder.BackgroundTransparency = 1
 Holder.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Holder.BorderSizePixel = 0
 Holder.Position = UDim2.new(-124, 0, 16, 0)
@@ -1271,7 +1275,7 @@ UICorner.Parent = Template
 Main.Name = "Main"
 Main.Parent = Template
 Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Main.BackgroundTransparency = 1.000
+Main.BackgroundTransparency = 1
 Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Main.BorderSizePixel = 0
 Main.Position = UDim2.new(0.200000003, 0, 0.0900000036, 0)
@@ -1286,7 +1290,7 @@ Main.TextWrapped = true
 Secondary.Name = "Secondary"
 Secondary.Parent = Template
 Secondary.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Secondary.BackgroundTransparency = 1.000
+Secondary.BackgroundTransparency = 1
 Secondary.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Secondary.BorderSizePixel = 0
 Secondary.Position = UDim2.new(0.100000001, 0, 0.340000004, 0)
@@ -1360,8 +1364,11 @@ notiflib.Notify = function(header,details,time,callback,data)
 		notif.N.Visible = false
 	end
 	local script = Instance.new("LocalScript", notif)
-	local BlurIntensity = 0.4
-
+	local BlurIntensity = getgenv().BlurIntes task.spawn(function()
+		while task.wait() do
+			BlurIntensity = getgenv().BlurIntes
+		end
+	end)
 	local RunService = game:GetService('RunService')
 	local camera = workspace.CurrentCamera
 	local MTREL = "Glass"
@@ -1373,7 +1380,7 @@ notiflib.Notify = function(header,details,time,callback,data)
 	DepthOfField.FarIntensity = 0
 	DepthOfField.FocusDistance = 51.6
 	DepthOfField.InFocusRadius = 50
-	DepthOfField.NearIntensity = 0--BlurIntensity
+	DepthOfField.NearIntensity = BlurIntensity
 	DepthOfField.Name = " "
 	root.Name = 'BlurSnox'
 
@@ -1500,6 +1507,7 @@ notiflib.Notify = function(header,details,time,callback,data)
 		if canido == false then
 			return
 		end
+		DepthOfField.NearIntensity = BlurIntensity
 		local trans = 0.99
 		if visible == false then
 			trans = 1
@@ -1595,6 +1603,7 @@ notiflib.Notify = function(header,details,time,callback,data)
 		wait(0.3)
 		canido = false
 		wait(0.1)
+		root:Destroy()
 		notif:Destroy()
 		sound:Destroy()
 	end
