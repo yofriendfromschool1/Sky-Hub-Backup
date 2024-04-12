@@ -1214,6 +1214,13 @@ task.spawn(function()
         local hours, mins = currentTime.hour, currentTime.min
         if hours > 12 then
             hours = currentTime.hour - 12
+if mins < 10 then
+                mins = "0" .. currentTime.min .. " PM"
+            else
+                mins = currentTime.min .. " PM"
+            end
+       elseif hours == 0 then
+           hours = currentTime.hour + 12
             if mins < 10 then
                 mins = "0" .. currentTime.min .. " PM"
             else
@@ -1231,7 +1238,6 @@ task.spawn(function()
         ui.TopBar.TextLabel.Text = nam .. " - " .. hours .. ":" .. mins
     end
 end)
-
 lib.CreateLib = function(name,smth)
 	local toreturn = {}
 	nam = name
