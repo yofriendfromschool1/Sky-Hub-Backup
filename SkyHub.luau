@@ -37,7 +37,7 @@ https://discord.gg/xwy5Cu62Vw
 local nosaves = false
 local saved_settings
 local settings = {
-	ui_bind = Enum.KeyCode.Right;
+	ui_bind = "Enum.KeyCode.RightControl";
 	opaque = 0.4;
 }
 queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
@@ -77,23 +77,98 @@ else
 	_G.lmao24 = "Disabled"
 end
 function save()
-    if not isfolder("Sky Hub") then
+    if not isfolder("Sky Hub") and not nosaves then
         makefolder("Sky Hub")
-    end
+		nosaves = true
     task.wait()
     local update = {["ui_bind"]=settings["ui_bind"],["opaque"]=settings["opaque"]}
     task.wait()
     writefile([[Sky Hub/Sky Hub Settings.json]], HttpService:JSONEncode(update))
+	end
+end
+function updatesaves()
+		local update = {
+			ui_bind = ui_bind;
+			opaque = opaque;
+		}
+		writefile("Sky Hub/Sky Hub Settings.json", HttpService:JSONEncode(update))
 end
 task.wait()
-if isfolder("Sky Hub") and isfile([[Sky Hub/Sky Hub Settings.json]]) then
-    settings = HttpService:JSONDecode(readfile([[Sky Hub/Sky Hub Settings.json]]))
+function loadsettings()
+	task.wait(1)
+	if isfolder("Sky Hub") and isfile([[Sky Hub/Sky Hub Settings.json]]) then
+		local success, response = pcall(function()
+			local settings = HttpService:JSONDecode(readfile([[Sky Hub/Sky Hub Settings.json]]))
+			if settings.ui_bind ~= nil and settings.ui_bind ~= "null" then
+				if settings.ui_bind == "Enum.KeyCode.RightControl" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+				elseif settings.ui_bind == "Enum.KeyCode.LeftControl" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+				elseif settings.ui_bind == "Enum.KeyCode.LeftAlt" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+				elseif settings.ui_bind == "Enum.KeyCode.RightAlt" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+				elseif settings.ui_bind == "Enum.KeyCode.Insert" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+				elseif settings.ui_bind == "Enum.KeyCode.End" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.End
+				elseif settings.ui_bind == "Enum.KeyCode.Delete" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+				elseif settings.ui_bind == "Enum.KeyCode.LeftShift" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+				elseif settings.ui_bind == "Enum.KeyCode.RightShift" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+				elseif settings.ui_bind == "Enum.KeyCode.F1" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.F1
+				elseif settings.ui_bind == "Enum.KeyCode.Q" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.Q
+				elseif settings.ui_bind == "Enum.KeyCode.E" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.E
+				elseif settings.ui_bind == "Enum.KeyCode.R" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.R
+				elseif settings.ui_bind == "Enum.KeyCode.T" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.T
+				elseif settings.ui_bind == "Enum.KeyCode.Y" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.Y
+				elseif settings.ui_bind == "Enum.KeyCode.U" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.U
+				elseif settings.ui_bind == "Enum.KeyCode.P" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.P
+				elseif settings.ui_bind == "Enum.KeyCode.Z" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.Z
+				elseif settings.ui_bind == "Enum.KeyCode.X" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.X
+				elseif settings.ui_bind == "Enum.KeyCode.M" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.M
+				elseif settings.ui_bind == "Enum.KeyCode.V" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.V
+				elseif settings.ui_bind == "Enum.KeyCode.N" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.N
+				elseif settings.ui_bind == "Enum.KeyCode.Period" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.Period
+				end
+			else
+				getgenv().SkyhubKeybind = Enum.KeyCode.RightControl 
+			end
+			if settings.opaque ~= nil and settings.opaque ~= "null" then
+				getgenv().BlurIntes = settings.opaque 
+			else 
+				getgenv().BlurIntes = 0.4 
+			end
+		end)
+		if not success then
+			Library.Notify("Warning","Something went wrong while loading saves",5)
+			task.wait()
+			save()
+		end
+	end
 end
 task.wait()
 save()
 -- Da Hood
 if game.PlaceId == 2788229376 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -389,9 +464,21 @@ if game.PlaceId == 2788229376 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -421,209 +508,255 @@ if game.PlaceId == 2788229376 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -634,7 +767,9 @@ if game.PlaceId == 2788229376 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -655,6 +790,7 @@ if game.PlaceId == 2788229376 then
 --Arsenal
 elseif game.PlaceId == 286090429 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -935,6 +1071,7 @@ elseif game.PlaceId == 286090429 then
 -- Tower Of Hell
 elseif game.PlaceId == 1962086868 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -1100,9 +1237,21 @@ elseif game.PlaceId == 1962086868 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -1132,209 +1281,255 @@ elseif game.PlaceId == 1962086868 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -1345,7 +1540,9 @@ elseif game.PlaceId == 1962086868 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -1364,6 +1561,7 @@ elseif game.PlaceId == 1962086868 then
 -- KAT!
 elseif game.PlaceId == 621129760 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -1697,9 +1895,21 @@ elseif game.PlaceId == 621129760 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -1729,209 +1939,255 @@ elseif game.PlaceId == 621129760 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -1942,7 +2198,9 @@ elseif game.PlaceId == 621129760 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -1961,6 +2219,7 @@ elseif game.PlaceId == 621129760 then
  -- Fencing
 elseif game.PlaceId == 12109643 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -2660,9 +2919,21 @@ elseif game.PlaceId == 12109643 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -2692,209 +2963,255 @@ elseif game.PlaceId == 12109643 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -2905,7 +3222,9 @@ elseif game.PlaceId == 12109643 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -2924,6 +3243,7 @@ elseif game.PlaceId == 12109643 then
 -- Work at a Pizza Place
 elseif game.PlaceId == 192800 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -3133,9 +3453,21 @@ elseif game.PlaceId == 192800 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -3165,209 +3497,255 @@ elseif game.PlaceId == 192800 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -3378,7 +3756,9 @@ elseif game.PlaceId == 192800 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -3397,6 +3777,7 @@ elseif game.PlaceId == 192800 then
  -- VR Hands
 elseif game.PlaceId == 4832438542 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -3551,9 +3932,21 @@ elseif game.PlaceId == 4832438542 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -3583,209 +3976,255 @@ elseif game.PlaceId == 4832438542 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -3796,7 +4235,9 @@ elseif game.PlaceId == 4832438542 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -3815,6 +4256,7 @@ elseif game.PlaceId == 4832438542 then
 -- Adopt me
 elseif game.PlaceId == 920587237 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -3987,9 +4429,21 @@ elseif game.PlaceId == 920587237 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -4019,209 +4473,255 @@ elseif game.PlaceId == 920587237 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -4232,7 +4732,9 @@ elseif game.PlaceId == 920587237 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -4251,6 +4753,7 @@ elseif game.PlaceId == 920587237 then
 -- JailBreak
 elseif game.PlaceId == 606849621 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -4476,9 +4979,21 @@ elseif game.PlaceId == 606849621 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -4508,209 +5023,255 @@ elseif game.PlaceId == 606849621 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -4721,7 +5282,9 @@ elseif game.PlaceId == 606849621 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -4743,6 +5306,7 @@ elseif game.PlaceId == 606849621 then
 -- Prison Life
 elseif game.PlaceId == 155615604 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -5032,9 +5596,21 @@ elseif game.PlaceId == 155615604 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -5064,209 +5640,255 @@ elseif game.PlaceId == 155615604 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -5277,7 +5899,9 @@ elseif game.PlaceId == 155615604 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -5296,6 +5920,7 @@ elseif game.PlaceId == 155615604 then
     -- Build A Boat or BABFT
 elseif game.PlaceId == 537413528 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -5615,9 +6240,21 @@ elseif game.PlaceId == 537413528 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -5647,209 +6284,255 @@ elseif game.PlaceId == 537413528 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -5860,7 +6543,9 @@ elseif game.PlaceId == 537413528 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -5879,6 +6564,7 @@ elseif game.PlaceId == 537413528 then
 -- Gorilla Tag Professional
 elseif game.PlaceId == 8690998110 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -6080,9 +6766,21 @@ elseif game.PlaceId == 8690998110 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -6112,209 +6810,255 @@ elseif game.PlaceId == 8690998110 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -6325,7 +7069,9 @@ elseif game.PlaceId == 8690998110 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -6345,6 +7091,7 @@ elseif game.PlaceId == 8690998110 then
 -- Murder Mystery 2 or MM2
 elseif game.PlaceId == 142823291 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -6691,9 +7438,21 @@ elseif game.PlaceId == 142823291 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -6723,209 +7482,255 @@ elseif game.PlaceId == 142823291 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -6936,7 +7741,9 @@ elseif game.PlaceId == 142823291 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -6956,6 +7763,7 @@ elseif game.PlaceId == 142823291 then
 -- Blox Fruits
 elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -7127,9 +7935,21 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -7159,209 +7979,255 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -7372,7 +8238,9 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -7392,6 +8260,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			-- Counter Blox
 elseif game.PlaceId == 301549746 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -7548,9 +8417,21 @@ elseif game.PlaceId == 301549746 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -7580,209 +8461,255 @@ elseif game.PlaceId == 301549746 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -7793,7 +8720,9 @@ elseif game.PlaceId == 301549746 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -7812,6 +8741,7 @@ elseif game.PlaceId == 301549746 then
 				   	-- Mic Up
 elseif game.PlaceId == 6884319169 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -8017,9 +8947,21 @@ elseif game.PlaceId == 6884319169 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -8049,209 +8991,255 @@ elseif game.PlaceId == 6884319169 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -8262,7 +9250,9 @@ elseif game.PlaceId == 6884319169 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -8281,6 +9271,7 @@ elseif game.PlaceId == 6884319169 then
 				    	-- Neighbors
 elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceId == 13108856598 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -8442,9 +9433,21 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -8474,209 +9477,255 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -8687,7 +9736,9 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -8706,6 +9757,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 -- Natural Diaster Survival
 elseif game.PlaceId == 189707 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -8895,9 +9947,21 @@ elseif game.PlaceId == 189707 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -8927,209 +9991,255 @@ elseif game.PlaceId == 189707 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -9140,7 +10250,9 @@ elseif game.PlaceId == 189707 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -9159,6 +10271,7 @@ elseif game.PlaceId == 189707 then
 -- Ro-Ghoul
 elseif game.PlaceId == 914010731 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -9367,9 +10480,21 @@ elseif game.PlaceId == 914010731 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -9399,209 +10524,255 @@ elseif game.PlaceId == 914010731 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -9612,7 +10783,9 @@ elseif game.PlaceId == 914010731 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -9631,6 +10804,7 @@ elseif game.PlaceId == 914010731 then
 -- Blade Ball
 elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceId == 14915220621 or game.PlaceId == 15144787112 or game.PlaceId == 15264892126 or game.PlaceId == 15509350986 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -9848,9 +11022,21 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -9880,209 +11066,255 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -10093,7 +11325,9 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -10113,6 +11347,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 -- Pet Simulator X
 elseif game.PlaceId == 6284583030 or game.PlaceId == 10321372166 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -10264,6 +11499,7 @@ elseif game.PlaceId == 6284583030 or game.PlaceId == 10321372166 then
 -- Pet Simulator 99
 elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -10415,9 +11651,21 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -10447,209 +11695,255 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -10660,7 +11954,9 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -10681,6 +11977,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 -- Legends of Speed
 elseif game.PlaceId == 3101667897 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -10870,9 +12167,21 @@ elseif game.PlaceId == 3101667897 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -10902,209 +12211,255 @@ elseif game.PlaceId == 3101667897 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -11115,7 +12470,9 @@ elseif game.PlaceId == 3101667897 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -11135,6 +12492,7 @@ elseif game.PlaceId == 3101667897 then
 -- Brookhaven RP
 elseif game.PlaceId == 4924922222 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -11301,9 +12659,21 @@ elseif game.PlaceId == 4924922222 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -11333,209 +12703,255 @@ elseif game.PlaceId == 4924922222 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -11546,7 +12962,9 @@ elseif game.PlaceId == 4924922222 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -11565,6 +12983,7 @@ elseif game.PlaceId == 4924922222 then
 -- Bedwars
 elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId == 8444591321 or game.PlaceId == 8560631822 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -11736,9 +13155,21 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -11768,209 +13199,255 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -11981,7 +13458,9 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -12000,6 +13479,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 						-- Chaos
 elseif game.PlaceId == 6441847031 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -12165,9 +13645,21 @@ elseif game.PlaceId == 6441847031 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -12197,209 +13689,255 @@ elseif game.PlaceId == 6441847031 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -12410,7 +13948,9 @@ elseif game.PlaceId == 6441847031 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -12429,6 +13969,7 @@ elseif game.PlaceId == 6441847031 then
 -- Ninja Legends
 elseif game.PlaceId == 3956818381 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -12617,9 +14158,21 @@ elseif game.PlaceId == 3956818381 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -12649,209 +14202,255 @@ elseif game.PlaceId == 3956818381 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -12862,7 +14461,9 @@ elseif game.PlaceId == 3956818381 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -12881,6 +14482,7 @@ elseif game.PlaceId == 3956818381 then
 -- Bayside High School
 elseif game.PlaceId == 12640491155 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -13237,6 +14839,32 @@ elseif game.PlaceId == 12640491155 then
 			end
 		end
 	end)
+	Misc23Section:NewToggle("Rainbow Name/Description", "Makes your name and description changes to a random color like every 0.5 secs or so, this game has delays for remote funcs", function(state)
+		getgenv().lol225 = state
+		local headd = game:GetService("Players").LocalPlayer.Character:WaitForChild("Head")
+		local name,desc = headd:WaitForChild("PlayerHover").Frame.RPName.Text, headd:WaitForChild("PlayerHover").Frame.Bio.Text
+		task.spawn(function()
+			while true do wait()
+				if not getgenv().lol225 then
+					break
+				end
+				local args = {
+					[1] = "Info",
+					[2] = {
+						[1] = name,
+						[2] = Color3.new(math.random(), math.random(), math.random())
+					},
+					[3] = {
+						[1] = desc,
+						[2] = Color3.new(math.random(), math.random(), math.random())
+					}
+				}
+
+				game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Profile"):FireServer(unpack(args))
+			end
+		end)
+	end)
+	
 
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
@@ -13351,9 +14979,21 @@ elseif game.PlaceId == 12640491155 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -13383,209 +15023,255 @@ elseif game.PlaceId == 12640491155 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -13596,7 +15282,9 @@ elseif game.PlaceId == 12640491155 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -13615,6 +15303,7 @@ elseif game.PlaceId == 12640491155 then
 -- Big PaintBall
 elseif game.PlaceId == 3527629287 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -13829,9 +15518,21 @@ elseif game.PlaceId == 3527629287 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -13861,209 +15562,255 @@ elseif game.PlaceId == 3527629287 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -14074,7 +15821,9 @@ elseif game.PlaceId == 3527629287 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -14093,6 +15842,7 @@ elseif game.PlaceId == 3527629287 then
 -- Big PaintBall 2
 elseif game.PlaceId == 9865958871 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -14256,9 +16006,21 @@ elseif game.PlaceId == 9865958871 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -14288,209 +16050,255 @@ elseif game.PlaceId == 9865958871 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -14501,7 +16309,9 @@ elseif game.PlaceId == 9865958871 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -14520,6 +16330,7 @@ elseif game.PlaceId == 9865958871 then
 -- Muscle Legends
 elseif game.PlaceId == 3623096087 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -14678,9 +16489,21 @@ elseif game.PlaceId == 3623096087 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -14710,209 +16533,255 @@ elseif game.PlaceId == 3623096087 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -14923,7 +16792,9 @@ elseif game.PlaceId == 3623096087 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -14943,6 +16814,7 @@ elseif game.PlaceId == 3623096087 then
 elseif game.PlaceId == 5796917097 then
 	-- dont expect much kinda annoying game to script
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
@@ -15026,6 +16898,7 @@ elseif game.PlaceId == 5796917097 then
 elseif game.PlaceId == 185655149 then
 -- dont expect much kinda annoying game to script
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Discord = Window:NewTab("Discords")
 	local DiscordSection = Discord:NewSection("Discords")
@@ -15072,6 +16945,7 @@ elseif game.PlaceId == 185655149 then
 	-- Cursed Sea 
 elseif game.PlaceId == 14426444782 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -15306,9 +17180,21 @@ elseif game.PlaceId == 14426444782 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -15338,209 +17224,255 @@ elseif game.PlaceId == 14426444782 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -15551,7 +17483,9 @@ elseif game.PlaceId == 14426444782 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -15570,6 +17504,7 @@ elseif game.PlaceId == 14426444782 then
 -- Doors
 elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if IsOnMobile then
 		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
 			if val == true then
@@ -16453,7 +18388,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 		end
 	end)
 	ESPlolSection:NewToggle("Door Esp", "See Doors through walls", function(state)
-		getgenv().dooresp = Bool
+		getgenv().dooresp = state
 		local highlightedDoors = {}
 		task.spawn(function()
 			while wait() do
@@ -16470,7 +18405,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 					break
 				end
 				for _, v in pairs(game:GetService("Workspace"):GetDescendants()) do
-					if v.Name == "Door" and v:IsA("MeshPart") and v.Parent:FindFirstChild("Func_Open") then
+					if v.Name == "Door" and v:IsA("MeshPart") and v.Parent:IsA("Model") and v.Parent.Name == "Door" and v.Parent:FindFirstChild("Func_Open") then
 						local distance = (v.Position - game.Players.LocalPlayer.Character.PrimaryPart.Position).magnitude
 						if distance > 200 then
 							if highlightedDoors[v] then
@@ -16800,9 +18735,21 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -16832,209 +18779,255 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -17045,7 +19038,9 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
@@ -17065,6 +19060,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 -- Universal
 else
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
 	if iswave then
 		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
 			if val == true then
@@ -17202,9 +19198,21 @@ else
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	PlayerSection:NewButton("enable shift lock", "unlocks on most games", function()
-		game:GetService("Players").LocalPlayer.DevEnableMouseLock = true
-	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
@@ -17234,209 +19242,255 @@ else
 		"."
 	}, function(currentoption)
 		if currentoption == "Right Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Control" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Alt" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Insert" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "End" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.End
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Del/Delete" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Left Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Right Shift" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "F1" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.F1
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Q" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Q
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "E" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.E
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "R" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.R
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "T" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.T
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Y" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Y
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "U" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.U
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "P" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.P
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "Z" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Z
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "X" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.X
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "M" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.M
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "V" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.V
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "N" then
-			getgenv().SkyhubKeybind = Enum.KeyCode.N
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
 		elseif currentoption == "." then
-			getgenv().SkyhubKeybind = Enum.KeyCode.Period
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
 			task.wait()
 			if writefile then
-				save()
+				updatesaves()
+				task.wait()
+				loadsettings()
 			else
 				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 			end
@@ -17447,7 +19501,9 @@ else
 		opaque = getgenv().BlurIntes
 		task.wait()
 		if writefile then
-			save()
+			updatesaves()
+			task.wait()
+			loadsettings()
 		else
 			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
 		end
