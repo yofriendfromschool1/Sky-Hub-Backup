@@ -1548,6 +1548,17 @@ elseif game.PlaceId == 1962086868 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
