@@ -1208,13 +1208,28 @@ function lib.AddTab(name, icon)
 end
 local nam = "Sky Hub"
 task.spawn(function()
-	while task.wait(0.1) do
-		local currentTime = os.date("*t")
+    while task.wait(0.1) do
+        local currentTime = os.date("*t")
 
-		local hours, mins, secs = currentTime.hour, currentTime.min, currentTime.sec
+        local hours, mins = currentTime.hour, currentTime.min
+        if hours > 12 then
+            hours = currentTime.hour - 12
+            if mins < 10 then
+                mins = "0" .. currentTime.min .. " PM"
+            else
+                mins = currentTime.min .. " PM"
+            end
+        else
+            hours = currentTime.hour
+            if mins < 10 then
+                mins = "0" .. currentTime.min .. " AM"
+            else
+                mins = currentTime.min .. " AM"
+            end
+        end
 
-		ui.TopBar.TextLabel.Text = nam .. " - " .. string.format("%02d:%02d:%02d", hours, mins, secs)
-	end
+        ui.TopBar.TextLabel.Text = nam .. " - " .. hours .. ":" .. mins
+    end
 end)
 
 lib.CreateLib = function(name,smth)
