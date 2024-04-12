@@ -775,6 +775,17 @@ if game.PlaceId == 2788229376 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -2217,6 +2228,17 @@ elseif game.PlaceId == 621129760 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -3241,6 +3263,17 @@ elseif game.PlaceId == 12109643 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -3775,6 +3808,17 @@ elseif game.PlaceId == 192800 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -4254,6 +4298,17 @@ elseif game.PlaceId == 4832438542 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -4751,6 +4806,17 @@ elseif game.PlaceId == 920587237 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -5301,6 +5367,17 @@ elseif game.PlaceId == 606849621 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -5918,6 +5995,17 @@ elseif game.PlaceId == 155615604 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -6562,6 +6650,17 @@ elseif game.PlaceId == 537413528 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -7088,6 +7187,17 @@ elseif game.PlaceId == 8690998110 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -7760,6 +7870,17 @@ elseif game.PlaceId == 142823291 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -8257,6 +8378,17 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -8739,6 +8871,17 @@ elseif game.PlaceId == 301549746 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -9269,6 +9412,17 @@ elseif game.PlaceId == 6884319169 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -9755,6 +9909,17 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -10269,6 +10434,17 @@ elseif game.PlaceId == 189707 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -10802,6 +10978,17 @@ elseif game.PlaceId == 914010731 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -11344,6 +11531,17 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -11973,6 +12171,17 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -12489,6 +12698,17 @@ elseif game.PlaceId == 3101667897 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -12981,6 +13201,17 @@ elseif game.PlaceId == 4924922222 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -13477,6 +13708,17 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -13967,6 +14209,17 @@ elseif game.PlaceId == 6441847031 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -14480,6 +14733,17 @@ elseif game.PlaceId == 3956818381 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -15301,6 +15565,17 @@ elseif game.PlaceId == 12640491155 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -15840,6 +16115,17 @@ elseif game.PlaceId == 3527629287 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -16328,6 +16614,17 @@ elseif game.PlaceId == 9865958871 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -16811,6 +17108,17 @@ elseif game.PlaceId == 3623096087 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -17502,6 +17810,17 @@ elseif game.PlaceId == 14426444782 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -19057,6 +19376,17 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
@@ -19520,6 +19850,17 @@ else
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
 		if saveinstance then
 			saveinstance()
 		else
