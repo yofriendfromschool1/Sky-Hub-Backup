@@ -19402,14 +19402,37 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 else
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
+	if IsOnMobile then
+		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+			if val == true then
+				
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+			end
+		end,{"Yes Please!","Nah"})
+	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)  ',35,function(val)
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
 		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
+	if queueteleport then
+		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+			if val == true then
+				
+			else
+				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+			end
+		end,{"Yes","No thanks."})
+	end
+	if writefile and readfile and makefolder then
+		
+	else
+		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Discord = Window:NewTab("Discords")
