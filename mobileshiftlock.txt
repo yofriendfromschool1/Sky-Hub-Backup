@@ -8,8 +8,8 @@ local ImageButton = Instance.new("ImageButton")
 
 --Properties:
 
-ShiftlockStarterGui.Name = "Shiftlock (CoreGui)"
-ShiftlockStarterGui.Parent = game:GetService("CoreGui")
+ShiftlockStarterGui.Name = "Shiftlock (StarterGui)"
+ShiftlockStarterGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 ShiftlockStarterGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 ImageButton.Parent = ShiftlockStarterGui
@@ -112,7 +112,7 @@ local function OMQRQRC_fake_script() -- ShiftlockStarterGui.LocalScript
 	end
 	local LocalPlayer = Players.LocalPlayer
 	local Mouse = LocalPlayer:GetMouse()
-	local PlayerGui = game:GetService("CoreGui")
+	local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 	local ScreenGui, ShiftLockIcon, InputCn
 	local IsShiftLockMode = true
 	local IsShiftLocked = true
