@@ -1214,17 +1214,17 @@ task.spawn(function()
         local hours, mins = currentTime.hour, currentTime.min
         if hours > 12 then
             hours = currentTime.hour - 12
-if mins < 10 then
-                mins = "0" .. currentTime.min .. " PM"
+			if mins < 10 then
+                mins = "0" .. currentTime.min .. " AM"
             else
-                mins = currentTime.min .. " PM"
+                mins = currentTime.min .. " AM"
             end
        elseif hours == 0 then
            hours = currentTime.hour + 12
             if mins < 10 then
-                mins = "0" .. currentTime.min .. " PM"
+                mins = "0" .. currentTime.min .. " AM"
             else
-                mins = currentTime.min .. " PM"
+                mins = currentTime.min .. " AM"
             end
         else
             hours = currentTime.hour
