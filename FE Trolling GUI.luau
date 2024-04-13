@@ -3,9 +3,9 @@ FE Trolling GUI
 
 By Sky/dsgdfs
 
-Last Updated 4/11/2024
+Last Updated 4/13/2024
 
-Added mobile keyboard script to GUIS tab if u on mobile
+Added mobile teleknis
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -50880,6 +50880,13 @@ Main:AddButton({
 			end
     )
 		end
+	end
+})
+Main:AddButton({
+	Title = "FE Teleknis script v2 on mobile only works on unachorned parts",
+	Description = "use while moving Q E R T Y",
+	Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileteleknis.lua"))()
 	end
 })
 GUIS:AddButton({
