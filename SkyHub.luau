@@ -17297,6 +17297,7 @@ elseif game.PlaceId == 14426444782 then
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewToggle("Auto Farm", "must be in first person or shift lock", function(state)
+		Library.Notify("Warning","Must be in first person or shift lock",20)
 		getgenv().lol = state
 		for _, tool in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 			if tool:IsA("Tool") and tool:FindFirstChild("combatClient") then
