@@ -7,19 +7,15 @@ By Sky/dsgdfs
 games it supports Da Hood, Arsenal, Tower of Hell, KAT!, Fencing,
 Work At A Pizza Place, VR Hands, Adopt Me, Jailbreak, Prison Life,
 Build A Boat For Treasure, Gorilla Tag Professional, Murder Mystery 2, Blox fruits, Counter Blox, Mic Up, Neighbors, Natural Diaster Survival, Ro-Ghoul, Blade Ball, Pet Simulator X,
-Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends, Bayside High School, Big PaintBall, Big PaintBall 2, Muscle Legends, Road to Grambys, Bloxburg, Cursed Sea, Doors and Universal.
-30+ games (Including some obbys)
+Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends, Bayside High School, Big PaintBall, Big PaintBall 2, Muscle Legends, Road to Grambys, Bloxburg, Cursed Sea, Doors,
+Hide and Seek Extreme and Universal.
+35+ games (Including some obbys)
 
 Rebuilt On IllusionHub
 
-Last Updated 4/11/2024
+Last Updated 4/13/2024
 
-Fixed Wave Detection and added Doors game
-and fixed sub places for the following games: Blox fruits, Neighbors, Blade Ball, Bedwars, Pet Simulator 99, Pet Simulator X.
-and added some more debugging tools in debuggers
-and added settings tab that does save if u have workspace folder and read and write functions
-and added a notification that pops up if you want to tp with the script to next game.
-and added a save game feature even if your executor doesnt have one!
+Added Hide and Seek Extreme
 
 Library by Lua_u
 
@@ -18771,7 +18767,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 								}
 								v:GetPropertyChangedSignal("Position"):Connect(function()
 									if highlightedDoors[v] and (v.Position ~= initialPosition) then
-										if highlightedDoors[v].highlight then
+										if highlightedDoors[v].highzlight then
 											highlightedDoors[v].highlight:Destroy()
 										end
 										if highlightedDoors[v].ui then
@@ -19397,7 +19393,497 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
+	-- Hide and Seek Extreme
+elseif game.PlaceId == 205224386 then
+	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
+	if IsOnMobile then
+		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+			if val == true then
+				
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+			end
+		end,{"Yes Please!","Nah"})
+	end
+	if iswave then
+		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+	end
+	if queueteleport then
+		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+			if val == true then
+				
+			else
+				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+			end
+		end,{"Yes","No thanks."})
+	end
+	if writefile and readfile and makefolder then
+		
+	else
+		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+	end
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
+	local Main = Window:NewTab("Main")
+	local MainSection = Main:NewSection("Main")
+	MainSection:NewButton("Tag all", "must be It", function()
+		if game:GetService("ReplicatedStorage"):WaitForChild("GameData"):WaitForChild("It").Value == game:GetService("Players").LocalPlayer.Name then
+			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+				if v ~= game:GetService("Players").LocalPlayer then
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.Character:WaitForChild("HumanoidRootPart").CFrame
+					task.wait(0.05)
+				end
+			end
+		else
+			Library.Notify("Not It","Bro your not It lol",6)
+		end
+	end)
 
+	local Discord = Window:NewTab("Discords")
+	local DiscordSection = Discord:NewSection("Discords")
+	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
+		if httprequest and not IsOnMobile then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {code = 'xwy5Cu62Vw'}
+				})
+			})
+			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+		elseif everyClipboard then
+				everyClipboard("https://discord.gg/xwy5Cu62Vw")
+				Library.Notify("Copied to Clipboard","",5)
+		else
+			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+		end
+	end)
+	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
+		everyClipboard(string2)
+	end)
+	local Admins = Window:NewTab("Admins", 10016551771)
+	local AdminsSection = Admins:NewSection("Admins")
+	AdminsSection:NewButton("Infinite Yield FE", "Admin", function()
+		loadstring(game:HttpGet(_G.infydtype))()
+	end)
+	AdminsSection:NewButton("Infinite Store", "Archived", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Infinite-Store/Infinite-Store/main/main.lua"))()
+	end)
+	AdminsSection:NewButton("Nameless Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/NamelessAdmin-NO-BYFRON-GUI/main/Source'))()
+	end)
+	AdminsSection:NewButton("fates admin", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+	end)
+	AdminsSection:NewButton("Shattervast Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/%5BFE%5D%20Shattervast.lua'))()
+	end)
+	AdminsSection:NewButton("Proton Free Admin", "Admin", function()
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Proton%20Free'))()
+	end)
+	AdminsSection:NewButton("Proton 2 free Admin", "Admin", function()
+																											 -- DEFAULT CMD BAR PREFIX IS ;
+																											 -- DEFAULT CHAT PREFIX IS /
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
+	end)
+	AdminsSection:NewButton("Reviz Admin V2", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Reviz%20AdminV2"))()
+	end)
+	local Hubs = Window:NewTab("Hubs", 7360649366)
+	local HubsSection = Hubs:NewSection("Hubs")
+	if IsOnMobile then
+		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+		end)
+	end
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
+	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
+	end)
+	HubsSection:NewButton("Psyhub", "idk", function()
+		loadstring(game:GetObjects("rbxassetid://3014051754")[1].Source)()
+	end)
+	HubsSection:NewButton("Ezhub", "130+ games", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()--
+	end)
+	HubsSection:NewButton("CocoHub", "idk", function()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
+	end)
+	HubsSection:NewButton("MonkeHub", "idk", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeHub/main/Loader.lua"))()
+	end)
+	local Player = Window:NewTab("Player", 2795572800)
+	local PlayerSection = Player:NewSection("Player")
+	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
+	end)
+	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
+	end)
+	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
+		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+			else
+				Library.Notify("Shift Lock Disabled","",5)
+			end
+		end)
+	end
+
+	local Settingss = Window:NewTab("Settings", 11385220704)
+	local SettingssSection = Settingss:NewSection("Settings")
+	SettingssSection:NewDropdown("UI Toggle Bind", "Changes Toggle Bind for Sky Hub Default is Right Control ONLY ON PC", {
+		"Right Control",
+		"Left Control",
+		"Left Alt",
+		"Right Alt",
+		"Insert",
+		"End",
+		"Del/Delete",
+		"Left Shift",
+		"Right Shift",
+		"F1",
+		"Q",
+		"E",
+		"R",
+		"T",
+		"Y",
+		"U",
+		"P",
+		"Z",
+		"X",
+		"M",
+		"V",
+		"N",
+		"."
+	}, function(currentoption)
+		if currentoption == "Right Control" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "Left Control" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "Left Alt" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "Right Alt" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "Insert" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "End" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "Del/Delete" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "Left Shift" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "Right Shift" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "F1" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "Q" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "E" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "R" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "T" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "Y" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "U" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "P" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "Z" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "X" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "M" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "V" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "N" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		elseif currentoption == "." then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			end
+		end
+	end)
+	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
+		getgenv().BlurIntes = v
+		opaque = getgenv().BlurIntes
+		task.wait()
+		if writefile then
+			updatesaves()
+			task.wait()
+			loadsettings()
+		else
+			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+		end
+	end)
+	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			return
+		end
+		if saveplace then
+			saveplace({FileName = "SkyHubSavedGame"})
+		end
+		if saveinstance then
+			saveinstance()
+		else
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+		end
+	end)
+	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
+		getgenv().saveinstance = nil
+		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
+	end)
 -- Universal
 else
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
