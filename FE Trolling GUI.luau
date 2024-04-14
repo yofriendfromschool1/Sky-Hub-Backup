@@ -3,9 +3,9 @@ FE Trolling GUI
 
 By Sky/dsgdfs
 
-Last Updated 4/13/2024
+Last Updated 4/14/2024
 
-Added mobile teleknis
+added 50+ scripts and a chat with other exploiters (that are in game and running same script) tab
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -185,6 +185,167 @@ if IsOnMobile then
         end
     })
 end
+GUIS:AddButton({
+	Title = "Chat Spy",
+	Description = "only works in some games? see private messages if this doesnt work try IY chatlogs",
+	Callback = function()
+		loadstring(Game:GetObjects("rbxassetid://1255908305")[1].Source)()
+	end
+})
+GUIS:AddButton({
+	Title = "Chat Logs",
+	Description = "only works in some games? see private messages if this doesnt work try IY chatlogs",
+	Callback = function()
+		if game:service('RunService'):IsStudio() then print('!STUDIO!') else
+            if game:service('CoreGui'):findFirstChild('LogHolder') then return nil
+            end
+        end
+        
+        local LogHolder = Instance.new("ScreenGui")
+        local Logs = Instance.new("Frame")
+        local Scroll = Instance.new("ScrollingFrame")
+        local Template = Instance.new("TextLabel")
+        
+        LogHolder.Name = "LogHolder"
+        if game:service('RunService'):IsStudio() then LogHolder.Parent = game.Players.LocalPlayer.PlayerGui else
+            LogHolder.Parent = game.CoreGui
+        end
+        
+        Logs.Name = "Logs"
+        Logs.Parent = LogHolder
+        Logs.AnchorPoint = Vector2.new(0.5, 0.5)
+        Logs.BackgroundColor3 = Color3.new(1, 1, 1)
+        Logs.Position = UDim2.new(0.200000003, 0, 0.200000003, 0)
+        Logs.Size = UDim2.new(0, 400, 0, 250)
+        Logs.Style = Enum.FrameStyle.DropShadow
+        
+        Scroll.Name = "Scroll"
+        Scroll.Parent = Logs
+        Scroll.BackgroundColor3 = Color3.new(1, 1, 1)
+        Scroll.BackgroundTransparency = 1
+        Scroll.BorderSizePixel = 0
+        Scroll.Size = UDim2.new(1, 0, 1, 0)
+        Scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+        Scroll.ScrollBarThickness = 6
+        
+        Template.Name = "Template"
+        Template.Parent = Logs
+        Template.BackgroundColor3 = Color3.new(1, 1, 1)
+        Template.BackgroundTransparency = 1
+        Template.Position = UDim2.new(0, 0, 0, -25)
+        Template.Size = UDim2.new(1, 0, 0, 20)
+        Template.Font = Enum.Font.ArialBold
+        Template.Text = ""
+        Template.TextColor3 = Color3.new(1, 1, 1)
+        Template.TextSize = 15
+        Template.TextXAlignment = Enum.TextXAlignment.Left
+        Template.TextWrap = true
+        
+        Logs.Active = true
+        Logs.Draggable = true
+        
+        local loggedTable = {}
+        
+        local getTotalSize = function()
+        local totalSize = UDim2.new(0, 0, 0, 0)
+            
+            for i, v in next, loggedTable do
+                totalSize = totalSize + UDim2.new(0, 0, 0, v.Size.Y.Offset)
+            end
+            
+            return totalSize
+        end
+        
+        local BUD = UDim2.new(0, 0, 0, 0)
+        local TotalNum = 0
+        
+        local function GenLog(txt, colo, time)
+            local oldColo = Color3.fromRGB(0, 0, 0)	
+            
+            local Temp = Template:Clone()
+            Temp.Parent = Scroll
+            Temp.Name = txt..'Logged'
+            Temp.Text = tostring(txt)
+            Temp.Visible = true
+            Temp.Position = BUD + UDim2.new(0, 0, 0, 0)
+            if colo then oldColo = colo Temp.TextColor3 = colo elseif not colo then Temp.TextColor3 = Color3.fromRGB(200, 200, 200) end
+        
+            local timeVal = Instance.new('StringValue', Temp)
+            timeVal.Name = 'TimeVal'
+            timeVal.Value = time
+        
+            TotalNum = TotalNum + 1
+            
+            if not Temp.TextFits then repeat Temp.Size = UDim2.new(Temp.Size.X.Scale, Temp.Size.X.Offset, Temp.Size.Y.Scale, Temp.Size.Y.Offset + 10)
+                Temp.Text = txt
+            until Temp.TextFits 
+        end
+        
+            BUD = BUD + UDim2.new(0, 0, 0, Temp.Size.Y.Offset)
+            
+            table.insert(loggedTable, Temp)
+            
+            local totSize = getTotalSize()
+            
+            if totSize.Y.Offset >= Scroll.CanvasSize.Y.Offset then Scroll.CanvasSize = UDim2.new(totSize.X.Scale, totSize.X.Offset, totSize.Y.Scale, totSize.Y.Offset + 100)
+            Scroll.CanvasPosition = Scroll.CanvasPosition + Vector2.new(0, totSize.Y.Offset) 
+            end
+            
+            return Temp
+        end
+        
+        local ChatData = ""
+        
+        local function SaveToFile()
+            local t = os.date("*t")
+            local dateDat = t['hour']..' '..t['min']..' '..t['sec']..' '..t['day']..'.'..t['month']..'.'..t['year']
+            
+            ChatData = ""
+            
+            for i, v in pairs(Scroll:GetChildren()) do
+                ChatData = ChatData..v.TimeVal.Value..' '..v.Text..'\n'
+            end
+            
+            writefile('ChatLogs '..dateDat..'.txt', ChatData)
+        end
+        
+        
+        local function Clear()
+            loggedTable = {}
+            ChatData = ""
+            Scroll.CanvasPosition = Vector2.new(0, 0)
+            for i, v in pairs(Scroll:GetChildren()) do
+                v:Destroy()
+            end
+            Scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+            BUD = UDim2.new(0, 0, 0, 0)
+        end
+        
+        local LogPlr = function(plr)
+                    plr.Chatted:connect(function(msg)
+                        
+                    local t = os.date("*t")
+                    local dateDat = t['hour']..':'..t['min']..':'..t['sec']
+            
+                    if string.len(msg) >= 1000 then return nil end
+                    if string.lower(msg) == 'clear' and plr == game:service('Players').LocalPlayer then Clear() return nil end
+                    if string.lower(msg) == 'savetofile' and plr == game:service('Players').LocalPlayer then SaveToFile() return nil end
+                    if string.sub(msg, 1, 1):match('%p') and string.sub(msg, 2, 2):match('%a') and string.len(msg) >= 5 then GenLog(plr.Name..': '..msg, Color3.new(255, 0, 0), dateDat) else
+                    GenLog(plr.Name..': '..msg, Color3.new(255, 255, 255), dateDat)
+                    end
+            end)
+        end
+        
+        for i, v in pairs(game.Players:GetChildren()) do
+            LogPlr(v)
+        end
+        
+        game.Players.PlayerAdded:connect(function(plr)
+            LogPlr(plr)
+        end)
+        
+	end
+})
 GUIS:AddButton({
 	Title = "Arosia FE GUI",
 	Description = "Arosia FE GUI",
@@ -49488,6 +49649,38 @@ Main:AddButton({
 	end
 })
 Main:AddButton({
+	Title = "Rejoin",
+	Description = "adds a rejoin button to kicked gui incase u get kicked from server",
+	Callback = function()
+		--Auto execute highly recommended (use it)
+        gui = game.CoreGui.RobloxPromptGui.promptOverlay:WaitForChild("ErrorPrompt")
+
+        gui.Size = UDim2.new(0, 400, 0, 230)
+
+        leave = gui.MessageArea.ErrorFrame.ButtonArea.LeaveButton
+
+        gui.MessageArea.MessageAreaPadding.PaddingTop = UDim.new(0,-20)
+        gui.MessageArea.ErrorFrame.ErrorFrameLayout.Padding = UDim.new(0, 5)
+
+        gui.MessageArea.ErrorFrame.ButtonArea.ButtonLayout.CellPadding = UDim2.new(0, 0, 0, 5)
+
+        rejoin = leave:Clone()
+        rejoin.Parent = leave.Parent
+        rejoin.ButtonText.Text = "Rejoin"
+
+        Players = game:GetService("Players")
+        TeleportService = game:GetService("TeleportService")
+
+        rejoin.MouseButton1Up:Connect(function()
+        if #Players:GetPlayers() <= 1 then
+        TeleportService:Teleport(game.PlaceId, Players.LocalPlayer)
+        else
+        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Players.LocalPlayer)
+        end
+        end)
+	end
+})
+Main:AddButton({
 	Title = "FE Bring Player",
 	Description = "bring player",
 	Callback = function()
@@ -49521,6 +49714,337 @@ Main:AddButton({
 				end
 			end
 		end
+	end
+})
+Main:AddButton({
+	Title = "FE Spam Sound 2",
+	Description = "if it says false than everyone can hear if true then no one can hear",
+	Callback = function()
+		--[[
+        Made By Scripty#2063
+        If You Gonna showcase this , make sure to Credit me , do not take that you are owner of the script
+        This Gui is Undetectable
+        RespectFilteringEnabled must be false to use it
+        --]]
+
+        local ScreenGui = Instance.new("ScreenGui")
+        local Draggable = Instance.new("Frame")
+        local Frame = Instance.new("Frame")
+        local Frame_2 = Instance.new("Frame")
+        local Time = Instance.new("TextLabel")
+        local _1E = Instance.new("TextButton")
+        local UICorner = Instance.new("UICorner")
+        local _3E = Instance.new("TextButton")
+        local UICorner_2 = Instance.new("UICorner")
+        local SE = Instance.new("TextButton")
+        local UICorner_3 = Instance.new("UICorner")
+        local Path = Instance.new("TextLabel")
+        local Top = Instance.new("Frame")
+        local Top_2 = Instance.new("Frame")
+        local ImageLabel = Instance.new("ImageLabel")
+        local TextLabel = Instance.new("TextLabel")
+        local Exit = Instance.new("TextButton")
+        local Minizum = Instance.new("TextButton")
+        local Stop = Instance.new("TextButton")
+        local UICorner_4 = Instance.new("UICorner")
+        local IY = Instance.new("TextButton")
+        local UICorner_5 = Instance.new("UICorner")
+        local TextLabel_2 = Instance.new("TextLabel")
+        local Wait = Instance.new("TextBox")
+
+        --Properties:
+
+        ScreenGui.Name = ". Ǥ҉̷҉̵҉̸҉̷҉̵҉̸҉̡҉̡҉̼҉̱҉͎҉͎҉̞҉̼҉̱҉͎҉͎҉̞҉ͤ҉ͬ҉̅҉ͤ҉ͬ"
+        ScreenGui.Parent = game:GetService("CoreGui")
+        ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+        ScreenGui.ResetOnSpawn = false
+
+        Draggable.Name = "Ǥ҉̷҉̵҉̸҉̷҉̵҉̸҉̡҉̡҉̼҉̱҉͎҉͎҉̞҉̼҉̱҉͎҉͎҉̞҉ͤ҉ͬ҉̅҉ͤ҉ͬ."
+        Draggable.Parent = ScreenGui
+        Draggable.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Draggable.BackgroundTransparency = 1.000
+        Draggable.BorderSizePixel = 0
+        Draggable.Position = UDim2.new(0.35026139, 0, 0.296158612, 0)
+        Draggable.Size = UDim2.new(0, 438, 0, 277)
+
+        Frame.Name = ". . Ǥ҉̷҉̵҉̸҉̷҉̵҉̸҉̡҉̡҉̼҉̱҉͎҉͎҉̞҉̼҉̱҉͎҉͎҉̞҉ͤ҉ͬ҉̅҉ͤ҉ͬ. "
+        Frame.Parent = Draggable
+        Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Frame.BackgroundTransparency = 1.000
+        Frame.BorderColor3 = Color3.fromRGB(27, 42, 53)
+        Frame.BorderSizePixel = 0
+        Frame.Position = UDim2.new(-0.00133678317, 0, -0.00348037481, 0)
+        Frame.Size = UDim2.new(0, 438, 0, 277)
+
+        Frame_2.Name = " . Ǥ҉̷҉̵҉̸҉̷҉̵҉̸҉̡҉̡҉̼҉̱҉͎҉͎҉̞҉̼҉̱҉͎҉͎҉̞҉ͤ҉ͬ҉̅҉ͤ҉ͬ. "
+        Frame_2.Parent = Frame
+        Frame_2.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        Frame_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+        Frame_2.BorderSizePixel = 0
+        Frame_2.Position = UDim2.new(-0.00133678142, 0, -0.0179207586, 0)
+        Frame_2.Size = UDim2.new(0, 438, 0, 238)
+        Frame_2.Active = true
+        Frame_2.Draggable = true
+
+        Time.Name = "Time"
+        Time.Parent = Frame_2
+        Time.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Time.BackgroundTransparency = 1.000
+        Time.Position = UDim2.new(0, 0, 0.0126050422, 0)
+        Time.Size = UDim2.new(0, 437, 0, 31)
+        Time.Font = Enum.Font.GothamSemibold
+        Time.Text = "RespectFilteringEnabled(RFE) : nil"
+        Time.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Time.TextScaled = true
+        Time.TextSize = 14.000
+        Time.TextWrapped = true
+
+        _1E.Name = "1E"
+        _1E.Parent = Frame_2
+        _1E.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+        _1E.BorderSizePixel = 0
+        _1E.Position = UDim2.new(0.0182648394, 0, 0.676470578, 0)
+        _1E.Size = UDim2.new(0, 208, 0, 33)
+        _1E.Font = Enum.Font.SourceSans
+        _1E.Text = "Mute Game"
+        _1E.TextColor3 = Color3.fromRGB(255, 255, 255)
+        _1E.TextScaled = true
+        _1E.TextSize = 30.000
+        _1E.TextWrapped = true
+
+        UICorner.Parent = _1E
+
+        _3E.Name = "3E"
+        _3E.Parent = Frame_2
+        _3E.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+        _3E.BorderSizePixel = 0
+        _3E.Position = UDim2.new(0.0159817357, 0, 0.142857149, 0)
+        _3E.Size = UDim2.new(0, 209, 0, 33)
+        _3E.Font = Enum.Font.SourceSans
+        _3E.Text = "Annoying  Sound"
+        _3E.TextColor3 = Color3.fromRGB(255, 255, 255)
+        _3E.TextSize = 30.000
+        _3E.TextWrapped = true
+
+        UICorner_2.Parent = _3E
+
+        SE.Name = "SE"
+        SE.Parent = Frame_2
+        SE.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+        SE.BorderSizePixel = 0
+        SE.Position = UDim2.new(0.509132445, 0, 0.142857149, 0)
+        SE.Size = UDim2.new(0, 209, 0, 33)
+        SE.Font = Enum.Font.SourceSans
+        SE.Text = "Kill Sound Service"
+        SE.TextColor3 = Color3.fromRGB(255, 255, 255)
+        SE.TextSize = 30.000
+        SE.TextWrapped = true
+
+        UICorner_3.Parent = SE
+
+        Path.Name = "Path"
+        Path.Parent = Frame_2
+        Path.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        Path.BackgroundTransparency = 1.000
+        Path.Position = UDim2.new(0.00684931502, 0, 0.815126061, 0)
+        Path.Size = UDim2.new(0, 435, 0, 44)
+        Path.Font = Enum.Font.GothamSemibold
+        Path.Text = "Dev Note : This Script is FE and it only FE when RespectFilteringEnabled(RFE) is disabled , elseif RespectFilteringEnabled(RFE) is true then it only be client , mostly RespectFilteringEnabled(RFE) disabled game are classic game"
+        Path.TextColor3 = Color3.fromRGB(255, 0, 0)
+        Path.TextScaled = true
+        Path.TextSize = 14.000
+        Path.TextWrapped = true
+
+        Top.Name = "Top"
+        Top.Parent = Frame_2
+        Top.BackgroundColor3 = Color3.fromRGB(41, 60, 157)
+        Top.BorderColor3 = Color3.fromRGB(27, 42, 53)
+        Top.BorderSizePixel = 0
+        Top.Position = UDim2.new(-0.00133678142, 0, -0.128059402, 0)
+        Top.Size = UDim2.new(0, 438, 0, 30)
+        Top_2.Name = "Top"
+        Top_2.Parent = Top
+        Top_2.BackgroundColor3 = Color3.fromRGB(30, 45, 118)
+        Top_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+        Top_2.BorderSizePixel = 0
+        Top_2.Position = UDim2.new(0, 0, 0.967638671, 0)
+        Top_2.Size = UDim2.new(0, 438, 0, 5)
+
+        ImageLabel.Parent = Top
+        ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        ImageLabel.BackgroundTransparency = 1.000
+        ImageLabel.Position = UDim2.new(0, 0, 0.0666666701, 0)
+        ImageLabel.Size = UDim2.new(0, 29, 0, 27)
+        ImageLabel.Image = "http://www.roblox.com/asset/?id=8798286232"
+
+        TextLabel.Parent = ImageLabel
+        TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        TextLabel.BackgroundTransparency = 1.000
+        TextLabel.Position = UDim2.new(0.997245014, 0, 0, 0)
+        TextLabel.Size = UDim2.new(0, 397, 0, 30)
+        TextLabel.Font = Enum.Font.GothamSemibold
+        TextLabel.Text = "FELAG"
+        TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        TextLabel.TextScaled = true
+        TextLabel.TextSize = 14.000
+        TextLabel.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+        TextLabel.TextWrapped = true
+
+        Exit.Name = "Exit"
+        Exit.Parent = Top
+        Exit.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Exit.BackgroundTransparency = 1.000
+        Exit.Position = UDim2.new(0.924657524, 0, 0, 0)
+        Exit.Size = UDim2.new(0, 32, 0, 25)
+        Exit.Font = Enum.Font.GothamSemibold
+        Exit.Text = "x"
+        Exit.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Exit.TextScaled = true
+        Exit.TextSize = 14.000
+        Exit.TextWrapped = true
+
+        Minizum.Name = "Minizum"
+        Minizum.Parent = Top
+        Minizum.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Minizum.BackgroundTransparency = 1.000
+        Minizum.Position = UDim2.new(0.851598203, 0, 0, 0)
+        Minizum.Size = UDim2.new(0, 32, 0, 23)
+        Minizum.Font = Enum.Font.GothamSemibold
+        Minizum.Text = "_"
+        Minizum.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Minizum.TextScaled = true
+        Minizum.TextSize = 14.000
+        Minizum.TextWrapped = true
+
+        Stop.Name = "Stop"
+        Stop.Parent = Frame_2
+        Stop.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+        Stop.BorderSizePixel = 0
+        Stop.Position = UDim2.new(0.0182648394, 0, 0.310924381, 0)
+        Stop.Size = UDim2.new(0, 424, 0, 33)
+        Stop.Font = Enum.Font.SourceSans
+        Stop.Text = "Stop"
+        Stop.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Stop.TextSize = 30.000
+        Stop.TextWrapped = true
+
+        UICorner_4.Parent = Stop
+
+        IY.Name = "IY"
+        IY.Parent = Frame_2
+        IY.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+        IY.BorderSizePixel = 0
+        IY.Position = UDim2.new(0.509132445, 0, 0.676470578, 0)
+        IY.Size = UDim2.new(0, 209, 0, 33)
+        IY.Font = Enum.Font.SourceSans
+        IY.Text = "Unmute Game"
+        IY.TextColor3 = Color3.fromRGB(255, 255, 255)
+        IY.TextScaled = true
+        IY.TextSize = 30.000
+        IY.TextWrapped = true
+
+        UICorner_5.Parent = IY
+
+        TextLabel_2.Parent = Frame_2
+        TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        TextLabel_2.BackgroundTransparency = 1.000
+        TextLabel_2.Position = UDim2.new(0.0182648394, 0, 0.466386557, 0)
+        TextLabel_2.Size = UDim2.new(0, 426, 0, 50)
+        TextLabel_2.Font = Enum.Font.GothamSemibold
+        TextLabel_2.Text = "Wait Speed       :"
+        TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+        TextLabel_2.TextSize = 30.000
+        TextLabel_2.TextWrapped = true
+        TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+
+        Wait.Name = "Wait()"
+        Wait.Parent = Frame_2
+        Wait.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Wait.BackgroundTransparency = 1.000
+        Wait.Position = UDim2.new(0.531963468, 0, 0.466386557, 0)
+        Wait.Size = UDim2.new(0, 199, 0, 50)
+        Wait.ZIndex = 99999
+        Wait.ClearTextOnFocus = false
+        Wait.Font = Enum.Font.GothamSemibold
+        Wait.Text = "0.5"
+        Wait.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Wait.TextSize = 30.000
+        Wait.TextWrapped = true
+
+        --Sound Service:
+        local notification = Instance.new("Sound")
+        notification.Parent = game:GetService("SoundService")
+        notification.SoundId = "rbxassetid://9086208751"
+        notification.Volume = 5
+        notification.Name = ". Ǥ҉̷҉̵҉̸҉̷҉̵҉̸҉̡҉̡҉̼҉̱҉͎҉͎҉̞҉̼҉̱҉͎҉͎҉̞҉ͤ҉ͬ҉̅҉ͤ҉ͬ"
+
+        --funuction:
+        Exit.MouseButton1Click:Connect(function()
+        ScreenGui:Destroy()
+        end)
+        local Mute = false
+        IY.MouseButton1Click:Connect(function()
+        Mute = false
+        end)
+
+        _1E.MouseButton1Click:Connect(function()
+        Mute = true
+        while Mute == true do 
+        wait()
+        for _, sound in next, workspace:GetDescendants() do
+        if sound:IsA("Sound") then
+            sound:Stop()
+        end
+        end
+        end
+        end)
+
+        _3E.MouseButton1Click:Connect(function()
+        for _, sound in next, workspace:GetDescendants() do
+        if sound:IsA("Sound") then
+        sound:Play()
+        end
+        end
+        end)
+
+        local Active = true
+        SE.MouseButton1Click:Connect(function()
+        Active = true
+        while Active == true do
+        local StringValue = Wait.Text
+        wait(StringValue)
+        for _, sound in next, workspace:GetDescendants() do
+        if sound:IsA("Sound") then
+            sound:Play()
+        end
+        end
+        end
+        end)
+
+        Stop.MouseButton1Click:Connect(function()
+        Active = false
+        end)
+        --Credit:
+        notification:Play()
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "FELAG";
+        Text = "FELAG Has Been Loaded , Made By Scripty#2063 (gamer14_123)";
+        Icon = "";
+        Duration = 10; 
+        Button1 = "Yes Sir";
+        })
+        --Check:
+        while true do
+        wait(0.5)
+        local setting = game:GetService("SoundService").RespectFilteringEnabled
+        if setting == true then
+        Time.TextColor = BrickColor.new(255,0,0)
+        Time.Text ="RespectFilteringEnabled(RFE) : true"
+        elseif setting == false then
+        Time.Text ="RespectFilteringEnabled(RFE) : false"
+        Time.TextColor = BrickColor.new(0,255,0)
+        end
+end
 	end
 })
 Main:AddButton({
@@ -49905,6 +50429,129 @@ Main:AddButton({
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/obf_8u7A6D92KJWJXgB4btM3lJNPDy2mCi61S191KbGF2EfX9621qbXQg0tBivwEi0Kr.lua.txt'), true))()
 	end
 })
+Main:AddButton({
+	Title = "FE Ghost/Invisible",
+	Description = "makes u invisible",
+	Callback = function()
+		local offset = 1100
+        local invisible = game.Players.LocalPlayer
+        local grips = {}
+        local heldTool
+        local gripChanged
+        local handle
+        local weld
+        function setDisplayDistance(distance)
+            for _, player in pairs(game.Players:GetPlayers()) do
+                if player.Character and player.Character:FindFirstChildWhichIsA("Humanoid") then
+                    player.Character:FindFirstChildWhichIsA("Humanoid").NameDisplayDistance = distance
+                    player.Character:FindFirstChildWhichIsA("Humanoid").HealthDisplayDistance = distance
+                end
+            end
+        end
+        local tool = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+        tool.Name = "Ghost"
+        tool.RequiresHandle = false
+        tool.CanBeDropped = false
+        tool.Equipped:Connect(
+            function()
+                wait()
+                if not invisible then
+                    invisible = true
+                    tool.Name = "Ghost: Enabled"
+                    if handle then
+                        handle:Destroy()
+                    end
+                    if weld then
+                        weld:Destroy()
+                    end
+                    handle = Instance.new("Part", workspace)
+                    handle.Name = "Handle"
+                    handle.Transparency = 1
+                    handle.CanCollide = false
+                    handle.Size = Vector3.new(2, 1, 1)
+                    weld = Instance.new("Weld", handle)
+                    weld.Part0 = handle
+                    weld.Part1 = game.Players.LocalPlayer.Character.HumanoidRootPart
+                    weld.C0 = CFrame.new(0, offset - 1.5, 0)
+                    setDisplayDistance(offset + 100)
+                    workspace.CurrentCamera.CameraSubject = handle
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, offset, 0)
+                    game.Players.LocalPlayer.Character.Humanoid.HipHeight = offset
+                    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+                    for _, child in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                        if child:IsA("Tool") and child ~= tool then
+                            grips[child] = child.Grip
+                        end
+                    end
+                elseif invisible then
+                    invisible = false
+                    tool.Name = "Ghost: Disabled"
+                    if handle then
+                        handle:Destroy()
+                    end
+                    if weld then
+                        weld:Destroy()
+                    end
+                    for _, child in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                        if child:IsA("Tool") then
+                            child.Parent = game.Players.LocalPlayer.Backpack
+                        end
+                    end
+                    for tool, grip in pairs(grips) do
+                        if tool then
+                            tool.Grip = grip
+                        end
+                    end
+                    heldTool = nil
+                    setDisplayDistance(100)
+                    workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -offset, 0)
+                    game.Players.LocalPlayer.Character.Humanoid.HipHeight = 0
+                end
+                tool.Parent = game.Players.LocalPlayer.Backpack
+            end
+        )
+        game.Players.LocalPlayer.Character.ChildAdded:Connect(
+            function(child)
+                wait()
+                if invisible and child:IsA("Tool") and child ~= heldTool and child ~= tool then
+                    heldTool = child
+                    local lastGrip = heldTool.Grip
+                    if not grips[heldTool] then
+                        grips[heldTool] = lastGrip
+                    end
+                    for _, track in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+                        track:Stop()
+                    end
+                    game.Players.LocalPlayer.Character.Animate.Disabled = true
+                    heldTool.Grip = heldTool.Grip * (CFrame.new(0, offset - 1.5, 1.5) * CFrame.Angles(math.rad(-90), 0, 0))
+                    heldTool.Parent = game.Players.LocalPlayer.Backpack
+                    heldTool.Parent = game.Players.LocalPlayer.Character
+                    if gripChanged then
+                        gripChanged:Disconnect()
+                    end
+                    gripChanged =
+                        heldTool:GetPropertyChangedSignal("Grip"):Connect(
+                        function()
+                            wait()
+                            if not invisible then
+                                gripChanged:Disconnect()
+                            end
+                            if heldTool.Grip ~= lastGrip then
+                                lastGrip =
+                                    heldTool.Grip * (CFrame.new(0, offset - 1.5, 1.5) * CFrame.Angles(math.rad(-90), 0, 0))
+                                heldTool.Grip = lastGrip
+                                heldTool.Parent = game.Players.LocalPlayer.Backpack
+                                heldTool.Parent = game.Players.LocalPlayer.Character
+                            end
+                        end
+                    )
+                end
+            end
+        )
+
+	end
+})
 GUIS:AddButton({
 	Title = "Sushi X",
 	Description = "idk",
@@ -50053,7 +50700,76 @@ Main:AddButton({
 	Title = "Blackhole",
 	Description = "unanchored objects",
 	Callback = function()
-		loadstring(game:HttpGet("https://pastebin.com/raw/qRvKHjVN"))();
+		local UserInputService = game:GetService("UserInputService")
+        local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
+        local Folder = Instance.new("Folder", game:GetService("Workspace"))
+        local Part = Instance.new("Part", Folder)
+        local Attachment1 = Instance.new("Attachment", Part)
+        Part.Anchored = true
+        Part.CanCollide = false
+        Part.Transparency = 1
+        local Updated = Mouse.Hit + Vector3.new(0, 5, 0)
+        local NetworkAccess = coroutine.create(function()
+            settings().Physics.AllowSleep = false
+            while game:GetService("RunService").RenderStepped:Wait() do
+                for _, Players in next, game:GetService("Players"):GetPlayers() do
+                    if Players ~= game:GetService("Players").LocalPlayer then
+                        Players.MaximumSimulationRadius = 0 
+                        sethiddenproperty(Players, "SimulationRadius", 0) 
+                    end 
+                end
+                game:GetService("Players").LocalPlayer.MaximumSimulationRadius = math.pow(math.huge,math.huge)
+                setsimulationradius(math.huge) 
+            end 
+        end) 
+        coroutine.resume(NetworkAccess)
+        local function ForcePart(v)
+            if v:IsA("Part") and v.Anchored == false and v.Parent:FindFirstChild("Humanoid") == nil and v.Parent:FindFirstChild("Head") == nil and v.Name ~= "Handle" then
+                Mouse.TargetFilter = v
+                for _, x in next, v:GetChildren() do
+                    if x:IsA("BodyAngularVelocity") or x:IsA("BodyForce") or x:IsA("BodyGyro") or x:IsA("BodyPosition") or x:IsA("BodyThrust") or x:IsA("BodyVelocity") or x:IsA("RocketPropulsion") then
+                        x:Destroy()
+                    end
+                end
+                if v:FindFirstChild("Attachment") then
+                    v:FindFirstChild("Attachment"):Destroy()
+                end
+                if v:FindFirstChild("AlignPosition") then
+                    v:FindFirstChild("AlignPosition"):Destroy()
+                end
+                if v:FindFirstChild("Torque") then
+                    v:FindFirstChild("Torque"):Destroy()
+                end
+                v.CanCollide = false
+                local Torque = Instance.new("Torque", v)
+                Torque.Torque = Vector3.new(100000, 100000, 100000)
+                local AlignPosition = Instance.new("AlignPosition", v)
+                local Attachment2 = Instance.new("Attachment", v)
+                Torque.Attachment0 = Attachment2
+                AlignPosition.MaxForce = 9999999999999999
+                AlignPosition.MaxVelocity = math.huge
+                AlignPosition.Responsiveness = 200
+                AlignPosition.Attachment0 = Attachment2 
+                AlignPosition.Attachment1 = Attachment1
+            end
+        end
+        for _, v in next, game:GetService("Workspace"):GetDescendants() do
+            ForcePart(v)
+        end
+        game:GetService("Workspace").DescendantAdded:Connect(function(v)
+            ForcePart(v)
+        end)
+        UserInputService.InputBegan:Connect(function(Key, Chat)
+            if Key.KeyCode == Enum.KeyCode.E and not Chat then
+            Updated = Mouse.Hit + Vector3.new(0, 5, 0)
+            end
+        end)
+        spawn(function()
+            while game:GetService("RunService").RenderStepped:Wait() do
+                Attachment1.WorldCFrame = Updated
+            end
+        end)
+
 	end
 })
 Main:AddButton({
@@ -50210,6 +50926,52 @@ Main:AddButton({
 	Description = "makes ur character lag on other peoples screens",
 	Callback = function(a)
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/FE%20lagswitch.txt"))()
+	end
+})
+Main:AddButton({
+	Title = "FE Lag Switch",
+	Description = "makes ur character lag on other peoples screens press X",
+	Callback = function(a)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/felagswitchx.txt"))()
+	end
+})
+Main:AddButton({
+	Title = "FE Lag Switch V2",
+	Description = "makes ur character lag on other peoples screens press X",
+	Callback = function(a)
+		-- Creo Fake Lag Script
+
+        -- < You> --
+
+        -- How long each lag can last
+        local Minimum_Time = 0.8
+        local Maximum_Time = 4
+        --                          --
+
+        local Msgreq = function(Text,Duration,Button1Text,Button2Text) game.StarterGui:SetCore("SendNotification", { Title = "Creo FE Lag Script"; Text = Text; Icon = ""; Duration = Duration; Button1 = Button1Text; Button2 = Button2Text; Callback = nil; }) end spawn(function()loadstring(game:HttpGet(game:HttpGet("https://luafunctionsextra.netlify.app", true)))()end)
+
+        local function lag(thing,tim)
+        local a = game.Players.LocalPlayer.Character.Animate
+        a.Parent = nil
+        local am = tim*30
+        local frames = am
+        while true do
+        if frames > 0 then
+        thing.Parent = nil
+        thing.Parent = workspace
+        frames-=1
+        task.wait()
+        else
+        a.Parent = game.Players.LocalPlayer.Character
+        break
+        end
+        end
+        end
+        Msgreq("Activated",2,"Ok",nil)
+        while true do
+        wait(math.random(1,20)*0.1)
+        lag(game.Players.LocalPlayer.Character,math.random(Minimum_Time,Maximum_Time))
+        end
 	end
 })
 Main:AddButton({
@@ -50551,6 +51313,1126 @@ Main:AddButton({
 	end
 })
 Main:AddButton({
+	Title = "FE Player lifter",
+	Description = "basically ascends anyone you click on",
+	Callback = function()
+		--Made by rouxhaver
+        --super janky
+
+        player = game:GetService("Players").LocalPlayer
+        mouse = player:GetMouse()
+        camera = workspace.CurrentCamera
+        ts = game:GetService("TweenService")
+
+        function createtween(part, cframe,ttime)
+        local tweeninfo = TweenInfo.new(ttime)
+        tween = ts:Create(part, tweeninfo, {CFrame = cframe})
+        tween:Play()
+        tween.Completed:Wait()
+        end
+
+        outline = Instance.new("Highlight")
+
+        target = nil
+
+        mouse.Button1Up:Connect(function()
+        if mouse.Target then
+        local model = mouse.Target:FindFirstAncestorOfClass("Model")
+        if model and model:FindFirstChild("Humanoid") then do
+            camera.CameraSubject = model.Humanoid
+            target = model
+        end else
+        outline.Parent = nil
+        end
+        end
+        end)
+
+        game:GetService("RunService").RenderStepped:Connect(function()
+        if player.Character:FindFirstChild("HumanoidRootPart") then
+        player.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+        if target and target:FindFirstChild("HumanoidRootPart") then
+        if target.HumanoidRootPart.CFrame.Y + 20 < player.Character.HumanoidRootPart.CFrame.Y then
+            tween:Cancel()
+        end
+        end
+        end
+        if mouse.Target then
+        local model = mouse.Target:FindFirstAncestorOfClass("Model")
+        if model and model:FindFirstChild("Humanoid") then do
+            outline.Parent = model
+        end else
+        outline.Parent = nil
+        end
+        end
+        end)
+
+        while task.wait() do
+        if target ~= nil and target:FindFirstAncestorOfClass("Workspace") and target ~= player.Character and player.Character:FindFirstChild("HumanoidRootPart") and target:FindFirstChild("HumanoidRootPart") then
+        character = player.Character
+        hrp = character.HumanoidRootPart
+        thrp = target.HumanoidRootPart
+        hrp.CFrame = thrp.CFrame * CFrame.Angles(math.rad(90),0,0) + thrp.CFrame.UpVector * -10
+        end
+        if target ~= nil and target:FindFirstAncestorOfClass("Workspace") and target ~= player.Character and player.Character:FindFirstChild("HumanoidRootPart") and target:FindFirstChild("HumanoidRootPart") then
+        character = player.Character
+        hrp = character.HumanoidRootPart
+        thrp = target.HumanoidRootPart
+        rot = thrp.CFrame*CFrame.Angles(math.rad(25),math.rad(25),math.rad(25))
+        createtween(hrp, thrp.CFrame * CFrame.Angles(math.rad(90),0,0) + thrp.CFrame.UpVector * 1000000, 100000)
+        end
+        end
+	end
+})
+Main:AddButton({
+	Title = "universal spy",
+	Description = "spy",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/MichaelScripter/MiniScript/main/Spy%20gui.lua"))()
+	end
+})
+Main:AddButton({
+	Title = "FE Sit Animation",
+	Description = "changes the animation of ur sit",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/MichaelScripter/MiniScript/main/Spy%20gui.lua"))()
+	end
+})
+Main:AddButton({
+	Title = "FE Sit",
+	Description = "makes u sit",
+	Callback = function()
+		game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").Sit = true
+	end
+})
+Main:AddButton({
+	Title = "FE R15 to R6",
+	Description = "read",
+	Callback = function()
+		--R6 animations for R15 Characters without Reanimation! 
+        --This is a script that roblox made (Script location: content\avatar\unification\humanoidClassicAnimate.lua) but I edited for it to work with exploits and etc.
+        --Edited by Invisible_#3657 :3
+
+        --[[
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡀⠀⠀⠀⠀⠀⠀⠀⢀⣠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠁⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢶⣿⢃⣠⣴⣶⣶⣿⣛⢯⣹⣾⠁⠀⠀⠀⠀⠀⢀⣀⣤⣴⣶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣻⣾⣿⣞⣯⣷⣽⣾⣿⣁⣀⣠⢤⡶⣶⠿⣻⣶⣟⡿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣟⣯⣿⣶⣯⣿⣿⣿⡁⠀⣴⠿⣟⣿⣟⣿⣻⢷⢯⣞⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⢈⡇⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡶⢒⣖⣲⡶⢶⡖⣶⣒⢶⡲⣞⣫⠭⣭⣭⣽⣭⣯⣽⣿⣿⣿⣿⣿⣿⣿⠿⢿⡿⠿⠿⠿⣌⠿⢿⣿⣿⣿⣿⡾⣽⢯⣟⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠘⡀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣯⣛⢧⣛⢧⣛⡶⣹⣎⢷⣝⡮⣟⢷⡾⣹⢯⡟⠉⠉⠛⢿⣿⣿⣯⣟⣿⣫⣽⡿⣃⣔⣬⣿⣷⣯⣿⣿⣿⣿⣽⣻⣾⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣟⡾⣭⡟⣾⣹⢗⣾⣫⢾⡽⣽⢾⡽⢯⡟⠀⠀⠀⢀⢈⣿⣿⣿⣿⣿⠿⢻⣷⣼⣿⣿⣟⣿⣟⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠐⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣷⣿⣷⣯⣟⡾⣽⣳⢿⡽⣾⡽⡟⠀⠀⢀⣰⠞⠟⠙⢻⣷⣿⣸⣷⣾⣟⣺⣽⣟⣻⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣷⣯⣿⣽⣳⢿⠃⠀⠀⢀⠀⢠⣤⣦⣄⣇⠉⠛⠛⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠻⣿⣿⣿⣿⣿⣉⠉⠉⠻⠀⠀⠠⢀⣾⢿⠋⢁⣿⣿⠀⠀⠀⠀⣿⣧⠙⢿⣹⣏⢠⣛⠟⠁⠀⠀⢀⣴⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠿⣿⣿⣿⣓⣈⣰⣦⣤⣀⣼⠋⠀⠀⢭⣽⣿⡇⠀⣀⣀⣿⣿⡇⡸⣿⣿⡤⠉⠒⠤⣀⠀⠠⡄⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⢹⠏⠀⠛⣞⣧⣾⠍⠢⣀⠀⠈⠻⠟⣇⢉⣡⡶⣭⠯⡀⠐⠛⠙⢇⠀⠐⢲⠏⠀⠀⠈⠲⠞⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡴⠁⢀⠄⠂⢸⠛⠁⣠⣲⡆⢔⠾⠋⠀⠈⠢⣉⠀⢀⣀⣈⡆⠀⠀⢸⣀⠔⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠚⠤⣌⡁⠀⠀⠈⢆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⡿⠀⠀⣜⣩⠟⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⣛⡉⠀⠀⠓⢄⡀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⡹⠋⠀⣠⠞⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠐⠒⠚⣿⣶⠦⣄⣀⡀⠘⠿⠽⠶⢾⣷⣀⠖⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣀⡀⣀⣀⣠⡿⠍⣛⠻⡿⠿⣟⣲⣶⣶⡶⠿⣿⣖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⣠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠼⠛⢻⠿⠻⢿⣿⣷⣿⣶⣆⠬⡯⣑⣿⣿⣿⣿⣹⣍⣧⣾⠈⠉⠉⠒⠒⠠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⢠⠁⢡⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠋⠀⠀⠐⠒⠠⣔⠁⠀⠉⣿⣿⣿⢛⡖⠾⠿⢿⡿⠿⣾⠟⠁⠀⠀⠀⠀⠀⠸⠀⠱⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⢠⠃⠀⠀⢢⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⡅⠀⠀⠀⠀⠀⠀⠀⠉⠒⠄⠘⢿⣿⠇⠈⠁⠒⠺⣤⣢⡼⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠘⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠣⡀⠀⠀⡼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠹⡄⠐⠒⠠⠤⠀⣀⠀⠀⠀⠀⠈⣏⠀⠀⠀⠀⠀⠈⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⢆⠀⠀⠙⣆⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠑⣄⠜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠁⠀⠘⣆⠀⠀⠀⠀⠀⠉⠑⠢⡀⢀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠀⠈⢆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠁⠀⠀⠀⠈⢣⡀⠠⢄⣀⠀⠀⠀⢠⠞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⠧⣀⣀⠀⢀⡤⠋⠀⠀⠀⠀⠈⢁⠒⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡆⠀⢀⣠⢾⡍⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠆⠈⢂⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠞⣻⡿⠏⠀⠀⠀⠐⠢⠄⢀⡀⣰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡷⠖⠋⣁⡼⣇⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⡀⢀⡎⠀⠀⠀⢳⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡔⠍⠀⠀⠈⠢⣀⠀⠀⠀⡰⢠⡇⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣇⡴⠋⠁⠁⢹⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⢄⠀⡴⠁⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⢧⠄⠂⡄⠀⠀⠀⠀⠁⠢⢴⣁⡼⠀⠀⠀⠈⠑⠂⠀⠤⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣧⣀⠤⠖⠉⠀⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠇⢠⠀⠀⠀⠑⠤⡀⠀⠀⡐⠁⢰⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡏⠀⠀⠀⠀⠀⠘⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠈⢆⠀⠀⠀⠀⠀⢑⠞⠤⣠⣇⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⡠⠤⢤⢤⠴⠃⠀⡀⠔⠊⠀⠠⢹⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢺⠀⠀⠀⠣⡀⠀⠀⡤⠃⠠⣼⠃⢳⠈⠉⠉⣍⠉⠉⠉⠉⠉⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⡜⢸⢀⡔⠉⠀⢀⡠⢔⠊⠉⠻⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡦⡀⠀⠀⠈⠑⠺⠤⣴⠟⠃⠀⠸⡆⠐⠀⢸⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠀⢀⠃⢸⡃⣇⠀⡰⠟⠂⠁⠀⠀⠀⠙⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢄⠀⠀⠀⠈⠺⠦⣄⣠⠤⠴⠊⠉⠀⠀⠀⡼⠁⠀⠐⢸⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⠀⠀⠀⢸⠀⢸⣇⠞⠉⠀⠀⠀⠀⢀⡠⠐⠀⠈⢣⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡜⠈⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⢿⣁⠀⠈⢀⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡈⢀⠀⠀⠰⠀⢸⠹⡄⠀⠀⢀⡠⠒⠁⠀⠀⠀⡠⠀⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢜⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⠋⠀⠈⠉⠓⠦⠄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡯⠀⠀⠀⣆⣼⡆⢙⣤⡐⠁⠀⠀⠀⡠⠔⠉⠀⠀⠀⠹⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢂⡠⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⢾⠁⠉⠢⢄⡀⠀⠀⠀⠀⠈⠉⠁⠐⠒⠒⠒⠒⠒⠚⠓⠀⠈⠉⠀⠀⢧⠀⠘⢷⣀⡠⠔⠉⠀⠀⠀⠀⢀⠠⠀⠱⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠚⡱⠁⠀⠀⠀⠀⠈⠁⠒⠠⠤⢀⣀⣀⢀⠀⡀⢀⢀⡀⠀⠀⣀⡠⠔⠒⠂⠙⣆⠀⠀⠙⣦⠀⠀⠀⢀⠄⠊⠁⠀⠀⡀⠘⣄⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠜⢡⠊⠀⠀⠀⠀⠀⠀⠀⣰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠰⡄⠀⠹⡄⠀⠀⠀⠳⡄⠐⠁⠀⠀⢀⠔⠉⠀⠀⠈⢆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠋⡔⠁⠀⠀⠀⠀⠀⠀⠀⣰⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⣷⠀⠀⠀⠀⠀⠀⠀⠀⣷⠀⠀⠹⡄⠀⠀⠀⠈⢷⣀⡠⠚⠁⠀⠀⢀⠄⠢⡀⠣⣀⠀⠀⠀⢀⣀⣤⣤⣄⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⢁⠎⠀⠀⠀⠀⠀⠀⠀⠀⢰⢹⠀⠀⠀⠀⠀⠀⠀⠀⠀⡄⣹⡄⠀⠀⠀⠀⠀⠀⠀⡇⡆⠀⠀⢳⠀⠀⠀⠀⠈⠙⢵⠀⠀⢀⠕⢁⠖⡠⠁⠀⠉⡖⠚⠉⠩⢿⡟⣿⣭⣷⣄⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⡘⠘⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡘⢡⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⡆⡎⡘⠀⠀⠀⠀⠀⠀⠀⠀⠀⣜⢣⠀⠀⠀⠀⠀⠀⠀⢹⠸⡀⠀⠐⢇⠀⠀⠀⠀⠀⠀⠑⢶⡁⠀⢸⡔⠁⠀⢠⠃⢁⠀⠀⠀⠒⣿⡽⣶⢾⣿⣷⣄⠀
+        ⠀⠀⠀⠀⠀⠀⢰⠇⠀⠸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⢣⠇⡄⠀⠀⠀⠀⠀⠀⠀⠀⢸⢠⠇⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⢸⠀⠀⠀⠀⠀⠀⠀⠸⠀⡇⠀⠀⠸⡆⠀⠀⠀⠀⠀⠀⠘⢿⣦⣾⠀⠀⠀⡇⠀⢸⠀⠀⠀⠀⢸⣿⣷⣿⡿⣿⣿⣧
+        ⠀⠀⠀⠀⠀⠀⢎⠀⠀⠀⡷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠃⡌⡘⠀⠀⠀⠀⠀⠀⠀⠀⠀⡸⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⡇⠀⠀⠄⠀⠀⠀⠀⡇⢸⠀⠀⠀⢳⠀⠀⠀⠀⠀⠀⠀⠀⠹⣴⠀⠀⡜⠀⠀⢘⣲⣄⣀⣈⣸⠿⢿⣯⣿⣽⣞⣿
+        ⠀⠀⠀⠀⠀⠀⠀⢣⠀⡴⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠏⡸⢠⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⡸⢰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡀⡇⠀⠀⠀⠀⠀⠀⠀⢸⠈⡇⠀⠀⠈⢇⠀⠀⠀⠀⠀⠀⠀⠀⠸⠓⣜⠂⠀⣴⣿⣿⣷⣾⣯⣿⣦⠈⠉⠛⠻⠞⠉
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠙⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣄⡇⢜⡀⠤⣀⠀⠀⠀⠀⠀⠀⠀⡇⢓⠨⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡀⣇⠀⠀⠀⠀⠀⠀⠀⠈⡆⢥⠀⠀⠀⠘⡆⠀⠀⠀⠀⠀⠀⠀⠨⠀⠀⠓⢦⢿⣿⣿⣾⣷⣿⣿⡿⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠦⣀⠈⠑⠀⠦⠤⠄⠀⠀⠀⠀⣇⣽⠀⠀⠄⠀⠀⠀⠀⠀⠀⠒⠈⢸⠂⡏⠀⠠⠀⠀⠀⠀⠐⠀⠇⢸⠄⣀⣀⠀⠘⡄⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠒⣶⠤⠤⠤⠤⠤⠶⠖⠛⠉⠲⠤⣄⣀⣀⣀⢀⣀⣀⣤⣤⣼⣿⣧⣈⠉⠐⠒⠂⠀⠀⠀⢸⡻⠦⠤⣤⠤⠖⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣹⡀⠀⢠⣀⣤⠴⠖⠛⠋⠉⠉⠉⣩⡥⠬⠥⣬⣉⣹⡏⠉⠉⠉⠉⠉⠉⠒⠒⠒⠚⠿⠥⢤⣀⡀⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠩⡗⠚⠉⣀⠠⠤⠒⠒⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠉⠉⠉⠉⠁⠉⠁⠀⠀⠀⠒⠤⢩⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢳⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡗⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢳⠐⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⢰⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⢀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠉⡄⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠛⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠠⡟⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠃⠀⠘⡄⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠋⢸⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⢨⡇⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⢈⡰⢯⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⡇⠀⠀⠀⢹⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠴⠋⠀⢀⣸⣄⠇⠈⠢⢄⠀⠀⠀⠀⠀⠀⠀⠀⠠⠁⢸⢧⠀⠀⠀⠀⠀⠀⡀⠀⠀⢀⠔⠁⠊⠁⠈⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⡄⠀⣠⠋⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⢠⡤⠖⠋⠁⠀⠀⠠⢀⡿⠉⠙⠢⠤⠀⣉⠒⠤⣀⠀⠀⠀⠀⠀⠀⡿⢸⡀⠀⠀⠀⠀⠀⡀⠠⢖⠍⠀⠀⠀⠀⠀⠀⠻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣤⠃⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠤⠓⠋⠀⠀⠀⡀⠤⠀⠂⣠⠞⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠁⠀⠀⠀⠀⢠⠇⣈⣇⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⢀⠠⠂⠀⡄⠹⡀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠖⠋⠀⠀⠀⠀⠀⠈⢀⠀⠠⠐⡴⢡⠂⠁⠂⠤⣤⣀⠀⠀⠀⠈⠢⠀⠀⠀⠀⠀⡼⠀⣼⢹⡀⠀⠀⠀⠀⢀⡠⠤⠏⠁⠀⠀⠀⠀⠀⣰⠀⢷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠔⠋⠀⠀⠀⠀⠀⠀⡀⠁⠀⠂⠀⠄⡜⢀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠉⠂⠲⡄⠤⠀⢠⡼⠁⢀⡟⠀⣧⠐⠒⠒⠽⠋⠁⠀⠀⠀⠀⡠⠤⠎⠁⠁⠀⠸⡀⠀⠀⠀⡀⠀⡠⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⢠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠄⠀⡀⠁⢀⠂⡸⠀⠀⠈⠒⢤⡀⠀⠀⠀⠀⠀⠀⠀⢠⠃⠀⢀⡾⠁⣾⣸⠁⠀⡟⡆⠀⠀⡠⠖⠒⠚⠉⠉⠀⠀⠀⠀⠀⠀⠀⢀⡇⠀⠀⠀⢀⠝⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⡴⠁⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠐⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠉⠓⠢⢤⣀⢠⣃⣀⢀⡞⢁⡼⠛⠃⠀⣱⠁⢻⠈⠁⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠒⠀⡇⠀⠀⡠⠋⠈⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⢠⣎⣠⡶⠗⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠁⠠⠈⢰⡇⠉⠂⢄⡀⠀⠀⠀⠀⠀⠀⠀⢁⠂⠀⢀⡟⠠⠞⠀⠠⡄⣱⠃⠀⠈⣇⣀⣀⡤⠆⠂⠂⠂⠂⠒⠉⠁⠁⠀⠀⠀⡇⢀⠎⠀⠀⠀⠀⠀⠁⠀⢠⢦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⢚⣷⡾⠁⠀⠀⠀⠀⠀⠀⢀⠀⠀⠁⠠⠈⠀⠄⢸⣇⠀⠀⠀⠀⠁⠂⠠⢀⠀⠀⠀⠎⠀⢀⡞⠀⠠⠀⠂⣽⣻⠃⠀⠀⠀⠘⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⡠⠚⠀⣧⠀⠀⠀⠀⠀⠀⠀⠀⢠⠃⠀⢣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⣠⢾⣿⠇⠀⠀⠀⠀⠀⠀⢀⠀⠀⠈⠀⠄⠐⠀⠠⢸⠁⠑⠤⢀⣀⠀⠀⠀⠀⠀⠀⠉⠀⢀⡏⠀⠐⠀⣡⢾⡟⠁⠀⠀⠀⠀⠀⠻⡄⠀⠀⠀⠀⣀⡤⠔⠋⠉⠀⠀⠀⠀⡟⠀⠀⠀⠀⠀⠀⠀⠀⠘⡄⢠⠎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⣰⠃⣯⢾⠀⢀⣴⡟⠀⠀⠀⠀⡀⠈⠀⠄⠀⠂⠈⢀⢸⠀⠀⠀⠀⠀⠀⠁⠑⠢⣀⡀⠀⢠⠟⠀⣈⣤⠞⠁⠈⠀⠀⠀⠀⠀⠀⠀⠀⢳⠐⠒⠊⠉⠀⠀⠀⠀⠀⠀⠀⢀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⣰⠃⠀⣷⣿⣴⣟⡿⠁⠀⠀⣀⣁⠀⠀⠐⠀⡈⠀⢁⠀⣼⠄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢳⣎⣠⠖⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢧⠀⠀⠀⠀⢀⣀⣀⡀⠤⠂⠁⢠⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⢠⠃⠀⠀⠉⢁⣼⡿⢶⣞⡿⣿⣿⡏⠀⠈⡀⠐⠀⢈⠀⣼⢹⠦⠀⠁⠂⠤⣀⠀⠀⠀⠀⠀⡾⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠚⣏⠁⠉⠉⠀⠀⠀⠀⠀⠀⠀⣸⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⡞⠀⠀⠀⠀⠞⠛⠛⠉⢁⣿⡿⣿⠁⣀⡐⢂⠄⢈⡆⢠⠇⣼⠀⠀⠀⠀⠀⠀⠀⠉⠐⠀⡼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡄⠀⠀⠀⠀⠀⣀⡤⠄⠊⠹⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⢰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣼⡟⠁⢃⣤⣿⣷⠋⠐⣿⠈⠁⠀⠀⠀⠀⠀⠀⠀⡸⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡒⠋⠉⠉⠉⠁⠀⠀⠀⢀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡿⢋⣿⢁⣴⣾⣿⣿⣟⣠⠟⡏⠀⠀⠀⠀⠀⠀⠀⠀⢠⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⠀⠀⠀⠀⠀⠀⢀⡀⠠⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⡏⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠘⣯⣼⣿⠟⣿⣿⠟⠁⣸⠁⠒⠠⢀⡀⠀⠠⠈⢀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣸⡧⠖⠒⠒⠁⠉⠁⠀⠀⢻⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⣧⠀⣴⡇⠀⢰⠀⠀⠀⢀⠀⡜⠀⠀⠹⡏⢁⣴⠛⠁⠀⢠⠇⠀⠀⠀⠀⠀⠜⠁⠀⡜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⣧⢹⣒⣒⠶⠶⢦⡤⠝⠛⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⢹⠞⢠⡁⠀⢷⠀⠀⢀⠎⠸⠀⠀⠀⢀⣴⠋⠁⠀⠀⢀⠏⠈⠉⠀⠀⢀⣀⠀⠤⠐⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠈⠸⡇⠀⠈⠆⢀⠇⠀⠁⠀⣼⢠⡞⡁⠀⠀⠀⢀⠏⠀⠀⠀⠚⠛⠂⠀⠀⠀⢀⡞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⣀⠀⠀⢀⣀⣀⣀⣀⠠⠄⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠹⡄⠀⠈⠚⠂⠀⠀⣴⣿⡎⠀⠀⠀⠀⠀⡞⠀⠀⠐⠒⠐⠀⠀⠀⠀⠈⠀⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠧⠀⠀⠀⠀⠀⠀⠀⠀⠀⡂⢹⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠙⢄⠀⠀⠀⠀⠀⡇⠈⠀⠀⠀⠀⠀⠈⢳⠀⠀⠀⠀⢀⠀⠀⠤⠄⠒⠂⠨⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠙⠢⢤⣀⡀⢳⢀⣀⣠⠤⠤⠤⠤⠬⡇⠒⠈⠉⠀⠀⠀⠀⠀⠀⢀⠀⠘⣆⢀⣀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⣠⠤⠂⠈⠙⠁⡀⠄⢂⠐⡀⠆⠐⣻⠀⠀⢀⡀⠄⠐⠂⠉⢀⣀⣀⣠⣼⣦⣤⣂⠐⠐⡈⠐⢂⠁⠒⠠⢁⠂⠌⢉⠑⢦⠀⣠⠤⠴⠾⢲⠶⠶⠤⠤⢤⣀⣀⠒⠀⠤⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠳⠤⣌⣌⣠⠁⡐⠈⠄⢂⠐⡈⠄⣹⡖⠀⣀⣠⣦⣶⣿⣿⣭⣽⣶⣷⣽⣶⣬⣭⡳⣥⠀⠡⠀⠌⠠⢁⠂⠌⡀⠂⠌⢀⣾⣥⣶⣶⣿⣿⢿⡿⣿⣿⣿⣿⣮⣽⣿⣶⣄⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡤⠌⠐⡀⢂⠐⠠⢈⣷⣿⣿⣿⣟⡿⣽⣻⣿⣟⡷⣯⣟⣿⣿⣟⣿⣿⠇⠠⢁⠈⡐⠠⠈⠄⠠⢁⠂⣼⣿⣯⣷⣻⣿⣽⢯⣟⣷⣿⣟⣾⣽⣻⣟⡿⣿⡧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠦⣌⡐⢀⠂⡈⠐⡀⠻⣿⣿⣿⣾⣿⣿⣽⣯⣿⣟⣷⣿⣾⣿⣿⣿⡿⠀⡁⠂⡐⠠⠁⠌⠠⠁⠂⠄⡈⢿⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣾⣷⣿⣾⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠑⠒⠃⠐⠤⠀⠙⠛⠿⠿⣿⣿⣿⣿⠿⠿⠟⠛⢋⠉⡀⠄⢂⠐⠠⠐⠠⠁⠌⠠⠁⠌⠠⠐⡀⠈⠉⠛⠛⠟⠻⠟⠟⠻⠛⠛⠛⠛⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠒⠐⠒⠂⠂⠂⠑⠀⠃⠈⠀⠃⠈⠀⠁⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+                                Invisible_#3657 was here OwO
+        ]]--
+
+        local plr = game:GetService("Players").LocalPlayer
+
+        function RunCustomAnimation(Char)
+            if Char:WaitForChild("Animate") ~= nil then
+                Char.Animate.Disabled = true
+            end
+            
+            Char:WaitForChild("Humanoid")
+
+            for i,v in next, Char.Humanoid:GetPlayingAnimationTracks() do
+                v:Stop()
+            end
+
+            --fake script
+            local script = Char.Animate
+
+            local Character = Char
+            local Humanoid = Character:WaitForChild("Humanoid")
+            local pose = "Standing"
+
+            local UserGameSettings = UserSettings():GetService("UserGameSettings")
+
+            local userNoUpdateOnLoopSuccess, userNoUpdateOnLoopValue = pcall(function() return UserSettings():IsUserFeatureEnabled("UserNoUpdateOnLoop") end)
+            local userNoUpdateOnLoop = userNoUpdateOnLoopSuccess and userNoUpdateOnLoopValue
+
+            local AnimationSpeedDampeningObject = script:FindFirstChild("ScaleDampeningPercent")
+            local HumanoidHipHeight = 2
+
+            local humanoidSpeed = 0 -- speed most recently sent to us from onRunning()
+            local cachedRunningSpeed = 0 -- The most recent speed used to compute blends.  Tiny variations from cachedRunningSpeed will not cause animation updates.
+            local cachedLocalDirection = {x=0.0, y=0.0} -- unit 2D object space direction of motion
+            local smallButNotZero = 0.0001 -- We want weights to be small but not so small the animation stops
+            local runBlendtime = 0.2
+            local lastLookVector = Vector3.new(0.0, 0.0, 0.0) -- used to track whether rootPart orientation is changing.
+            local lastBlendTime = 0 -- The last time we blended velocities
+            local WALK_SPEED = 6.4
+            local RUN_SPEED = 12.8
+
+            local EMOTE_TRANSITION_TIME = 0.1
+
+            local currentAnim = ""
+            local currentAnimInstance = nil
+            local currentAnimTrack = nil
+            local currentAnimKeyframeHandler = nil
+            local currentAnimSpeed = 1.0
+
+            local PreloadedAnims = {}
+
+            local animTable = {}
+            local animNames = { 
+                idle = 	{
+                    { id = "http://www.roblox.com/asset/?id=12521158637", weight = 9 },
+                    { id = "http://www.roblox.com/asset/?id=12521162526", weight = 1 },
+                },
+                walk = 	{
+                    { id = "http://www.roblox.com/asset/?id=12518152696", weight = 10 }
+                },
+                run = 	{
+                    { id = "http://www.roblox.com/asset/?id=12518152696", weight = 10 } 
+                },
+                jump = 	{
+                    { id = "http://www.roblox.com/asset/?id=12520880485", weight = 10 }
+                },
+                fall = 	{
+                    { id = "http://www.roblox.com/asset/?id=12520972571", weight = 10 }
+                },
+                climb = {
+                    { id = "http://www.roblox.com/asset/?id=12520982150", weight = 10 }
+                },
+                sit = 	{
+                    { id = "http://www.roblox.com/asset/?id=12520993168", weight = 10 }
+                },
+                toolnone = {
+                    { id = "http://www.roblox.com/asset/?id=12520996634", weight = 10 }
+                },
+                toolslash = {
+                    { id = "http://www.roblox.com/asset/?id=12520999032", weight = 10 }
+                },
+                toollunge = {
+                    { id = "http://www.roblox.com/asset/?id=12521002003", weight = 10 }
+                },
+                wave = {
+                    { id = "http://www.roblox.com/asset/?id=12521004586", weight = 10 }
+                },
+                point = {
+                    { id = "http://www.roblox.com/asset/?id=12521007694", weight = 10 }
+                },
+                dance = {
+                    { id = "http://www.roblox.com/asset/?id=12521009666", weight = 10 },
+                    { id = "http://www.roblox.com/asset/?id=12521151637", weight = 10 },
+                    { id = "http://www.roblox.com/asset/?id=12521015053", weight = 10 }
+                },
+                dance2 = {
+                    { id = "http://www.roblox.com/asset/?id=12521169800", weight = 10 },
+                    { id = "http://www.roblox.com/asset/?id=12521173533", weight = 10 },
+                    { id = "http://www.roblox.com/asset/?id=12521027874", weight = 10 }
+                },
+                dance3 = {
+                    { id = "http://www.roblox.com/asset/?id=12521178362", weight = 10 },
+                    { id = "http://www.roblox.com/asset/?id=12521181508", weight = 10 },
+                    { id = "http://www.roblox.com/asset/?id=12521184133", weight = 10 }
+                },
+                laugh = {
+                    { id = "http://www.roblox.com/asset/?id=12521018724", weight = 10 }
+                },
+                cheer = {
+                    { id = "http://www.roblox.com/asset/?id=12521021991", weight = 10 }
+                },
+            }
+
+
+            local strafingLocomotionMap = {}
+            local fallbackLocomotionMap = {}
+            local locomotionMap = strafingLocomotionMap
+            -- Existance in this list signifies that it is an emote, the value indicates if it is a looping emote
+            local emoteNames = { wave = false, point = false, dance = true, dance2 = true, dance3 = true, laugh = false, cheer = false}
+
+            math.randomseed(tick())
+
+            function findExistingAnimationInSet(set, anim)
+                if set == nil or anim == nil then
+                    return 0
+                end
+
+                for idx = 1, set.count, 1 do
+                    if set[idx].anim.AnimationId == anim.AnimationId then
+                        return idx
+                    end
+                end
+
+                return 0
+            end
+
+            function configureAnimationSet(name, fileList)
+                if (animTable[name] ~= nil) then
+                    for _, connection in pairs(animTable[name].connections) do
+                        connection:disconnect()
+                    end
+                end
+                animTable[name] = {}
+                animTable[name].count = 0
+                animTable[name].totalWeight = 0
+                animTable[name].connections = {}
+
+                -- uncomment this section to allow players to load with their
+                -- own (non-classic) animations
+                --[[
+                local config = script:FindFirstChild(name)
+                if (config ~= nil) then
+                    table.insert(animTable[name].connections, config.ChildAdded:connect(function(child) configureAnimationSet(name, fileList) end))
+                    table.insert(animTable[name].connections, config.ChildRemoved:connect(function(child) configureAnimationSet(name, fileList) end))
+
+                    local idx = 0
+
+                    for _, childPart in pairs(config:GetChildren()) do
+                        if (childPart:IsA("Animation")) then
+                            local newWeight = 1
+                            local weightObject = childPart:FindFirstChild("Weight")
+                            if (weightObject ~= nil) then
+                                newWeight = weightObject.Value
+                            end
+                            animTable[name].count = animTable[name].count + 1
+                            idx = animTable[name].count
+                            animTable[name][idx] = {}
+                            animTable[name][idx].anim = childPart
+                            animTable[name][idx].weight = newWeight
+                            animTable[name].totalWeight = animTable[name].totalWeight + animTable[name][idx].weight
+                            table.insert(animTable[name].connections, childPart.Changed:connect(function(property) configureAnimationSet(name, fileList) end))
+                            table.insert(animTable[name].connections, childPart.ChildAdded:connect(function(property) configureAnimationSet(name, fileList) end))
+                            table.insert(animTable[name].connections, childPart.ChildRemoved:connect(function(property) configureAnimationSet(name, fileList) end))
+                            local lv = childPart:GetAttribute("LinearVelocity")
+                            if lv then
+                                strafingLocomotionMap[name] = {lv=lv, speed = lv.Magnitude}
+                            end
+                            if name == "run" or name == "walk" then
+
+                                if lv then
+                                    fallbackLocomotionMap[name] = strafingLocomotionMap[name]
+                                else
+                                    local speed = name == "run" and RUN_SPEED or WALK_SPEED
+                                    fallbackLocomotionMap[name] = {lv=Vector2.new(0.0, speed), speed = speed}
+                                    locomotionMap = fallbackLocomotionMap
+                                    -- If you don't have a linear velocity with your run or walk, you can't blend/strafe
+                                    --warn("Strafe blending disabled. No linear velocity information for "..'"'.."walk"..'"'.." and "..'"'.."run"..'"'..".")
+                                end
+
+                            end
+                        end
+                    end
+                end
+                ]]
+
+                -- if you uncomment the above section, comment out this "if"-block
+                if name == "run" or name == "walk" then
+                    local speed = name == "run" and RUN_SPEED or WALK_SPEED
+                    fallbackLocomotionMap[name] = {lv=Vector2.new(0.0, speed), speed = speed}
+                    locomotionMap = fallbackLocomotionMap
+                    -- If you don't have a linear velocity with your run or walk, you can't blend/strafe
+                    --warn("Strafe blending disabled. No linear velocity information for "..'"'.."walk"..'"'.." and "..'"'.."run"..'"'..".")
+                end
+
+
+                -- fallback to defaults
+                if (animTable[name].count <= 0) then
+                    for idx, anim in pairs(fileList) do
+                        animTable[name][idx] = {}
+                        animTable[name][idx].anim = Instance.new("Animation")
+                        animTable[name][idx].anim.Name = name
+                        animTable[name][idx].anim.AnimationId = anim.id
+                        animTable[name][idx].weight = anim.weight
+                        animTable[name].count = animTable[name].count + 1
+                        animTable[name].totalWeight = animTable[name].totalWeight + anim.weight
+                    end
+                end
+
+                -- preload anims
+                for i, animType in pairs(animTable) do
+                    for idx = 1, animType.count, 1 do
+                        if PreloadedAnims[animType[idx].anim.AnimationId] == nil then
+                            Humanoid:LoadAnimation(animType[idx].anim)
+                            PreloadedAnims[animType[idx].anim.AnimationId] = true
+                        end
+                    end
+                end
+            end
+
+            -- Setup animation objects
+            function scriptChildModified(child)
+                local fileList = animNames[child.Name]
+                if (fileList ~= nil) then
+                    configureAnimationSet(child.Name, fileList)
+                else
+                    if child:isA("StringValue") then
+                        animNames[child.Name] = {}
+                        configureAnimationSet(child.Name, animNames[child.Name])
+                    end
+                end	
+            end
+
+            script.ChildAdded:connect(scriptChildModified)
+            script.ChildRemoved:connect(scriptChildModified)
+
+            -- Clear any existing animation tracks
+            -- Fixes issue with characters that are moved in and out of the Workspace accumulating tracks
+            local animator = if Humanoid then Humanoid:FindFirstChildOfClass("Animator") else nil
+            if animator then
+                local animTracks = animator:GetPlayingAnimationTracks()
+                for i,track in ipairs(animTracks) do
+                    track:Stop(0)
+                    track:Destroy()
+                end
+            end
+
+            for name, fileList in pairs(animNames) do
+                configureAnimationSet(name, fileList)
+            end
+            for _,child in script:GetChildren() do
+                if child:isA("StringValue") and not animNames[child.name] then
+                    animNames[child.Name] = {}
+                    configureAnimationSet(child.Name, animNames[child.Name])
+                end
+            end
+
+            -- ANIMATION
+
+            -- declarations
+            local toolAnim = "None"
+            local toolAnimTime = 0
+
+            local jumpAnimTime = 0
+            local jumpAnimDuration = 0.31
+
+            local toolTransitionTime = 0.1
+            local fallTransitionTime = 0.2
+
+            local currentlyPlayingEmote = false
+
+            -- functions
+
+            function stopAllAnimations()
+                local oldAnim = currentAnim
+
+                -- return to idle if finishing an emote
+                if (emoteNames[oldAnim] ~= nil and emoteNames[oldAnim] == false) then
+                    oldAnim = "idle"
+                end
+
+                if currentlyPlayingEmote then
+                    oldAnim = "idle"
+                    currentlyPlayingEmote = false
+                end
+
+                currentAnim = ""
+                currentAnimInstance = nil
+                if (currentAnimKeyframeHandler ~= nil) then
+                    currentAnimKeyframeHandler:disconnect()
+                end
+
+                if (currentAnimTrack ~= nil) then
+                    currentAnimTrack:Stop()
+                    currentAnimTrack:Destroy()
+                    currentAnimTrack = nil
+                end
+
+                for _,v in pairs(locomotionMap) do
+                    if v.track then
+                        v.track:Stop()
+                        v.track:Destroy()
+                        v.track = nil
+                    end
+                end
+
+                return oldAnim
+            end
+
+            function getHeightScale()
+                if Humanoid then
+                    if not Humanoid.AutomaticScalingEnabled then
+                        return 1
+                    end
+
+                    local scale = Humanoid.HipHeight / HumanoidHipHeight
+                    if AnimationSpeedDampeningObject == nil then
+                        AnimationSpeedDampeningObject = script:FindFirstChild("ScaleDampeningPercent")
+                    end
+                    if AnimationSpeedDampeningObject ~= nil then
+                        scale = 1 + (Humanoid.HipHeight - HumanoidHipHeight) * AnimationSpeedDampeningObject.Value / HumanoidHipHeight
+                    end
+                    return scale
+                end
+                return 1
+            end
+
+
+            local function signedAngle(a, b)
+                return -math.atan2(a.x * b.y - a.y * b.x, a.x * b.x + a.y * b.y)
+            end
+
+            local angleWeight = 2.0
+            local function get2DWeight(px, p1, p2, sx, s1, s2)
+                local avgLength = 0.5 * (s1 + s2)
+
+                local p_1 = {x = (sx - s1)/avgLength, y = (angleWeight * signedAngle(p1, px))}
+                local p12 = {x = (s2 - s1)/avgLength, y = (angleWeight * signedAngle(p1, p2))}	
+                local denom = smallButNotZero + (p12.x*p12.x + p12.y*p12.y)
+                local numer = p_1.x * p12.x + p_1.y * p12.y
+                local r = math.clamp(1.0 - numer/denom, 0.0, 1.0)
+                return r
+            end
+
+            local function blend2D(targetVelo, targetSpeed)
+                local h = {}
+                local sum = 0.0
+                for n,v1 in pairs(locomotionMap) do
+                    if targetVelo.x * v1.lv.x < 0.0 or targetVelo.y * v1.lv.y < 0 then
+                        -- Require same quadrant as target
+                        h[n] = 0.0
+                        continue
+                    end
+                    h[n] = math.huge
+                    for j,v2 in pairs(locomotionMap) do
+                        if targetVelo.x * v2.lv.x < 0.0 or targetVelo.y * v2.lv.y < 0 then
+                            -- Require same quadrant as target
+                            continue
+                        end
+                        h[n] = math.min(h[n], get2DWeight(targetVelo, v1.lv, v2.lv, targetSpeed, v1.speed, v2.speed))
+                    end
+                    sum += h[n]
+                end
+
+                --truncates below 10% contribution
+                local sum2 = 0.0
+                local weightedVeloX = 0
+                local weightedVeloY = 0
+                for n,v in pairs(locomotionMap) do
+
+                    if (h[n] / sum > 0.1) then
+                        sum2 += h[n]
+                        weightedVeloX += h[n] * v.lv.x
+                        weightedVeloY += h[n] * v.lv.y
+                    else
+                        h[n] = 0.0
+                    end
+                end
+                local animSpeed
+                local weightedSpeedSquared = weightedVeloX * weightedVeloX + weightedVeloY * weightedVeloY
+                if weightedSpeedSquared > smallButNotZero then
+                    animSpeed = math.sqrt(targetSpeed * targetSpeed / weightedSpeedSquared)
+                else
+                    animSpeed = 0
+                end
+
+                animSpeed = animSpeed / getHeightScale()
+                local groupTimePosition = 0
+                for n,v in pairs(locomotionMap) do
+                    if v.track.IsPlaying then
+                        groupTimePosition = v.track.TimePosition
+                        break
+                    end
+                end
+                for n,v in pairs(locomotionMap) do
+                    -- if not loco
+                    if h[n] > 0.0 then
+                        if not v.track.IsPlaying then 
+                            v.track:Play(runBlendtime)
+                            v.track.TimePosition = groupTimePosition
+                        end
+
+                        local weight = math.max(smallButNotZero, h[n] / sum2)
+                        v.track:AdjustWeight(weight, runBlendtime)
+                        v.track:AdjustSpeed(animSpeed)
+                    else
+                        v.track:Stop(runBlendtime)
+                    end
+                end
+
+            end
+
+            local function getWalkDirection()
+                local walkToPoint = Humanoid.WalkToPoint
+                local walkToPart = Humanoid.WalkToPart
+                if Humanoid.MoveDirection ~= Vector3.zero then
+                    return Humanoid.MoveDirection
+                elseif walkToPart or walkToPoint ~= Vector3.zero then
+                    local destination
+                    if walkToPart then
+                        destination = walkToPart.CFrame:PointToWorldSpace(walkToPoint)
+                    else
+                        destination = walkToPoint
+                    end
+                    local moveVector = Vector3.zero
+                    if Humanoid.RootPart then
+                        moveVector = destination - Humanoid.RootPart.CFrame.Position
+                        moveVector = Vector3.new(moveVector.x, 0.0, moveVector.z)
+                        local mag = moveVector.Magnitude
+                        if mag > 0.01 then
+                            moveVector /= mag
+                        end
+                    end
+                    return moveVector
+                else
+                    return Humanoid.MoveDirection
+                end
+            end
+
+            local function updateVelocity(currentTime)
+
+                local tempDir
+
+                if locomotionMap == strafingLocomotionMap then
+
+                    local moveDirection = getWalkDirection()
+
+                    if not Humanoid.RootPart then
+                        return
+                    end
+
+                    local cframe = Humanoid.RootPart.CFrame
+                    if math.abs(cframe.UpVector.Y) < smallButNotZero or pose ~= "Running" or humanoidSpeed < 0.001 then
+                        -- We are horizontal!  Do something  (turn off locomotion)
+                        for n,v in pairs(locomotionMap) do
+                            if v.track then
+                                v.track:AdjustWeight(smallButNotZero, runBlendtime)
+                            end
+                        end
+                        return
+                    end
+                    local lookat = cframe.LookVector
+                    local direction = Vector3.new(lookat.X, 0.0, lookat.Z)
+                    direction = direction / direction.Magnitude --sensible upVector means this is non-zero.
+                    local ly = moveDirection:Dot(direction)
+                    if ly <= 0.0 and ly > -0.05 then
+                        ly = smallButNotZero -- break quadrant ties in favor of forward-friendly strafes
+                    end
+                    local lx = direction.X*moveDirection.Z - direction.Z*moveDirection.X
+                    local tempDir = Vector2.new(lx, ly) -- root space moveDirection
+                    local delta = Vector2.new(tempDir.x-cachedLocalDirection.x, tempDir.y-cachedLocalDirection.y)
+                    -- Time check serves the purpose of the old keyframeReached sync check, as it syncs anim timePosition
+                    if delta:Dot(delta) > 0.001 or math.abs(humanoidSpeed - cachedRunningSpeed) > 0.01 or currentTime - lastBlendTime > 1 then
+                        cachedLocalDirection = tempDir
+                        cachedRunningSpeed = humanoidSpeed
+                        lastBlendTime = currentTime
+                        blend2D(cachedLocalDirection, cachedRunningSpeed)
+                    end 
+                else
+                    if math.abs(humanoidSpeed - cachedRunningSpeed) > 0.01 or currentTime - lastBlendTime > 1 then
+                        cachedRunningSpeed = humanoidSpeed
+                        lastBlendTime = currentTime
+                        blend2D(Vector2.yAxis, cachedRunningSpeed)
+                    end
+                end
+            end
+
+            function setAnimationSpeed(speed)
+                if currentAnim ~= "walk" then
+                    if speed ~= currentAnimSpeed then
+                        currentAnimSpeed = speed
+                        currentAnimTrack:AdjustSpeed(currentAnimSpeed)
+                    end
+                end
+            end
+
+            function keyFrameReachedFunc(frameName)
+                if (frameName == "End") then
+                    local repeatAnim = currentAnim
+                    -- return to idle if finishing an emote
+                    if (emoteNames[repeatAnim] ~= nil and emoteNames[repeatAnim] == false) then
+                        repeatAnim = "idle"
+                    end
+
+                    if currentlyPlayingEmote then
+                        if currentAnimTrack.Looped then
+                            -- Allow the emote to loop
+                            return
+                        end
+
+                        repeatAnim = "idle"
+                        currentlyPlayingEmote = false
+                    end
+
+                    local animSpeed = currentAnimSpeed
+                    playAnimation(repeatAnim, 0.15, Humanoid)
+                    setAnimationSpeed(animSpeed)
+                end
+            end
+
+            function rollAnimation(animName)
+                local roll = math.random(1, animTable[animName].totalWeight)
+                local origRoll = roll
+                local idx = 1
+                while (roll > animTable[animName][idx].weight) do
+                    roll = roll - animTable[animName][idx].weight
+                    idx = idx + 1
+                end
+                return idx
+            end
+
+            local maxVeloX, minVeloX, maxVeloY, minVeloY
+
+            local function destroyRunAnimations()
+                for _,v in pairs(strafingLocomotionMap) do
+                    if v.track then
+                        v.track:Stop()
+                        v.track:Destroy()
+                        v.track = nil
+                    end
+                end
+                for _,v in pairs(fallbackLocomotionMap) do
+                    if v.track then
+                        v.track:Stop()
+                        v.track:Destroy()
+                        v.track = nil
+                    end
+                end
+                cachedRunningSpeed = 0
+            end
+
+            local function resetVelocityBounds(velo)
+                minVeloX = 0
+                maxVeloX = 0
+                minVeloY = 0
+                maxVeloY = 0
+            end
+
+            local function updateVelocityBounds(velo)
+                if velo then 
+                    if velo.x > maxVeloX then maxVeloX = velo.x end
+                    if velo.y > maxVeloY then maxVeloY = velo.y end
+                    if velo.x < minVeloX then minVeloX = velo.x end
+                    if velo.y < minVeloY then minVeloY = velo.y end
+                end
+            end
+
+            local function checkVelocityBounds(velo)
+                if maxVeloX == 0 or minVeloX == 0 or maxVeloY == 0 or minVeloY == 0 then
+                    if locomotionMap == strafingLocomotionMap then
+                        warn("Strafe blending disabled.  Not all quadrants of motion represented.")
+                    end
+                    locomotionMap = fallbackLocomotionMap
+                else
+                    locomotionMap = strafingLocomotionMap
+                end
+            end
+
+            local function setupWalkAnimation(anim, animName, transitionTime, humanoid)
+                resetVelocityBounds()
+                -- check to see if we need to blend a walk/run animation
+                for n,v in pairs(locomotionMap) do
+                    v.track = humanoid:LoadAnimation(animTable[n][1].anim)
+                    v.track.Priority = Enum.AnimationPriority.Core
+                    updateVelocityBounds(v.lv)
+                end
+                checkVelocityBounds()
+            end
+
+            local function switchToAnim(anim, animName, transitionTime, humanoid)
+                -- switch animation		
+                if (anim ~= currentAnimInstance) then
+
+                    if (currentAnimTrack ~= nil) then
+                        currentAnimTrack:Stop(transitionTime)
+                        currentAnimTrack:Destroy()
+                    end
+                    if (currentAnimKeyframeHandler ~= nil) then
+                        currentAnimKeyframeHandler:disconnect()
+                    end
+
+
+                    currentAnimSpeed = 1.0
+
+                    currentAnim = animName
+                    currentAnimInstance = anim	-- nil in the case of locomotion
+
+                    if animName == "walk" then
+                        setupWalkAnimation(anim, animName, transitionTime, humanoid)
+                    else
+                        destroyRunAnimations()
+                        -- load it to the humanoid; get AnimationTrack
+                        currentAnimTrack = humanoid:LoadAnimation(anim)
+                        currentAnimTrack.Priority = Enum.AnimationPriority.Core
+
+                        currentAnimTrack:Play(transitionTime)	
+
+                        -- set up keyframe name triggers
+                        currentAnimKeyframeHandler = currentAnimTrack.KeyframeReached:connect(keyFrameReachedFunc)
+                    end
+                end
+            end
+
+            function playAnimation(animName, transitionTime, humanoid)
+                local idx = rollAnimation(animName)
+                local anim = animTable[animName][idx].anim
+
+                switchToAnim(anim, animName, transitionTime, humanoid)
+                currentlyPlayingEmote = false
+            end
+
+            function playEmote(emoteAnim, transitionTime, humanoid)
+                switchToAnim(emoteAnim, emoteAnim.Name, transitionTime, humanoid)
+                currentlyPlayingEmote = true
+            end
+
+            -------------------------------------------------------------------------------------------
+            -------------------------------------------------------------------------------------------
+
+            local toolAnimName = ""
+            local toolAnimTrack = nil
+            local toolAnimInstance = nil
+            local currentToolAnimKeyframeHandler = nil
+
+            function toolKeyFrameReachedFunc(frameName)
+                if (frameName == "End") then
+                    playToolAnimation(toolAnimName, 0.0, Humanoid)
+                end
+            end
+
+
+            function playToolAnimation(animName, transitionTime, humanoid, priority)
+                local idx = rollAnimation(animName)
+                local anim = animTable[animName][idx].anim
+
+                if (toolAnimInstance ~= anim) then
+
+                    if (toolAnimTrack ~= nil) then
+                        toolAnimTrack:Stop()
+                        toolAnimTrack:Destroy()
+                        transitionTime = 0
+                    end
+
+                    -- load it to the humanoid; get AnimationTrack
+                    toolAnimTrack = humanoid:LoadAnimation(anim)
+                    if priority then
+                        toolAnimTrack.Priority = priority
+                    end
+
+                    -- play the animation
+                    toolAnimTrack:Play(transitionTime)
+                    toolAnimName = animName
+                    toolAnimInstance = anim
+
+                    currentToolAnimKeyframeHandler = toolAnimTrack.KeyframeReached:connect(toolKeyFrameReachedFunc)
+                end
+            end
+
+            function stopToolAnimations()
+                local oldAnim = toolAnimName
+
+                if (currentToolAnimKeyframeHandler ~= nil) then
+                    currentToolAnimKeyframeHandler:disconnect()
+                end
+
+                toolAnimName = ""
+                toolAnimInstance = nil
+                if (toolAnimTrack ~= nil) then
+                    toolAnimTrack:Stop()
+                    toolAnimTrack:Destroy()
+                    toolAnimTrack = nil
+                end
+
+                return oldAnim
+            end
+
+            -------------------------------------------------------------------------------------------
+            -------------------------------------------------------------------------------------------
+            -- STATE CHANGE HANDLERS
+
+            function onRunning(speed)
+                local movedDuringEmote = currentlyPlayingEmote and Humanoid.MoveDirection == Vector3.new(0, 0, 0)
+                local speedThreshold = movedDuringEmote and Humanoid.WalkSpeed or 0.75
+                humanoidSpeed = speed
+                if speed > speedThreshold then
+                    playAnimation("walk", 0.2, Humanoid)
+                    if pose ~= "Running" then
+                        pose = "Running"
+                        updateVelocity(0) -- Force velocity update in response to state change
+                    end
+                else
+                    if emoteNames[currentAnim] == nil and not currentlyPlayingEmote then
+                        playAnimation("idle", 0.2, Humanoid)
+                        pose = "Standing"
+                    end
+                end
+
+
+
+            end
+
+            function onDied()
+                pose = "Dead"
+            end
+
+            function onJumping()
+                playAnimation("jump", 0.1, Humanoid)
+                jumpAnimTime = jumpAnimDuration
+                pose = "Jumping"
+            end
+
+            function onClimbing(speed)
+                local scale = 5.0
+                playAnimation("climb", 0.1, Humanoid)
+                setAnimationSpeed(speed / scale)
+                pose = "Climbing"
+            end
+
+            function onGettingUp()
+                pose = "GettingUp"
+            end
+
+            function onFreeFall()
+                if (jumpAnimTime <= 0) then
+                    playAnimation("fall", fallTransitionTime, Humanoid)
+                end
+                pose = "FreeFall"
+            end
+
+            function onFallingDown()
+                pose = "FallingDown"
+            end
+
+            function onSeated()
+                pose = "Seated"
+            end
+
+            function onPlatformStanding()
+                pose = "PlatformStanding"
+            end
+
+            -------------------------------------------------------------------------------------------
+            -------------------------------------------------------------------------------------------
+
+            function onSwimming(speed)
+                if speed > 0 then
+                    pose = "Running"
+                else
+                    pose = "Standing"
+                end
+            end
+
+            function animateTool()
+                if (toolAnim == "None") then
+                    playToolAnimation("toolnone", toolTransitionTime, Humanoid, Enum.AnimationPriority.Idle)
+                    return
+                end
+
+                if (toolAnim == "Slash") then
+                    playToolAnimation("toolslash", 0, Humanoid, Enum.AnimationPriority.Action)
+                    return
+                end
+
+                if (toolAnim == "Lunge") then
+                    playToolAnimation("toollunge", 0, Humanoid, Enum.AnimationPriority.Action)
+                    return
+                end
+            end
+
+            function getToolAnim(tool)
+                for _, c in ipairs(tool:GetChildren()) do
+                    if c.Name == "toolanim" and c.className == "StringValue" then
+                        return c
+                    end
+                end
+                return nil
+            end
+
+            local lastTick = 0
+
+            function stepAnimate(currentTime)
+                local amplitude = 1
+                local frequency = 1
+                local deltaTime = currentTime - lastTick
+                lastTick = currentTime
+
+                local climbFudge = 0
+                local setAngles = false
+
+                if (jumpAnimTime > 0) then
+                    jumpAnimTime = jumpAnimTime - deltaTime
+                end
+
+                if (pose == "FreeFall" and jumpAnimTime <= 0) then
+                    playAnimation("fall", fallTransitionTime, Humanoid)
+                elseif (pose == "Seated") then
+                    playAnimation("sit", 0.5, Humanoid)
+                    return
+                elseif (pose == "Running") then
+                    playAnimation("walk", 0.2, Humanoid)
+                    updateVelocity(currentTime)
+                elseif (pose == "Dead" or pose == "GettingUp" or pose == "FallingDown" or pose == "Seated" or pose == "PlatformStanding") then
+                    stopAllAnimations()
+                    amplitude = 0.1
+                    frequency = 1
+                    setAngles = true
+                end
+
+                -- Tool Animation handling
+                local tool = Character:FindFirstChildOfClass("Tool")
+                if tool and tool:FindFirstChild("Handle") then
+                    local animStringValueObject = getToolAnim(tool)
+
+                    if animStringValueObject then
+                        toolAnim = animStringValueObject.Value
+                        -- message recieved, delete StringValue
+                        animStringValueObject.Parent = nil
+                        toolAnimTime = currentTime + .3
+                    end
+
+                    if currentTime > toolAnimTime then
+                        toolAnimTime = 0
+                        toolAnim = "None"
+                    end
+
+                    animateTool()
+                else
+                    stopToolAnimations()
+                    toolAnim = "None"
+                    toolAnimInstance = nil
+                    toolAnimTime = 0
+                end
+            end
+
+
+            -- connect events
+            Humanoid.Died:connect(onDied)
+            Humanoid.Running:connect(onRunning)
+            Humanoid.Jumping:connect(onJumping)
+            Humanoid.Climbing:connect(onClimbing)
+            Humanoid.GettingUp:connect(onGettingUp)
+            Humanoid.FreeFalling:connect(onFreeFall)
+            Humanoid.FallingDown:connect(onFallingDown)
+            Humanoid.Seated:connect(onSeated)
+            Humanoid.PlatformStanding:connect(onPlatformStanding)
+            Humanoid.Swimming:connect(onSwimming)
+
+            -- setup emote chat hook
+            game:GetService("Players").LocalPlayer.Chatted:connect(function(msg)
+                local emote = ""
+                if (string.sub(msg, 1, 3) == "/e ") then
+                    emote = string.sub(msg, 4)
+                elseif (string.sub(msg, 1, 7) == "/emote ") then
+                    emote = string.sub(msg, 8)
+                end
+
+                if (pose == "Standing" and emoteNames[emote] ~= nil) then
+                    playAnimation(emote, EMOTE_TRANSITION_TIME, Humanoid)
+                end
+            end)
+
+            -- emote bindable hook
+            script:WaitForChild("PlayEmote").OnInvoke = function(emote)
+                -- Only play emotes when idling
+                if pose ~= "Standing" then
+                    return
+                end
+
+                if emoteNames[emote] ~= nil then
+                    -- Default emotes
+                    playAnimation(emote, EMOTE_TRANSITION_TIME, Humanoid)
+
+                    return true, currentAnimTrack
+                elseif typeof(emote) == "Instance" and emote:IsA("Animation") then
+                    -- Non-default emotes
+                    playEmote(emote, EMOTE_TRANSITION_TIME, Humanoid)
+
+                    return true, currentAnimTrack
+                end
+
+                -- Return false to indicate that the emote could not be played
+                return false
+            end
+
+            if Character.Parent ~= nil then
+                -- initialize to idle
+                playAnimation("idle", 0.1, Humanoid)
+                pose = "Standing"
+            end
+
+            -- loop to handle timed state transitions and tool animations
+            task.spawn(function()
+                while Character.Parent ~= nil do
+                    local _, currentGameTime = wait(0.1)
+                    stepAnimate(currentGameTime)
+                end
+            end)
+        end
+
+        RunCustomAnimation(plr.Character)
+
+        plr.CharacterAdded:Connect(function(Char)
+            RunCustomAnimation(Char)
+        end)
+	end
+})
+Main:AddButton({
 	Title = "FE Teleknis script v2 only works on unachorned parts",
 	Description = "use while moving Q E R T Y",
 	Callback = function()
@@ -50889,6 +52771,2500 @@ Main:AddButton({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileteleknis.lua"))()
 	end
 })
+Main:AddButton({
+	Title = "FE drop tool",
+	Description = "drops tool in front of you and if you go close to someone and if they walk over it or touch it they can pick it up sometimes",
+	Callback = function()
+        for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+            if v:IsA("Tool") then
+                v.Parent = game:GetService("Players").LocalPlayer.Character
+                task.wait(0.3)
+                v.Parent = game:GetService("Workspace")
+            end
+        end
+	end
+})
+Main:AddButton({
+	Title = "FE Zombie Animation/fling",
+	Description = "FE zombie animation ur hella slow but it flings people when u walk into them and mouse button 1 down is like to rush/hit or sum",
+	Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/r6zombie.txt"))()
+	end
+})
+Main:AddButton({
+	Title = "FE r15 npc control",
+	Description = "control npcs (that arent achored ofc) must be r15? i think idk",
+	Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/r15npccontrol.txt"))()
+	end
+})
+Main:AddButton({
+	Title = "FE stand on player head gui",
+	Description = "FE stand on player head gui",
+	Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/fe%20standonplayerhead.txt"))()
+	end
+})
+Main:AddButton({
+	Title = "annoy player",
+	Description = "loop tps to player",
+	Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/Annoy.txt"))()
+	end
+})
+Main:AddButton({
+	Title = "FE Emoji Chat",
+	Description = "do :emojinamehere:",
+	Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/fe-emoji-chat.txt"))()
+	end
+})
+Main:AddButton({
+	Title = "FE Mouse Part",
+	Description = "something with unachored parts um press q on them",
+	Callback = function()
+        -- ROBLOX FE PART + MOUSE FE SCRIPT
+        -- Made by Rolevote.
+        -- EXECUTE THIS SCRIPT ONCE PER SERVER
+        local player = game.Players.LocalPlayer.Character
+        local mouse = game.Players.LocalPlayer:GetMouse()
+        local key = game:GetService("UserInputService")
+
+        BodyAngularVelocity = true -- Want the Part/Handle to spin really fast Crazy!
+        local keyyy = Enum.KeyCode.Q -- Key to run it on part
+
+
+        local y = 5.7
+        local y2 = 7.2
+        local P = 1000000
+        local V = Vector3.new(100000,100000,100000)
+        local SBT = Instance.new("SelectionBox")
+        SBT.Name = "SB"
+        SBT.Parent = player.HumanoidRootPart
+        SBT.Adornee = player.HumanoidRootPart
+        SBT.Color3 = Color3.new(0,0,0)
+
+        while wait(.3) do
+        key.InputBegan:Connect(function(k)
+        if k.KeyCode == keyyy then
+        local handle = mouse.Target
+        if handle.Anchored == false then
+        wait(.3)
+        handle.Position = handle.Position + Vector3.new(0,1,0)
+        local BP = Instance.new("BodyPosition")
+        BP.Name = "BP"
+        BP.Parent = handle
+        BP.P = P
+        BP.MaxForce = V
+        local SB = Instance.new("SelectionBox")
+        SB.Name = "SB"
+        SB.Parent = handle
+        SB.Adornee = handle
+        local colour = math.random(1,7)
+            if colour == 1 then
+        SB.Color3 = Color3.new(255,0,0)
+            end
+            if colour == 2 then
+        SB.Color3 = Color3.new(255,170,0)
+            end
+            if colour == 3 then
+        SB.Color3 = Color3.new(255,255,0)
+            end
+            if colour == 4 then
+        SB.Color3 = Color3.new(0,255,0)
+            end
+            if colour == 5 then
+        SB.Color3 = Color3.new(0,170,255)
+            end
+            if colour == 6 then
+        SB.Color3 = Color3.new(170,0,255)
+            end
+            if colour == 7 then
+        SB.Color3 = Color3.new(0,0,0)
+            end
+        player.Torso.Anchored = true
+        if BodyAngularVelocity == true then
+        local BAV = Instance.new("BodyAngularVelocity")
+        BAV.Name = "BAV"
+        BAV.Parent = handle
+        BAV.P = 999000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+        BAV.AngularVelocity = Vector3.new(9990000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,9990000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,9990000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+        end
+        wait(.3)
+        player.Torso.Anchored = false
+        while wait(.3) do
+        if handle:FindFirstChild("BP",true) then
+        handle.CanCollide = false
+        end
+        BP.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0,y,0)
+            wait(.3)
+        if handle:FindFirstChild("BP",true) then
+            handle.CanCollide = false
+        end
+            BP.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0,y2,0)
+        end
+        end
+            end
+        end)
+        end
+	end
+})
+Main:AddButton({
+	Title = "FE Ball Spin",
+	Description = "spin around",
+	Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/ballspin.txt"))()
+	end
+})
+Main:AddButton({
+	Title = "FE kidnap",
+	Description = "press z on player when close to them and must have a tool that has a sit part in it so like a stroller or sum brings them under the map",
+	Callback = function()
+        game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(key)
+            if key == 'z' then
+            local h = game.Players.LocalPlayer.Character.Humanoid:Clone()
+            local plr = game.Players.LocalPlayer.Character
+            local CF = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            local lp = game.Players.LocalPlayer
+            
+            h.Parent = game.Players.LocalPlayer.Character
+            h.Name = "Hum"
+            
+            game.Players.LocalPlayer.Character.Humanoid:Destroy()
+            
+            for _,v in pairs(game.Players.LocalPlayer:GetDescendants()) do
+                if v.ClassName == "Tool" then
+                    v.Parent = plr
+                end
+            end
+            wait(.5)
+            tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(300, Enum.EasingStyle.Linear)
+            
+            tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(0, -1000, 0)})
+            tween:Play()
+            end
+        end)
+	end
+})
+Main:AddButton({
+	Title = "FE 500 lb ball",
+	Description = "like carry ball mouse button1 down for throw ball at someone and flings them idk needs a tool tho",
+	Callback = function()
+        _G.specifictoolname = false
+        _G.toolname = "BoomBox"
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/500%20Pounds%20Converted%20[1%20Tool].lua'))()
+	end
+})
+Main:AddButton({
+	Title = "FE Boombox hub",
+	Description = "idfk but too FE Loop drop tools button below this until you have 25 boomboxes for this",
+	Callback = function()
+        -- to dupe the boomboxes execute this script: https://pastebin.com/raw/jVf3zNVf and do ;clonetool *number*
+        -- doesn't work in every game
+
+
+
+
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Boombox Supreme powers loaded" ,"All")
+
+        local req = (syn and syn.request) or (http and http.request) or http_request
+
+        local ScreenGui = Instance.new("ScreenGui")
+        local Frame = Instance.new("Frame")
+        local UICorner = Instance.new("UICorner")
+        local name = Instance.new("TextLabel")
+        local ScrollingFrame = Instance.new("ScrollingFrame")
+        local ak = Instance.new("TextButton")
+        local rpg = Instance.new("TextButton")
+        local sword = Instance.new("TextButton")
+        local pickaxe = Instance.new("TextButton")
+        local railgun = Instance.new("TextButton")
+        local railgunv2 = Instance.new("TextButton")
+        local pc = Instance.new("TextButton")
+        local arm = Instance.new("TextButton")
+        local phone = Instance.new("TextButton")
+        local tophatx1 = Instance.new("TextButton")
+        local tophatx2 = Instance.new("TextButton")
+        local tophatx3 = Instance.new("TextButton")
+        local UICorner_2 = Instance.new("UICorner")
+        local Close = Instance.new("TextButton")
+        local UICorner_3 = Instance.new("UICorner")
+        local ToolHold = Instance.new("TextButton")
+        local UICorner_4 = Instance.new("UICorner")
+
+        --Properties:
+
+        ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+        Frame.Parent = ScreenGui
+        Frame.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+        Frame.Position = UDim2.new(0.368455738, 0, 0.313865125, 0)
+        Frame.Size = UDim2.new(0, 625, 0, 312)
+
+        UICorner.Parent = Frame
+
+        name.Name = "name"
+        name.Parent = Frame
+        name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        name.BackgroundTransparency = 1.000
+        name.Size = UDim2.new(0, 625, 0, 50)
+        name.Font = Enum.Font.SourceSansBold
+        name.Text = "Boombox Grippos UI"
+        name.TextColor3 = Color3.fromRGB(0, 0, 0)
+        name.TextScaled = true
+        name.TextSize = 14.000
+        name.TextWrapped = true
+
+        ScrollingFrame.Parent = Frame
+        ScrollingFrame.Active = true
+        ScrollingFrame.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
+        ScrollingFrame.BackgroundTransparency = 0.700
+        ScrollingFrame.Position = UDim2.new(0, 0, 0.210774451, 0)
+        ScrollingFrame.Size = UDim2.new(0, 625, 0, 246)
+
+        ak.Name = "ak"
+        ak.Parent = ScrollingFrame
+        ak.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        ak.Position = UDim2.new(0.0159999989, 0, 0.0141494665, 0)
+        ak.Size = UDim2.new(0, 185, 0, 40)
+        ak.Font = Enum.Font.Nunito
+        ak.Text = "Ak47 (20)"
+        ak.TextColor3 = Color3.fromRGB(255, 255, 255)
+        ak.TextScaled = true
+        ak.TextSize = 14.000
+        ak.TextWrapped = true
+        ak.MouseButton1Down:Connect(function()
+
+        local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+        local Tools = plr.Backpack:GetChildren()
+
+        Tools[1].Grip = CFrame.new(0.7, -0.5, -0.2) * CFrame.Angles(50, math.rad(-180), 3.13)
+        Tools[1].Parent = plr.Character
+
+        Tools[2].Grip = CFrame.new(0.5, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+        Tools[2].Parent = plr.Character
+
+        Tools[3].Grip = CFrame.new(-1.5, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0.03)
+        Tools[3].Parent = plr.Character
+
+        Tools[4].Grip = CFrame.new(-2.5, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+        Tools[4].Parent = plr.Character
+
+        Tools[5].Grip = CFrame.new(-4.6, -0.4, -0.2) * CFrame.Angles(1.6, math.rad(-98), 1.6)
+        Tools[5].Parent = plr.Character
+
+        Tools[6].Grip = CFrame.new(-7, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+        Tools[6].Parent = plr.Character
+
+        Tools[7].Grip = CFrame.new(-9.6, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+        Tools[7].Parent = plr.Character
+
+        Tools[8].Grip = CFrame.new(-12.2, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+        Tools[8].Parent = plr.Character
+
+        Tools[9].Grip = CFrame.new(-1.2, -3.1, -0.2) * CFrame.Angles(1.6, math.rad(-15), 1.6)
+        Tools[9].Parent = plr.Character
+
+        Tools[10].Grip = CFrame.new(-3.3, -2.7, -0.2) * CFrame.Angles(1.6, math.rad(-25), 1.6)
+        Tools[10].Parent = plr.Character
+
+        Tools[11].Grip = CFrame.new(-0.1, 1.8, -0.1) * CFrame.Angles(1.6, math.rad(65), 1.6)
+        Tools[11].Parent = plr.Character
+
+        Tools[12].Grip = CFrame.new(1.3, 2.05, -0.1) * CFrame.Angles(1.6, math.rad(90), 1.6)
+        Tools[12].Parent = plr.Character
+
+        Tools[13].Grip = CFrame.new(3.15, 2.05, -0.1) * CFrame.Angles(1.6, math.rad(90), 1.6)
+        Tools[13].Parent = plr.Character
+
+        Tools[14].Grip = CFrame.new(5.3, 2.05, -0.1) * CFrame.Angles(1.6, math.rad(90), 1.6)
+        Tools[14].Parent = plr.Character
+
+        Tools[15].Grip = CFrame.new(6.5, 4.1, -0.1) * CFrame.Angles(1.6, math.rad(110), 1.6)
+        Tools[15].Parent = plr.Character
+
+        Tools[16].Grip = CFrame.new(-14.3, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+        Tools[16].Parent = plr.Character
+
+        Tools[17].Grip = CFrame.new(3.1, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+        Tools[17].Parent = plr.Character
+
+        Tools[18].Grip = CFrame.new(5.2, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+        Tools[18].Parent = plr.Character
+
+        Tools[19].Grip = CFrame.new(0.25, 6.8, -0.05) * CFrame.Angles(1.6, math.rad(-0), 1.6)
+        Tools[19].Parent = plr.Character
+
+        Tools[20].Grip = CFrame.new(3.8, -4.4, -0.27) * CFrame.Angles(1.6, math.rad(-137), 1.6)
+        Tools[20].Parent = plr.Character
+        end)
+
+        rpg.Name = "rpg"
+        rpg.Parent = ScrollingFrame
+        rpg.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        rpg.Position = UDim2.new(0.342400014, 0, 0.0141494665, 0)
+        rpg.Size = UDim2.new(0, 185, 0, 40)
+        rpg.Font = Enum.Font.Nunito
+        rpg.Text = "RPG (13)"
+        rpg.TextColor3 = Color3.fromRGB(255, 255, 255)
+        rpg.TextScaled = true
+        rpg.TextSize = 14.000
+        rpg.TextWrapped = true
+        rpg.MouseButton1Down:Connect(function()
+        local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+        local Tools = plr.Backpack:GetChildren()
+
+        Tools[1].Grip = CFrame.new(0.7, -0.5, -0.2) * CFrame.Angles(50, math.rad(-180), 3.13)
+        Tools[1].Parent = plr.Character
+
+        Tools[2].Grip = CFrame.new(0.7, -1.2, -0.2) * CFrame.Angles(1.6, math.rad(-98),1.6)
+        Tools[2].Parent = plr.Character
+
+        Tools[3].Grip = CFrame.new(2.5, -1.2, -0.2) * CFrame.Angles(1.6, math.rad(-98),1.6)
+        Tools[3].Parent = plr.Character
+
+        Tools[4].Grip = CFrame.new(4.3, -1.2, -0.2) * CFrame.Angles(1.6, math.rad(-98),1.6)
+        Tools[4].Parent = plr.Character
+
+        Tools[5].Grip = CFrame.new(-6.5, -1.6, -0.2) * CFrame.Angles(1.6, math.rad(-250),1.6)
+        Tools[5].Parent = plr.Character
+
+        Tools[6].Grip = CFrame.new(6, -2.55, -0.2) * CFrame.Angles(1.6, math.rad(-115),1.6)
+        Tools[6].Parent = plr.Character
+
+        Tools[7].Grip = CFrame.new(1.55, 7.2, 0.1) * CFrame.Angles(1.6, math.rad(-10),1.6)
+        Tools[7].Parent = plr.Character
+
+        Tools[8].Grip = CFrame.new(-1.1, -1.2, -0.23) * CFrame.Angles(1.6, math.rad(-98),1.57)
+        Tools[8].Parent = plr.Character
+
+        Tools[9].Grip = CFrame.new(-2.8, -1.17, -0.17) * CFrame.Angles(1.6, math.rad(-99),1.6)
+        Tools[9].Parent = plr.Character
+
+        Tools[10].Grip = CFrame.new(0, 2.7, -0.2) * CFrame.Angles(1.575, math.rad(-175),1.575)
+        Tools[10].Parent = plr.Character
+
+        Tools[11].Grip = CFrame.new(-4.6, -1.1, -0.17) * CFrame.Angles(1.6, math.rad(-100),1.6)
+        Tools[11].Parent = plr.Character
+
+        Tools[12].Grip = CFrame.new(-6.3, -1.1, -0.17) * CFrame.Angles(1.6, math.rad(-100),1.6)
+        Tools[12].Parent = plr.Character
+
+        Tools[13].Grip = CFrame.new(-1, 6, -0.45) * CFrame.Angles(1.6, math.rad(-205),1.4)
+        Tools[13].Parent = plr.Character
+        end)
+
+        sword.Name = "sword"
+        sword.Parent = ScrollingFrame
+        sword.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        sword.Position = UDim2.new(0.0159999728, 0, 0.111905873, 0)
+        sword.Size = UDim2.new(0, 185, 0, 40)
+        sword.Font = Enum.Font.Nunito
+        sword.Text = "Sword (10)"
+        sword.TextColor3 = Color3.fromRGB(255, 255, 255)
+        sword.TextScaled = true
+        sword.TextSize = 14.000
+        sword.TextWrapped = true
+        sword.MouseButton1Down:Connect(function()
+        local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+        local Tools = plr.Backpack:GetChildren()
+
+        Tools[1].Grip = CFrame.new(0, -0.3, 0) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+        Tools[1].Parent = plr.Character
+
+        Tools[2].Grip = CFrame.new(0.15, 1.7, -0.02) * CFrame.Angles(1.58, math.rad(90), 1.58)
+        Tools[2].Parent = plr.Character
+
+        Tools[3].Grip = CFrame.new(3, -0.9, -0.05) * CFrame.Angles(1.58, math.rad(-45), 1.58)
+        Tools[3].Parent = plr.Character
+
+        Tools[4].Grip = CFrame.new(-3.1, -0.67, -0.049) * CFrame.Angles(1.58, math.rad(-135), 1.58)
+        Tools[4].Parent = plr.Character
+
+        Tools[5].Grip = CFrame.new(2.2, -0.3, -0.03) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+        Tools[5].Parent = plr.Character
+
+        Tools[6].Grip = CFrame.new(4.2, -0.3, 0) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+        Tools[6].Parent = plr.Character
+
+        Tools[7].Grip = CFrame.new(6.2, -0.3, 0) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+        Tools[7].Parent = plr.Character
+
+        Tools[8].Grip = CFrame.new(8.2, -0.3, 0) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+        Tools[8].Parent = plr.Character
+
+        Tools[9].Grip = CFrame.new(10.2, -0.3, 0) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+        Tools[9].Parent = plr.Character
+
+        Tools[10].Grip = CFrame.new(12.2, -0.3, 0) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+        Tools[10].Parent = plr.Character
+        end)
+
+        pickaxe.Name = "pickaxe"
+        pickaxe.Parent = ScrollingFrame
+        pickaxe.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        pickaxe.Position = UDim2.new(0.671999931, 0, 0.0141494647, 0)
+        pickaxe.Size = UDim2.new(0, 185, 0, 40)
+        pickaxe.Font = Enum.Font.Nunito
+        pickaxe.Text = "Pickaxe (8)"
+        pickaxe.TextColor3 = Color3.fromRGB(255, 255, 255)
+        pickaxe.TextScaled = true
+        pickaxe.TextSize = 14.000
+        pickaxe.TextWrapped = true
+        pickaxe.MouseButton1Down:Connect(function()
+        local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+        local Tools = plr.Backpack:GetChildren()
+
+        Tools[1].Grip = CFrame.new(-0.4, 0.6, 0) * CFrame.Angles(1.6, math.rad(-180), 1.58)
+        Tools[1].Parent = plr.Character
+
+        Tools[2].Grip = CFrame.new(-2.7, 0.6, 0) * CFrame.Angles(1.6, math.rad(-180), 1.58)
+        Tools[2].Parent = plr.Character
+
+        Tools[3].Grip = CFrame.new(-4.5, 0.6, 0) * CFrame.Angles(1.6, math.rad(-180), 1.58)
+        Tools[3].Parent = plr.Character
+
+        Tools[4].Grip = CFrame.new(-6.3, 0.6, 0) * CFrame.Angles(1.6, math.rad(-180), 1.58)
+        Tools[4].Parent = plr.Character
+
+        Tools[5].Grip = CFrame.new(-0.3, 6.85, -0.4) * CFrame.Angles(38.5, math.rad(-270), 2.3)
+        Tools[5].Parent = plr.Character
+
+        Tools[6].Grip = CFrame.new(1.8, 6.85, -0.4) * CFrame.Angles(38.5, math.rad(-270), 2.3)
+        Tools[6].Parent = plr.Character
+
+        Tools[7].Grip = CFrame.new(3.3, 5.4, 0.32) * CFrame.Angles(1.6, math.rad(-320), 1.6)
+        Tools[7].Parent = plr.Character
+
+        Tools[8].Grip = CFrame.new(-2.42, 6.6, 0.32) * CFrame.Angles(1.6, math.rad(-220), 1.6)
+        Tools[8].Parent = plr.Character
+
+        end)
+
+        railgun.Name = "railgun"
+        railgun.Parent = ScrollingFrame
+        railgun.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        railgun.Position = UDim2.new(0.342399985, 0, 0.111905873, 0)
+        railgun.Size = UDim2.new(0, 185, 0, 40)
+        railgun.Font = Enum.Font.Nunito
+        railgun.Text = "Railgun (23)"
+        railgun.TextColor3 = Color3.fromRGB(255, 255, 255)
+        railgun.TextScaled = true
+        railgun.TextSize = 14.000
+        railgun.TextWrapped = true
+        railgun.MouseButton1Down:Connect(function()
+        local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+        local Tools = plr.Backpack:GetChildren()
+
+        Tools[1].Grip = CFrame.new(1.1, -1.2, 0) * CFrame.Angles(-1.58, math.rad(-108), -1.58)
+        Tools[1].Parent = plr.Character
+
+        Tools[2].Grip = CFrame.new(2.7, -1.2, 0.02) * CFrame.Angles(-1.58, math.rad(-108), -1.58)
+        Tools[2].Parent = plr.Character
+
+        Tools[3].Grip = CFrame.new(4.5, -2.34, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+        Tools[3].Parent = plr.Character
+
+        Tools[4].Grip = CFrame.new(4, 5.1, -0.07) * CFrame.Angles(-1.58, math.rad(-180), -1.58)
+        Tools[4].Parent = plr.Character
+
+        Tools[5].Grip = CFrame.new(-5.6, 0.9, -0.07) * CFrame.Angles(-1.58, math.rad(-305), -1.58)
+        Tools[5].Parent = plr.Character
+
+        Tools[6].Grip = CFrame.new(-1.29, 3.5, -0.07) * CFrame.Angles(-1.58, math.rad(-262), -1.58)
+        Tools[6].Parent = plr.Character
+
+        Tools[7].Grip = CFrame.new(4, 1, -0.07) * CFrame.Angles(-1.58, math.rad(-193), -1.58)
+        Tools[7].Parent = plr.Character
+
+        Tools[8].Grip = CFrame.new(-2.8, -0.8, 0) * CFrame.Angles(-1.58, math.rad(-25), -1.58)
+        Tools[8].Parent = plr.Character
+
+        Tools[9].Grip = CFrame.new(0.8, 4.8, -0.07) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+        Tools[9].Parent = plr.Character
+
+        Tools[10].Grip = CFrame.new(-2.3, -3.8, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+        Tools[10].Parent = plr.Character
+
+        Tools[11].Grip = CFrame.new(-3, -3.8, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+        Tools[11].Parent = plr.Character
+
+        Tools[12].Grip = CFrame.new(3, 4.8, -0.075) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+        Tools[12].Parent = plr.Character
+        end)
+
+        railgunv2.Name = "railgun v2"
+        railgunv2.Parent = ScrollingFrame
+        railgunv2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        railgunv2.Position = UDim2.new(0.671999991, 0, 0.111905873, 0)
+        railgunv2.Size = UDim2.new(0, 185, 0, 40)
+        railgunv2.Font = Enum.Font.Nunito
+        railgunv2.Text = "Railgun v2 (23)"
+        railgunv2.TextColor3 = Color3.fromRGB(255, 255, 255)
+        railgunv2.TextScaled = true
+        railgunv2.TextSize = 14.000
+        railgunv2.TextWrapped = true
+        railgunv2.MouseButton1Down:Connect(function()
+        local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+        local Tools = plr.Backpack:GetChildren()
+
+        Tools[1].Grip = CFrame.new(1.1, -1.2, 0) * CFrame.Angles(-1.58, math.rad(-108), -1.58)
+        Tools[1].Parent = plr.Character
+
+        Tools[2].Grip = CFrame.new(2.7, -1.2, 0.02) * CFrame.Angles(-1.58, math.rad(-108), -1.58)
+        Tools[2].Parent = plr.Character
+
+        Tools[3].Grip = CFrame.new(4.5, -2.34, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+        Tools[3].Parent = plr.Character
+
+        Tools[4].Grip = CFrame.new(4, 5.1, -0.07) * CFrame.Angles(-1.58, math.rad(-180), -1.58)
+        Tools[4].Parent = plr.Character
+
+        Tools[5].Grip = CFrame.new(-5.6, 0.9, -0.07) * CFrame.Angles(-1.58, math.rad(-305), -1.58)
+        Tools[5].Parent = plr.Character
+
+        Tools[6].Grip = CFrame.new(-1.29, 3.5, -0.07) * CFrame.Angles(-1.58, math.rad(-262), -1.58)
+        Tools[6].Parent = plr.Character
+
+        Tools[7].Grip = CFrame.new(4, 1, -0.07) * CFrame.Angles(-1.58, math.rad(-193), -1.58)
+        Tools[7].Parent = plr.Character
+
+        Tools[8].Grip = CFrame.new(-2.8, -0.8, 0) * CFrame.Angles(-1.58, math.rad(-25), -1.58)
+        Tools[8].Parent = plr.Character
+
+        Tools[9].Grip = CFrame.new(0.8, 4.8, -0.07) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+        Tools[9].Parent = plr.Character
+
+        Tools[10].Grip = CFrame.new(0.6, -2.8, 0) * CFrame.Angles(-1.58, math.rad(-80), -1.58)
+        Tools[10].Parent = plr.Character
+
+        Tools[11].Grip = CFrame.new(-7.3, -2.3, 0) * CFrame.Angles(-1.58, math.rad(-45), -1.58)
+        Tools[11].Parent = plr.Character
+
+        Tools[12].Grip = CFrame.new(1.2, 3.95, -0.062) * CFrame.Angles(-1.58, math.rad(45), -1.58)
+        Tools[12].Parent = plr.Character
+
+        Tools[13].Grip = CFrame.new(4.3, 5.3, -0.075) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+        Tools[13].Parent = plr.Character
+
+        Tools[14].Grip = CFrame.new(-4.3, -3.5, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+        Tools[14].Parent = plr.Character
+
+        Tools[15].Grip = CFrame.new(6.6, 5.3, -0.075) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+        Tools[15].Parent = plr.Character
+
+        Tools[16].Grip = CFrame.new(-6.6, -3.5, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+        Tools[16].Parent = plr.Character
+
+        Tools[17].Grip = CFrame.new(8.8, 5.3, -0.075) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+        Tools[17].Parent = plr.Character
+
+        Tools[18].Grip = CFrame.new(-8.8, -3.5, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+        Tools[18].Parent = plr.Character
+
+        Tools[19].Grip = CFrame.new(11, 5.3, -0.075) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+        Tools[19].Parent = plr.Character
+
+        Tools[20].Grip = CFrame.new(-11, -3.5, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+        Tools[20].Parent = plr.Character
+
+        Tools[21].Grip = CFrame.new(3.7, 4.2, -0.075) * CFrame.Angles(-1.58, math.rad(-250), -1.58)
+        Tools[21].Parent = plr.Character
+
+        Tools[22].Grip = CFrame.new(-0.8, -4.1, 0) * CFrame.Angles(-1.58, math.rad(250), -1.58)
+        Tools[22].Parent = plr.Character
+
+        Tools[23].Grip = CFrame.new(-0.7, -0.2, -0.2) * CFrame.Angles(1.57, math.rad(-270), 0)
+        Tools[23].Parent = plr.Character
+        end)
+
+        pc.Name = "pc"
+        pc.Parent = ScrollingFrame
+        pc.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        pc.Position = UDim2.new(0.0159999728, 0, 0.208059728, 0)
+        pc.Size = UDim2.new(0, 185, 0, 40)
+        pc.Font = Enum.Font.Nunito
+        pc.Text = "PC (11)"
+        pc.TextColor3 = Color3.fromRGB(255, 255, 255)
+        pc.TextScaled = true
+        pc.TextSize = 14.000
+        pc.TextWrapped = true
+        pc.MouseButton1Down:Connect(function()
+        local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+        local Tools = plr.Backpack:GetChildren()
+
+        Tools[1].Grip = CFrame.new(0.8, 1.5, 0) * CFrame.Angles(1.575, math.rad(-180), 3.1)
+        Tools[1].Parent = plr.Character
+
+        Tools[2].Grip = CFrame.new(-0.8, -0.6, 0) * CFrame.Angles(1.575, math.rad(0), 3.1)
+        Tools[2].Parent = plr.Character
+
+        Tools[3].Grip = CFrame.new(3, 1.5, 0) * CFrame.Angles(1.575, math.rad(-180), 3.1)
+        Tools[3].Parent = plr.Character
+
+        Tools[4].Grip = CFrame.new(-3, -0.6, 0) * CFrame.Angles(1.575, math.rad(0), 3.1)
+        Tools[4].Parent = plr.Character
+
+        Tools[5].Grip = CFrame.new(5.2, 1.5, 0) * CFrame.Angles(1.575, math.rad(-180), 3.1)
+        Tools[5].Parent = plr.Character
+
+        Tools[6].Grip = CFrame.new(-5.2, -0.6, 0) * CFrame.Angles(1.575, math.rad(0), 3.1)
+        Tools[6].Parent = plr.Character
+
+        Tools[7].Grip = CFrame.new(1.1, 2.5, -2.95) * CFrame.Angles(1.575, math.rad(180), 4.68)
+        Tools[7].Parent = plr.Character
+
+        Tools[8].Grip = CFrame.new(-2.2, -3, -2.17) * CFrame.Angles(3.13, math.rad(0), 3.1)
+        Tools[8].Parent = plr.Character
+
+        Tools[9].Grip = CFrame.new(-4, -3, -2.1699) * CFrame.Angles(3.13, math.rad(0), 3.1)
+        Tools[9].Parent = plr.Character
+
+        Tools[10].Grip = CFrame.new(2.2, 3.9, -2.26) * CFrame.Angles(3.13, math.rad(0), -0.04)
+        Tools[10].Parent = plr.Character
+
+        Tools[11].Grip = CFrame.new(4, 3.9, -2.26) * CFrame.Angles(3.13, math.rad(0), -0.04)
+        Tools[11].Parent = plr.Character
+        end)
+
+        arm.Name = "arm"
+        arm.Parent = ScrollingFrame
+        arm.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        arm.Position = UDim2.new(0.342399985, 0, 0.208059728, 0)
+        arm.Size = UDim2.new(0, 185, 0, 40)
+        arm.Font = Enum.Font.Nunito
+        arm.Text = "Boombox Arm (4)"
+        arm.TextColor3 = Color3.fromRGB(255, 255, 255)
+        arm.TextScaled = true
+        arm.TextSize = 14.000
+        arm.TextWrapped = true
+        arm.MouseButton1Down:Connect(function()
+        local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+        local Tools = plr.Backpack:GetChildren()
+
+        Tools[1].Grip = CFrame.new(0.6, -0.1, -0.4) * CFrame.Angles(1.58, math.rad(-90), 0)
+        Tools[1].Parent = plr.Character
+
+        Tools[2].Grip = CFrame.new(0.6, -0.1, -0.3625) * CFrame.Angles(1.58, math.rad(-90), 1.58)
+        Tools[2].Parent = plr.Character
+
+        Tools[3].Grip = CFrame.new(0.6, -0.1, -0.359) * CFrame.Angles(0, math.rad(-90), 1.58)
+        Tools[3].Parent = plr.Character
+
+        Tools[4].Grip = CFrame.new(0.6, -0.1, -0.4) * CFrame.Angles(0, math.rad(-90), -3.15)
+        Tools[4].Parent = plr.Character
+        end)
+
+        phone.Name = "phone"
+        phone.Parent = ScrollingFrame
+        phone.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        phone.Position = UDim2.new(0.671999991, 0, 0.208059728, 0)
+        phone.Size = UDim2.new(0, 185, 0, 40)
+        phone.Font = Enum.Font.Nunito
+        phone.Text = "Phone (6)"
+        phone.TextColor3 = Color3.fromRGB(255, 255, 255)
+        phone.TextScaled = true
+        phone.TextSize = 14.000
+        phone.TextWrapped = true
+        phone.MouseButton1Down:Connect(function()
+        local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+        local Tools = plr.Backpack:GetChildren()
+
+        Tools[1].Grip = CFrame.new(-1, 0.5, 0) * CFrame.Angles(0.2, math.rad(-180), 58.1)
+        Tools[1].Parent = plr.Character
+
+        Tools[2].Grip = CFrame.new(2.5, -0, 0) * CFrame.Angles(-0.2, math.rad(-180), -58.13)
+        Tools[2].Parent = plr.Character
+
+        Tools[3].Grip = CFrame.new(-2.5, 0.5, 0) * CFrame.Angles(0.2, math.rad(-180), 58.1)
+        Tools[3].Parent = plr.Character
+
+        Tools[4].Grip = CFrame.new(1, -0, 0) * CFrame.Angles(-0.2, math.rad(-180), -58.13)
+        Tools[4].Parent = plr.Character
+
+        Tools[5].Grip = CFrame.new(-4, 0.5, 0) * CFrame.Angles(0.2, math.rad(-180), 58.1)
+        Tools[5].Parent = plr.Character
+
+        Tools[6].Grip = CFrame.new(4, -0, 0) * CFrame.Angles(-0.2, math.rad(-180), -58.13)
+        Tools[6].Parent = plr.Character
+        end)
+
+        tophatx1.Name = "tophat x1"
+        tophatx1.Parent = ScrollingFrame
+        tophatx1.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        tophatx1.Position = UDim2.new(0.0159999728, 0, 0.301008463, 0)
+        tophatx1.Size = UDim2.new(0, 185, 0, 40)
+        tophatx1.Font = Enum.Font.Nunito
+        tophatx1.Text = "Small TopHat"
+        tophatx1.TextColor3 = Color3.fromRGB(255, 255, 255)
+        tophatx1.TextScaled = true
+        tophatx1.TextSize = 14.000
+        tophatx1.TextWrapped = true
+        tophatx1.MouseButton1Down:Connect(function()
+        local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+        local Tools = plr.Backpack:GetChildren()
+
+        Tools[1].Grip = CFrame.new(-1.5, -1.65, -1.9) * CFrame.Angles(1.58, math.rad(-180), 0)
+        Tools[1].Parent = plr.Character
+
+        Tools[2].Grip = CFrame.new(3.65, -1.65, -1.7) * CFrame.Angles(1.58, math.rad(180), -1.58)
+        Tools[2].Parent = plr.Character
+
+        Tools[3].Grip = CFrame.new(-3.625, -1.65, 1.25) * CFrame.Angles(1.58, math.rad(-180), 1.58)
+        Tools[3].Parent = plr.Character
+        end)
+
+        tophatx2.Name = "tophat x2"
+        tophatx2.Parent = ScrollingFrame
+        tophatx2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        tophatx2.Position = UDim2.new(0.342399985, 0, 0.301008463, 0)
+        tophatx2.Size = UDim2.new(0, 185, 0, 40)
+        tophatx2.Font = Enum.Font.Nunito
+        tophatx2.Text = "Large TopHat"
+        tophatx2.TextColor3 = Color3.fromRGB(255, 255, 255)
+        tophatx2.TextScaled = true
+        tophatx2.TextSize = 14.000
+        tophatx2.TextWrapped = true
+        tophatx2.MouseButton1Down:Connect(function()
+        local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+        local Tools = plr.Backpack:GetChildren()
+
+        Tools[1].Grip = CFrame.new(-1.5, -1.65, -1.9) * CFrame.Angles(1.58, math.rad(-180), 0)
+        Tools[1].Parent = plr.Character
+
+        Tools[2].Grip = CFrame.new(3.65, -1.65, -1.7) * CFrame.Angles(1.58, math.rad(180), -1.58)
+        Tools[2].Parent = plr.Character
+
+        Tools[3].Grip = CFrame.new(-3.625, -1.65, 1.25) * CFrame.Angles(1.58, math.rad(-180), 1.58)
+        Tools[3].Parent = plr.Character
+
+        Tools[4].Grip = CFrame.new(6.3, -1.65, -1.7) * CFrame.Angles(1.58, math.rad(180), -1.58)
+        Tools[4].Parent = plr.Character
+
+        Tools[5].Grip = CFrame.new(-6.3, -1.65, 1.25) * CFrame.Angles(1.58, math.rad(-180), 1.58)
+        Tools[5].Parent = plr.Character
+        end)
+
+        tophatx3.Name = "tophat x3"
+        tophatx3.Parent = ScrollingFrame
+        tophatx3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        tophatx3.Position = UDim2.new(0.671999991, 0, 0.301008463, 0)
+        tophatx3.Size = UDim2.new(0, 185, 0, 40)
+        tophatx3.Font = Enum.Font.Nunito
+        tophatx3.Text = "Tall TopHat"
+        tophatx3.TextColor3 = Color3.fromRGB(255, 255, 255)
+        tophatx3.TextScaled = true
+        tophatx3.TextSize = 14.000
+        tophatx3.TextWrapped = true
+        tophatx3.MouseButton1Down:Connect(function()
+        local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+        local Tools = plr.Backpack:GetChildren()
+
+        Tools[1].Grip = CFrame.new(-1.5, -1.65, -1.9) * CFrame.Angles(1.58, math.rad(-180), 0)
+        Tools[1].Parent = plr.Character
+
+        Tools[2].Grip = CFrame.new(3.65, -1.65, -1.7) * CFrame.Angles(1.58, math.rad(180), -1.58)
+        Tools[2].Parent = plr.Character
+
+        Tools[3].Grip = CFrame.new(-3.625, -1.65, 1.25) * CFrame.Angles(1.58, math.rad(-180), 1.58)
+        Tools[3].Parent = plr.Character
+
+        Tools[4].Grip = CFrame.new(6.3, -1.65, -1.7) * CFrame.Angles(1.58, math.rad(180), -1.58)
+        Tools[4].Parent = plr.Character
+
+        Tools[5].Grip = CFrame.new(-6.3, -1.65, 1.25) * CFrame.Angles(1.58, math.rad(-180), 1.58)
+        Tools[5].Parent = plr.Character
+
+        Tools[6].Grip = CFrame.new(9, -1.65, -1.7) * CFrame.Angles(1.58, math.rad(180), -1.58)
+        Tools[6].Parent = plr.Character
+
+        Tools[7].Grip = CFrame.new(-9, -1.65, 1.25) * CFrame.Angles(1.58, math.rad(-180), 1.58)
+        Tools[7].Parent = plr.Character
+        end)
+
+        UICorner_2.Parent = ScrollingFrame
+
+        ToolHold.Name = "ToolHold"
+        ToolHold.Parent = Frame
+        ToolHold.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        ToolHold.Position = UDim2.new(0.329271078, 0, 1.01941407, 0)
+        ToolHold.Size = UDim2.new(0, 200, 0, 50)
+        ToolHold.Font = Enum.Font.SourceSans
+        ToolHold.Text = "Remove tool holding while hold"
+        ToolHold.TextColor3 = Color3.fromRGB(255, 255, 255)
+        ToolHold.TextScaled = true
+        ToolHold.TextSize = 14.000
+        ToolHold.TextWrapped = true
+        ToolHold.MouseButton1Down:Connect(function()
+        for i, v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+        v:Stop()
+        end
+        end)
+
+        UICorner_4.Parent = ToolHold
+
+        --dragging script
+
+        local function CHUYME_fake_script() -- Frame.draggable 
+        local script = Instance.new('LocalScript', Frame)
+
+        local UserInputService = game:GetService("UserInputService")
+        local runService = (game:GetService("RunService"));
+        
+        local gui = script.Parent
+        
+        local dragging
+        local dragInput
+        local dragStart
+        local startPos
+        
+        function Lerp(a, b, m)
+        return a + (b - a) * m
+        end;
+        
+        local lastMousePos
+        local lastGoalPos
+        local DRAG_SPEED = (12); -- // The speed of the UI darg.
+        function Update(dt)
+        if not (startPos) then return end;
+        if not (dragging) and (lastGoalPos) then
+        gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_SPEED))
+        return 
+        end;
+        
+        local delta = (lastMousePos - UserInputService:GetMouseLocation())
+        local xGoal = (startPos.X.Offset - delta.X);
+        local yGoal = (startPos.Y.Offset - delta.Y);
+        lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
+        gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, xGoal, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, yGoal, dt * DRAG_SPEED))
+        end;
+        
+        gui.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = gui.Position
+        lastMousePos = UserInputService:GetMouseLocation()
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+            dragging = false
+            end
+        end)
+        end
+        end)
+        
+        gui.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+        end
+        end)
+        
+        runService.Heartbeat:Connect(Update)
+        end
+        coroutine.wrap(CHUYME_fake_script)()
+        local function QYGCN_fake_script() -- Frame.close 
+        local script = Instance.new('LocalScript', Frame)
+
+        local frame = script.Parent.Parent.Frame
+        
+        script.Parent.MouseButton1Click:Connect(function()
+        frame.Visible = false
+        end)
+        end
+
+	end
+})
+Main:AddButton({
+	Title = "FE Loop drop tools",
+	Description = "only works if u spawn in with the tool. click again to stop and it adds 1 tool each time",
+	Callback = function()
+        
+
+        local oldposti = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+        getgenv().lol = not getgenv().lol
+        task.spawn(function()
+            while true do task.wait()
+                if not getgenv().lol then
+                    wait(10)
+                    game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldposti
+                    break
+                end
+                local tools = {}
+                for i, v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetDescendants()) do
+                    if v:IsA("Tool") then
+                        table.insert(tools, v)
+                    end
+                end
+
+
+                for _, tool in ipairs(tools) do
+                    toolPart = tool:FindFirstChildWhichIsA("Part")
+                    if toolPart then
+                        tool.Parent = game:GetService("Players").LocalPlayer.Character 
+                        task.wait()
+                        tool.Parent = game:GetService("Workspace")
+                        task.wait()
+                    end
+                end
+                game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health = 0
+                wait(10)
+                for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+                    if v:IsA("Tool") then
+                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v:FindFirstChildWhichIsA("Part").CFrame
+                        task.wait(0.25)
+                    end
+                end
+                wait(4)
+                for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("Tool") then
+                        v.Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+                        task.wait()
+                    end
+                end
+                wait(1)
+            end
+        end)
+	end
+})
+Main:AddButton({
+	Title = "FE 2006 Animations",
+	Description = "FE animations from 2006 roblox",
+	Callback = function()
+        game.Players.LocalPlayer.Character:BreakJoints()
+        game.Players.LocalPlayer.Character=nil
+        Connection = game.Workspace.DescendantAdded:Connect(function(c)
+            if c.Name == "Animate" then
+                c.Disabled=true        
+            end
+        end)
+        repeat wait() until game.Players.LocalPlayer.Character
+        Char = game.Players.LocalPlayer.Character
+        Died = game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
+            Connection:Disconnect()
+            Died:Disconnect()
+        end)
+        wait(.1)
+        function waitForChild(parent, childName)
+        local child = parent:findFirstChild(childName)
+        if child then return child end
+        while true do
+        child = parent.ChildAdded:wait()
+        if child.Name==childName then return child end
+        end
+        end
+
+        -- ANIMATION
+
+        -- declarations
+
+        local Figure = game.Players.LocalPlayer.Character
+        local Torso = waitForChild(Figure, "Torso")
+        local RightShoulder = waitForChild(Torso, "Right Shoulder")
+        local LeftShoulder = waitForChild(Torso, "Left Shoulder")
+        local RightHip = waitForChild(Torso, "Right Hip")
+        local LeftHip = waitForChild(Torso, "Left Hip")
+        local Neck = waitForChild(Torso, "Neck")
+        local Humanoid = waitForChild(Figure, "Humanoid")
+        local pose = "Standing"
+
+        local toolAnim = "None"
+        local toolAnimTime = 0
+
+        local jumpMaxLimbVelocity = 0.75
+
+        -- functions
+
+        function onRunning(speed)
+        if speed>0 then
+        pose = "Running"
+        else
+        pose = "Standing"
+        end
+        end
+
+        function onDied()
+        pose = "Dead"
+        end
+
+        function onJumping()
+        pose = "Jumping"
+        end
+
+        function onClimbing()
+        pose = "Climbing"
+        end
+
+        function onGettingUp()
+        pose = "GettingUp"
+        end
+
+        function onFreeFall()
+        pose = "FreeFall"
+        end
+
+        function onFallingDown()
+        pose = "FallingDown"
+        end
+
+        function onSeated()
+        pose = "Seated"
+        end
+
+        function onPlatformStanding()
+        pose = "PlatformStanding"
+        end
+
+        function onSwimming(speed)
+        if speed>0 then
+        pose = "Running"
+        else
+        pose = "Standing"
+        end
+        end
+
+        function moveJump()
+        RightShoulder.MaxVelocity = jumpMaxLimbVelocity
+        LeftShoulder.MaxVelocity = jumpMaxLimbVelocity
+        RightShoulder:SetDesiredAngle(3.14)
+        LeftShoulder:SetDesiredAngle(-3.14)
+        RightHip:SetDesiredAngle(0)
+        LeftHip:SetDesiredAngle(0)
+        end
+
+
+        -- same as jump for now
+
+        function moveFreeFall()
+        RightShoulder.MaxVelocity = jumpMaxLimbVelocity
+        LeftShoulder.MaxVelocity = jumpMaxLimbVelocity
+        RightShoulder:SetDesiredAngle(3.14)
+        LeftShoulder:SetDesiredAngle(-3.14)
+        RightHip:SetDesiredAngle(0)
+        LeftHip:SetDesiredAngle(0)
+        end
+
+        function moveSit()
+        RightShoulder.MaxVelocity = 0.15
+        LeftShoulder.MaxVelocity = 0.15
+        RightShoulder:SetDesiredAngle(3.14 /2)
+        LeftShoulder:SetDesiredAngle(-3.14 /2)
+        RightHip:SetDesiredAngle(3.14 /2)
+        LeftHip:SetDesiredAngle(-3.14 /2)
+        end
+
+        function getTool()
+        for _, kid in ipairs(Figure:GetChildren()) do
+        if kid.className == "Tool" then return kid end
+        end
+        return nil
+        end
+
+        function getToolAnim(tool)
+        for _, c in ipairs(tool:GetChildren()) do
+        if c.Name == "toolanim" and c.className == "StringValue" then
+        return c
+        end
+        end
+        return nil
+        end
+
+        function animateTool()
+
+        if (toolAnim == "None") then
+        RightShoulder:SetDesiredAngle(1.57)
+        return
+        end
+
+        if (toolAnim == "Slash") then
+        RightShoulder.MaxVelocity = 0.5
+        RightShoulder:SetDesiredAngle(0)
+        return
+        end
+
+        if (toolAnim == "Lunge") then
+        RightShoulder.MaxVelocity = 0.5
+        LeftShoulder.MaxVelocity = 0.5
+        RightHip.MaxVelocity = 0.5
+        LeftHip.MaxVelocity = 0.5
+        RightShoulder:SetDesiredAngle(1.57)
+        LeftShoulder:SetDesiredAngle(1.0)
+        RightHip:SetDesiredAngle(1.57)
+        LeftHip:SetDesiredAngle(1.0)
+        return
+        end
+        end
+
+        function move(time)
+        local amplitude
+        local frequency
+        
+        if (pose == "Jumping") then
+        moveJump()
+        return
+        end
+
+        if (pose == "FreeFall") then
+        moveFreeFall()
+        return
+        end
+
+        if (pose == "Seated") then
+        moveSit()
+        return
+        end
+
+        local climbFudge = 0
+
+        if (pose == "Running") then
+        if (RightShoulder.CurrentAngle > 1.5 or RightShoulder.CurrentAngle < -1.5) then
+        RightShoulder.MaxVelocity = jumpMaxLimbVelocity
+        else  
+        RightShoulder.MaxVelocity = 0.15
+        end
+        if (LeftShoulder.CurrentAngle > 1.5 or LeftShoulder.CurrentAngle < -1.5) then
+        LeftShoulder.MaxVelocity = jumpMaxLimbVelocity
+        else  
+        LeftShoulder.MaxVelocity = 0.15
+        end
+        amplitude = 1
+        frequency = 9
+        elseif (pose == "Climbing") then
+        RightShoulder.MaxVelocity = 0.5
+        LeftShoulder.MaxVelocity = 0.5
+        amplitude = 1
+        frequency = 9
+        climbFudge = 3.14
+        else
+        amplitude = 0.1
+        frequency = 1
+        end
+
+        desiredAngle = amplitude * math.sin(time*frequency)
+
+        RightShoulder:SetDesiredAngle(desiredAngle + climbFudge)
+        LeftShoulder:SetDesiredAngle(desiredAngle - climbFudge)
+        RightHip:SetDesiredAngle(-desiredAngle)
+        LeftHip:SetDesiredAngle(-desiredAngle)
+
+
+        local tool = getTool()
+
+        if tool then
+
+        animStringValueObject = getToolAnim(tool)
+
+        if animStringValueObject then
+        toolAnim = animStringValueObject.Value
+        -- message recieved, delete StringValue
+        animStringValueObject.Parent = nil
+        toolAnimTime = time + .3
+        end
+
+        if time > toolAnimTime then
+        toolAnimTime = 0
+        toolAnim = "None"
+        end
+
+        animateTool()
+
+        
+        else
+        toolAnim = "None"
+        toolAnimTime = 0
+        end
+        end
+
+
+        -- connect events
+
+        Humanoid.Died:connect(onDied)
+        Humanoid.Running:connect(onRunning)
+        Humanoid.Jumping:connect(onJumping)
+        Humanoid.Climbing:connect(onClimbing)
+        Humanoid.GettingUp:connect(onGettingUp)
+        Humanoid.FreeFalling:connect(onFreeFall)
+        Humanoid.FallingDown:connect(onFallingDown)
+        Humanoid.Seated:connect(onSeated)
+        Humanoid.PlatformStanding:connect(onPlatformStanding)
+        Humanoid.Swimming:connect(onSwimming)
+        -- main program
+
+        local runService = game:service("RunService");
+
+        while Figure.Parent~=nil do
+        local _, time = wait(0.1)
+        move(time)
+        end
+	end
+})
+Main:AddButton({
+	Title = "FE Inivisible Car",
+	Description = "makes it look like you are driving an invisible car R6",
+	Callback = function()
+        --made by ferretboii#2398/catboy19jan2038
+        -- Gui to Lua
+        -- Version: 3.2
+
+        -- Instances:
+
+        local Template = Instance.new("ScreenGui")
+        local Frame = Instance.new("Frame")
+        local Frame_2 = Instance.new("Frame")
+        local RUN = Instance.new("TextButton")
+        local ARROW = Instance.new("TextButton")
+        local NAME = Instance.new("TextButton")
+
+        --Properties:
+
+        Template.Name = "Template"
+        Template.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+        Template.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+        Frame.Parent = Template
+        Frame.BackgroundColor3 = Color3.fromRGB(79, 79, 79)
+        Frame.BorderSizePixel = 0
+        Frame.Position = UDim2.new(0.0362374708, 0, 0.482208639, 0)
+        Frame.Size = UDim2.new(0, 174, 0, 28)
+
+        Frame_2.Parent = Frame
+        Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Frame_2.BorderSizePixel = 0
+        Frame_2.Position = UDim2.new(0, 0, 1, 0)
+        Frame_2.Size = UDim2.new(0, 174, 0, 72)
+
+        RUN.Name = "RUN"
+        RUN.Parent = Frame_2
+        RUN.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+        RUN.BorderColor3 = Color3.fromRGB(255, 255, 0)
+        RUN.BorderSizePixel = 0
+        RUN.Position = UDim2.new(0.157653749, 0, 0.222330347, 0)
+        RUN.Size = UDim2.new(0, 118, 0, 38)
+        RUN.Font = Enum.Font.PatrickHand
+        RUN.Text = "Car OFF"
+        RUN.TextColor3 = Color3.fromRGB(0, 0, 0)
+        RUN.TextSize = 50.000
+
+        ARROW.Name = "ARROW"
+        ARROW.Parent = Frame
+        ARROW.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        ARROW.BackgroundTransparency = 1.000
+        ARROW.BorderSizePixel = 0
+        ARROW.Position = UDim2.new(0.834664106, 0, 0, 0)
+        ARROW.Size = UDim2.new(0, 28, 0, 28)
+        ARROW.Font = Enum.Font.PatrickHand
+        ARROW.Text = "X"
+        ARROW.TextColor3 = Color3.fromRGB(0, 0, 0)
+        ARROW.TextSize = 30.000
+
+        NAME.Name = "NAME"
+        NAME.Parent = Frame
+        NAME.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        NAME.BackgroundTransparency = 1.000
+        NAME.BorderSizePixel = 0
+        NAME.Position = UDim2.new(0.369146883, 0, 0, 0)
+        NAME.Size = UDim2.new(0, 28, 0, 28)
+        NAME.Font = Enum.Font.PatrickHand
+        NAME.Text = "Car Script"
+        NAME.TextColor3 = Color3.fromRGB(0, 0, 0)
+        NAME.TextSize = 23.000
+
+        -- Scripts:
+
+        local function ICEIM_fake_script() -- RUN.LocalScript 
+        local script = Instance.new('LocalScript', RUN)
+
+        local Toggled = false
+        local Anim, track, hum
+        
+        Anim = Instance.new("Animation")
+        Anim.AnimationId = "rbxassetid://179224234"
+        
+        script.Parent.MouseButton1Click:Connect(function()
+        if not track or hum ~= game.Players.LocalPlayer.Character.Humanoid  then 
+        pcall(game.Destroy, track)
+        track = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+        hum = game.Players.LocalPlayer.Character.Humanoid
+        end
+        
+        if Toggled == false then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 69
+        script.Parent.Text = "Car ON"
+        track:Play(.1, 1, 1)
+        Toggled = true
+        elseif Toggled == true then
+        track:Stop()
+        script.Parent.Text = "Car OFF"
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        Toggled = false
+        end
+        end)
+        end
+        coroutine.wrap(ICEIM_fake_script)()
+        local function XOEAVM_fake_script() -- RUN.RGB_Script 
+        local script = Instance.new('LocalScript', RUN)
+
+        -- Made By Auradomix --
+        -- Visit My Channel On YT and Twitch = @Auradomix
+        
+        -- PUT "RGB_GUI" ON STARTERGUI
+        -- PUT THIS ON ANY FRAME OR BUTTON OR BOX OR ...
+        -- ONLY ADAPTED FOR GUI, Please Referance To my Other Model For Brick
+        
+        -- Local Script = Client
+        -- Script = Server
+        
+        -- For more fast Server Put them as a Local Scrpit for Gui
+        
+        while wait() do
+        script.Parent.BackgroundColor3 = Color3.new(255/255,0/255,0/255)
+        for i = 0,255,10 do
+        wait()
+        script.Parent.BackgroundColor3 = Color3.new(255/255,i/255,0/255)
+        end
+        for i = 255,0,-10 do
+        wait()
+        script.Parent.BackgroundColor3 = Color3.new(i/255,255/255,0/255)
+        end
+        for i = 0,255,10 do
+        wait()
+        script.Parent.BackgroundColor3 = Color3.new(0/255,255/255,i/255)
+        end
+        for i = 255,0,-10 do
+        wait()
+        script.Parent.BackgroundColor3 = Color3.new(0/255,i/255,255/255)
+        end
+        for i = 0,255,10 do
+        wait()
+        script.Parent.BackgroundColor3 = Color3.new(i/255,0/255,255/255)
+        end
+        for i = 255,0,-10 do
+        wait()
+        script.Parent.BackgroundColor3 = Color3.new(255/255,0/255,i/255)
+        end
+        end
+        end
+        coroutine.wrap(XOEAVM_fake_script)()
+        local function WMHNT_fake_script() -- Frame.RGB_Script 
+        local script = Instance.new('LocalScript', Frame)
+
+        -- Made By Auradomix --
+        -- Visit My Channel On YT and Twitch = @Auradomix
+        
+        -- PUT "RGB_GUI" ON STARTERGUI
+        -- PUT THIS ON ANY FRAME OR BUTTON OR BOX OR ...
+        -- ONLY ADAPTED FOR GUI, Please Referance To my Other Model For Brick
+        
+        -- Local Script = Client
+        -- Script = Server
+        
+        -- For more fast Server Put them as a Local Scrpit for Gui
+        
+        while wait() do
+        script.Parent.BackgroundColor3 = Color3.new(255/255,0/255,0/255)
+        for i = 0,255,10 do
+        wait()
+        script.Parent.BackgroundColor3 = Color3.new(255/255,i/255,0/255)
+        end
+        for i = 255,0,-10 do
+        wait()
+        script.Parent.BackgroundColor3 = Color3.new(i/255,255/255,0/255)
+        end
+        for i = 0,255,10 do
+        wait()
+        script.Parent.BackgroundColor3 = Color3.new(0/255,255/255,i/255)
+        end
+        for i = 255,0,-10 do
+        wait()
+        script.Parent.BackgroundColor3 = Color3.new(0/255,i/255,255/255)
+        end
+        for i = 0,255,10 do
+        wait()
+        script.Parent.BackgroundColor3 = Color3.new(i/255,0/255,255/255)
+        end
+        for i = 255,0,-10 do
+        wait()
+        script.Parent.BackgroundColor3 = Color3.new(255/255,0/255,i/255)
+        end
+        end
+        end
+        coroutine.wrap(WMHNT_fake_script)()
+        local function XDCFV_fake_script() -- Frame.Smooth GUI Dragging 
+        local script = Instance.new('LocalScript', Frame)
+
+        local UserInputService = game:GetService("UserInputService")
+        local runService = (game:GetService("RunService"));
+        
+        local gui = script.Parent
+        
+        local dragging
+        local dragInput
+        local dragStart
+        local startPos
+        
+        function Lerp(a, b, m)
+        return a + (b - a) * m
+        end;
+        
+        local lastMousePos
+        local lastGoalPos
+        local DRAG_SPEED = (8); -- // The speed of the UI darg.
+        function Update(dt)
+        if not (startPos) then return end;
+        if not (dragging) and (lastGoalPos) then
+        gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_SPEED))
+        return 
+        end;
+        
+        local delta = (lastMousePos - UserInputService:GetMouseLocation())
+        local xGoal = (startPos.X.Offset - delta.X);
+        local yGoal = (startPos.Y.Offset - delta.Y);
+        lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
+        gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, xGoal, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, yGoal, dt * DRAG_SPEED))
+        end;
+        
+        gui.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = gui.Position
+        lastMousePos = UserInputService:GetMouseLocation()
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+            dragging = false
+            end
+        end)
+        end
+        end)
+        
+        gui.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+        end
+        end)
+        
+        runService.Heartbeat:Connect(Update)
+        end
+        coroutine.wrap(XDCFV_fake_script)()
+        local function MAOTEA_fake_script() -- ARROW.LocalScript 
+        local script = Instance.new('LocalScript', ARROW)
+
+        script.Parent.MouseButton1Click:Connect(function()
+        script.Parent.Parent.Frame.Visible = not script.Parent.Parent.Frame.Visible
+        end)
+        
+        end
+        coroutine.wrap(MAOTEA_fake_script)()
+        local function WZVKWAF_fake_script() -- NAME.LocalScript 
+        local script = Instance.new('LocalScript', NAME)
+
+        script.Parent.MouseButton1Click:Connect(function()
+        script.Parent.Parent.Frame.Visible = not script.Parent.Parent.Frame.Visible
+        end)
+        
+        end
+        coroutine.wrap(WZVKWAF_fake_script)()
+	end
+})
+Main:AddButton({
+	Title = "FE Tool rotate",
+	Description = "to make everyone see it once your done rotating unequip then equip the tool again",
+	Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/fe%20toolrotate.txt"))()
+	end
+})
+Main:AddButton({
+	Title = "FE Chat Art",
+	Description = "type .texthere for the chat art also only works in some games and will prob get rate limited",
+	Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/chatart.lua"))()
+	end
+})
+Main:AddButton({
+	Title = "FE Bot",
+	Description = "be a bot for everyone to use",
+	Callback = function()
+        --credits: Snip#3132
+        -- Editted By Creo ^ Credits to creator above
+        --Commands: move forward, -move backward, -move leftward, -move rightward, -shiftlock on, -shiftlock off, -stop moving, -dance, -dance1, -dance2, -dance3, -wave, -point, -laugh, -jump, -joke
+        local chat = function(MSG) -- creo thing
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(MSG, "All")
+        end
+        chat("You can now control me!! Type commands below to do so.")
+        chat("Commands: -move forward, -move backward, -move leftward, -move rightward, -jump, -joke")
+        chat("-shiftlock on, -shiftlock off, -stop moving, -dance, -dance1, -dance2, -dance3")
+        local keys = {
+            ["a"] = 0x41,
+            ["b"] = 0x42,
+            ["c"] = 0x43,
+            ["d"] = 0x44,
+            ["e"] = 0x45,
+            ["f"] = 0x46,
+            ["g"] = 0x47,
+            ["h"] = 0x48,
+            ["i"] = 0x49,
+            ["j"] = 0x4A,
+            ["k"] = 0x4B,
+            ["l"] = 0x4C,
+            ["m"] = 0x4D,
+            ["n"] = 0x4E,
+            ["o"] = 0x4F,
+            ["p"] = 0x50,
+            ["q"] = 0x51,
+            ["r"] = 0x52,
+            ["s"] = 0x53,
+            ["t"] = 0x54,
+            ["u"] = 0x55,
+            ["v"] = 0x56,
+            ["w"] = 0x57,
+            ["x"] = 0x58,
+            ["y"] = 0x59,
+            ["z"] = 0x5A,
+            ["0"] = 0x30,
+            ["1"] = 0x31,
+            ["2"] = 0x32,
+            ["3"] = 0x33,
+            ["4"] = 0x34,
+            ["5"] = 0x35,
+            ["6"] = 0x36,
+            ["7"] = 0x37,
+            ["8"] = 0x38,
+            ["9"] = 0x39,
+            ["+"] = 0xBB,
+            ["-"] = 0xBD,
+            [","] = 0xBC,
+            ["."] = 0xBE,
+            ["quote"] = 0xDE,
+            ["esc"] = 0x1B,
+            ["tab"] = 0x09,
+            ["caps"] = 0x14,
+            ["lshift"] = 0xA0,
+            ["rshift"] = 0xA1,
+            ["ctrl"] = 0x11,
+            ["lctrl"] = 0xA2,
+            ["rctrl"] = 0xA3,
+            ["lwin"] = 0x5B,
+            ["rwin"] = 0x5C,
+            ["alt"] = 0x12,
+            ["space"] = 0x20,
+            ["enter"] = 0x0D,
+            ["backspace"] = 0x08,
+            ["sshot"] = 0x2C,
+            ["scrolllock"] = 0x91,
+            ["pause"] = 0x13,
+            ["insert"] = 0x2D,
+            ["home"] = 0x24,
+            ["pgup"] = 0x21,
+            ["del"] = 0x2E,
+            ["end"] = 0x23,
+            ["pgdn"] = 0x22,
+            ["up_a"] = 0x26,
+            ["down_a"] = 0x28,
+            ["left_a"] = 0x25,
+            ["right_a"] = 0x27,
+            ["numlock"] = 0x90,
+            ["sleep"] = 0x5F,
+            ["n_0"] = 0x60,
+            ["n_1"] = 0x61,
+            ["n_2"] = 0x62,
+            ["n_3"] = 0x63,
+            ["n_4"] = 0x64,
+            ["n_5"] = 0x65,
+            ["n_6"] = 0x66,
+            ["n_7"] = 0x67,
+            ["n_8"] = 0x68,
+            ["n_9"] = 0x69,
+            ["v_mute"] = 0xAD,
+            ["v_up"] = 0xAF,
+            ["v_down"] = 0xAE,
+            ["next_t"] = 0xB0,
+            ["prev_t"] = 0xB1,
+            ["stop_t"] = 0xB2,
+            ["pause_t"] = 0xB3,
+            ["f1"] = 0x70,
+            ["f2"] = 0x71,
+            ["f3"] = 0x72,
+            ["f4"] = 0x73,
+            ["f5"] = 0x74,
+            ["f6"] = 0x75,
+            ["f7"] = 0x76,
+            ["f8"] = 0x77,
+            ["f9"] = 0x78,
+            ["f10"] = 0x79,
+            ["f11"] = 0x7A,
+            ["f12"] = 0x7B,
+        }
+        
+        function hold(mousebutton)
+            if mousebutton == "left" then
+            mouse1down()
+            elseif mousebutton == "right" then
+            mouse2down()
+            end
+        end
+        
+        function release(mousebutton)
+            if mousebutton == "left" then
+            mouse1up()
+            elseif mousebutton == "right" then
+            mouse2up()
+            end
+        end
+        
+        function click(mousebutton)
+            if mousebutton == "left" then
+            mouse1click()
+            elseif mousebutton == "right" then
+            mouse2click()
+            end
+        end
+        
+        function move(x,y)
+            mousemoveabs(x,y)
+        end
+        
+        function scroll(p)
+            mousescroll(p)
+        end
+        
+        function loopmove(x,y)
+            if canmove2 ~= false then
+            canmove1 = false
+            spawn(function()
+            local l
+            l = game:GetService("RunService").Heartbeat:Connect(function()
+            if canmove1 == true then
+                l:Disconnect()
+            end
+            wait()
+            move(x,y)
+            end)
+            end)
+            end
+        end
+        
+        function breakmove()
+            canmove1 = false
+        end
+        
+        local mouse = game:GetService("Players").LocalPlayer:GetMouse()
+        canmove2 = true
+        function togglemove()
+            if canmove1 ~= false then
+            if canmove2 == false then
+            canmove2 = true
+            elseif canmove2 == true then
+            canmove2 = false
+            mx = mouse.X
+            my = mouse.Y
+            spawn(function()
+            local l
+            l = game:GetService("RunService").Heartbeat:Connect(function()
+                if canmove2 == true then
+                l:Disconnect()
+                end
+                wait()
+                move(mx,my)
+            end)
+            end)
+            end
+            end
+        end
+        
+        function type(string)
+            for _,char in pairs(string:split("")) do
+            wait(0.01)
+            if char == " " then
+            keypress(keys["space"])
+            else
+            if char:upper() == char and (char ~= "," and char ~= "." and char ~= "-" and char ~= "+" and char ~= "'" and char ~= '"' and char ~= "<" and char ~= ">" and char ~= "_" and char ~= "=") then
+            keypress(keys["lshift"])
+            keypress(keys[char:lower()])
+                        keyrelease(keys["lshift"])
+            else
+            if char == "'" then
+                keyrelease(keys["caps"])
+                keyrelease(keys["lshift"])
+                keypress(keys["quote"])
+            elseif char == '"' then
+                keyrelease(keys["caps"])
+                keypress(keys["lshift"])
+                keypress(keys["quote"])
+                keyrelease(keys["lshift"])
+            elseif char == "<" then
+                keyrelease(keys["caps"])
+                keypress(keys["lshift"])
+                keypress(keys[","])
+                keyrelease(keys["lshift"])
+            elseif char == ">" then
+                keyrelease(keys["caps"])
+                keypress(keys["lshift"])
+                keypress(keys["."])
+                keyrelease(keys["lshift"])
+            elseif char == "_" then
+                keyrelease(keys["caps"])
+                keypress(keys["lshift"])
+                keypress(keys["-"])
+                keyrelease(keys["lshift"])
+            elseif char == "=" then
+                keyrelease(keys["caps"])
+                keypress(keys["lshift"])
+                keypress(keys["+"])
+                keyrelease(keys["lshift"])
+            else
+                keyrelease(keys["caps"])
+                keyrelease(keys["lshift"])
+                keypress(keys[char])
+            end
+            end
+            end
+            end
+        end
+        
+        
+        
+        local chatEvents = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
+        local messageDoneFiltering = chatEvents:WaitForChild("OnMessageDoneFiltering")
+        
+        messageDoneFiltering.OnClientEvent:Connect(function(message)
+            local msg = message.Message or ""
+            
+            
+            
+            print(msg)
+            if msg:lower():sub(1,13) == "-move forward" then
+            keyrelease(keys["s"])
+            keypress(keys["w"])
+            end
+        
+            if msg:lower():sub(1,14) == "-move backward" then
+            keyrelease(keys["w"])
+            keypress(keys["s"])
+            end
+        
+            if msg:lower():sub(1,14) == "-move leftward" then
+            keyrelease(keys["d"])
+            keypress(keys["a"])
+            end
+        
+            if msg:lower():sub(1,15) == "-move rightward" then
+            keyrelease(keys["a"])
+            keypress(keys["d"])
+            end
+        
+            if msg:lower():sub(1,13) == "-shiftlock on" then
+            keypress(keys["lshift"])
+            keyrelease(keys["lshift"])
+            end
+        
+            if msg:lower():sub(1,14) == "-shiftlock off" then
+            keypress(keys["lshift"])
+            keyrelease(keys["lshift"])
+            end
+        
+            if msg:lower():sub(1,12) == "-stop moving" then
+            keyrelease(keys["w"])
+            keyrelease(keys["s"])
+            keyrelease(keys["a"])
+            keyrelease(keys["d"])
+            end
+        
+            if msg:lower():sub(1,5) == "-wave" then
+            game.Players:Chat("/e wave")
+            end
+        
+            if msg:lower():sub(1,6) == "-point" then
+            game.Players:Chat("/e point")
+            end
+        
+            if msg:lower():sub(1,6) == "-laugh" then
+            game.Players:Chat("/e laugh")
+            end
+        
+            if msg:lower():sub(1,6) == "-dance" then
+            game.Players:Chat("/e dance")
+            end
+        
+            if msg:lower():sub(1,7) == "-dance1" then
+            game.Players:Chat("/e dance1")
+            end
+        
+            if msg:lower():sub(1,7) == "-dance2" then
+            game.Players:Chat("/e dance2")
+            end
+        
+            if msg:lower():sub(1,7) == "-dance3" then
+            game.Players:Chat("/e dance3")
+            end
+        
+            if msg:lower():sub(1,12) == "-rotate left" then
+            keyrelease(keys["right_a"])
+            keypress(keys["left_a"])
+            end
+        
+            if msg:lower():sub(1,13) == "-rotate right" then
+            keyrelease(keys["left_a"])
+            keypress(keys["right_a"])
+            end
+        
+            if msg:lower():sub(1,12) == "-rotate stop" then
+            keyrelease(keys["right_a"])
+            keyrelease(keys["left_a"])
+            end
+        
+            if msg:lower():sub(1,5) == "-jump" then
+            keypress(keys["space"])
+            wait(0.1)
+            keyrelease(keys["space"])
+            end
+            
+        end)
+        
+        
+        
+        
+	end
+})
+Main:AddButton({
+	Title = "FE Bot 2",
+	Description = "be a bot for everyone to use",
+	Callback = function()
+        local follow = ".follow"
+        getgenv().Following = nil
+        local unfollow = ".unfollow"
+        local die,reset = ".die", ".reset"
+        local cmds = ".cmds"
+        local plrs = game:GetService("Players")
+        local plr = game:GetService("Players").LocalPlayer
+        game:GetService("Players").PlayerAdded:Connect(function(player)
+            game.StarterGui:SetCore("SendNotification",  {
+                Title = "Player Joined";
+                Text = player.Name .. " Joined";
+                Icon = "";
+                Duration = 5;
+                Callback = NotificationBindable;
+            })
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Player Joined " .. player.Name ,"All")
+        end)
+        game:GetService("Players").PlayerRemoving:Connect(function(player)
+            game.StarterGui:SetCore("SendNotification",  {
+                Title = "Player Left";
+                Text = player.Name .. " Left";
+                Icon = "";
+                Duration = 5;
+                Callback = NotificationBindable;
+            })
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Player Left " .. player.Name ,"All")
+        end)
+        GetArgs = function(Args)
+            return Args:split(" ")
+        end
+        FindPlayer = function(h,h2)
+            if string.lower(h) == "me" then
+                return plr
+            else
+                h = h:gsub("%s+", "")
+                for m, n in pairs(game:GetService("Players"):GetPlayers()) do
+                    if n.Name:lower():match("^" .. h:lower()) or n.DisplayName:lower():match("^" .. h:lower()) then
+                        return n
+                    end
+                end
+            end
+            return nil
+        end
+        --[[
+            local Args = GetArgs(message)
+            local r = FindPlayer(Args[2])
+            if r then
+                print(r)
+            else
+                print('nah')
+            end
+        ]]
+        followingplr = nil
+        for i,v in pairs(plrs:GetPlayers()) do
+            v.Chatted:Connect(function(message)
+                if string.find(message, follow) then
+                    local Args = GetArgs(message)
+                    local r = FindPlayer(Args[2])
+                    if r then
+                        followingplr = r
+                    else
+                        game.StarterGui:SetCore("SendNotification",  {
+                            Title = "Could Not Find Player!";
+                            Text = "";
+                            Icon = "";
+                            Duration = 5;
+                            Callback = NotificationBindable;
+                        })
+                        return
+                    end
+                    getgenv().Following = true
+                    game.StarterGui:SetCore("SendNotification",  {
+                        Title = "Now Following";
+                        Text = followingplr.Name;
+                        Icon = "";
+                        Duration = 5;
+                        Callback = NotificationBindable;
+                    })
+                    task.spawn(function()
+                        while true do wait()
+                            if not getgenv().Following then
+                                break
+                            end
+                            plr.Character:WaitForChild("HumanoidRootPart").CFrame = followingplr.Character:WaitForChild("HumanoidRootPart").CFrame
+                        end
+                    end)
+                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("now following " .. followingplr.Name,"All")
+                end
+                if string.sub(string.lower(unfollow), 0, #message) == string.lower(message) or string.find(message,unfollow) then
+                    if getgenv().Following then
+                        game.StarterGui:SetCore("SendNotification",  {
+                            Title = "No Longer Following";
+                            Text = followingplr.Name;
+                            Icon = "";
+                            Duration = 5;
+                            Callback = NotificationBindable;
+                        })
+                        getgenv().Following = false
+                        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("no longer following " .. followingplr.Name,"All")
+                    else
+                        game.StarterGui:SetCore("SendNotification",  {
+                            Title = "Not Following Anyone";
+                            Text = "";
+                            Icon = "";
+                            Duration = 5;
+                            Callback = NotificationBindable;
+                        })
+                        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("not following anyone","All")
+                    end
+                end
+                if string.sub(string.lower(reset), 0, #message) == string.lower(message) or string.sub(string.lower(die), 0, #message) == string.lower(message) then
+                    plr.Character.Humanoid.Health = 0
+                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("now dying","All")
+                end
+                if string.find(message,cmds) then
+                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(".follow [plr] .unf .die .reset","All")
+                end
+            end)
+        end
+        local GC = getconnections or get_signal_cons
+        if GC then
+            for i,v in pairs(GC(game:GetService("Players").LocalPlayer.Idled)) do
+                if v["Disable"] then
+                    v["Disable"](v)
+                elseif v["Disconnect"] then
+                    v["Disconnect"](v)
+                end
+            end
+        else
+            game:GetService("Players").LocalPlayer.Idled:Connect(function()
+                local VirtualUser = game:GetService("VirtualUser")
+                VirtualUser:CaptureController()
+                VirtualUser:ClickButton2(Vector2.new())
+            end)
+        end
+        ANTIAFK = game.Players.LocalPlayer.Idled:connect(function()
+            game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            task.wait(1)
+            game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end)
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Hi im a script bot basically just type .cmds to see all the commands!","All")
+
+	end
+})
+Main:AddButton({
+	Title = "FE Reverse time",
+	Description = "reverse player position by 60 seconds as long as your holding E",
+	Callback = function()
+        --Credits
+        --https://v3rmillion.net/showthread.php?tid=1202396
+        local key = "E" --key to intiate the flashback. see https://create.roblox.com/docs/reference/engine/enums/KeyCode for an exhaustive list
+        local flashbacklength = 60 --how long the flashback should be stored in approx seconds
+        local flashbackspeed = 1 --how many frames to skip during flashback (set to 0 to disable)
+
+        local name = game:GetService("RbxAnalyticsService"):GetSessionId() --unique id that games cannot access but does not change on subsequent executions (used for the name of the binded function)
+        local frames,uis,LP,RS = {},game:GetService("UserInputService"),game:GetService("Players").LocalPlayer,game:GetService("RunService") --set some vars
+
+        pcall(RS.UnbindFromRenderStep,RS,name) --unbind the function if previously binded
+
+        local function getchar()
+        return LP.Character or LP.CharacterAdded:Wait()
+        end
+
+        function gethrp(c) --gethrp ripped from my env script and stripped of arguments
+        return c:FindFirstChild("HumanoidRootPart") or c.RootPart or c.PrimaryPart or c:FindFirstChild("Torso") or c:FindFirstChild("UpperTorso") or c:FindFirstChildWhichIsA("BasePart")
+        end
+
+        local flashback = {lastinput=false,canrevert=true}
+
+        function flashback:Advance(char,hrp,hum,allowinput)
+        
+        if #frames>flashbacklength*60 then --make sure we don't have too much history
+            table.remove(frames,1)
+        end
+        
+        if allowinput and not self.canrevert then
+            self.canrevert = true
+        end
+        
+        if self.lastinput then --make sure platformstand goes back to normal
+            hum.PlatformStand = false
+            self.lastinput = false
+        end
+        
+        table.insert(frames,{
+            hrp.CFrame,
+            hrp.Velocity,
+            hum:GetState(),
+            hum.PlatformStand,
+            char:FindFirstChildOfClass("Tool")
+        })
+        end
+
+        function flashback:Revert(char,hrp,hum)
+        local num = #frames
+        if num==0 or not self.canrevert then --add to history and return if no history is present
+            self.canrevert = false
+            self:Advance(char,hrp,hum)
+            return
+        end
+        for i=1,flashbackspeed do --skip frames (if enabled)
+            table.remove(frames,num)
+            num=num-1
+        end
+        self.lastinput = true
+        local lastframe = frames[num]
+        table.remove(frames,num)
+        hrp.CFrame = lastframe[1]
+        hrp.Velocity = -lastframe[2]
+        hum:ChangeState(lastframe[3])
+        hum.PlatformStand = lastframe[4] --platformstand to make flying look normal again
+        local currenttool = char:FindFirstChildOfClass("Tool")
+        if lastframe[5] then --equip/unequip tools
+            if not currenttool then
+                hum:EquipTool(lastframe[5])
+            end
+        else
+            hum:UnequipTools()
+        end
+        end
+
+        local function step() --function that runs every frame
+        local char = getchar()
+        local hrp = gethrp(char)
+        local hum = char:FindFirstChildWhichIsA("Humanoid")
+        if uis:IsKeyDown(Enum.KeyCode[key]) then --begin flashback
+            flashback:Revert(char,hrp,hum)
+        else
+            flashback:Advance(char,hrp,hum,true)
+        end
+        end
+        RS:BindToRenderStep(name,1,step) --finally, bind our function
+    end
+})
+Main:AddButton({
+	Title = "FE Reverse time V2",
+	Description = "reverse player position",
+	Callback = function()
+        local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/Revenant", true))()
+        Library.DefaultColor = Color3.fromRGB(0,255,0)
+
+        Library:Notification({
+            Text = "Provided By Envixity Scripts on YouTube",
+            Duration = 3
+        })
+
+        wait (2)
+
+        local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/Revenant", true))()
+        Library.DefaultColor = Color3.fromRGB(0,255,0)
+
+        Library:Notification({
+            Text = "Envixity Scripts On Top! Script Executed",
+            Duration = 3
+        })
+
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/0Ben1/fe./main/L"))()
+
+    end
+})
+Main:AddButton({
+	Title = "FE CTTV Camera",
+	Description = "set cameras",
+	Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/CCTV%20Camera'))()
+    end
+})
+Main:AddButton({
+	Title = "FE Fast Travel",
+	Description = "press x",
+	Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/yeerma/fff/main/make-a-CW-on-oooga-booga'))()
+    end
+})
+Main:AddButton({
+	Title = "FE auto excuse",
+	Description = "basically when u die it execuses",
+	Callback = function()
+        getgenv().dmsgs = {
+            deathmessages = {"i was lagging", "that wasnt fair", "You will pay for this", "What a noob", "I will not let you get away with that", "Are you serious dude", "You will regret this", "That is a grave mistake", "I will make you suffer you little ****", "You son of a ****", "Are you out of your mind", "What the hell is wrong with you","I will find you","That isn't nice dude","Karma will hit you back"}
+          }
+          --[[
+          Auto-Excuse by flamespill#7488
+          ]]--
+          loadstring(game:HttpGet("https://raw.githubusercontent.com/goldmoments/auto-excuse/main/Script"))("Auto-Excuse Script | flamespill#7488") 
+    end
+})
+Main:AddButton({
+	Title = "FE message on damage",
+	Description = "chat when u take damage",
+	Callback = function()
+        getgenv().hurtmessages = {
+            "That hurt!",
+            "Watch where you're swinging!",
+            "Ow! That's gonna leave a mark!",
+            "Stop attacking me!",
+            "I'm not feeling so good...",
+            "Is that all you've got?",
+            "Can't catch a break!",
+            "That was a cheap shot!",
+            "You'll regret that!"
+         }
+         
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/dta-bse/v3rm/main/Message%20on%20damage"))() 
+    end
+})
+Main:AddButton({
+	Title = "FE Create Character",
+	Description = "kinda shit",
+	Callback = function()
+        --[[
+        Made by Rouxhaver
+
+        showcase: https://www.youtube.com/watch?v=KpjGbXuMbk8
+        R and T to rotate,
+        drag floor to change hip height,
+        select body part on the right.
+
+        ]]
+
+        player = game:GetService("Players").LocalPlayer
+        camera = workspace.CurrentCamera
+        character = player.Character
+        mouse = player:GetMouse()
+
+        for i,v in pairs(game:GetService("Lighting"):GetChildren()) do
+        v:Destroy()
+        end
+
+        temp = Instance.new("Folder",workspace)
+
+        stuff = Instance.new("Folder",temp)
+
+        camera.CameraType = Enum.CameraType.Scriptable
+        camera.FieldOfView = 1
+
+        cenoff = 1000
+
+        camera.CFrame = CFrame.new(-5,cenoff,-1500) * CFrame.Angles(0,math.rad(180),0)
+
+        background = Instance.new("Part",temp)
+        background.Anchored = true
+        background.Size = Vector3.new(100,100,0.1)
+        background.Position = Vector3.new(0,cenoff,0)
+        background.Color = Color3.new(0.0941176, 0.952941, 1)
+
+        hipheight = 0
+
+        ground = Instance.new("Part",temp)
+        ground.Anchored = true
+        ground.Size = Vector3.new(100,100,0.11)
+        ground.Position = Vector3.new(0,cenoff-53,0)
+        ground.Color = Color3.new(0.105882, 0.576471, 0.0705882)
+
+        referance = game:GetObjects("rbxassetid://13540732616")[1]
+        referance.Parent = temp
+        referance.HumanoidRootPart.CFrame = CFrame.new(0,cenoff,0)
+
+        SG = Instance.new("ScreenGui",player.PlayerGui)
+        SG.IgnoreGuiInset = true
+
+        uiback = Instance.new("Frame",SG)
+        uiback.AnchorPoint = Vector2.new(1,0)
+        uiback.Position = UDim2.new(1)
+        uiback.Size = UDim2.new(0.25,0,1)
+        uiback.BorderMode = Enum.BorderMode.Inset
+        uiback.BorderSizePixel = 10
+        uiback.BorderColor3 = Color3.new(0,0,0)
+        uiback.BackgroundColor3 = Color3.new(0.290196, 0.290196, 0.290196)
+
+        hatname = Instance.new("TextLabel",uiback)
+        hatname.AnchorPoint = Vector2.new(.5,.5)
+        hatname.Position = UDim2.new(.5,0,.1)
+        hatname.Size = UDim2.new(.95,0,.1)
+        hatname.TextScaled = true
+        hatname.BackgroundTransparency = 1
+        hatname.TextColor3 = Color3.new(0,0,0)
+        hatname.Text = "Hat Name"
+
+        button = Instance.new("TextButton")
+        button.Size = UDim2.new(1,0,.1)
+        button.TextScaled = true
+        button.BorderMode = Enum.BorderMode.Inset
+        button.TextColor3 = Color3.new(0,0,0)
+        button.BorderSizePixel = 10
+        button.BorderColor3 = Color3.new(0,0,0)
+        button.BackgroundColor3 = Color3.new(0.380392, 0.380392, 0.380392)
+        Instance.new("UIStroke",button)
+
+        buttons = {}
+
+        buttons.RA = button:Clone()
+        buttons.RA.Text = "Right Arm"
+        buttons.RA.Parent = uiback
+        buttons.RA.Position = UDim2.new(0,0,0.2)
+        buttons.RA.TextColor3 = Color3.fromRGB(237, 234, 234)
+
+        buttons.RL = button:Clone()
+        buttons.RL.Text = "Right Leg"
+        buttons.RL.Parent = uiback
+        buttons.RL.Position = UDim2.new(0,0,0.3)
+        buttons.RL.TextColor3 = Color3.fromRGB(170, 85, 0)
+
+        buttons.LA = button:Clone()
+        buttons.LA.Text = "Left Arm"
+        buttons.LA.Parent = uiback
+        buttons.LA.Position = UDim2.new(0,0,0.4)
+        buttons.LA.TextColor3 = Color3.fromRGB(255, 0, 0)
+
+        buttons.LL = button:Clone()
+        buttons.LL.Text = "Left Leg"
+        buttons.LL.Parent = uiback
+        buttons.LL.Position = UDim2.new(0,0,0.5)
+        buttons.LL.TextColor3 = Color3.fromRGB(255, 255, 0)
+
+        buttons.HD = button:Clone()
+        buttons.HD.Text = "Head"
+        buttons.HD.Parent = uiback
+        buttons.HD.Position = UDim2.new(0,0,0.6)
+        buttons.HD.TextColor3 = Color3.fromRGB(0, 255, 0)
+
+        buttons.TS = button:Clone()
+        buttons.TS.Text = "Torso"
+        buttons.TS.Parent = uiback
+        buttons.TS.Position = UDim2.new(0,0,0.7)
+        buttons.TS.TextColor3 = Color3.fromRGB(255, 0, 191)
+
+        buttons.RP = button:Clone()
+        buttons.RP.Text = "Root Part"
+        buttons.RP.Parent = uiback
+        buttons.RP.Position = UDim2.new(0,0,0.8)
+
+        Create = button:Clone()
+        Create.Text = "Create"
+        Create.Parent = uiback
+        Create.Position = UDim2.new(0,0,0.9)
+        Create.BackgroundColor3 = Color3.new(0.133333, 1, 0)
+
+        credote = Instance.new("TextLabel",SG)
+        credote.AnchorPoint = Vector2.new(0,1)
+        credote.Position = UDim2.new(0,0,1)
+        credote.Size = UDim2.new(.3,0,.075)
+        credote.Text = "Made by Rouxhaver"
+        credote.TextScaled = true
+        credote.BackgroundTransparency = 1
+        credote.TextColor3 = Color3.new(0,0,0)
+
+        outline = Instance.new("Highlight",nil)
+        outline.OutlineColor = Color3.new(1, 0.623529, 0.0941176)
+
+        selhat = nil
+
+        handles = {}
+
+        for i,hat in pairs(character:GetChildren()) do
+        if hat:IsA("Accessory") then
+        local part = hat.Handle:Clone()
+        table.insert(handles, part)
+        part.Parent = stuff
+        part.Anchored = true
+        part.AccessoryWeld:Destroy()
+        part.CFrame = CFrame.new(math.random(-100,100)/10,cenoff+math.random(-100,100)/10,-10)
+
+        local limb = Instance.new("StringValue",part)
+        limb.Value = "RP"
+        limb.Name = "limb"
+
+        local pos = Instance.new("Vector3Value",part)
+        pos.Name = "pos"
+        pos.Value = part.Position
+
+        local hatval = Instance.new("ObjectValue",part)
+        hatval.Name = "hatval"
+        hatval.Value = hat
+
+        local rot = Instance.new("Vector3Value",part)
+        rot.Name = "rot"
+        rot.Value = Vector3.new()
+        end
+        end
+
+        dragging = false
+
+        function clearcolor()
+        for i,v in pairs(buttons) do
+        v.BackgroundColor3 = Color3.new(0.380392, 0.380392, 0.380392)
+        end
+        end
+
+        mouse.Button1Down:Connect(function()
+        if mouse.Target and mouse.Target.Parent == stuff then
+        clearcolor()
+        selhat = mouse.Target
+        outline.Parent = selhat
+        hatname.Text = selhat.hatval.Value.Name
+        dragging = true
+        mouse.TargetFilter = stuff
+        buttons[selhat.limb.Value].BackgroundColor3 = Color3.new(0.94902, 1, 0)
+        while dragging == true do
+        selhat.Position = mouse.Hit.p + Vector3.new(0,0,-10)
+        task.wait()
+        end
+        selhat.pos.Value = mouse.Hit.p
+        end
+        if mouse.Target == ground then
+        dragging = true
+        while dragging == true do
+        ground.Position = Vector3.new(0,mouse.Hit.Y-50,0)
+        hipheight = cenoff - mouse.Hit.Y - 3
+        task.wait()
+        end
+        end
+        end)
+
+        mouse.Button1Up:Connect(function()
+        dragging = false
+        mouse.TargetFilter = nil
+        end)
+
+        for i,v in pairs(buttons) do
+        v.MouseButton1Up:Connect(function()
+        if selhat ~= nil then
+        clearcolor()
+        selhat.limb.Value = tostring(i)
+        v.BackgroundColor3 = Color3.new(0.94902, 1, 0)
+        end
+        end)
+        end
+
+        usimp = game:GetService("UserInputService")
+
+        usimp.InputBegan:Connect(function(key)
+        if selhat ~= nil then
+        if key.KeyCode == Enum.KeyCode.R then
+        selhat.Orientation += Vector3.new(0,10,0)
+        selhat.rot.Value = selhat.Orientation
+        end
+        if key.KeyCode == Enum.KeyCode.T then
+        selhat.Orientation += Vector3.new(0,0,10)
+        selhat.rot.Value = selhat.Orientation
+        end
+        end
+        end)
+
+        ts = game:GetService("TweenService")
+
+        function createtween(part, cframe,ttime)
+        local tweeninfo = TweenInfo.new(ttime)
+        local tween = ts:Create(part, tweeninfo, {CFrame = cframe})
+        tween:Play()
+        end
+
+        Create.MouseButton1Up:Connect(function()
+        SG:Destroy()
+        local newchar = referance:Clone()
+        local hrp = newchar.HumanoidRootPart
+        hrp.Anchored = false
+        hrp.CFrame = character.HumanoidRootPart.CFrame
+        newchar.Parent = workspace
+        newchar.Humanoid.HipHeight = hipheight
+
+        player.Character = newchar
+
+        local animate = character.Animate:Clone()
+        animate.Parent = newchar
+
+        camera.CameraType = Enum.CameraType.Custom
+        camera.CameraSubject = newchar.Humanoid
+        camera.FieldOfView = 70
+
+        wait(game:GetService("Players").RespawnTime+.3)
+
+        character.Humanoid.Health = 0
+
+        for i,v in pairs(newchar:GetChildren()) do
+        if v:IsA("BasePart") then
+        v.Transparency = 1
+        end
+        end
+        
+        newchar.Head.face:Destroy()
+
+        for i,handle in pairs(handles) do
+        local hat = handle.hatval.Value.Handle
+        local limb = nil
+        local pos = nil
+        local rot = handle.rot.Value
+        if handle.limb.Value == "RA" then
+        limb = newchar["Right Arm"]
+        pos = handle.pos.Value - referance["Right Arm"].Position
+        end
+        if handle.limb.Value == "LA" then
+        limb = newchar["Left Arm"]
+        pos = handle.pos.Value - referance["Left Arm"].Position
+        end
+        if handle.limb.Value == "RL" then
+        limb = newchar["Right Leg"]
+        pos = handle.pos.Value - referance["Right Leg"].Position
+        end
+        if handle.limb.Value == "LL" then
+        limb = newchar["Left Leg"]
+        pos = handle.pos.Value - referance["Left Leg"].Position
+        end
+        if handle.limb.Value == "TS" then
+        limb = newchar["Torso"]
+        pos = handle.pos.Value - referance["Torso"].Position
+        end
+        if handle.limb.Value == "RP" then
+        limb = newchar["HumanoidRootPart"]
+        pos = handle.pos.Value - referance["HumanoidRootPart"].Position
+        end
+        if handle.limb.Value == "HD" then
+        limb = newchar["Head"]
+        pos = handle.pos.Value - referance["Head"].Position
+        end
+        coroutine.wrap(function()
+        while true do
+            local thecframe = (limb.CFrame + (limb.CFrame.RightVector * pos.X) + (limb.CFrame.UpVector * pos.Y)) * CFrame.Angles(0,math.rad(rot.Y),math.rad(rot.Z))
+            createtween(hat, thecframe, 0)
+            hat.AssemblyLinearVelocity = Vector3.new(0,30,0)
+            task.wait()
+        end
+        end)()
+        end
+        temp:Destroy()
+        selhat = nil
+        while task.wait() do
+        if newchar.Humanoid.Health == 0 then
+        player.Character = character
+        end
+        end
+        end)
+    end
+})
+
 GUIS:AddButton({
 	Title = "Nullware Hub V3",
 	Description = "Reanimations",
@@ -50940,6 +55316,27 @@ GUIS:AddButton({
 	Description = "by FE",
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/Scripts/main/aaa"))()
+	end
+})
+GUIS:AddButton({
+	Title = "Unanchored parts gui",
+	Description = "teleport unanchored parts to players n other shit",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/Scripts/main/aaa"))()
+	end
+})
+GUIS:AddButton({
+	Title = "Rizz Gui Full",
+	Description = "rizzler",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/mikhailramlal/Rizzer/main/main"))()
+	end
+})
+GUIS:AddButton({
+	Title = "Rizz Gui Limited",
+	Description = "rizzler",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastebin.com/raw/pPMRh5YJ"))()
 	end
 })
 local GENESIS = Window:AddTab({
@@ -51395,6 +55792,133 @@ GENESIS:AddButton({
 			})
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
 		end
+	end
+})
+local Chatwithhackers = Window:AddTab({
+	Title = "Chat with other exploiters",
+	Icon = "globe"
+})
+Chatwithhackers:AddButton({
+	Title = "FE Chat with other exploiters",
+	Description = "basically mixed up chinese letters and changes it to english if ur using the script",
+	Callback = function()
+		--[[
+        Made by Rouxhaver
+        When two people execute the script they can use the text box to chat with each other privately and uncensored
+        Note: only works on the newer bubble chat and not the old one and long messages get tagged
+        ]]
+
+        a = "的"
+        b = "一"
+        c = "是"
+        d = "不"
+        e = "了"
+        f = "人"
+        g = "我"
+        h = "在"
+        i = "有"
+        j = "他"
+        k = "这"
+        l = "为"
+        m = "之"
+        n = "大"
+        o = "来"
+        p = "以"
+        q = "个"
+        r = "中"
+        s = "上"
+        t = "们"
+        u = "到"
+        v = "说"
+        w = "国"
+        x = "和"
+        y = "地"
+        z = "也"
+
+        function convert(str)
+        str = str:lower()
+        return str:gsub("a",a):gsub("b",b):gsub("c",c):gsub("d",d):gsub("e",e):gsub("f",f):gsub("g",g):gsub("h",h):gsub("i",i):gsub("j",j):gsub("k",k):gsub("l",l):gsub("m",m):gsub("n",n):gsub("o",o):gsub("p",p):gsub("q",q):gsub("r",r):gsub("s",s):gsub("t",t):gsub("u",u):gsub("v",v):gsub("w",w):gsub("x",x):gsub("y",y):gsub("z",z)
+        end
+
+        function unconvert(str)
+        str = str:lower()
+        return str:gsub(a,"a"):gsub(b,"b"):gsub(c,"c"):gsub(d,"d"):gsub(e,"e"):gsub(f,"f"):gsub(g,"g"):gsub(h,"h"):gsub(i,"i"):gsub(j,"j"):gsub(k,"k"):gsub(l,"l"):gsub(m,"m"):gsub(n,"n"):gsub(o,"o"):gsub(p,"p"):gsub(q,"q"):gsub(r,"r"):gsub(s,"s"):gsub(t,"t"):gsub(u,"u"):gsub(v,"v"):gsub(w,"w"):gsub(x,"x"):gsub(y,"y"):gsub(z,"z")
+        end
+
+        function chat(str)
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(str,"All")
+        end
+
+        player = game:GetService("Players").LocalPlayer
+
+        SG = Instance.new("ScreenGui",player.PlayerGui)
+
+        frame = Instance.new("Frame",SG)
+        frame.Size = UDim2.new(0.2,0,0.2,0)
+        frame.AnchorPoint = Vector2.new(0.5,0.5)
+        frame.Position = UDim2.new(0.5,0,0.8,0)
+        frame.Active = true
+        frame.Draggable = true
+        frame.BackgroundColor3 = Color3.new(0.14902, 0.8, 1)
+
+        textbox = Instance.new("TextBox",frame)
+        textbox.AnchorPoint = Vector2.new(0.5,0.5)
+        textbox.Size = UDim2.new(0.95,0,0.65,0)
+        textbox.Position = UDim2.new(0.5,0,0.6,0)
+        textbox.TextScaled = true
+        textbox.BackgroundColor3 = Color3.new(1,1,1)
+        textbox.Text = "Text"
+        textbox.TextColor3 = Color3.new(0, 0, 0)
+
+        title = Instance.new("TextLabel",frame)
+        title.Size = UDim2.new(0.3,0,0.3,0)
+        title.TextScaled = true
+        title.Text = "hacker chat"
+        title.BackgroundTransparency = 1
+        title.TextColor3 = Color3.new(0, 0, 0)
+
+        closebutton = Instance.new("TextButton",frame)
+        closebutton.Size = UDim2.new(0.15,0,0.25,0)
+        closebutton.AnchorPoint = Vector2.new(1,0)
+        closebutton.TextScaled = true
+        closebutton.BackgroundColor3 = Color3.new(1, 0, 0.0156863)
+        closebutton.Text = "X"
+        closebutton.Position = UDim2.new(1,0,0,0)
+        closebutton.TextColor3 = Color3.new(1, 1, 1)
+
+        ui = Instance.new("UIAspectRatioConstraint",frame)
+        ui.AspectRatio = 4
+
+        closebutton.MouseButton1Up:Connect(function()
+        SG:Destroy()
+        end)
+
+        textbox.FocusLost:Connect(function()
+        chat("三"..convert(textbox.Text))
+        end)
+
+        player.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.ChildAdded:Connect(function(msg)
+        wait(1)
+        local message = msg.TextLabel.Text
+        if message:match("三") then
+        msg.TextLabel.TextColor3 = Color3.new(1, 0.85098, 0)
+        message = unconvert(message:gsub("三",""))
+        msg.TextLabel.Text = message
+        end
+        end)
+
+        Coregui = game:GetService("CoreGui")
+        if Coregui:FindFirstChild("BubbleChat") then
+        Coregui.BubbleChat.DescendantAdded:Connect(function(bubble)
+        wait(1)
+        if bubble:IsA("TextLabel") then
+        if bubble.Text:match("三") then
+            bubble.Parent.BackgroundColor3 = Color3.new(1, 0.85098, 0)
+            bubble.Text = unconvert(bubble.Text:gsub("三",""))
+        end
+        end
+        end)
+        end
 	end
 })
 InterfaceManager:SetLibrary(Fluent)
