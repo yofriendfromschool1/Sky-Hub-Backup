@@ -189,7 +189,98 @@ GUIS:AddButton({
 	Title = "Chat Spy",
 	Description = "only works in some games? see private messages if this doesnt work try IY chatlogs",
 	Callback = function()
-		loadstring(Game:GetObjects("rbxassetid://1255908305")[1].Source)()
+		local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+        local Window = OrionLib:MakeWindow({Name = "Anir Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+        local Tab = Window:MakeTab({
+            Name = "Main",
+            Icon = "rbxassetid://4483345998",
+            PremiumOnly = false
+        })
+
+        local Section = Tab:AddSection({
+            Name = "Chat Log's"
+        })
+
+        --[[
+        Name =  - The name of the section.
+        ]]
+        OrionLib:MakeNotification({
+            Name = "From Anir",
+            Content = "U better ont leak it!",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+
+        --[[
+        Title =  - The title of the notification.
+        Content =  - The content of the notification.
+        Image =  - The icon of the notification.
+        Time =  - The duration of the notfication.
+        ]]
+        --This script reveals ALL hidden messages in the default chat
+        --chat "/spy" to toggle!
+        enabled = true
+        --if true will check your messages too
+        spyOnMyself = true
+        --if true will chat the logs publicly (fun, risky)
+        public = false
+        --if true will use /me to stand out
+        publicItalics = true
+        --customize private logs
+        privateProperties = {
+            Color = Color3.fromRGB(0,255,255); 
+            Font = Enum.Font.SourceSansBold;
+            TextSize = 18;
+        }
+        local StarterGui = game:GetService("StarterGui")
+        local Players = game:GetService("Players")
+        local player = Players.LocalPlayer
+        local saymsg = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest")
+        local getmsg = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("OnMessageDoneFiltering")
+        local instance = (_G.chatSpyInstance or 0) + 1
+        _G.chatSpyInstance = instance
+        
+        local function onChatted(p,msg)
+            if _G.chatSpyInstance == instance then
+                if p==player and msg:lower():sub(1,4)=="/spy" then
+                    enabled = not enabled
+                    wait(0.3)
+                    privateProperties.Text = "{SPY "..(enabled and "EN" or "DIS").."ABLED}"
+                    StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
+                elseif enabled and (spyOnMyself==true or p~=player) then
+                    msg = msg:gsub("[\n\r]",''):gsub("\t",' '):gsub("[ ]+",' ')
+                    local hidden = true
+                    local conn = getmsg.OnClientEvent:Connect(function(packet,channel)
+                        if packet.SpeakerUserId==p.UserId and packet.Message==msg:sub(#msg-#packet.Message+1) and (channel=="All" or (channel=="Team" and public==false and Players[packet.FromSpeaker].Team==player.Team)) then
+                            hidden = false
+                        end
+                    end)
+                    wait(1)
+                    conn:Disconnect()
+                    if hidden and enabled then
+                        if public then
+                            saymsg:FireServer((publicItalics and "/me " or '').."{SPY} [".. p.Name .."]: "..msg,"All")
+                        else
+                            privateProperties.Text = "{SPY} [".. p.Name .."]: "..msg
+                            StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
+                        end
+                    end
+                end
+            end
+        end
+        
+        for _,p in ipairs(Players:GetPlayers()) do
+            p.Chatted:Connect(function(msg) onChatted(p,msg) end)
+        end
+        Players.PlayerAdded:Connect(function(p)
+            p.Chatted:Connect(function(msg) onChatted(p,msg) end)
+        end)
+        privateProperties.Text = "{SPY "..(enabled and "EN" or "DIS").."ABLED}"
+        StarterGui:SetCore("ChatMakeSystemMessage",privateProperties)
+        local chatFrame = player.PlayerGui.Chat.Frame
+        chatFrame.ChatChannelParentFrame.Visible = true
+        chatFrame.ChatBarParentFrame.Position = chatFrame.ChatChannelParentFrame.Position+UDim2.new(UDim.new(),chatFrame.ChatChannelParentFrame.Size.Y)
 	end
 })
 GUIS:AddButton({
@@ -50423,13 +50514,6 @@ Main:AddButton({
 	end
 })
 Main:AddButton({
-	Title = "FE Hat Ferris Wheel",
-	Description = "Hats spin around your character in a circle motion must wear like 5 hats or more on avatar",
-	Callback = function()
-		loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/obf_8u7A6D92KJWJXgB4btM3lJNPDy2mCi61S191KbGF2EfX9621qbXQg0tBivwEi0Kr.lua.txt'), true))()
-	end
-})
-Main:AddButton({
 	Title = "FE Ghost/Invisible",
 	Description = "makes u invisible",
 	Callback = function()
@@ -51394,7 +51478,7 @@ Main:AddButton({
 	Title = "FE Sit Animation",
 	Description = "changes the animation of ur sit",
 	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/MichaelScripter/MiniScript/main/Spy%20gui.lua"))()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/FE/sitanimation.txt'),true))()
 	end
 })
 Main:AddButton({
@@ -54936,334 +55020,6 @@ Main:AddButton({
          loadstring(game:HttpGet("https://raw.githubusercontent.com/dta-bse/v3rm/main/Message%20on%20damage"))() 
     end
 })
-Main:AddButton({
-	Title = "FE Create Character",
-	Description = "kinda shit",
-	Callback = function()
-        --[[
-        Made by Rouxhaver
-
-        showcase: https://www.youtube.com/watch?v=KpjGbXuMbk8
-        R and T to rotate,
-        drag floor to change hip height,
-        select body part on the right.
-
-        ]]
-
-        player = game:GetService("Players").LocalPlayer
-        camera = workspace.CurrentCamera
-        character = player.Character
-        mouse = player:GetMouse()
-
-        for i,v in pairs(game:GetService("Lighting"):GetChildren()) do
-        v:Destroy()
-        end
-
-        temp = Instance.new("Folder",workspace)
-
-        stuff = Instance.new("Folder",temp)
-
-        camera.CameraType = Enum.CameraType.Scriptable
-        camera.FieldOfView = 1
-
-        cenoff = 1000
-
-        camera.CFrame = CFrame.new(-5,cenoff,-1500) * CFrame.Angles(0,math.rad(180),0)
-
-        background = Instance.new("Part",temp)
-        background.Anchored = true
-        background.Size = Vector3.new(100,100,0.1)
-        background.Position = Vector3.new(0,cenoff,0)
-        background.Color = Color3.new(0.0941176, 0.952941, 1)
-
-        hipheight = 0
-
-        ground = Instance.new("Part",temp)
-        ground.Anchored = true
-        ground.Size = Vector3.new(100,100,0.11)
-        ground.Position = Vector3.new(0,cenoff-53,0)
-        ground.Color = Color3.new(0.105882, 0.576471, 0.0705882)
-
-        referance = game:GetObjects("rbxassetid://13540732616")[1]
-        referance.Parent = temp
-        referance.HumanoidRootPart.CFrame = CFrame.new(0,cenoff,0)
-
-        SG = Instance.new("ScreenGui",player.PlayerGui)
-        SG.IgnoreGuiInset = true
-
-        uiback = Instance.new("Frame",SG)
-        uiback.AnchorPoint = Vector2.new(1,0)
-        uiback.Position = UDim2.new(1)
-        uiback.Size = UDim2.new(0.25,0,1)
-        uiback.BorderMode = Enum.BorderMode.Inset
-        uiback.BorderSizePixel = 10
-        uiback.BorderColor3 = Color3.new(0,0,0)
-        uiback.BackgroundColor3 = Color3.new(0.290196, 0.290196, 0.290196)
-
-        hatname = Instance.new("TextLabel",uiback)
-        hatname.AnchorPoint = Vector2.new(.5,.5)
-        hatname.Position = UDim2.new(.5,0,.1)
-        hatname.Size = UDim2.new(.95,0,.1)
-        hatname.TextScaled = true
-        hatname.BackgroundTransparency = 1
-        hatname.TextColor3 = Color3.new(0,0,0)
-        hatname.Text = "Hat Name"
-
-        button = Instance.new("TextButton")
-        button.Size = UDim2.new(1,0,.1)
-        button.TextScaled = true
-        button.BorderMode = Enum.BorderMode.Inset
-        button.TextColor3 = Color3.new(0,0,0)
-        button.BorderSizePixel = 10
-        button.BorderColor3 = Color3.new(0,0,0)
-        button.BackgroundColor3 = Color3.new(0.380392, 0.380392, 0.380392)
-        Instance.new("UIStroke",button)
-
-        buttons = {}
-
-        buttons.RA = button:Clone()
-        buttons.RA.Text = "Right Arm"
-        buttons.RA.Parent = uiback
-        buttons.RA.Position = UDim2.new(0,0,0.2)
-        buttons.RA.TextColor3 = Color3.fromRGB(237, 234, 234)
-
-        buttons.RL = button:Clone()
-        buttons.RL.Text = "Right Leg"
-        buttons.RL.Parent = uiback
-        buttons.RL.Position = UDim2.new(0,0,0.3)
-        buttons.RL.TextColor3 = Color3.fromRGB(170, 85, 0)
-
-        buttons.LA = button:Clone()
-        buttons.LA.Text = "Left Arm"
-        buttons.LA.Parent = uiback
-        buttons.LA.Position = UDim2.new(0,0,0.4)
-        buttons.LA.TextColor3 = Color3.fromRGB(255, 0, 0)
-
-        buttons.LL = button:Clone()
-        buttons.LL.Text = "Left Leg"
-        buttons.LL.Parent = uiback
-        buttons.LL.Position = UDim2.new(0,0,0.5)
-        buttons.LL.TextColor3 = Color3.fromRGB(255, 255, 0)
-
-        buttons.HD = button:Clone()
-        buttons.HD.Text = "Head"
-        buttons.HD.Parent = uiback
-        buttons.HD.Position = UDim2.new(0,0,0.6)
-        buttons.HD.TextColor3 = Color3.fromRGB(0, 255, 0)
-
-        buttons.TS = button:Clone()
-        buttons.TS.Text = "Torso"
-        buttons.TS.Parent = uiback
-        buttons.TS.Position = UDim2.new(0,0,0.7)
-        buttons.TS.TextColor3 = Color3.fromRGB(255, 0, 191)
-
-        buttons.RP = button:Clone()
-        buttons.RP.Text = "Root Part"
-        buttons.RP.Parent = uiback
-        buttons.RP.Position = UDim2.new(0,0,0.8)
-
-        Create = button:Clone()
-        Create.Text = "Create"
-        Create.Parent = uiback
-        Create.Position = UDim2.new(0,0,0.9)
-        Create.BackgroundColor3 = Color3.new(0.133333, 1, 0)
-
-        credote = Instance.new("TextLabel",SG)
-        credote.AnchorPoint = Vector2.new(0,1)
-        credote.Position = UDim2.new(0,0,1)
-        credote.Size = UDim2.new(.3,0,.075)
-        credote.Text = "Made by Rouxhaver"
-        credote.TextScaled = true
-        credote.BackgroundTransparency = 1
-        credote.TextColor3 = Color3.new(0,0,0)
-
-        outline = Instance.new("Highlight",nil)
-        outline.OutlineColor = Color3.new(1, 0.623529, 0.0941176)
-
-        selhat = nil
-
-        handles = {}
-
-        for i,hat in pairs(character:GetChildren()) do
-        if hat:IsA("Accessory") then
-        local part = hat.Handle:Clone()
-        table.insert(handles, part)
-        part.Parent = stuff
-        part.Anchored = true
-        part.AccessoryWeld:Destroy()
-        part.CFrame = CFrame.new(math.random(-100,100)/10,cenoff+math.random(-100,100)/10,-10)
-
-        local limb = Instance.new("StringValue",part)
-        limb.Value = "RP"
-        limb.Name = "limb"
-
-        local pos = Instance.new("Vector3Value",part)
-        pos.Name = "pos"
-        pos.Value = part.Position
-
-        local hatval = Instance.new("ObjectValue",part)
-        hatval.Name = "hatval"
-        hatval.Value = hat
-
-        local rot = Instance.new("Vector3Value",part)
-        rot.Name = "rot"
-        rot.Value = Vector3.new()
-        end
-        end
-
-        dragging = false
-
-        function clearcolor()
-        for i,v in pairs(buttons) do
-        v.BackgroundColor3 = Color3.new(0.380392, 0.380392, 0.380392)
-        end
-        end
-
-        mouse.Button1Down:Connect(function()
-        if mouse.Target and mouse.Target.Parent == stuff then
-        clearcolor()
-        selhat = mouse.Target
-        outline.Parent = selhat
-        hatname.Text = selhat.hatval.Value.Name
-        dragging = true
-        mouse.TargetFilter = stuff
-        buttons[selhat.limb.Value].BackgroundColor3 = Color3.new(0.94902, 1, 0)
-        while dragging == true do
-        selhat.Position = mouse.Hit.p + Vector3.new(0,0,-10)
-        task.wait()
-        end
-        selhat.pos.Value = mouse.Hit.p
-        end
-        if mouse.Target == ground then
-        dragging = true
-        while dragging == true do
-        ground.Position = Vector3.new(0,mouse.Hit.Y-50,0)
-        hipheight = cenoff - mouse.Hit.Y - 3
-        task.wait()
-        end
-        end
-        end)
-
-        mouse.Button1Up:Connect(function()
-        dragging = false
-        mouse.TargetFilter = nil
-        end)
-
-        for i,v in pairs(buttons) do
-        v.MouseButton1Up:Connect(function()
-        if selhat ~= nil then
-        clearcolor()
-        selhat.limb.Value = tostring(i)
-        v.BackgroundColor3 = Color3.new(0.94902, 1, 0)
-        end
-        end)
-        end
-
-        usimp = game:GetService("UserInputService")
-
-        usimp.InputBegan:Connect(function(key)
-        if selhat ~= nil then
-        if key.KeyCode == Enum.KeyCode.R then
-        selhat.Orientation += Vector3.new(0,10,0)
-        selhat.rot.Value = selhat.Orientation
-        end
-        if key.KeyCode == Enum.KeyCode.T then
-        selhat.Orientation += Vector3.new(0,0,10)
-        selhat.rot.Value = selhat.Orientation
-        end
-        end
-        end)
-
-        ts = game:GetService("TweenService")
-
-        function createtween(part, cframe,ttime)
-        local tweeninfo = TweenInfo.new(ttime)
-        local tween = ts:Create(part, tweeninfo, {CFrame = cframe})
-        tween:Play()
-        end
-
-        Create.MouseButton1Up:Connect(function()
-        SG:Destroy()
-        local newchar = referance:Clone()
-        local hrp = newchar.HumanoidRootPart
-        hrp.Anchored = false
-        hrp.CFrame = character.HumanoidRootPart.CFrame
-        newchar.Parent = workspace
-        newchar.Humanoid.HipHeight = hipheight
-
-        player.Character = newchar
-
-        local animate = character.Animate:Clone()
-        animate.Parent = newchar
-
-        camera.CameraType = Enum.CameraType.Custom
-        camera.CameraSubject = newchar.Humanoid
-        camera.FieldOfView = 70
-
-        wait(game:GetService("Players").RespawnTime+.3)
-
-        character.Humanoid.Health = 0
-
-        for i,v in pairs(newchar:GetChildren()) do
-        if v:IsA("BasePart") then
-        v.Transparency = 1
-        end
-        end
-        
-        newchar.Head.face:Destroy()
-
-        for i,handle in pairs(handles) do
-        local hat = handle.hatval.Value.Handle
-        local limb = nil
-        local pos = nil
-        local rot = handle.rot.Value
-        if handle.limb.Value == "RA" then
-        limb = newchar["Right Arm"]
-        pos = handle.pos.Value - referance["Right Arm"].Position
-        end
-        if handle.limb.Value == "LA" then
-        limb = newchar["Left Arm"]
-        pos = handle.pos.Value - referance["Left Arm"].Position
-        end
-        if handle.limb.Value == "RL" then
-        limb = newchar["Right Leg"]
-        pos = handle.pos.Value - referance["Right Leg"].Position
-        end
-        if handle.limb.Value == "LL" then
-        limb = newchar["Left Leg"]
-        pos = handle.pos.Value - referance["Left Leg"].Position
-        end
-        if handle.limb.Value == "TS" then
-        limb = newchar["Torso"]
-        pos = handle.pos.Value - referance["Torso"].Position
-        end
-        if handle.limb.Value == "RP" then
-        limb = newchar["HumanoidRootPart"]
-        pos = handle.pos.Value - referance["HumanoidRootPart"].Position
-        end
-        if handle.limb.Value == "HD" then
-        limb = newchar["Head"]
-        pos = handle.pos.Value - referance["Head"].Position
-        end
-        coroutine.wrap(function()
-        while true do
-            local thecframe = (limb.CFrame + (limb.CFrame.RightVector * pos.X) + (limb.CFrame.UpVector * pos.Y)) * CFrame.Angles(0,math.rad(rot.Y),math.rad(rot.Z))
-            createtween(hat, thecframe, 0)
-            hat.AssemblyLinearVelocity = Vector3.new(0,30,0)
-            task.wait()
-        end
-        end)()
-        end
-        temp:Destroy()
-        selhat = nil
-        while task.wait() do
-        if newchar.Humanoid.Health == 0 then
-        player.Character = character
-        end
-        end
-        end)
-    end
-})
 
 GUIS:AddButton({
 	Title = "Nullware Hub V3",
@@ -55322,7 +55078,602 @@ GUIS:AddButton({
 	Title = "Unanchored parts gui",
 	Description = "teleport unanchored parts to players n other shit",
 	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/Scripts/main/aaa"))()
+		--TOMQ-SCRIPT-2020
+        -- prevent from being ran more than once
+
+
+        if not _G.ini then
+            _G.ini = true
+            
+            local sound = Instance.new("Sound")
+            sound.SoundId = "rbxassetid://216917652"
+            sound.Parent = game:GetService("SoundService")
+            sound:Play()
+            
+            teleport = false
+            
+            wait()
+            game.StarterGui:SetCore("SendNotification", {
+            Title = "Unanchored To Player"; -- the title (ofc)
+            Text = "GUI Loaded - F to Hide/Show"; -- what the text says (ofc)
+            Duration = 5; -- how long the notification should in secounds
+            })
+            
+            print "================UNANCHORED TO PLAYER LOADED================"
+            print "================MADE BY TomQ#6764================"
+            
+            local heartbeat = game:GetService("RunService").Heartbeat
+            spawn(function()
+                while true do heartbeat:Wait()
+                        game.Players.LocalPlayer.MaximumSimulationRadius = math.pow(math.huge,math.huge)*math.huge
+                        sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.pow(math.huge,math.huge)*math.huge)
+                        game:GetService("RunService").Stepped:wait()
+            end
+            end)
+            
+            local Imput = game:GetService("UserInputService")
+            local Plr = game.Players.LocalPlayer
+            local Mouse = Plr:GetMouse()
+            
+            function To(position)
+            local Chr = Plr.Character
+            local sound2 = Instance.new("Sound")
+            sound2.SoundId = "rbxassetid://3398620867"
+            sound2.Parent = game:GetService("SoundService")
+            if Chr ~= nil then
+            if teleport == false then
+            for index, part in pairs(game:GetDescendants()) do
+            if part:IsA("BasePart" or "UnionOperation" or "Model") and part.Anchored == false and part:IsDescendantOf(game.Players.LocalPlayer.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false then --// Checks Part Properties
+                part.CFrame = CFrame.new(position) --TP Part To Mouse
+                sound2:Play()
+            
+                if spam == true and part:FindFirstChild("BodyGyro") == nil then
+                local bodyPos = Instance.new("BodyPosition")
+                bodyPos.Position = part.Position
+                bodyPos.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+                bodyPos.P = 1e6
+                bodyPos.Parent = part
+                end
+            end
+            end
+            else
+            
+                Chr:MoveTo(position)
+            end
+            end
+            end
+            
+            
+            
+            
+            
+            Imput.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 and Imput:IsKeyDown(Enum.KeyCode.LeftControl) then
+                To(Mouse.Hit.p)
+            end
+            end)
+            
+            
+            
+            
+            
+            
+            
+            -- key that opens/closes the ui
+            local toggle_key = Enum.KeyCode.F
+            
+            -- function that executes desired code
+            execute = function(name)
+            
+            
+            
+                for index, part in pairs(game:GetDescendants()) do
+                if part:IsA("BasePart" or "UnionOperation" or "Model") and part.Anchored == false and part:IsDescendantOf(game.Players.LocalPlayer.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false then --// Checks Part Properties
+                part.CFrame = CFrame.new(game.workspace[name].Head.Position) --TP Part To User
+                if spam == true and part:FindFirstChild("BodyGyro") == nil then
+                local bodyPos = Instance.new("BodyPosition")
+                bodyPos.Position = part.Position
+                bodyPos.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+                bodyPos.P = 1e6
+                bodyPos.Parent = part
+                end
+                end
+                end
+            
+            
+            
+            end
+            
+            local uis = game:GetService("UserInputService")
+            local ts = game:GetService("TweenService")
+            
+            -- ui functions
+            fade = function(obj, len, props)
+                ts:Create(obj, TweenInfo.new(len, Enum.EasingStyle.Sine), props):Play()
+            end
+            
+            -- shorthand variables
+            local u2, c3 = UDim2.new, Color3.fromRGB
+            local u2f, c3w = u2(1, 0, 1, 0), c3(255, 255, 255)
+            
+            -- ui init
+            local g = Instance.new("ScreenGui", game.CoreGui)
+            local f = Instance.new("Frame", g)
+            local t = Instance.new("TextLabel", f)
+            local c = Instance.new("ScrollingFrame", f)
+            
+            -- core ui styling
+            local padding = Instance.new("UIPadding", f)
+            local maxsize = Instance.new("UISizeConstraint", f)
+            local textsize = Instance.new("UITextSizeConstraint", t)
+            local listcons = Instance.new("UIListLayout", c)
+            
+            padding.PaddingBottom = UDim.new(0, 8)
+            padding.PaddingLeft = UDim.new(0, 15)
+            padding.PaddingRight = UDim.new(0, 15)
+            padding.PaddingTop = UDim.new(0, 0)
+            
+            maxsize.MaxSize = Vector2.new(275, 450)
+            maxsize.MinSize = Vector2.new(200, 0)
+            textsize.MaxTextSize = 16
+            listcons.Padding = UDim.new(0, 3)
+            
+            -- ui instance properties
+            g.Name = "unanchor_ui"
+            g.ResetOnSpawn = false
+            f.Name = "main"
+            t.Name = "header"
+            
+            f.Size = u2(0.165, 0, 0.6, 0)
+            f.BorderSizePixel = 0
+            f.BackgroundTransparency = 0.3
+            f.Position = u2(1, -215, 0.5, -150)
+            f.BackgroundColor3 = c3()
+            f.AnchorPoint = Vector2.new(1, 0.5)
+            f.Position = u2(1, -15, 0.5, 0)
+            
+            t.Size = u2(1, 0, 0.1, 0)
+            t.BackgroundTransparency = 1
+            t.TextColor3 = c3w
+            t.Font = Enum.Font.GothamBold
+            t.TextScaled = true
+            t.TextXAlignment = Enum.TextXAlignment.Center
+            t.Text = "UNANCHORED TO PLAYER BY TomQ#6764"
+            
+            c.Name = "playerlist"
+            c.Position = u2(0, 0, 0.1, 0)
+            c.Size = u2(1, 0, 0.45, 0)
+            c.BackgroundTransparency = 1
+            c.BorderSizePixel = 0
+            c.TopImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+            c.BottomImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+            c.ScrollingDirection = Enum.ScrollingDirection.Y
+            c.ScrollBarThickness = 5
+            c.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
+            
+            -- playerlist entry ui template
+            local temp = Instance.new("Frame", f)
+            temp.Name = "temp"
+            temp.Visible = false
+            temp.Size = u2(1, -5, 0, 27)
+            temp.BackgroundTransparency = 0.5
+            temp.BorderSizePixel = 0
+            temp.ClipsDescendants = true
+            temp.BackgroundColor3 = c3()
+            
+            local tpad = Instance.new("UIPadding", temp)
+            tpad.PaddingLeft = UDim.new(0, 5)
+            tpad.PaddingRight = UDim.new(0, 5)
+            
+            local tb = Instance.new("TextButton", temp)
+            tb.Name = "button"
+            tb.BackgroundTransparency = 1
+            tb.ZIndex = 5
+            tb.BorderSizePixel = 0
+            tb.Text = ""
+            tb.Size = u2(1, 10, 1, 0)
+            tb.Position = u2(0, -5, 0, 0)
+            
+            local tcl = Instance.new("TextLabel", temp)
+            tcl.Name = "username"
+            tcl.BackgroundTransparency = 1
+            tcl.BorderSizePixel = 0
+            tcl.Size = u2f
+            tcl.TextColor3 = c3w
+            tcl.TextXAlignment = Enum.TextXAlignment.Left
+            tcl.TextScaled = true
+            tcl.Size = u2(0.6, 0, 1, 0)
+            tcl.Font = Enum.Font.Gotham
+            
+            local tcls = Instance.new("UITextSizeConstraint", tcl)
+            tcls.MaxTextSize = 14
+            
+            local thumb = Instance.new("ImageLabel", temp)
+            thumb.Name = "thumb"
+            thumb.Size = u2(0.35, 0, 0.35, 0)
+            thumb.SizeConstraint = Enum.SizeConstraint.RelativeXX
+            thumb.Position = u2(1, 0, 0, -15)
+            thumb.AnchorPoint = Vector2.new(1, 0)
+            thumb.BackgroundTransparency = 1
+            thumb.BorderSizePixel = 0
+            
+            -- settings ui
+            local sh = Instance.new("TextLabel", f)
+            sh.Name = "settings_header"
+            sh.Size = u2(1, 0, 0.1, 0)
+            sh.Position = u2(0, 0, 0.55, 0)
+            sh.BackgroundTransparency = 1
+            sh.BorderSizePixel = 0
+            sh.ZIndex = 3
+            sh.TextColor3 = c3w
+            sh.Font = Enum.Font.GothamBold
+            sh.TextScaled = true
+            sh.TextXAlignment = Enum.TextXAlignment.Center
+            sh.Text = "SETTINGS"
+            
+            local shs = Instance.new("UITextSizeConstraint", sh)
+            shs.MaxTextSize = 16
+            
+            local items = Instance.new("ScrollingFrame", f)
+            items.Name = "items"
+            items.Size = u2(1, 0, 0.35, 0)
+            items.Position = u2(0, 0, 0.65, 0)
+            items.BackgroundTransparency = 1
+            items.BorderSizePixel = 0
+            items.TopImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+            items.BottomImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+            items.ScrollingDirection = Enum.ScrollingDirection.Y
+            items.ScrollBarThickness = 5
+            items.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
+            
+            local itemll = Instance.new("UIListLayout", items)
+            itemll.Padding = UDim.new(0, 3)
+            
+            createSetting = function(name)
+                local setting = Instance.new("Frame", items)
+                setting.Size = u2(1, -5, 0, 27)
+                setting.BackgroundColor3 = c3()
+                setting.BackgroundTransparency = 0.5
+                setting.BorderSizePixel = 0
+                
+                local spad = tpad:Clone()
+                spad.Parent = setting
+                
+                local slab = tcl:Clone()
+                slab.Name = "label"
+                slab.Parent = setting
+                slab.Size = u2(1, 0, 1, 0)
+                slab.Text = name
+                
+                local stbt = tb:Clone()
+                stbt.Parent = setting
+                
+                stbt.MouseEnter:connect(function()
+                    fade(setting, 0.25, {BackgroundTransparency = 0.8})
+                end)
+                
+                stbt.MouseLeave:connect(function()
+                    fade(setting, 0.25, {BackgroundTransparency = 0.5})
+                end)
+                
+                items.CanvasSize = u2(0, 0, 0, itemll.AbsoluteContentSize.Y)
+                
+                return stbt
+            end
+            
+            
+            -- settings & functionality
+            
+            
+            
+                local sound = Instance.new("Sound")
+                sound.SoundId = "rbxassetid://179235828"
+                sound.Parent = game:GetService("SoundService")
+            
+            
+            spam = false
+            local spamblocks = createSetting("Spam Parts")
+            spamblocks.MouseButton1Down:connect(function()
+            spam = not spam
+            if spam then
+                fade(spamblocks.Parent.label, 0.25, {TextColor3 = c3(52, 189, 98)})
+                sound:Play()
+                -- code to loop here
+            else
+                fade(spamblocks.Parent.label, 0.25, {TextColor3 = c3w})
+                sound:Play()
+                -- code to break the loop here
+            end
+            end)
+            
+            
+            
+            createSetting("Break Spam").MouseButton1Down:connect(function()
+                for index, part in pairs(game:GetDescendants()) do
+                if part:IsA("BasePart" or "UnionOperation" or "Model") and part.Anchored == false and part:IsDescendantOf(game.Players.LocalPlayer.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false then --// Checks Part Properties
+                sound:Play()
+                if part:FindFirstChild("BodyForce") then
+                part.BodyForce:Destroy()
+                end
+            
+                if part:FindFirstChild("BodyGyro") then
+                part.BodyGyro:Destroy()
+                end
+            
+                if part:FindFirstChild("BodyPosition") then
+                part.BodyPosition:Destroy()
+                end
+            
+                if part:FindFirstChild("BodyThrust") then
+                part.BodyThrust:Destroy()
+                end
+            end
+            end
+            end)
+            
+            freeze = false
+            local freezeblocks = createSetting("Freeze Parts")
+            freezeblocks.MouseButton1Down:connect(function()
+            freeze = not freeze
+                if freeze then
+                    fade(freezeblocks.Parent.label, 0.25, {TextColor3 = c3(52, 189, 98)})
+                    sound:Play()
+                    print "UTP: Freezed Parts"
+                    for _,part in pairs(workspace:GetChildren()) do
+                    if part:IsA("BasePart" or "UnionOperation" or "Model") and part.Anchored == false and part:IsDescendantOf(game.Players.LocalPlayer.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false then --// Checks Part Properties
+                        local bodyPos = Instance.new("BodyPosition")
+                        bodyPos.Position = part.Position
+                        bodyPos.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+                        bodyPos.P = 1e6
+                        bodyPos.Parent = part
+                    end
+                    end
+                else
+                    fade(freezeblocks.Parent.label, 0.25, {TextColor3 = c3w})
+                    sound:Play()
+                    print "UTP: Thawed Parts"
+                    for _,part in pairs(workspace:GetChildren()) do
+                    if part:IsA("BasePart" or "UnionOperation" or "Model") and part.Anchored == false and part:IsDescendantOf(game.Players.LocalPlayer.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false then --// Checks Part Properties
+                        if part:FindFirstChild("BodyPosition") then
+                        part.BodyPosition:Destroy()
+                        end
+                    end
+                -- code to break the loop here
+            end
+            end
+            end)
+            
+            local teleportplr = createSetting("Teleport Mode")
+            teleportplr.MouseButton1Down:connect(function()
+            teleport = not teleport
+                if teleport then
+                    fade(teleportplr.Parent.label, 0.25, {TextColor3 = c3(52, 189, 98)})
+                    sound:Play()
+                else
+                    fade(teleportplr.Parent.label, 0.25, {TextColor3 = c3w})
+                    sound:Play()
+                -- code to break the loop here
+                
+            end
+            end)
+            
+            createSetting("Remove Accessories Mesh").MouseButton1Down:connect(function()
+                sound:Play()
+            
+                local plr = game:GetService("Players").LocalPlayer
+                local char = plr.Character
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                if v:IsA("Accessory") and v.Handle:FindFirstChild("SpecialMesh") then
+                ag = v.Handle:FindFirstChild("SpecialMesh")
+                ag:Destroy()
+                end
+                end
+            
+            
+                local plr = game:GetService("Players").LocalPlayer
+                local char = plr.Character
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                if v:IsA("Accessory") and v.Handle:FindFirstChild("Mesh") then
+                ag = v.Handle:FindFirstChild("Mesh")
+                ag:Destroy()
+                end
+                end
+            end)
+            
+            createSetting("Drop Accessories").MouseButton1Down:connect(function()
+                sound:Play()
+                for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("Accessory") then
+                        v.Handle.Parent = workspace
+                        v.Parent = workspace
+                    end
+                end
+            end)
+            
+            createSetting("Reset").MouseButton1Down:connect(function()
+                sound:Play()
+                game.Players.LocalPlayer.Character:BreakJoints()
+            end)
+            
+            
+            highlight = false
+            local highlights = createSetting("Highlight Unanchored")
+            highlights.MouseButton1Down:connect(function()
+            highlight = not highlight
+                if highlight then
+                    fade(highlights.Parent.label, 0.25, {TextColor3 = c3(52, 189, 98)})
+                    sound:Play()
+                    print "UTP: Unanchored Highlighted"
+                    for _,part in pairs(workspace:GetDescendants()) do
+                    if part:IsA("BasePart") and part.Anchored == false and part:IsDescendantOf(game.Players.LocalPlayer.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false and part:FindFirstChild("Weld") == nil then --// Checks Part Properties
+                        local selectionBox = Instance.new("SelectionBox")
+                        selectionBox.Adornee = part
+                        selectionBox.Color3 = Color3.new(1,0,0)
+                        selectionBox.Parent = part
+                    end
+                    end
+                else
+                    fade(highlights.Parent.label, 0.25, {TextColor3 = c3w})
+                    sound:Play()
+                    print "UTP: Unanchored Un-Highlighted"
+                    for _,part in pairs(workspace:GetDescendants()) do
+                    if part:IsA("BasePart") and part.Anchored == false and part:IsDescendantOf(game.Players.LocalPlayer.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false and part:FindFirstChild("Weld") == nil then --// Checks Part Properties
+                        if part:FindFirstChild("SelectionBox") then
+                        part.SelectionBox:Destroy()
+                        end
+                    end
+            end
+            end
+            end)
+            
+            createSetting("Check Other Players").MouseButton1Down:connect(function()
+                sound:Play()
+                g = 0
+                spawn(function()
+                print ("Broken function.")
+                end)
+            end)
+            
+            createSetting("Count Unanchored Parts").MouseButton1Down:connect(function()
+                sound:Play()
+                b = 0
+                for index, part in pairs(game.workspace:GetDescendants()) do
+                if part:IsA("BasePart") and part.Anchored == false and part:IsDescendantOf(game.Players.LocalPlayer.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false and part:FindFirstChild("Weld") == nil then --// Checks Part Properties
+                    b = b + 1
+                end
+                end
+                print ("All parts checked, found", b ,"that are unanchored")
+            end)
+            
+            
+            
+            
+            
+            
+            
+            
+            createEntry = function(name, id)
+                local entry = temp:Clone()
+                entry.Parent = c
+                entry.username.Text = name
+                entry.thumb.Image = game:GetService("Players"):GetUserThumbnailAsync(id, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
+                entry.Visible = true
+                entry.LayoutOrder = #c:GetChildren()
+                entry.Name = name
+            
+                local sound = Instance.new("Sound")
+                sound.SoundId = "rbxassetid://3398620867"
+                sound.Parent = game:GetService("SoundService")
+                -- handle clicking for player
+                entry.button.MouseButton1Down:connect(function()
+                    execute(name)
+                    sound:Play()
+                end)
+                
+                entry.button.MouseEnter:connect(function()
+                    fade(entry, 0.25, {BackgroundTransparency = 0.8})
+                end)
+                
+                entry.button.MouseLeave:connect(function()
+                    fade(entry, 0.25, {BackgroundTransparency = 0.5})
+                end)
+            end
+            
+            deleteEntry = function(name)
+                for _,v in pairs(c:GetChildren()) do
+                    if v.Name == name then
+                        v:Destroy()
+                    end
+                end
+            end
+            
+            -- create entry for client
+            createEntry(game.Players.LocalPlayer.Name, game.Players.LocalPlayer.UserId)
+            
+            -- create entries for all other players
+            for _,v in pairs(game.Players:GetPlayers()) do
+                if v ~= game.Players.LocalPlayer then
+                    createEntry(v.Name, v.UserId)
+                end
+            end
+            
+            listcons:GetPropertyChangedSignal("AbsoluteContentSize"):connect(function()
+                c.CanvasSize = u2(0, 0, 0, listcons.AbsoluteContentSize.Y)
+            end)
+            
+            itemll:GetPropertyChangedSignal("AbsoluteContentSize"):connect(function()
+                items.CanvasSize = u2(0, 0, 0, itemll.AbsoluteContentSize.Y)
+            end)
+            
+            uis.InputBegan:connect(function(input, gpe)
+                if not gpe then
+                    if input.KeyCode == toggle_key then
+                        g.Enabled = not g.Enabled
+                    end
+                end
+            end)
+            
+            -- dragging code, ripped from https://devforum.roblox.com/t/draggable-property-is-hidden-on-gui-objects/107689/5
+            local dragging
+            local dragInput
+            local dragStart
+            local startPos
+            
+            local function update(input)
+                local delta = input.Position - dragStart
+                f.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+            end
+            
+            f.InputBegan:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+                    dragging = true
+                    dragStart = input.Position
+                    startPos = f.Position
+                    
+                    input.Changed:Connect(function()
+                        if input.UserInputState == Enum.UserInputState.End then
+                            dragging = false
+                        end
+                    end)
+                end
+            end)
+            
+            f.InputChanged:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+                    dragInput = input
+                end
+            end)
+            
+            uis.InputChanged:Connect(function(input)
+                if input == dragInput and dragging then
+                    update(input)
+                end
+            end)
+            
+            game.Players.PlayerAdded:connect(function(plr)
+                createEntry(plr.Name, plr.UserId)
+            end)
+            
+            game.Players.PlayerRemoving:connect(function(plr)
+                deleteEntry(plr.Name)
+            end)
+            else
+            print "================ALREADY LOADED================"
+            
+            
+            
+                local sound = Instance.new("Sound")
+                sound.SoundId = "rbxassetid://2130284653"
+                sound.Parent = game:GetService("SoundService")
+            sound:Play()
+            
+            game.StarterGui:SetCore("SendNotification", {
+            Title = "Already Loaded"; -- the title (ofc)
+            Text = "GUI Already Loaded"; -- what the text says (ofc)
+            Duration = 5; -- how long the notification should in secounds
+            })
+            end
+    
 	end
 })
 GUIS:AddButton({
