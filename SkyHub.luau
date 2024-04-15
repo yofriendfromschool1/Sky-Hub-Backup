@@ -73,21 +73,24 @@ else
 	_G.lmao24 = "Disabled"
 end
 function save()
-    if not isfolder("Sky Hub") and not nosaves then
-        makefolder("Sky Hub")
+	if not isfolder("Sky Hub") and not nosaves then
+		makefolder("Sky Hub")
 		nosaves = true
-    task.wait()
-    local update = {["ui_bind"]=settings["ui_bind"],["opaque"]=settings["opaque"]}
-    task.wait()
-    writefile([[Sky Hub/Sky Hub Settings.json]], HttpService:JSONEncode(update))
+		task.wait()
+		local update = {
+			["ui_bind"] = settings["ui_bind"],
+			["opaque"] = settings["opaque"]
+		}
+		task.wait()
+		writefile([[Sky Hub/Sky Hub Settings.json]], HttpService:JSONEncode(update))
 	end
 end
 function updatesaves()
-		local update = {
-			ui_bind = ui_bind;
-			opaque = opaque;
-		}
-		writefile("Sky Hub/Sky Hub Settings.json", HttpService:JSONEncode(update))
+	local update = {
+		ui_bind = ui_bind;
+		opaque = opaque;
+	}
+	writefile("Sky Hub/Sky Hub Settings.json", HttpService:JSONEncode(update))
 end
 task.wait()
 function loadsettings()
@@ -153,7 +156,7 @@ function loadsettings()
 			end
 		end)
 		if not success then
-			Library.Notify("Warning","Something went wrong while loading saves",5)
+			Library.Notify("Warning", "Something went wrong while loading saves", 5)
 			task.wait()
 			save()
 		end
@@ -166,36 +169,45 @@ if game.PlaceId == 2788229376 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -214,15 +226,17 @@ if game.PlaceId == 2788229376 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -457,21 +471,21 @@ if game.PlaceId == 2788229376 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -512,7 +526,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -523,7 +537,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -534,7 +548,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -545,7 +559,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -556,7 +570,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -567,7 +581,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -578,7 +592,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -589,7 +603,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -600,7 +614,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -611,7 +625,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -622,7 +636,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -633,7 +647,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -644,7 +658,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -655,7 +669,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -666,7 +680,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -677,7 +691,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -688,7 +702,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -699,7 +713,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -710,7 +724,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -721,7 +735,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -732,7 +746,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -743,7 +757,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -754,7 +768,7 @@ if game.PlaceId == 2788229376 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -767,7 +781,7 @@ if game.PlaceId == 2788229376 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -776,16 +790,21 @@ if game.PlaceId == 2788229376 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -799,36 +818,45 @@ elseif game.PlaceId == 286090429 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -847,15 +875,17 @@ elseif game.PlaceId == 286090429 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -1044,9 +1074,13 @@ elseif game.PlaceId == 286090429 then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))();
 	end)
 	MainSection:NewButton("Thunder Client", "OP ASF", function()
-		if getgenv().thunderclient then return end
+		if getgenv().thunderclient then
+			return
+		end
 
-		repeat task.wait() until game:IsLoaded()
+		repeat
+			task.wait()
+		until game:IsLoaded()
 		task.wait(1)
 
 		getgenv().thunderclient = true
@@ -1080,36 +1114,45 @@ elseif game.PlaceId == 1962086868 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -1128,15 +1171,17 @@ elseif game.PlaceId == 1962086868 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -1241,21 +1286,21 @@ elseif game.PlaceId == 1962086868 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -1296,7 +1341,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -1307,7 +1352,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -1318,7 +1363,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -1329,7 +1374,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -1340,7 +1385,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -1351,7 +1396,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -1362,7 +1407,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -1373,7 +1418,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -1384,7 +1429,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -1395,7 +1440,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -1406,7 +1451,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -1417,7 +1462,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -1428,7 +1473,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -1439,7 +1484,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -1450,7 +1495,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -1461,7 +1506,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -1472,7 +1517,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -1483,7 +1528,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -1494,7 +1539,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -1505,7 +1550,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -1516,7 +1561,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -1527,7 +1572,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -1538,7 +1583,7 @@ elseif game.PlaceId == 1962086868 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -1551,7 +1596,7 @@ elseif game.PlaceId == 1962086868 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -1560,16 +1605,21 @@ elseif game.PlaceId == 1962086868 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -1581,36 +1631,45 @@ elseif game.PlaceId == 621129760 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -1629,15 +1688,17 @@ elseif game.PlaceId == 621129760 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -1910,21 +1971,21 @@ elseif game.PlaceId == 621129760 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -1965,7 +2026,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -1976,7 +2037,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -1987,7 +2048,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -1998,7 +2059,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -2009,7 +2070,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -2020,7 +2081,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -2031,7 +2092,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -2042,7 +2103,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -2053,7 +2114,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -2064,7 +2125,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -2075,7 +2136,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -2086,7 +2147,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -2097,7 +2158,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -2108,7 +2169,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -2119,7 +2180,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -2130,7 +2191,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -2141,7 +2202,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -2152,7 +2213,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -2163,7 +2224,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -2174,7 +2235,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -2185,7 +2246,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -2196,7 +2257,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -2207,7 +2268,7 @@ elseif game.PlaceId == 621129760 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -2220,7 +2281,7 @@ elseif game.PlaceId == 621129760 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -2229,16 +2290,21 @@ elseif game.PlaceId == 621129760 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -2250,36 +2316,45 @@ elseif game.PlaceId == 12109643 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -2298,15 +2373,17 @@ elseif game.PlaceId == 12109643 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -2945,21 +3022,21 @@ elseif game.PlaceId == 12109643 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -3000,7 +3077,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -3011,7 +3088,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -3022,7 +3099,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -3033,7 +3110,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -3044,7 +3121,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -3055,7 +3132,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -3066,7 +3143,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -3077,7 +3154,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -3088,7 +3165,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -3099,7 +3176,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -3110,7 +3187,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -3121,7 +3198,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -3132,7 +3209,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -3143,7 +3220,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -3154,7 +3231,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -3165,7 +3242,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -3176,7 +3253,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -3187,7 +3264,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -3198,7 +3275,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -3209,7 +3286,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -3220,7 +3297,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -3231,7 +3308,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -3242,7 +3319,7 @@ elseif game.PlaceId == 12109643 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -3255,7 +3332,7 @@ elseif game.PlaceId == 12109643 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -3264,16 +3341,21 @@ elseif game.PlaceId == 12109643 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -3285,36 +3367,45 @@ elseif game.PlaceId == 192800 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -3333,15 +3424,17 @@ elseif game.PlaceId == 192800 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -3490,21 +3583,21 @@ elseif game.PlaceId == 192800 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -3545,7 +3638,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -3556,7 +3649,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -3567,7 +3660,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -3578,7 +3671,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -3589,7 +3682,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -3600,7 +3693,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -3611,7 +3704,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -3622,7 +3715,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -3633,7 +3726,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -3644,7 +3737,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -3655,7 +3748,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -3666,7 +3759,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -3677,7 +3770,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -3688,7 +3781,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -3699,7 +3792,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -3710,7 +3803,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -3721,7 +3814,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -3732,7 +3825,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -3743,7 +3836,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -3754,7 +3847,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -3765,7 +3858,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -3776,7 +3869,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -3787,7 +3880,7 @@ elseif game.PlaceId == 192800 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -3800,7 +3893,7 @@ elseif game.PlaceId == 192800 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -3809,16 +3902,21 @@ elseif game.PlaceId == 192800 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -3830,36 +3928,45 @@ elseif game.PlaceId == 4832438542 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -3878,15 +3985,17 @@ elseif game.PlaceId == 4832438542 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -3980,21 +4089,21 @@ elseif game.PlaceId == 4832438542 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -4035,7 +4144,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -4046,7 +4155,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -4057,7 +4166,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -4068,7 +4177,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -4079,7 +4188,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -4090,7 +4199,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -4101,7 +4210,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -4112,7 +4221,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -4123,7 +4232,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -4134,7 +4243,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -4145,7 +4254,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -4156,7 +4265,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -4167,7 +4276,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -4178,7 +4287,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -4189,7 +4298,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -4200,7 +4309,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -4211,7 +4320,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -4222,7 +4331,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -4233,7 +4342,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -4244,7 +4353,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -4255,7 +4364,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -4266,7 +4375,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -4277,7 +4386,7 @@ elseif game.PlaceId == 4832438542 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -4290,7 +4399,7 @@ elseif game.PlaceId == 4832438542 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -4299,16 +4408,21 @@ elseif game.PlaceId == 4832438542 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -4320,36 +4434,45 @@ elseif game.PlaceId == 920587237 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -4368,15 +4491,17 @@ elseif game.PlaceId == 920587237 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -4488,21 +4613,21 @@ elseif game.PlaceId == 920587237 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -4543,7 +4668,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -4554,7 +4679,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -4565,7 +4690,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -4576,7 +4701,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -4587,7 +4712,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -4598,7 +4723,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -4609,7 +4734,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -4620,7 +4745,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -4631,7 +4756,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -4642,7 +4767,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -4653,7 +4778,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -4664,7 +4789,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -4675,7 +4800,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -4686,7 +4811,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -4697,7 +4822,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -4708,7 +4833,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -4719,7 +4844,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -4730,7 +4855,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -4741,7 +4866,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -4752,7 +4877,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -4763,7 +4888,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -4774,7 +4899,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -4785,7 +4910,7 @@ elseif game.PlaceId == 920587237 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -4798,7 +4923,7 @@ elseif game.PlaceId == 920587237 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -4807,16 +4932,21 @@ elseif game.PlaceId == 920587237 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -4828,36 +4958,45 @@ elseif game.PlaceId == 606849621 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
@@ -5049,21 +5188,21 @@ elseif game.PlaceId == 606849621 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -5104,7 +5243,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -5115,7 +5254,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -5126,7 +5265,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -5137,7 +5276,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -5148,7 +5287,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -5159,7 +5298,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -5170,7 +5309,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -5181,7 +5320,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -5192,7 +5331,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -5203,7 +5342,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -5214,7 +5353,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -5225,7 +5364,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -5236,7 +5375,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -5247,7 +5386,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -5258,7 +5397,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -5269,7 +5408,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -5280,7 +5419,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -5291,7 +5430,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -5302,7 +5441,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -5313,7 +5452,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -5324,7 +5463,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -5335,7 +5474,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -5346,7 +5485,7 @@ elseif game.PlaceId == 606849621 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -5359,7 +5498,7 @@ elseif game.PlaceId == 606849621 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -5368,16 +5507,21 @@ elseif game.PlaceId == 606849621 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -5392,36 +5536,45 @@ elseif game.PlaceId == 155615604 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -5440,15 +5593,17 @@ elseif game.PlaceId == 155615604 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -5677,21 +5832,21 @@ elseif game.PlaceId == 155615604 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -5732,7 +5887,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -5743,7 +5898,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -5754,7 +5909,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -5765,7 +5920,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -5776,7 +5931,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -5787,7 +5942,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -5798,7 +5953,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -5809,7 +5964,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -5820,7 +5975,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -5831,7 +5986,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -5842,7 +5997,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -5853,7 +6008,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -5864,7 +6019,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -5875,7 +6030,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -5886,7 +6041,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -5897,7 +6052,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -5908,7 +6063,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -5919,7 +6074,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -5930,7 +6085,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -5941,7 +6096,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -5952,7 +6107,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -5963,7 +6118,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -5974,7 +6129,7 @@ elseif game.PlaceId == 155615604 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -5987,7 +6142,7 @@ elseif game.PlaceId == 155615604 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -5996,16 +6151,21 @@ elseif game.PlaceId == 155615604 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -6017,36 +6177,45 @@ elseif game.PlaceId == 537413528 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -6065,15 +6234,17 @@ elseif game.PlaceId == 537413528 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -6332,21 +6503,21 @@ elseif game.PlaceId == 537413528 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -6387,7 +6558,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -6398,7 +6569,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -6409,7 +6580,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -6420,7 +6591,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -6431,7 +6602,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -6442,7 +6613,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -6453,7 +6624,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -6464,7 +6635,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -6475,7 +6646,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -6486,7 +6657,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -6497,7 +6668,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -6508,7 +6679,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -6519,7 +6690,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -6530,7 +6701,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -6541,7 +6712,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -6552,7 +6723,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -6563,7 +6734,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -6574,7 +6745,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -6585,7 +6756,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -6596,7 +6767,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -6607,7 +6778,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -6618,7 +6789,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -6629,7 +6800,7 @@ elseif game.PlaceId == 537413528 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -6642,7 +6813,7 @@ elseif game.PlaceId == 537413528 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -6651,16 +6822,21 @@ elseif game.PlaceId == 537413528 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -6672,36 +6848,45 @@ elseif game.PlaceId == 8690998110 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -6720,15 +6905,17 @@ elseif game.PlaceId == 8690998110 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -6869,21 +7056,21 @@ elseif game.PlaceId == 8690998110 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -6924,7 +7111,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -6935,7 +7122,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -6946,7 +7133,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -6957,7 +7144,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -6968,7 +7155,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -6979,7 +7166,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -6990,7 +7177,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -7001,7 +7188,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -7012,7 +7199,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -7023,7 +7210,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -7034,7 +7221,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -7045,7 +7232,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -7056,7 +7243,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -7067,7 +7254,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -7078,7 +7265,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -7089,7 +7276,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -7100,7 +7287,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -7111,7 +7298,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -7122,7 +7309,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -7133,7 +7320,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -7144,7 +7331,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -7155,7 +7342,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -7166,7 +7353,7 @@ elseif game.PlaceId == 8690998110 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -7179,7 +7366,7 @@ elseif game.PlaceId == 8690998110 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -7188,16 +7375,21 @@ elseif game.PlaceId == 8690998110 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -7210,36 +7402,45 @@ elseif game.PlaceId == 142823291 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -7258,15 +7459,17 @@ elseif game.PlaceId == 142823291 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -7552,21 +7755,21 @@ elseif game.PlaceId == 142823291 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -7607,7 +7810,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -7618,7 +7821,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -7629,7 +7832,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -7640,7 +7843,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -7651,7 +7854,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -7662,7 +7865,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -7673,7 +7876,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -7684,7 +7887,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -7695,7 +7898,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -7706,7 +7909,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -7717,7 +7920,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -7728,7 +7931,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -7739,7 +7942,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -7750,7 +7953,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -7761,7 +7964,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -7772,7 +7975,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -7783,7 +7986,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -7794,7 +7997,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -7805,7 +8008,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -7816,7 +8019,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -7827,7 +8030,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -7838,7 +8041,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -7849,7 +8052,7 @@ elseif game.PlaceId == 142823291 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -7862,7 +8065,7 @@ elseif game.PlaceId == 142823291 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -7871,16 +8074,21 @@ elseif game.PlaceId == 142823291 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -7893,36 +8101,45 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -7941,15 +8158,17 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -8060,21 +8279,21 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -8115,7 +8334,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -8126,7 +8345,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -8137,7 +8356,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -8148,7 +8367,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -8159,7 +8378,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -8170,7 +8389,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -8181,7 +8400,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -8192,7 +8411,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -8203,7 +8422,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -8214,7 +8433,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -8225,7 +8444,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -8236,7 +8455,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -8247,7 +8466,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -8258,7 +8477,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -8269,7 +8488,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -8280,7 +8499,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -8291,7 +8510,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -8302,7 +8521,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -8313,7 +8532,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -8324,7 +8543,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -8335,7 +8554,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -8346,7 +8565,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -8357,7 +8576,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -8370,7 +8589,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -8379,16 +8598,21 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -8401,36 +8625,45 @@ elseif game.PlaceId == 301549746 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -8466,15 +8699,17 @@ elseif game.PlaceId == 301549746 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -8553,21 +8788,21 @@ elseif game.PlaceId == 301549746 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -8608,7 +8843,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -8619,7 +8854,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -8630,7 +8865,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -8641,7 +8876,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -8652,7 +8887,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -8663,7 +8898,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -8674,7 +8909,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -8685,7 +8920,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -8696,7 +8931,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -8707,7 +8942,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -8718,7 +8953,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -8729,7 +8964,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -8740,7 +8975,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -8751,7 +8986,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -8762,7 +8997,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -8773,7 +9008,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -8784,7 +9019,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -8795,7 +9030,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -8806,7 +9041,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -8817,7 +9052,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -8828,7 +9063,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -8839,7 +9074,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -8850,7 +9085,7 @@ elseif game.PlaceId == 301549746 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -8863,7 +9098,7 @@ elseif game.PlaceId == 301549746 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -8872,16 +9107,21 @@ elseif game.PlaceId == 301549746 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -8893,36 +9133,45 @@ elseif game.PlaceId == 6884319169 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -8998,15 +9247,17 @@ elseif game.PlaceId == 6884319169 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -9094,21 +9345,21 @@ elseif game.PlaceId == 6884319169 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -9149,7 +9400,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -9160,7 +9411,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -9171,7 +9422,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -9182,7 +9433,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -9193,7 +9444,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -9204,7 +9455,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -9215,7 +9466,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -9226,7 +9477,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -9237,7 +9488,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -9248,7 +9499,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -9259,7 +9510,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -9270,7 +9521,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -9281,7 +9532,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -9292,7 +9543,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -9303,7 +9554,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -9314,7 +9565,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -9325,7 +9576,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -9336,7 +9587,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -9347,7 +9598,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -9358,7 +9609,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -9369,7 +9620,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -9380,7 +9631,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -9391,7 +9642,7 @@ elseif game.PlaceId == 6884319169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -9404,7 +9655,7 @@ elseif game.PlaceId == 6884319169 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -9413,16 +9664,21 @@ elseif game.PlaceId == 6884319169 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -9434,36 +9690,45 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -9495,15 +9760,17 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -9591,21 +9858,21 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -9646,7 +9913,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -9657,7 +9924,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -9668,7 +9935,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -9679,7 +9946,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -9690,7 +9957,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -9701,7 +9968,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -9712,7 +9979,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -9723,7 +9990,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -9734,7 +10001,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -9745,7 +10012,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -9756,7 +10023,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -9767,7 +10034,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -9778,7 +10045,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -9789,7 +10056,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -9800,7 +10067,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -9811,7 +10078,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -9822,7 +10089,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -9833,7 +10100,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -9844,7 +10111,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -9855,7 +10122,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -9866,7 +10133,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -9877,7 +10144,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -9888,7 +10155,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -9901,7 +10168,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -9910,16 +10177,21 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -9931,36 +10203,45 @@ elseif game.PlaceId == 189707 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -10023,15 +10304,17 @@ elseif game.PlaceId == 189707 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -10116,21 +10399,21 @@ elseif game.PlaceId == 189707 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -10171,7 +10454,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -10182,7 +10465,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -10193,7 +10476,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -10204,7 +10487,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -10215,7 +10498,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -10226,7 +10509,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -10237,7 +10520,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -10248,7 +10531,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -10259,7 +10542,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -10270,7 +10553,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -10281,7 +10564,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -10292,7 +10575,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -10303,7 +10586,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -10314,7 +10597,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -10325,7 +10608,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -10336,7 +10619,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -10347,7 +10630,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -10358,7 +10641,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -10369,7 +10652,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -10380,7 +10663,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -10391,7 +10674,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -10402,7 +10685,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -10413,7 +10696,7 @@ elseif game.PlaceId == 189707 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -10426,7 +10709,7 @@ elseif game.PlaceId == 189707 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -10435,16 +10718,21 @@ elseif game.PlaceId == 189707 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -10456,36 +10744,45 @@ elseif game.PlaceId == 914010731 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -10567,15 +10864,17 @@ elseif game.PlaceId == 914010731 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -10660,21 +10959,21 @@ elseif game.PlaceId == 914010731 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -10715,7 +11014,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -10726,7 +11025,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -10737,7 +11036,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -10748,7 +11047,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -10759,7 +11058,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -10770,7 +11069,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -10781,7 +11080,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -10792,7 +11091,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -10803,7 +11102,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -10814,7 +11113,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -10825,7 +11124,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -10836,7 +11135,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -10847,7 +11146,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -10858,7 +11157,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -10869,7 +11168,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -10880,7 +11179,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -10891,7 +11190,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -10902,7 +11201,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -10913,7 +11212,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -10924,7 +11223,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -10935,7 +11234,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -10946,7 +11245,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -10957,7 +11256,7 @@ elseif game.PlaceId == 914010731 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -10970,7 +11269,7 @@ elseif game.PlaceId == 914010731 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -10979,16 +11278,21 @@ elseif game.PlaceId == 914010731 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -11000,36 +11304,45 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -11117,15 +11430,17 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -11213,21 +11528,21 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -11268,7 +11583,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -11279,7 +11594,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -11290,7 +11605,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -11301,7 +11616,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -11312,7 +11627,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -11323,7 +11638,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -11334,7 +11649,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -11345,7 +11660,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -11356,7 +11671,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -11367,7 +11682,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -11378,7 +11693,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -11389,7 +11704,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -11400,7 +11715,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -11411,7 +11726,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -11422,7 +11737,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -11433,7 +11748,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -11444,7 +11759,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -11455,7 +11770,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -11466,7 +11781,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -11477,7 +11792,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -11488,7 +11803,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -11499,7 +11814,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -11510,7 +11825,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -11523,7 +11838,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -11532,16 +11847,21 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -11554,36 +11874,45 @@ elseif game.PlaceId == 6284583030 or game.PlaceId == 10321372166 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -11608,15 +11937,17 @@ elseif game.PlaceId == 6284583030 or game.PlaceId == 10321372166 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -11706,36 +12037,45 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -11760,15 +12100,17 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -11853,21 +12195,21 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -11908,7 +12250,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -11919,7 +12261,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -11930,7 +12272,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -11941,7 +12283,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -11952,7 +12294,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -11963,7 +12305,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -11974,7 +12316,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -11985,7 +12327,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -11996,7 +12338,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -12007,7 +12349,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -12018,7 +12360,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -12029,7 +12371,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -12040,7 +12382,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -12051,7 +12393,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -12062,7 +12404,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -12073,7 +12415,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -12084,7 +12426,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -12095,7 +12437,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -12106,7 +12448,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -12117,7 +12459,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -12128,7 +12470,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -12139,7 +12481,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -12150,7 +12492,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -12163,7 +12505,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -12172,16 +12514,21 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -12195,36 +12542,45 @@ elseif game.PlaceId == 3101667897 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -12287,15 +12643,17 @@ elseif game.PlaceId == 3101667897 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -12380,21 +12738,21 @@ elseif game.PlaceId == 3101667897 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -12435,7 +12793,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -12446,7 +12804,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -12457,7 +12815,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -12468,7 +12826,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -12479,7 +12837,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -12490,7 +12848,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -12501,7 +12859,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -12512,7 +12870,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -12523,7 +12881,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -12534,7 +12892,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -12545,7 +12903,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -12556,7 +12914,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -12567,7 +12925,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -12578,7 +12936,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -12589,7 +12947,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -12600,7 +12958,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -12611,7 +12969,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -12622,7 +12980,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -12633,7 +12991,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -12644,7 +13002,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -12655,7 +13013,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -12666,7 +13024,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -12677,7 +13035,7 @@ elseif game.PlaceId == 3101667897 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -12690,7 +13048,7 @@ elseif game.PlaceId == 3101667897 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -12699,16 +13057,21 @@ elseif game.PlaceId == 3101667897 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -12721,36 +13084,45 @@ elseif game.PlaceId == 4924922222 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -12790,15 +13162,17 @@ elseif game.PlaceId == 4924922222 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -12886,21 +13260,21 @@ elseif game.PlaceId == 4924922222 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -12941,7 +13315,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -12952,7 +13326,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -12963,7 +13337,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -12974,7 +13348,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -12985,7 +13359,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -12996,7 +13370,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -13007,7 +13381,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -13018,7 +13392,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -13029,7 +13403,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -13040,7 +13414,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -13051,7 +13425,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -13062,7 +13436,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -13073,7 +13447,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -13084,7 +13458,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -13095,7 +13469,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -13106,7 +13480,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -13117,7 +13491,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -13128,7 +13502,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -13139,7 +13513,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -13150,7 +13524,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -13161,7 +13535,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -13172,7 +13546,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -13183,7 +13557,7 @@ elseif game.PlaceId == 4924922222 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -13196,7 +13570,7 @@ elseif game.PlaceId == 4924922222 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -13205,16 +13579,21 @@ elseif game.PlaceId == 4924922222 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -13226,36 +13605,45 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -13300,15 +13688,17 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -13393,21 +13783,21 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -13448,7 +13838,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -13459,7 +13849,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -13470,7 +13860,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -13481,7 +13871,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -13492,7 +13882,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -13503,7 +13893,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -13514,7 +13904,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -13525,7 +13915,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -13536,7 +13926,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -13547,7 +13937,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -13558,7 +13948,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -13569,7 +13959,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -13580,7 +13970,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -13591,7 +13981,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -13602,7 +13992,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -13613,7 +14003,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -13624,7 +14014,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -13635,7 +14025,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -13646,7 +14036,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -13657,7 +14047,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -13668,7 +14058,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -13679,7 +14069,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -13690,7 +14080,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -13703,7 +14093,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -13712,16 +14102,21 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -13733,36 +14128,45 @@ elseif game.PlaceId == 6441847031 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -13798,15 +14202,17 @@ elseif game.PlaceId == 6441847031 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -13894,21 +14300,21 @@ elseif game.PlaceId == 6441847031 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -13949,7 +14355,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -13960,7 +14366,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -13971,7 +14377,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -13982,7 +14388,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -13993,7 +14399,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -14004,7 +14410,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -14015,7 +14421,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -14026,7 +14432,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -14037,7 +14443,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -14048,7 +14454,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -14059,7 +14465,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -14070,7 +14476,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -14081,7 +14487,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -14092,7 +14498,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -14103,7 +14509,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -14114,7 +14520,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -14125,7 +14531,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -14136,7 +14542,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -14147,7 +14553,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -14158,7 +14564,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -14169,7 +14575,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -14180,7 +14586,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -14191,7 +14597,7 @@ elseif game.PlaceId == 6441847031 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -14204,7 +14610,7 @@ elseif game.PlaceId == 6441847031 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -14213,16 +14619,21 @@ elseif game.PlaceId == 6441847031 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -14234,36 +14645,45 @@ elseif game.PlaceId == 3956818381 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -14331,15 +14751,17 @@ elseif game.PlaceId == 3956818381 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -14418,21 +14840,21 @@ elseif game.PlaceId == 3956818381 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -14473,7 +14895,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -14484,7 +14906,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -14495,7 +14917,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -14506,7 +14928,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -14517,7 +14939,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -14528,7 +14950,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -14539,7 +14961,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -14550,7 +14972,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -14561,7 +14983,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -14572,7 +14994,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -14583,7 +15005,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -14594,7 +15016,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -14605,7 +15027,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -14616,7 +15038,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -14627,7 +15049,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -14638,7 +15060,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -14649,7 +15071,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -14660,7 +15082,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -14671,7 +15093,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -14682,7 +15104,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -14693,7 +15115,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -14704,7 +15126,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -14715,7 +15137,7 @@ elseif game.PlaceId == 3956818381 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -14728,7 +15150,7 @@ elseif game.PlaceId == 3956818381 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -14737,16 +15159,21 @@ elseif game.PlaceId == 3956818381 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -14758,36 +15185,45 @@ elseif game.PlaceId == 12640491155 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -15019,30 +15455,29 @@ elseif game.PlaceId == 12640491155 then
 		end
 	end)
 	VehicleModsSection:NewToggle("Steal Color", "changes color of car to whatever part you click on", function(state)
-			if state then
-				local player = game.Players.LocalPlayer
-				local mouse = player:GetMouse()
-				getgenv().stealcolor = true
-				local cptsOnMouseClick
-
-				cptsOnMouseClick = mouse.Button1Down:Connect(function()
-					if not getgenv().stealcolor then
-						return
+		if state then
+			local player = game.Players.LocalPlayer
+			local mouse = player:GetMouse()
+			getgenv().stealcolor = true
+			local cptsOnMouseClick
+			cptsOnMouseClick = mouse.Button1Down:Connect(function()
+				if not getgenv().stealcolor then
+					return
+				end
+				pcall(function()
+					local object = mouse.Target
+					if object and object.BrickColor then
+						local args = {
+							[1] = "Paint",
+							[2] = object.BrickColor.Color
+						}
+						game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Vehicle"):FireServer(unpack(args))
 					end
-					pcall(function()
-						local object = mouse.Target
-						if object and object.BrickColor then
-							local args = {
-								[1] = "Paint",
-								[2] = object.BrickColor.Color
-							}
-							game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Vehicle"):FireServer(unpack(args))
-						end
-					end)
 				end)
-			else
-				getgenv().stealcolor = false
-			end
+			end)
+		else
+			getgenv().stealcolor = false
+		end
 	end)
 	VehicleModsSection:NewButton("Lock/Unlock Car", "Lock/unlock car", function()
 		local args = {
@@ -15116,9 +15551,10 @@ elseif game.PlaceId == 12640491155 then
 	Misc23Section:NewToggle("Rainbow Name/Description", "Makes your name and description changes to a random color like every 0.5 secs or so, this game has delays for remote funcs", function(state)
 		getgenv().lol225 = state
 		local headd = game:GetService("Players").LocalPlayer.Character:WaitForChild("Head")
-		local name,desc = headd:WaitForChild("PlayerHover").Frame.RPName.Text, headd:WaitForChild("PlayerHover").Frame.Bio.Text
+		local name, desc = headd:WaitForChild("PlayerHover").Frame.RPName.Text, headd:WaitForChild("PlayerHover").Frame.Bio.Text
 		task.spawn(function()
-			while true do wait()
+			while true do
+				wait()
 				if not getgenv().lol225 then
 					break
 				end
@@ -15154,15 +15590,17 @@ elseif game.PlaceId == 12640491155 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -15250,21 +15688,21 @@ elseif game.PlaceId == 12640491155 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -15305,7 +15743,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -15316,7 +15754,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -15327,7 +15765,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -15338,7 +15776,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -15349,7 +15787,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -15360,7 +15798,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -15371,7 +15809,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -15382,7 +15820,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -15393,7 +15831,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -15404,7 +15842,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -15415,7 +15853,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -15426,7 +15864,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -15437,7 +15875,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -15448,7 +15886,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -15459,7 +15897,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -15470,7 +15908,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -15481,7 +15919,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -15492,7 +15930,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -15503,7 +15941,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -15514,7 +15952,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -15525,7 +15963,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -15536,7 +15974,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -15547,7 +15985,7 @@ elseif game.PlaceId == 12640491155 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -15560,7 +15998,7 @@ elseif game.PlaceId == 12640491155 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -15569,16 +16007,21 @@ elseif game.PlaceId == 12640491155 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -15590,36 +16033,45 @@ elseif game.PlaceId == 3527629287 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -15707,15 +16159,17 @@ elseif game.PlaceId == 3527629287 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -15800,21 +16254,21 @@ elseif game.PlaceId == 3527629287 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -15855,7 +16309,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -15866,7 +16320,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -15877,7 +16331,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -15888,7 +16342,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -15899,7 +16353,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -15910,7 +16364,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -15921,7 +16375,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -15932,7 +16386,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -15943,7 +16397,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -15954,7 +16408,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -15965,7 +16419,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -15976,7 +16430,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -15987,7 +16441,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -15998,7 +16452,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -16009,7 +16463,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -16020,7 +16474,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -16031,7 +16485,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -16042,7 +16496,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -16053,7 +16507,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -16064,7 +16518,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -16075,7 +16529,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -16086,7 +16540,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -16097,7 +16551,7 @@ elseif game.PlaceId == 3527629287 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -16110,7 +16564,7 @@ elseif game.PlaceId == 3527629287 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -16119,16 +16573,21 @@ elseif game.PlaceId == 3527629287 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -16140,36 +16599,45 @@ elseif game.PlaceId == 9865958871 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -16203,15 +16671,17 @@ elseif game.PlaceId == 9865958871 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -16299,21 +16769,21 @@ elseif game.PlaceId == 9865958871 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -16354,7 +16824,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -16365,7 +16835,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -16376,7 +16846,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -16387,7 +16857,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -16398,7 +16868,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -16409,7 +16879,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -16420,7 +16890,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -16431,7 +16901,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -16442,7 +16912,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -16453,7 +16923,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -16464,7 +16934,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -16475,7 +16945,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -16486,7 +16956,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -16497,7 +16967,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -16508,7 +16978,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -16519,7 +16989,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -16530,7 +17000,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -16541,7 +17011,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -16552,7 +17022,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -16563,7 +17033,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -16574,7 +17044,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -16585,7 +17055,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -16596,7 +17066,7 @@ elseif game.PlaceId == 9865958871 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -16609,7 +17079,7 @@ elseif game.PlaceId == 9865958871 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -16618,16 +17088,21 @@ elseif game.PlaceId == 9865958871 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -16639,36 +17114,45 @@ elseif game.PlaceId == 3623096087 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -16703,15 +17187,17 @@ elseif game.PlaceId == 3623096087 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -16793,21 +17279,21 @@ elseif game.PlaceId == 3623096087 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -16848,7 +17334,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -16859,7 +17345,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -16870,7 +17356,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -16881,7 +17367,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -16892,7 +17378,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -16903,7 +17389,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -16914,7 +17400,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -16925,7 +17411,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -16936,7 +17422,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -16947,7 +17433,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -16958,7 +17444,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -16969,7 +17455,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -16980,7 +17466,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -16991,7 +17477,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -17002,7 +17488,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -17013,7 +17499,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -17024,7 +17510,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -17035,7 +17521,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -17046,7 +17532,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -17057,7 +17543,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -17068,7 +17554,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -17079,7 +17565,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -17090,7 +17576,7 @@ elseif game.PlaceId == 3623096087 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -17103,7 +17589,7 @@ elseif game.PlaceId == 3623096087 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -17112,16 +17598,21 @@ elseif game.PlaceId == 3623096087 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -17148,15 +17639,17 @@ elseif game.PlaceId == 5796917097 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -17232,15 +17725,17 @@ elseif game.PlaceId == 185655149 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -17265,42 +17760,51 @@ elseif game.PlaceId == 14426444782 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewToggle("Auto Farm", "must be in first person or shift lock", function(state)
-		Library.Notify("Warning","Must be in first person or shift lock",20)
+		Library.Notify("Warning", "Must be in first person or shift lock", 20)
 		getgenv().lol = state
 		for _, tool in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 			if tool:IsA("Tool") and tool:FindFirstChild("combatClient") then
@@ -17406,15 +17910,17 @@ elseif game.PlaceId == 14426444782 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -17496,21 +18002,21 @@ elseif game.PlaceId == 14426444782 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -17551,7 +18057,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -17562,7 +18068,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -17573,7 +18079,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -17584,7 +18090,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -17595,7 +18101,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -17606,7 +18112,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -17617,7 +18123,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -17628,7 +18134,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -17639,7 +18145,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -17650,7 +18156,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -17661,7 +18167,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -17672,7 +18178,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -17683,7 +18189,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -17694,7 +18200,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -17705,7 +18211,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -17716,7 +18222,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -17727,7 +18233,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -17738,7 +18244,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -17749,7 +18255,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -17760,7 +18266,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -17771,7 +18277,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -17782,7 +18288,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -17793,7 +18299,7 @@ elseif game.PlaceId == 14426444782 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -17806,7 +18312,7 @@ elseif game.PlaceId == 14426444782 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -17815,16 +18321,21 @@ elseif game.PlaceId == 14426444782 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -17836,36 +18347,45 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local doorsesp_color = Color3.fromRGB(255, 150, 200)
 	local cabnietsesp_color = Color3.fromRGB(19, 211, 13)
@@ -18564,7 +19084,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 		MainSection:NewButton("Unlock Library Padlock", "Instantly inputs the Padlock code for Room 50. Can guess up to 3 digits. Requires 1 Player to have the hint paper.", function()
 			local Paper = workspace:FindFirstChild("LibraryHintPaper", true) or workspace:FindFirstChild("LibraryHintPaperHard", true) or Players:FindFirstChild("LibraryHintPaper", true) or Players:FindFirstChild("LibraryHintPaperHard", true)
 			if not Paper then
-				Library.Notify("Someone needs to have the Hint Paper to use this.", "",5)
+				Library.Notify("Someone needs to have the Hint Paper to use this.", "", 5)
 				return
 			end
 			local HintsNeeded = Floor.Value == "Fools" and 8 or 3
@@ -18583,7 +19103,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				end
 			end
 			if Hints < HintsNeeded then
-				Library.Notify("You need to collect at least " .. HintsNeeded - Hints .. " more correct hint" .. (Hints ~= 2 and "s" or "") .. " to use this.", "",5)
+				Library.Notify("You need to collect at least " .. HintsNeeded - Hints .. " more correct hint" .. (Hints ~= 2 and "s" or "") .. " to use this.", "", 5)
 				return
 			end
 			local t = {}
@@ -18972,15 +19492,17 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -19062,21 +19584,21 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -19117,7 +19639,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -19128,7 +19650,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -19139,7 +19661,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -19150,7 +19672,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -19161,7 +19683,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -19172,7 +19694,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -19183,7 +19705,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -19194,7 +19716,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -19205,7 +19727,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -19216,7 +19738,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -19227,7 +19749,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -19238,7 +19760,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -19249,7 +19771,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -19260,7 +19782,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -19271,7 +19793,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -19282,7 +19804,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -19293,7 +19815,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -19304,7 +19826,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -19315,7 +19837,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -19326,7 +19848,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -19337,7 +19859,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -19348,7 +19870,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -19359,7 +19881,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -19372,7 +19894,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -19381,16 +19903,21 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -19402,50 +19929,59 @@ elseif game.PlaceId == 205224386 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
 	MainSection:NewButton("Tag all", "must be It", function()
 		if game:GetService("ReplicatedStorage"):WaitForChild("GameData"):WaitForChild("It").Value == game:GetService("Players").LocalPlayer.Name then
-			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+			for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 				if v ~= game:GetService("Players").LocalPlayer then
 					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.Character:WaitForChild("HumanoidRootPart").CFrame
 					task.wait(0.05)
 				end
 			end
 		else
-			Library.Notify("Not It","Bro your not It lol",6)
+			Library.Notify("Not It", "Bro your not It lol", 6)
 		end
 	end)
 
@@ -19463,15 +19999,17 @@ elseif game.PlaceId == 205224386 then
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -19553,21 +20091,21 @@ elseif game.PlaceId == 205224386 then
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -19608,7 +20146,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -19619,7 +20157,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -19630,7 +20168,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -19641,7 +20179,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -19652,7 +20190,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -19663,7 +20201,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -19674,7 +20212,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -19685,7 +20223,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -19696,7 +20234,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -19707,7 +20245,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -19718,7 +20256,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -19729,7 +20267,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -19740,7 +20278,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -19751,7 +20289,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -19762,7 +20300,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -19773,7 +20311,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -19784,7 +20322,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -19795,7 +20333,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -19806,7 +20344,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -19817,7 +20355,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -19828,7 +20366,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -19839,7 +20377,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -19850,7 +20388,7 @@ elseif game.PlaceId == 205224386 then
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -19863,7 +20401,7 @@ elseif game.PlaceId == 205224386 then
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -19872,16 +20410,21 @@ elseif game.PlaceId == 205224386 then
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -19893,36 +20436,45 @@ else
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile then
-		Library.Notify("Warning",'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?',35,function(val)
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 			end
-		end,{"Yes Please!","Nah"})
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
 	end
 	if iswave then
-		Library.Notify("Warning",'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)',35,function(val)
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
 			if val == true then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
 			else
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
 			end
-		end,{"Enable Fix for file functions","Disable File/Folder functions"})
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
 	end
 	if queueteleport then
-		Library.Notify("Warning","Would you like to bring this script with you on teleport/ to the next game?",15,function(val)
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
 			if val == true then
 				
 			else
 				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
 			end
-		end,{"Yes","No thanks."})
+		end, {
+			"Yes",
+			"No thanks."
+		})
 	end
 	if writefile and readfile and makefolder then
 		
 	else
-		Library.Notify("Warning","Your Executor does not support saving files, Settings will not save.",15)
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Discord = Window:NewTab("Discords")
@@ -19939,15 +20491,17 @@ else
 				Body = HttpService:JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = HttpService:GenerateGUID(false),
-					args = {code = 'xwy5Cu62Vw'}
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
 				})
 			})
-			Library.Notify("if nothing happened","Make sure u have discord app open",5)
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
 		elseif everyClipboard then
-				everyClipboard("https://discord.gg/xwy5Cu62Vw")
-				Library.Notify("Copied to Clipboard","",5)
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
 		else
-			Library.Notify("DOG SHIT EXECUTOR","https://discord.gg/xwy5Cu62Vw",5)
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
 		end
 	end)
 	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
@@ -20049,21 +20603,21 @@ else
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
 		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end)
-	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999,1, function(v)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
 	if IsOnMobile then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
-			Library.Notify("Shift Lock Enabled","Gui should pop up on your right",5)
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
 		end)
 	else
 		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
 			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
 			if value then
-				Library.Notify("Shift Lock Enabled","Just press shift or enable it in roblox settings",5)
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
 			else
-				Library.Notify("Shift Lock Disabled","",5)
+				Library.Notify("Shift Lock Disabled", "", 5)
 			end
 		end)
 	end
@@ -20104,7 +20658,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
@@ -20115,7 +20669,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
@@ -20126,7 +20680,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
@@ -20137,7 +20691,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
@@ -20148,7 +20702,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
@@ -20159,7 +20713,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
@@ -20170,7 +20724,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
@@ -20181,7 +20735,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
@@ -20192,7 +20746,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
@@ -20203,7 +20757,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
@@ -20214,7 +20768,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
@@ -20225,7 +20779,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
@@ -20236,7 +20790,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
@@ -20247,7 +20801,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
@@ -20258,7 +20812,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
@@ -20269,7 +20823,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
@@ -20280,7 +20834,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
@@ -20291,7 +20845,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
@@ -20302,7 +20856,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
@@ -20313,7 +20867,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
@@ -20324,7 +20878,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
@@ -20335,7 +20889,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
@@ -20346,7 +20900,7 @@ else
 				task.wait()
 				loadsettings()
 			else
-				Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
 		end
 	end)
@@ -20359,7 +20913,7 @@ else
 			task.wait()
 			loadsettings()
 		else
-			Library.Notify("DOG SHIT EXECUTOR","Doesnt have file functions lol",5)
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -20368,16 +20922,21 @@ else
 			SSSSSS = select(1, identifyexecutor())
 		end
 		if SSSSSS == "Krampus" then
-			saveplace({FileName = "SkyHubSavedGame", CopyToClipboard = true})
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
 			return
 		end
 		if saveplace then
-			saveplace({FileName = "SkyHubSavedGame"})
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
 		end
 		if saveinstance then
 			saveinstance()
 		else
-			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2","",10)
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
 		end
 	end)
 	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
@@ -20525,6 +21084,720 @@ else
 	local SearchSection = Search:NewSection("Search")
 	SearchSection:NewButton("Search", "Searches online for scripts using scriptblox.com", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/ScriptSearcher"))()
+	end)
+	SearchSection:NewButton("Search 2", "Searches online for scripts using scriptblox.com", function()
+		if game:GetService("CoreGui"):FindFirstChild("BloxBook") then
+			game:GetService("CoreGui"):FindFirstChild("BloxBook"):Destroy()
+		end
+		UserInputService = game:GetService("UserInputService")
+		BloxBook = Instance.new("ScreenGui")
+		MainFrame = Instance.new("Frame")
+		UICorner = Instance.new("UICorner")
+		TopBarFrame = Instance.new("Frame")
+		UICorner_2 = Instance.new("UICorner")
+		SearchBox = Instance.new("TextBox")
+		UICorner_3 = Instance.new("UICorner")
+		ScriptListFrame = Instance.new("ScrollingFrame")
+		UIPadding = Instance.new("UIPadding")
+		Scripts = Instance.new("Folder")
+		UIGridLayout = Instance.new("UIGridLayout")
+		ScriptFrame = Instance.new("Frame")
+		ScriptTitle = Instance.new("TextLabel")
+		ScriptAuthor = Instance.new("TextLabel")
+		ScriptGame = Instance.new("TextLabel")
+		VerifiedScriptFrame = Instance.new("Frame")
+		ScriptTitle_2 = Instance.new("TextLabel")
+		VerifiedIcon = Instance.new("ImageLabel")
+		ScriptAuthor_2 = Instance.new("TextLabel")
+		ScriptGame_2 = Instance.new("TextLabel")
+		Info = Instance.new("Frame")
+		PreviewImage = Instance.new("ImageLabel")
+		UICorner_14 = Instance.new("UICorner")
+		Author = Instance.new("Frame")
+		InfoBoxAuthor = Instance.new("TextLabel")
+		ProfilePicture = Instance.new("ImageLabel")
+		UICorner_15 = Instance.new("UICorner")
+		Title_2 = Instance.new("Frame")
+		InfoBoxTitle = Instance.new("TextLabel")
+		Game = Instance.new("TextLabel")
+		Description = Instance.new("TextLabel")
+		Comments = Instance.new("Frame")
+		Inner = Instance.new("Frame")
+		UICorner_21 = Instance.new("UICorner")
+		Line = Instance.new("Frame")
+		CommentsText = Instance.new("TextLabel")
+		Comments_2 = Instance.new("ScrollingFrame")
+		Comment = Instance.new("Frame")
+		Content = Instance.new("TextLabel")
+		Author_2 = Instance.new("TextLabel")
+		ProfilePicture_2 = Instance.new("ImageLabel")
+		UICorner_22 = Instance.new("UICorner")
+		UIListLayout_3 = Instance.new("UIListLayout")
+		CloseFrame = Instance.new("ImageButton")
+		PreviewImage_2 = Instance.new("ImageLabel")
+		PreviewImageUICorner_2 = Instance.new("UICorner")
+		TopBar = Instance.new("Frame")
+		TopBarUICorner = Instance.new("UICorner")
+		SecondProfile = Instance.new("ImageLabel")
+		SecondProfileUICorner_2 = Instance.new("UICorner")
+		KeySystem = Instance.new("TextLabel")
+		KeySystemUICorner = Instance.new("UICorner")
+		KeySystem_2 = Instance.new("TextLabel")
+		KeySystemUICorner_2 = Instance.new("UICorner")
+		OpenButton = Instance.new("ImageButton")
+		OpenButtonUICorner = Instance.new("UICorner")
+		CloseButton = Instance.new("ImageButton")
+		ViewsLabel = Instance.new("TextLabel")
+		ViewsLabelUICorner = Instance.new("UICorner")
+		ViewsLabel_2 = Instance.new("TextLabel")
+		ViewsLabelUICorner_2 = Instance.new("UICorner")
+		ViewEye = Instance.new("ImageLabel")
+		ViewEye_2 = Instance.new("ImageLabel")
+		ViewEyeUICorner = Instance.new("UICorner")
+		ViewEyeUICorner_2 = Instance.new("UICorner")
+		Share = Instance.new("ImageButton")
+		ShareUICorner = Instance.new("UICorner")
+		Share_2 = Instance.new("ImageButton")
+		ShareUICorner_2 = Instance.new("UICorner")
+		Description_2 = Instance.new("TextLabel")
+		InfoBox = Instance.new("ScrollingFrame")
+		InfoBoxUICorner = Instance.new("UICorner")
+		OpenInfo = Instance.new("TextButton")
+		OpenInfo_2 = Instance.new("TextButton")
+		CloseInfoBox = Instance.new("TextButton")
+		InfoBox.Visible = false
+		BloxBook.Name = "BloxBook"
+		BloxBook.Parent = game.CoreGui
+		BloxBook.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+		game.CoreGui.BloxBook.Enabled = true
+		OpenButton.Name = "OpenButton"
+		OpenButton.Parent = BloxBook
+		OpenButton.AnchorPoint = Vector2.new(0.5, 0.5)
+		OpenButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		OpenButton.Position = UDim2.new(0.5, 0, 0, 0)
+		OpenButton.Size = UDim2.new(0, 45, 0, 45)
+		OpenButton.Image = "rbxassetid://17117775928"
+		OpenButton.AutoButtonColor = false
+		OpenButtonUICorner.CornerRadius = UDim.new(0, 15)
+		OpenButtonUICorner.Parent = OpenButton
+		OpenButton.Visible = false
+		MainFrame.Name = "MainFrame"
+		MainFrame.Parent = BloxBook
+		MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+		MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+		MainFrame.Size = UDim2.new(0, 400, 0, 450)
+		MainFrame.ZIndex = 2
+		UICorner.CornerRadius = UDim.new(0, 3)
+		UICorner.Parent = MainFrame
+		TopBar.Name = "TopBar"
+		TopBar.Parent = MainFrame
+		TopBar.AnchorPoint = Vector2.new(0.5, 0.5)
+		TopBar.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		TopBar.Position = UDim2.new(0.5, 0, 0.04, 0)
+		TopBar.Size = UDim2.new(0, 400, 0, 40)
+		TopBarUICorner.CornerRadius = UDim.new(0, 3)
+		TopBarUICorner.Parent = TopBar
+		CloseInfoBox.Name = "CloseInfoBox"
+		CloseInfoBox.Parent = MainFrame
+		CloseInfoBox.BackgroundTransparency = 1
+		CloseInfoBox.Position = UDim2.new(0, 2, 0, 1)
+		CloseInfoBox.Size = UDim2.new(0, 40, 0, 40)
+		CloseInfoBox.Font = Enum.Font.Gotham
+		CloseInfoBox.Text = "<--"
+		CloseInfoBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+		CloseInfoBox.TextSize = 30
+		CloseInfoBox.Visible = false
+		InfoBox.Name = "InfoBox"
+		InfoBox.Parent = MainFrame
+		InfoBox.Active = true
+		InfoBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		InfoBox.BorderSizePixel = 0
+		InfoBox.Position = UDim2.new(0, 0, 0.08, 0)
+		InfoBox.Size = UDim2.new(0, 400, 0, 414)
+		InfoBox.ZIndex = 3
+		InfoBox.CanvasSize = UDim2.new(0, 0, 0, 0)
+		InfoBox.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
+		InfoBoxUICorner.CornerRadius = UDim.new(0, 3)
+		InfoBoxUICorner.Parent = InfoBox
+		SearchBox.Name = "SearchBox"
+		SearchBox.Parent = MainFrame
+		SearchBox.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+		SearchBox.Position = UDim2.new(0, 5, 0, 5)
+		SearchBox.Size = UDim2.new(0, 250, 0, 20)
+		SearchBox.ClearTextOnFocus = false
+		SearchBox.Font = Enum.Font.Gotham
+		SearchBox.PlaceholderText = "Tags"
+		SearchBox.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+		SearchBox.Text = ""
+		SearchBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+		SearchBox.TextScaled = true
+		SearchBox.TextSize = 14.000
+		SearchBox.TextWrapped = true
+		spawn(function()
+			while wait() do
+				SearchBox.PlaceholderText = "Script name"
+				wait(2)
+				SearchBox.PlaceholderText = "Author name"
+				wait(2)
+				SearchBox.PlaceholderText = "Tags"
+				wait(2)
+				SearchBox.PlaceholderText = "Press 'F' to search"
+				wait(2)
+				SearchBox.PlaceholderText = "Press 'C' to clear TextBox"
+				wait(2)
+				SearchBox.PlaceholderText = "You can enter here links"
+				wait(2)
+			end
+		end)
+		UICorner_3.CornerRadius = UDim.new(0, 10)
+		UICorner_3.Parent = SearchBox
+		CloseButton.Name = "CloseButton"
+		CloseButton.Parent = MainFrame
+		CloseButton.AnchorPoint = Vector2.new(0.5, 0.5)
+		CloseButton.BackgroundTransparency = 1
+		CloseButton.Position = UDim2.new(0, 380, 0, 15)
+		CloseButton.Size = UDim2.new(0, 40, 0, 40)
+		CloseButton.Image = "rbxassetid://17094492732"
+		ScriptListFrame.Name = "ScriptListFrame"
+		ScriptListFrame.Parent = MainFrame
+		ScriptListFrame.Active = true
+		ScriptListFrame.BackgroundTransparency = 1
+		ScriptListFrame.BorderSizePixel = 0
+		ScriptListFrame.Position = UDim2.new(0, 0, 0.08, 0)
+		ScriptListFrame.Size = UDim2.new(0, 415, 0, 414)
+		ScriptListFrame.ZIndex = 2
+		ScriptListFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+		UIPadding.Parent = ScriptListFrame
+		UIPadding.PaddingBottom = UDim.new(0, 0)
+		UIPadding.PaddingLeft = UDim.new(0, 0)
+		UIPadding.PaddingRight = UDim.new(0, 0)
+		UIPadding.PaddingTop = UDim.new(0, 0)
+		Scripts.Name = "Scripts"
+		Scripts.Parent = ScriptListFrame
+		UIGridLayout.Parent = Scripts
+		UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		UIGridLayout.CellPadding = UDim2.new(0, 1, 0, 1)
+		UIGridLayout.CellSize = UDim2.new(0, 400, 0, 700)
+		ScriptFrame.Name = "ScriptFrame"
+		ScriptFrame.Parent = Scripts
+		ScriptFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		ScriptFrame.Size = UDim2.new(0, 370, 0, 700)
+		ScriptFrame.BorderSizePixel = 0
+		ScriptTitle.Name = "ScriptTitle"
+		ScriptTitle.Parent = ScriptFrame
+		ScriptTitle.BackgroundTransparency = 1
+		ScriptTitle.Position = UDim2.new(0, 0, 0, 305)
+		ScriptTitle.Size = UDim2.new(0, 200, 0, 25)
+		ScriptTitle.Font = Enum.Font.Gotham
+		ScriptTitle.Text = "Script Title"
+		ScriptTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ScriptTitle.TextScaled = true
+		ScriptTitle.TextSize = 14.000
+		ScriptTitle.TextWrapped = true
+		ScriptTitle.TextXAlignment = Enum.TextXAlignment.Left
+		ScriptAuthor.Name = "ScriptAuthor"
+		ScriptAuthor.Parent = ScriptFrame
+		ScriptAuthor.BackgroundTransparency = 1
+		ScriptAuthor.Position = UDim2.new(0, 42, 0, 340)
+		ScriptAuthor.Size = UDim2.new(0, 200, 0, 25)
+		ScriptAuthor.Font = Enum.Font.Gotham
+		ScriptAuthor.Text = "ScriptAuthor"
+		ScriptAuthor.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ScriptAuthor.TextSize = 14.000
+		ScriptAuthor.TextWrapped = true
+		ScriptAuthor.TextXAlignment = Enum.TextXAlignment.Left
+		ScriptGame.Name = "ScriptGame"
+		ScriptGame.Parent = ScriptFrame
+		ScriptGame.BackgroundTransparency = 1
+		ScriptGame.Position = UDim2.new(0, 0, 0, 375)
+		ScriptGame.Size = UDim2.new(0, 280, 0, 25)
+		ScriptGame.Font = Enum.Font.Gotham
+		ScriptGame.Text = "Game"
+		ScriptGame.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ScriptGame.TextSize = 14.000
+		ScriptGame.TextWrapped = true
+		ScriptGame.TextXAlignment = Enum.TextXAlignment.Left
+		VerifiedScriptFrame.Name = "VerifiedScriptFrame"
+		VerifiedScriptFrame.Parent = Scripts
+		VerifiedScriptFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		VerifiedScriptFrame.Size = UDim2.new(0, 300, 0, 150)
+		VerifiedScriptFrame.BorderSizePixel = 0
+		ScriptTitle_2.Name = "ScriptTitle"
+		ScriptTitle_2.Parent = VerifiedScriptFrame
+		ScriptTitle_2.BackgroundTransparency = 1
+		ScriptTitle_2.Position = ScriptTitle.Position
+		ScriptTitle_2.Size = ScriptTitle.Size
+		ScriptTitle_2.Font = Enum.Font.Gotham
+		ScriptTitle_2.Text = "Script Title"
+		ScriptTitle_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ScriptTitle_2.TextScaled = true
+		ScriptTitle_2.TextSize = 14.000
+		ScriptTitle_2.TextWrapped = true
+		ScriptTitle_2.TextXAlignment = Enum.TextXAlignment.Left
+		ScriptAuthor_2.Name = "ScriptAuthor"
+		ScriptAuthor_2.Parent = VerifiedScriptFrame
+		ScriptAuthor_2.BackgroundTransparency = 1
+		ScriptAuthor_2.Position = ScriptAuthor.Position
+		ScriptAuthor_2.Size = ScriptAuthor.Size
+		ScriptAuthor_2.Font = Enum.Font.Gotham
+		ScriptAuthor_2.Text = "ScriptAuthor"
+		ScriptAuthor_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ScriptAuthor_2.TextSize = 14.000
+		ScriptAuthor_2.TextWrapped = true
+		ScriptAuthor_2.TextXAlignment = Enum.TextXAlignment.Left
+		ScriptGame_2.Name = "ScriptGame"
+		ScriptGame_2.Parent = VerifiedScriptFrame
+		ScriptGame_2.BackgroundTransparency = 1
+		ScriptGame_2.Position = ScriptGame.Position
+		ScriptGame_2.Size = ScriptGame.Size
+		ScriptGame_2.Font = Enum.Font.Gotham
+		ScriptGame_2.Text = "Game"
+		ScriptGame_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ScriptGame_2.TextSize = 14.000
+		ScriptGame_2.TextWrapped = true
+		ScriptGame_2.TextXAlignment = Enum.TextXAlignment.Left
+		Info.Name = "Info"
+		Info.Parent = InfoBox
+		Info.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Info.BackgroundTransparency = 1
+		Info.Size = UDim2.new(0, 995, 0, 207)
+		PreviewImage.Name = "PreviewImage"
+		PreviewImage.Parent = ScriptFrame
+		PreviewImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		PreviewImage.BackgroundTransparency = 1
+		PreviewImage.Position = UDim2.new(0, 50, 0, 5)
+		PreviewImage.Size = UDim2.new(0, 300, 0, 300)
+		PreviewImage.Image = "rbxassetid://17093295752"
+		UICorner_14.CornerRadius = UDim.new(0, 24)
+		UICorner_14.Parent = PreviewImage
+		PreviewImage_2.Name = "PreviewImage"
+		PreviewImage_2.Parent = VerifiedScriptFrame
+		PreviewImage_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		PreviewImage_2.BackgroundTransparency = 1
+		PreviewImage_2.Position = UDim2.new(0, 50, 0, 5)
+		PreviewImage_2.Size = UDim2.new(0, 300, 0, 300)
+		PreviewImage_2.Image = "rbxassetid://17093295752"
+		PreviewImageUICorner_2.CornerRadius = UDim.new(0, 24)
+		PreviewImageUICorner_2.Parent = PreviewImage_2
+		ProfilePicture.Name = "ProfilePicture"
+		ProfilePicture.Parent = ScriptFrame
+		ProfilePicture.BackgroundTransparency = 1
+		ProfilePicture.Position = UDim2.new(0, 1, 0, 330)
+		ProfilePicture.Size = UDim2.new(0, 40, 0, 40)
+		ProfilePicture.Image = "rbxassetid://17093333262"
+		UICorner_15.CornerRadius = UDim.new(1, 0)
+		UICorner_15.Parent = ProfilePicture
+		SecondProfile.Name = "SecondProfile"
+		SecondProfile.Parent = VerifiedScriptFrame
+		SecondProfile.BackgroundTransparency = 1
+		SecondProfile.Position = UDim2.new(0, 1, 0, 330)
+		SecondProfile.Size = UDim2.new(0, 40, 0, 40)
+		SecondProfile.Image = "rbxassetid://17093333262"
+		SecondProfileUICorner_2.CornerRadius = UDim.new(1, 0)
+		SecondProfileUICorner_2.Parent = SecondProfile
+		KeySystem.Name = "KeySystem"
+		KeySystem.Parent = ScriptFrame
+		KeySystem.BackgroundColor3 = Color3.fromRGB(242, 191, 33)
+		KeySystem.Position = UDim2.new(0, 250, 0, 270)
+		KeySystem.Size = UDim2.new(0, 55, 0, 25)
+		KeySystem.Font = Enum.Font.Gotham
+		KeySystem.Text = "Key System"
+		KeySystem.TextColor3 = Color3.fromRGB(0, 0, 0)
+		KeySystemUICorner.CornerRadius = UDim.new(0, 10)
+		KeySystemUICorner.Parent = KeySystem
+		ViewsLabel.Name = "ViewsLabel"
+		ViewsLabel.Parent = ScriptFrame
+		ViewsLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ViewsLabel.Position = UDim2.new(0, 55, 0, 270)
+		ViewsLabel.Size = UDim2.new(0, 60, 0, 25)
+		ViewsLabel.Font = Enum.Font.Gotham
+		ViewsLabel.Text = "V"
+		ViewsLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+		ViewsLabel.TextScaled = true
+		ViewsLabelUICorner.CornerRadius = UDim.new(0, 10)
+		ViewsLabelUICorner.Parent = ViewsLabel
+		ViewsLabel_2.Name = "ViewsLabel"
+		ViewsLabel_2.Parent = VerifiedScriptFrame
+		ViewsLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ViewsLabel_2.Position = UDim2.new(0, 55, 0, 270)
+		ViewsLabel_2.Size = UDim2.new(0, 60, 0, 25)
+		ViewsLabel_2.Font = Enum.Font.Gotham
+		ViewsLabel_2.Text = "V"
+		ViewsLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+		ViewsLabel_2.TextScaled = true
+		ViewsLabelUICorner_2.CornerRadius = UDim.new(0, 10)
+		ViewsLabelUICorner_2.Parent = ViewsLabel_2
+		ViewEye.Name = "ViewEye"
+		ViewEye.Parent = ScriptFrame
+		ViewEye.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ViewEye.Position = UDim2.new(0, 120, 0, 272)
+		ViewEye.Size = UDim2.new(0, 25, 0, 20)
+		ViewEye.Image = "rbxassetid://17094518883"
+		ViewEyeUICorner.CornerRadius = UDim.new(0, 10)
+		ViewEyeUICorner.Parent = ViewEye
+		ViewEye_2.Name = "ViewEye"
+		ViewEye_2.Parent = VerifiedScriptFrame
+		ViewEye_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ViewEye_2.Position = UDim2.new(0, 120, 0, 272)
+		ViewEye_2.Size = UDim2.new(0, 25, 0, 20)
+		ViewEye_2.Image = "rbxassetid://17094518883"
+		ViewEyeUICorner_2.CornerRadius = UDim.new(0, 10)
+		ViewEyeUICorner_2.Parent = ViewEye_2
+		KeySystem_2.Name = "KeySystem"
+		KeySystem_2.Parent = VerifiedScriptFrame
+		KeySystem_2.BackgroundColor3 = Color3.fromRGB(242, 191, 33)
+		KeySystem_2.Position = UDim2.new(0, 250, 0, 270)
+		KeySystem_2.Size = UDim2.new(0, 55, 0, 25)
+		KeySystem_2.Font = Enum.Font.Gotham
+		KeySystem_2.Text = "Key System"
+		KeySystem_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+		KeySystemUICorner_2.CornerRadius = UDim.new(0, 10)
+		KeySystemUICorner_2.Parent = KeySystem_2
+		VerifiedIcon.Name = "VerifiedIcon"
+		VerifiedIcon.Parent = PreviewImage_2
+		VerifiedIcon.BackgroundTransparency = 1
+		VerifiedIcon.Position = UDim2.new(0, 250, 0, 250)
+		VerifiedIcon.Size = UDim2.new(0, 55, 0, 40)
+		VerifiedIcon.Image = "rbxassetid://15621211889"
+		Share.Name = "Share"
+		Share.Parent = ScriptFrame
+		Share.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Share.Position = UDim2.new(0, 310, 0, 8)
+		Share.Size = UDim2.new(0, 30, 0, 30)
+		Share.Image = "rbxassetid://17094508690"
+		Share.AutoButtonColor = false
+		ShareUICorner.CornerRadius = UDim.new(0, 10)
+		ShareUICorner.Parent = Share
+		Description.Name = "Description"
+		Description.Parent = ScriptFrame
+		Description.BackgroundTransparency = 1
+		Description.Position = UDim2.new(0, 0, 0, 400)
+		Description.Size = UDim2.new(0, 400, 0, 280)
+		Description.Font = Enum.Font.Gotham
+		Description.Text = "Desc"
+		Description.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Description.TextSize = 20.000
+		Description.TextWrapped = true
+		Description.TextScaled = true
+		Description.TextXAlignment = Enum.TextXAlignment.Left
+		Description.TextYAlignment = Enum.TextYAlignment.Top
+		Description.MaxVisibleGraphemes = 1500
+		Description_2.Name = "Description"
+		Description_2.Parent = VerifiedScriptFrame
+		Description_2.BackgroundTransparency = 1
+		Description_2.Position = UDim2.new(0, 0, 0, 400)
+		Description_2.Size = UDim2.new(0, 400, 0, 280)
+		Description_2.Font = Enum.Font.Gotham
+		Description_2.Text = "Desc"
+		Description_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Description_2.TextSize = 20.000
+		Description_2.TextWrapped = true
+		Description_2.TextScaled = true
+		Description_2.TextXAlignment = Enum.TextXAlignment.Left
+		Description_2.TextYAlignment = Enum.TextYAlignment.Top
+		Description_2.MaxVisibleGraphemes = 1500
+		OpenInfo.Name = "OpenInfo"
+		OpenInfo.Parent = ScriptFrame
+		OpenInfo.BackgroundTransparency = 1
+		OpenInfo.Position = UDim2.new(0, 280, 0, 670)
+		OpenInfo.Size = UDim2.new(0, 100, 0, 25)
+		OpenInfo.Font = Enum.Font.Gotham
+		OpenInfo.Text = "Comments -->"
+		OpenInfo.TextColor3 = Color3.fromRGB(255, 255, 255)
+		OpenInfo.AutoButtonColor = false
+		OpenInfo.TextSize = 20
+		OpenInfo_2.Name = "OpenInfo"
+		OpenInfo_2.Parent = VerifiedScriptFrame
+		OpenInfo_2.BackgroundTransparency = 1
+		OpenInfo_2.Position = UDim2.new(0, 280, 0, 670)
+		OpenInfo_2.Size = UDim2.new(0, 100, 0, 25)
+		OpenInfo_2.Font = Enum.Font.Gotham
+		OpenInfo_2.Text = "Comments -->"
+		OpenInfo_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+		OpenInfo_2.AutoButtonColor = false
+		OpenInfo_2.TextSize = 20
+		Share_2.Name = "Share"
+		Share_2.Parent = VerifiedScriptFrame
+		Share_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Share_2.Position = UDim2.new(0, 310, 0, 8)
+		Share_2.Size = UDim2.new(0, 30, 0, 30)
+		Share_2.Image = "rbxassetid://17094508690"
+		Share_2.AutoButtonColor = false
+		ShareUICorner_2.CornerRadius = UDim.new(0, 10)
+		ShareUICorner_2.Parent = Share_2
+		Comments.Name = "Comments"
+		Comments.Parent = InfoBox
+		Comments.BackgroundTransparency = 1
+		Comments.Size = UDim2.new(0, 400, 0, 414)
+		Inner.Name = "Inner"
+		Inner.Parent = Comments
+		Inner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Inner.Position = UDim2.new(0, 0, 0, 10)
+		Inner.BackgroundTransparency = 1
+		Inner.Size = UDim2.new(0, 400, 0, 414)
+		UICorner_21.CornerRadius = UDim.new(0, 12)
+		UICorner_21.Parent = Inner
+		CommentsText.Name = "CommentsText"
+		CommentsText.Parent = Inner
+		CommentsText.BackgroundTransparency = 1
+		CommentsText.Size = UDim2.new(0, 400, 0, 25)
+		CommentsText.Font = Enum.Font.GothamBold
+		CommentsText.Text = "Comments"
+		CommentsText.TextColor3 = Color3.fromRGB(255, 255, 255)
+		CommentsText.TextSize = 14.000
+		Comments_2.Name = "Comments"
+		Comments_2.Parent = Inner
+		Comments_2.Active = true
+		Comments_2.BackgroundTransparency = 1
+		Comments_2.BorderSizePixel = 0
+		Comments_2.Position = UDim2.new(0, 0, 0, 10)
+		Comments_2.Size = UDim2.new(0, 415, 0, 400)
+		Comments_2.CanvasSize = UDim2.new(0, 0, 0, 0)
+		Comment.Name = "Comment"
+		Comment.Parent = Comments_2
+		Comment.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Comment.BackgroundTransparency = 1
+		Comment.Size = UDim2.new(0, 400, 0, 50)
+		Content.Name = "Content"
+		Content.Parent = Comment
+		Content.BackgroundTransparency = 1
+		Content.Position = UDim2.new(0, 50, 0, 30)
+		Content.Size = UDim2.new(0, 300, 0, 20)
+		Content.Font = Enum.Font.Gotham
+		Content.Text = "Comment"
+		Content.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Content.TextSize = 14
+		Content.TextWrapped = true
+		Content.TextXAlignment = Enum.TextXAlignment.Left
+		Content.TextYAlignment = Enum.TextYAlignment.Top
+		Content.TextScaled = true
+		Author_2.Name = "Author"
+		Author_2.Parent = Comment
+		Author_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Author_2.BackgroundTransparency = 1.000
+		Author_2.BorderSizePixel = 0
+		Author_2.Position = UDim2.new(0, 50, 0, 5)
+		Author_2.Size = UDim2.new(0, 200, 0, 25)
+		Author_2.Font = Enum.Font.GothamBold
+		Author_2.Text = "Author"
+		Author_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Author_2.TextSize = 20.000
+		Author_2.TextWrapped = true
+		Author_2.TextXAlignment = Enum.TextXAlignment.Left
+		ProfilePicture_2.Name = "ProfilePicture"
+		ProfilePicture_2.Parent = Comment
+		ProfilePicture_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ProfilePicture_2.BackgroundTransparency = 1.000
+		ProfilePicture_2.Position = UDim2.new(0, 5, 0, 5)
+		ProfilePicture_2.Size = UDim2.new(0, 40, 0, 40)
+		ProfilePicture_2.Image = "rbxassetid://17093333262"
+		UICorner_22.CornerRadius = UDim.new(1, 0)
+		UICorner_22.Parent = ProfilePicture_2
+		UIListLayout_3.Parent = Comments_2
+		UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
+		UIListLayout_3.Padding = UDim.new(0, 5)
+		KeySystem_2.Visible = false
+		KeySystem.Visible = false
+		getfakeasset = getcustomasset or getsynasset
+		HttpService = game:GetService("HttpService")
+		page = 1
+		gquery = ""
+		function tableConcat(t1, t2)
+			for i, v in pairs(t2) do
+				table.insert(t1, v)
+			end
+			return t1
+		end
+		BloxBook.MainFrame.ScriptListFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+		BloxBook.MainFrame.InfoBox.AutomaticSize = Enum.AutomaticSize.Y
+		BloxBook.MainFrame.ScriptListFrame.ScrollBarImageTransparency = 1
+		BloxBook.MainFrame.ScriptListFrame.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+		BloxBook.MainFrame.InfoBox.AutomaticCanvasSize = Enum.AutomaticSize.Y
+		BloxBook.MainFrame.InfoBox.Comments.Inner.Comments.AutomaticCanvasSize = Enum.AutomaticSize.Y
+		BloxBook.MainFrame.InfoBox.Comments.Inner.Comments.ScrollBarImageColor3 = Color3.new(0, 0, 0)
+		BloxBook.MainFrame.InfoBox.Comments.Inner.Comments.ScrollBarImageTransparency = 1
+		BloxBook.MainFrame.InfoBox.ScrollBarImageColor3 = Color3.new(0, 0, 0)
+		VerifiedScript = BloxBook.MainFrame.ScriptListFrame.Scripts.VerifiedScriptFrame:Clone()
+		Script = BloxBook.MainFrame.ScriptListFrame.Scripts.ScriptFrame:Clone()
+		BloxBook.MainFrame.ScriptListFrame.Scripts.ScriptFrame:Destroy()
+		BloxBook.MainFrame.ScriptListFrame.Scripts.VerifiedScriptFrame:Destroy()
+		Comment = BloxBook.MainFrame.InfoBox.Comments.Inner.Comments.Comment:Clone()
+		BloxBook.MainFrame.InfoBox.Comments.Inner.Comments.Comment:Destroy()
+		function _if(a, b, c)
+			if a then
+				return b
+			else
+				return c
+			end
+		end
+		function fastmodeExec(func)
+			if getgenv().fastmode == true then
+				task.spawn(func)
+			else
+				func()
+			end
+		end
+		function fetchScripts(query, page)
+			page = page or 1
+			query = HttpService:UrlEncode(query)
+			url = _if(query == "", "https://www.scriptblox.com/api/script/fetch?page=" .. tostring(page), "https://scriptblox.com/api/script/search?q=" .. query .. "&max=100&mode=free&page=" .. tostring(page))
+			req = HttpService:JSONDecode(game:HttpGetAsync(url)).result
+			return req.scripts
+		end
+		function fetchComments(scriptId, page)
+			page = page or 1
+			url = "https://scriptblox.com/api/comment/" .. scriptId .. "?page=" .. tostring(page) .. "&max=100"
+			req = HttpService:JSONDecode(game:HttpGetAsync(url)).result
+			return req.comments
+		end
+		function fixScript(scriptObj)
+			req = HttpService:JSONDecode(game:HttpGetAsync("https://www.scriptblox.com/api/script/" .. scriptObj.slug)).script
+			scriptObj["script"] = _if(scriptObj["script"], scriptObj["script"], req.script)
+			scriptObj["features"] = _if(scriptObj["features"], scriptObj["features"], req.features)
+			scriptObj["owner"] = _if(scriptObj["owner"], scriptObj["owner"], req.owner)
+			return scriptObj
+		end
+		function updateInfoBox(scriptObj)
+			scriptObj = fixScript(scriptObj)
+			commentsUIListLayout = BloxBook.MainFrame.InfoBox.Comments.Inner.Comments.UIListLayout:Clone()
+			BloxBook.MainFrame.InfoBox.Comments.Inner.Comments:ClearAllChildren()
+			commentsUIListLayout.Parent = BloxBook.MainFrame.InfoBox.Comments.Inner.Comments
+			task.spawn(function()
+				for _, v in pairs(fetchComments(scriptObj["_id"])) do
+					newComment = Comment:Clone()
+					newComment.Parent = BloxBook.MainFrame.InfoBox.Comments.Inner.Comments
+					newComment.Content.Text = v.text
+					newComment.Author.Text = v.commentBy.username
+				end
+			end)
+		end
+		function refreshScripts(scriptTbl)
+			if #scriptTbl <= 0 then
+				MainFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+			else
+				MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			end
+			UIGridLayoutCopy = Scripts.UIGridLayout:Clone()
+			Scripts:ClearAllChildren()
+			UIGridLayoutCopy.Parent = Scripts
+			addScripts(scriptTbl)
+		end
+		function addScripts(scriptTbl)
+			for i, v in pairs(scriptTbl) do
+				fastmodeExec(function()
+					local newScript
+					v = fixScript(v)
+					if v.verified == true then
+						newScript = VerifiedScript:Clone()
+						newScript.ScriptTitle.Text = v.title
+						newScript.ScriptAuthor.Text = "@" .. v.owner.username
+						newScript.ScriptGame.Text = v.game.name
+						newScript.ViewsLabel.Text = v.views
+						newScript.Description.Text = v.features
+						newScript.Parent = Scripts
+					else
+						newScript = Script:Clone()
+						newScript.ScriptTitle.Text = v.title
+						newScript.ScriptAuthor.Text = "@" .. v.owner.username
+						newScript.ScriptGame.Text = v.game.name
+						newScript.ViewsLabel.Text = v.views
+						newScript.Description.Text = v.features
+						newScript.Parent = Scripts
+					end
+					if v.game.name == "Universal Script 📌" then
+						newScript.PreviewImage.Image = "rbxassetid://17117106457"
+					else
+						newScript.PreviewImage.Image = "https://assetgame.roblox.com/Game/Tools/ThumbnailAsset.ashx?aid=" .. v.game.gameId .. "&fmt=png&wd=420&ht=420"
+					end
+					if v.key == true then
+						newScript.KeySystem.Visible = true
+					end
+					CloseInfoBox.MouseButton1Click:Connect(function()
+						ScriptListFrame.Visible = true
+						InfoBox.Visible = false
+						SearchBox.Visible = true
+						CloseInfoBox.Visible = false
+					end)
+					newScript.OpenInfo.MouseButton1Click:Connect(function()
+						updateInfoBox(v)
+						ScriptListFrame.Visible = false
+						InfoBox.Visible = true
+						SearchBox.Visible = false
+						CloseInfoBox.Visible = true
+					end)
+					newScript.Share.MouseButton1Click:Connect(function()
+						setclipboard(v.slug)
+					end)
+				end)
+			end
+			pagefetchrunning = false
+		end
+		CloseButton.MouseButton1Click:Connect(function()
+			MainFrame.Visible = false
+			OpenButton.Visible = true
+		end)
+		OpenButton.MouseButton1Click:Connect(function()
+			MainFrame.Visible = true
+			OpenButton.Visible = false
+		end)
+		SearchBox.FocusLost:Connect(function(enterPressed)
+			if enterPressed then
+				gquery = SearchBox.Text
+				page = 1
+				local scriptsTbl = fetchScripts(SearchBox.Text, 1)
+				refreshScripts(scriptsTbl)
+			end
+		end)
+		UserInputService.InputBegan:Connect(function(input)
+			if input.KeyCode == Enum.KeyCode.F then
+				SearchBox:CaptureFocus()
+			end
+		end)
+		UserInputService.InputBegan:Connect(function(input)
+			if input.KeyCode == Enum.KeyCode.C then
+				SearchBox.Text = ""
+			end
+		end)
+		gui = MainFrame
+		local dragging
+		local dragInput
+		local dragStart
+		local startPos
+		local function update(input)
+			local delta = input.Position - dragStart
+			gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+		end
+		gui.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				dragging = true
+				dragStart = input.Position
+				startPos = gui.Position
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragging = false
+					end
+				end)
+			end
+		end)
+		gui.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+		UserInputService.InputChanged:Connect(function(input)
+			if input == dragInput and dragging then
+				update(input)
+			end
+		end)
+		refreshScripts(fetchScripts(gquery, 1))
+		ScriptListFrame:GetPropertyChangedSignal("CanvasPosition"):Connect(function()
+			if (ScriptListFrame.CanvasPosition.Y + ScriptListFrame.AbsoluteSize.Y) >= ScriptListFrame.AbsoluteCanvasSize.Y - 200 and not pagefetchrunning then
+				page = page + 1
+				pagefetchrunning = true
+				addScripts(fetchScripts(gquery, page))
+			end
+		end)
 	end)
 	local Obbys = Window:NewTab("Obbys")
 	local ObbysSection = Obbys:NewSection("Obbys")
