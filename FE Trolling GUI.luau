@@ -5,7 +5,7 @@ By Sky/dsgdfs
 
 Last Updated 4/14/2024
 
-added 50+ scripts and a chat with other exploiters (that are in game and running same script) tab
+added anti kick and bypass anti cheats
 
 If you want me to add anything let me know in the discord or dm me
 
@@ -56270,6 +56270,47 @@ Chatwithhackers:AddButton({
         end
         end)
         end
+	end
+})
+local acybpass2 = Window:AddTab({
+	Title = "Bypass AC",
+	Icon = "globe"
+})
+acybpass2:AddButton({
+	Title = "Anti Kick",
+	Description = "stops local scripts from kicking you",
+	Callback = function()
+		local mt = getrawmetatable(game)
+
+		setreadonly(mt, false)
+
+		local oldmt = mt.__namecall
+
+		mt.__namecall = newcclosure(function(Self, ...)
+
+
+		local method = getnamecallmethod()
+
+		if method == 'Kick' then
+		
+			print("Tried To kick")
+			wait(9e9)
+			return nil
+
+		end
+
+		return oldmt(Self, ...)
+
+		end)
+
+		setreadonly(mt, true)
+	end
+})
+acybpass2:AddButton({
+	Title = "Bypass Anti Cheats",
+	Description = "stops from kicking u and anti cheats",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/AntiCheat/main/Bypass"))()
 	end
 })
 InterfaceManager:SetLibrary(Fluent)
