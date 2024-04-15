@@ -13,9 +13,9 @@ Hide and Seek Extreme and Universal.
 
 Rebuilt On IllusionHub
 
-Last Updated 4/13/2024
+Last Updated 4/14/2024
 
-Added Hide and Seek Extreme
+Added another search thingy in universal and added Bypass Anti Cheat/Anti Kick in universal
 
 Library by Lua_u
 
@@ -20509,50 +20509,10 @@ else
 	end)
 	local Debugs = Window:NewTab("Debuggers", 10507357657)
 	local DebugsSection = Debugs:NewSection("Debuggers")
-	DebugsSection:NewButton("Dex", "Explorer", function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Dex/Mobile%20Dex%20Explorer.txt"))()
-		else
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
-		end
+	DebugsSection:NewButton("Debuggers", "Some other GUI packed into one or sum", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/debugnation/main/decompilers%20and%20debugging/Debuggers.txt"))()
 	end)
-	DebugsSection:NewButton("SimpleSpy V3", "Logs Remotes", function()
-		if IsOnMobile then
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/SimpleSpyV3/mobilemain.lua"))()
-		else
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/SimpleSpyV3/main.lua"))()
-		end
-	end)
-	DebugsSection:NewButton("Hydroxide", "Ultimate Debugging", function()
-		local owner = "Upbolt"
-		local branch = "revision"
-		local function webImport(file)
-			return loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/%s/Hydroxide/%s/%s.lua"):format(owner, branch, file)), file .. '.lua')()
-		end
-		webImport("init")
-		webImport("ui/main")
-	end)
-	DebugsSection:NewButton("HTTPSpy", "Checks for Http request or post", function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Httpspy/main/httpspy.txt"))()
-	end)
-	DebugsSection:NewButton("Game Tool Giver", "A GUI that gives you tools found in the game by putting it in your backpack.", function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/gametoolgiver.lua"))()
-	end)
-	DebugsSection:NewButton("Game Tool Equipper", "A GUI that equips the tool found in the game.", function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/gametoolgiver.lua"))()
-	end)
-	DebugsSection:NewButton("Game UI/Frame Viewer", "A GUI that allows you to toggle and see hidden guis found in the game.", function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/gameuigiver.lua"))()
-	end)
-	DebugsSection:NewButton("Game Fire RemoteEvent FireServer() GUI", "A GUI that when clicked calls FireServer() to the found RemoteEvent in the game.", function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/gameremotefireserver.lua"))()
-	end)
-	DebugsSection:NewButton("Game Fire RemoteEvent InvokeClient() GUI", "A GUI that when clicked calls InvokeClient() to the found RemoteEvent in the game.", function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/gameremoteinvokeclient.lua"))()
-	end)
-	DebugsSection:NewButton("Game Subplace viewer", "A GUI that shows all the subplaces of the current game and game ids", function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/subplaceviewer.txt"))()
-	end)
+	
 
 	local Admins = Window:NewTab("Admins", 10016551771)
 	local AdminsSection = Admins:NewSection("Admins")
@@ -20621,6 +20581,38 @@ else
 			end
 		end)
 	end
+
+	local ACBypass = Window:NewTab("AC Bypass")
+	local ACBypassSection = ACBypass:NewSection("AC Bypass")
+	ACBypassSection:NewButton("Anti Kick", "Stops local scripts from kicking you", function()
+		local mt = getrawmetatable(game)
+
+		setreadonly(mt, false)
+
+		local oldmt = mt.__namecall
+
+		mt.__namecall = newcclosure(function(Self, ...)
+
+
+		local method = getnamecallmethod()
+
+		if method == 'Kick' then
+		
+			print("Tried To kick")
+			wait(9e9)
+			return nil
+
+		end
+
+		return oldmt(Self, ...)
+
+		end)
+
+		setreadonly(mt, true)
+	end)
+	ACBypassSection:NewButton("Bypass Mosts anti cheat", "Stops anticheat from kicking you", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/AntiCheat/main/Bypass"))()
+	end)
 
 	local Settingss = Window:NewTab("Settings", 11385220704)
 	local SettingssSection = Settingss:NewSection("Settings")
