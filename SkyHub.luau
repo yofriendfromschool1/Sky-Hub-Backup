@@ -8,14 +8,15 @@ games it supports Da Hood, Arsenal, Tower of Hell, KAT!, Fencing,
 Work At A Pizza Place, VR Hands, Adopt Me, Jailbreak, Prison Life,
 Build A Boat For Treasure, Gorilla Tag Professional, Murder Mystery 2, Blox fruits, Counter Blox, Mic Up, Neighbors, Natural Diaster Survival, Ro-Ghoul, Blade Ball, Pet Simulator X,
 Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, Chaos, Ninja Legends, Bayside High School, Big PaintBall, Big PaintBall 2, Muscle Legends, Road to Grambys, Bloxburg, Cursed Sea, Doors,
-Hide and Seek Extreme, Life in Paradise, Adopt and Raise a Baby and Universal.
-35+ games (Including some obbys)
+Hide and Seek Extreme, Life in Paradise, Adopt and Raise a Baby, Zombie Attack, Super Simon Says, Life Sentence and Universal.
+40+ games (Including some obbys)
 
 Rebuilt On IllusionHub
 
-Last Updated 4/14/2024
+Last Updated 4/15/2024
 
-added Life in Paradise and added Adopt and Raise a Baby
+added More features to old games: MM2, Hide and Seek Extreme, Life in Paradise, and Adopt and Raise a Baby.
+also added Zombie Attack, Super Simon Says, and Life Sentence.
 
 Library by Lua_u
 
@@ -7572,6 +7573,882 @@ elseif game.PlaceId == 142823291 then
 	end)
 	MainSection:NewButton("MM2 Vynixu", "Btools lol", function()
 		loadstring(game:GetObjects("rbxassetid://4001118261")[1].Source)()
+	end)
+	MainSection:NewButton("Fling Murderer", "trolling lol", function()
+		local Targets = {"All"} -- "All", "Target Name", "arian_was_here"
+
+		local Players = game:GetService("Players")
+		local Player = Players.LocalPlayer
+
+		local AllBool = false
+
+		local GetPlayer = function(Name)
+			Name = Name:lower()
+			if Name == "all" or Name == "others" then
+				AllBool = true
+				return
+			elseif Name == "random" then
+				local GetPlayers = Players:GetPlayers()
+				if table.find(GetPlayers,Player) then table.remove(GetPlayers,table.find(GetPlayers,Player)) end
+				return GetPlayers[math.random(#GetPlayers)]
+			elseif Name ~= "random" and Name ~= "all" and Name ~= "others" then
+				for _,x in next, Players:GetPlayers() do
+					if x ~= Player then
+						if x.Name:lower():match("^"..Name) then
+							return x;
+						elseif x.DisplayName:lower():match("^"..Name) then
+							return x;
+						end
+					end
+				end
+			else
+				return
+			end
+		end
+
+		local Message = function(_Title, _Text, Time)
+			game:GetService("StarterGui"):SetCore("SendNotification", {Title = _Title, Text = _Text, Duration = Time})
+		end
+
+		local SkidFling = function(TargetPlayer)
+			local Character = Player.Character
+			local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
+			local RootPart = Humanoid and Humanoid.RootPart
+
+			local TCharacter = TargetPlayer.Character
+			local THumanoid
+			local TRootPart
+			local THead
+			local Accessory
+			local Handle
+
+			if TCharacter:FindFirstChildOfClass("Humanoid") then
+				THumanoid = TCharacter:FindFirstChildOfClass("Humanoid")
+			end
+			if THumanoid and THumanoid.RootPart then
+				TRootPart = THumanoid.RootPart
+			end
+			if TCharacter:FindFirstChild("Head") then
+				THead = TCharacter.Head
+			end
+			if TCharacter:FindFirstChildOfClass("Accessory") then
+				Accessory = TCharacter:FindFirstChildOfClass("Accessory")
+			end
+			if Accessoy and Accessory:FindFirstChild("Handle") then
+				Handle = Accessory.Handle
+			end
+
+			if Character and Humanoid and RootPart then
+				if RootPart.Velocity.Magnitude < 50 then
+					getgenv().OldPos = RootPart.CFrame
+				end
+				if THumanoid and THumanoid.Sit and not AllBool then
+					return Message("Error Occurred", "Targeting is sitting", 5) -- u can remove dis part if u want lol
+				end
+				if THead then
+					workspace.CurrentCamera.CameraSubject = THead
+				elseif not THead and Handle then
+					workspace.CurrentCamera.CameraSubject = Handle
+				elseif THumanoid and TRootPart then
+					workspace.CurrentCamera.CameraSubject = THumanoid
+				end
+				if not TCharacter:FindFirstChildWhichIsA("BasePart") then
+					return
+				end
+				
+				local FPos = function(BasePart, Pos, Ang)
+					RootPart.CFrame = CFrame.new(BasePart.Position) * Pos * Ang
+					Character:SetPrimaryPartCFrame(CFrame.new(BasePart.Position) * Pos * Ang)
+					RootPart.Velocity = Vector3.new(9e7, 9e7 * 10, 9e7)
+					RootPart.RotVelocity = Vector3.new(9e8, 9e8, 9e8)
+				end
+				
+				local SFBasePart = function(BasePart)
+					local TimeToWait = 2
+					local Time = tick()
+					local Angle = 0
+
+					repeat
+						if RootPart and THumanoid then
+							if BasePart.Velocity.Magnitude < 50 then
+								Angle = Angle + 100
+
+								FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle),0 ,0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(2.25, 1.5, -2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(-2.25, -1.5, 2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+							else
+								FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, -THumanoid.WalkSpeed), CFrame.Angles(0, 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+								
+								FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, -TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(0, 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5 ,0), CFrame.Angles(math.rad(-90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+								task.wait()
+							end
+						else
+							break
+						end
+					until BasePart.Velocity.Magnitude > 500 or BasePart.Parent ~= TargetPlayer.Character or TargetPlayer.Parent ~= Players or not TargetPlayer.Character == TCharacter or THumanoid.Sit or Humanoid.Health <= 0 or tick() > Time + TimeToWait
+				end
+				
+				workspace.FallenPartsDestroyHeight = 0/0
+				
+				local BV = Instance.new("BodyVelocity")
+				BV.Name = "EpixVel"
+				BV.Parent = RootPart
+				BV.Velocity = Vector3.new(9e8, 9e8, 9e8)
+				BV.MaxForce = Vector3.new(1/0, 1/0, 1/0)
+				
+				Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false)
+				
+				if TRootPart and THead then
+					if (TRootPart.CFrame.p - THead.CFrame.p).Magnitude > 5 then
+						SFBasePart(THead)
+					else
+						SFBasePart(TRootPart)
+					end
+				elseif TRootPart and not THead then
+					SFBasePart(TRootPart)
+				elseif not TRootPart and THead then
+					SFBasePart(THead)
+				elseif not TRootPart and not THead and Accessory and Handle then
+					SFBasePart(Handle)
+				else
+					return Message("Error Occurred", "Target is missing everything", 5)
+				end
+				
+				BV:Destroy()
+				Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
+				workspace.CurrentCamera.CameraSubject = Humanoid
+				
+				repeat
+					RootPart.CFrame = getgenv().OldPos * CFrame.new(0, .5, 0)
+					Character:SetPrimaryPartCFrame(getgenv().OldPos * CFrame.new(0, .5, 0))
+					Humanoid:ChangeState("GettingUp")
+					table.foreach(Character:GetChildren(), function(_, x)
+						if x:IsA("BasePart") then
+							x.Velocity, x.RotVelocity = Vector3.new(), Vector3.new()
+						end
+					end)
+					task.wait()
+				until (RootPart.Position - getgenv().OldPos.p).Magnitude < 25
+				workspace.FallenPartsDestroyHeight = getgenv().FPDH
+			else
+				return Message("Error Occurred", "Random error", 5)
+			end
+		end
+
+		if not Welcome then Message("甩飞已开启成功", "猫脚本", 5) end
+		getgenv().Welcome = true
+		if Targets[1] then for _,x in next, Targets do GetPlayer(x) end else return end
+		if AllBool then
+			for _,x in pairs(game:GetService("Players"):GetPlayers()) do
+				if x.Backpack:FindFirstChild("Knife") or x.Character:FindFirstChild("Knife") then
+					SkidFling(x)
+				end
+			end
+		end
+
+
+	end)
+	MainSection:NewButton("Fling Sheriff", "trolling lol", function()
+		local Targets = {"All"} -- "All", "Target Name", "arian_was_here"
+
+		local Players = game:GetService("Players")
+		local Player = Players.LocalPlayer
+
+		local AllBool = false
+
+		local GetPlayer = function(Name)
+			Name = Name:lower()
+			if Name == "all" or Name == "others" then
+				AllBool = true
+				return
+			elseif Name == "random" then
+				local GetPlayers = Players:GetPlayers()
+				if table.find(GetPlayers,Player) then table.remove(GetPlayers,table.find(GetPlayers,Player)) end
+				return GetPlayers[math.random(#GetPlayers)]
+			elseif Name ~= "random" and Name ~= "all" and Name ~= "others" then
+				for _,x in next, Players:GetPlayers() do
+					if x ~= Player then
+						if x.Name:lower():match("^"..Name) then
+							return x;
+						elseif x.DisplayName:lower():match("^"..Name) then
+							return x;
+						end
+					end
+				end
+			else
+				return
+			end
+		end
+
+		local Message = function(_Title, _Text, Time)
+			game:GetService("StarterGui"):SetCore("SendNotification", {Title = _Title, Text = _Text, Duration = Time})
+		end
+
+		local SkidFling = function(TargetPlayer)
+			local Character = Player.Character
+			local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
+			local RootPart = Humanoid and Humanoid.RootPart
+
+			local TCharacter = TargetPlayer.Character
+			local THumanoid
+			local TRootPart
+			local THead
+			local Accessory
+			local Handle
+
+			if TCharacter:FindFirstChildOfClass("Humanoid") then
+				THumanoid = TCharacter:FindFirstChildOfClass("Humanoid")
+			end
+			if THumanoid and THumanoid.RootPart then
+				TRootPart = THumanoid.RootPart
+			end
+			if TCharacter:FindFirstChild("Head") then
+				THead = TCharacter.Head
+			end
+			if TCharacter:FindFirstChildOfClass("Accessory") then
+				Accessory = TCharacter:FindFirstChildOfClass("Accessory")
+			end
+			if Accessoy and Accessory:FindFirstChild("Handle") then
+				Handle = Accessory.Handle
+			end
+
+			if Character and Humanoid and RootPart then
+				if RootPart.Velocity.Magnitude < 50 then
+					getgenv().OldPos = RootPart.CFrame
+				end
+				if THumanoid and THumanoid.Sit and not AllBool then
+					return Message("Error Occurred", "Targeting is sitting", 5) -- u can remove dis part if u want lol
+				end
+				if THead then
+					workspace.CurrentCamera.CameraSubject = THead
+				elseif not THead and Handle then
+					workspace.CurrentCamera.CameraSubject = Handle
+				elseif THumanoid and TRootPart then
+					workspace.CurrentCamera.CameraSubject = THumanoid
+				end
+				if not TCharacter:FindFirstChildWhichIsA("BasePart") then
+					return
+				end
+				
+				local FPos = function(BasePart, Pos, Ang)
+					RootPart.CFrame = CFrame.new(BasePart.Position) * Pos * Ang
+					Character:SetPrimaryPartCFrame(CFrame.new(BasePart.Position) * Pos * Ang)
+					RootPart.Velocity = Vector3.new(9e7, 9e7 * 10, 9e7)
+					RootPart.RotVelocity = Vector3.new(9e8, 9e8, 9e8)
+				end
+				
+				local SFBasePart = function(BasePart)
+					local TimeToWait = 2
+					local Time = tick()
+					local Angle = 0
+
+					repeat
+						if RootPart and THumanoid then
+							if BasePart.Velocity.Magnitude < 50 then
+								Angle = Angle + 100
+
+								FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle),0 ,0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(2.25, 1.5, -2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(-2.25, -1.5, 2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+							else
+								FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, -THumanoid.WalkSpeed), CFrame.Angles(0, 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+								
+								FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, -TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(0, 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5 ,0), CFrame.Angles(math.rad(-90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+								task.wait()
+							end
+						else
+							break
+						end
+					until BasePart.Velocity.Magnitude > 500 or BasePart.Parent ~= TargetPlayer.Character or TargetPlayer.Parent ~= Players or not TargetPlayer.Character == TCharacter or THumanoid.Sit or Humanoid.Health <= 0 or tick() > Time + TimeToWait
+				end
+				
+				workspace.FallenPartsDestroyHeight = 0/0
+				
+				local BV = Instance.new("BodyVelocity")
+				BV.Name = "EpixVel"
+				BV.Parent = RootPart
+				BV.Velocity = Vector3.new(9e8, 9e8, 9e8)
+				BV.MaxForce = Vector3.new(1/0, 1/0, 1/0)
+				
+				Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false)
+				
+				if TRootPart and THead then
+					if (TRootPart.CFrame.p - THead.CFrame.p).Magnitude > 5 then
+						SFBasePart(THead)
+					else
+						SFBasePart(TRootPart)
+					end
+				elseif TRootPart and not THead then
+					SFBasePart(TRootPart)
+				elseif not TRootPart and THead then
+					SFBasePart(THead)
+				elseif not TRootPart and not THead and Accessory and Handle then
+					SFBasePart(Handle)
+				else
+					return Message("Error Occurred", "Target is missing everything", 5)
+				end
+				
+				BV:Destroy()
+				Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
+				workspace.CurrentCamera.CameraSubject = Humanoid
+				
+				repeat
+					RootPart.CFrame = getgenv().OldPos * CFrame.new(0, .5, 0)
+					Character:SetPrimaryPartCFrame(getgenv().OldPos * CFrame.new(0, .5, 0))
+					Humanoid:ChangeState("GettingUp")
+					table.foreach(Character:GetChildren(), function(_, x)
+						if x:IsA("BasePart") then
+							x.Velocity, x.RotVelocity = Vector3.new(), Vector3.new()
+						end
+					end)
+					task.wait()
+				until (RootPart.Position - getgenv().OldPos.p).Magnitude < 25
+				workspace.FallenPartsDestroyHeight = getgenv().FPDH
+			else
+				return Message("Error Occurred", "Random error", 5)
+			end
+		end
+
+		if not Welcome then Message("甩飞已开启成功", "猫脚本", 5) end
+		getgenv().Welcome = true
+		if Targets[1] then for _,x in next, Targets do GetPlayer(x) end else return end
+		if AllBool then
+			for _,x in pairs(game:GetService("Players"):GetPlayers()) do
+				if x.Backpack:FindFirstChild("Gun") or x.Character:FindFirstChild("Gun") then
+					SkidFling(x)
+				end
+			end
+		end
+
+
+	end)
+	MainSection:NewButton("Fling All", "trolling lol", function()
+		local Targets = {"All"} -- "All", "Target Name", "arian_was_here"
+
+		local Players = game:GetService("Players")
+		local Player = Players.LocalPlayer
+
+		local AllBool = false
+
+		local GetPlayer = function(Name)
+			Name = Name:lower()
+			if Name == "all" or Name == "others" then
+				AllBool = true
+				return
+			elseif Name == "random" then
+				local GetPlayers = Players:GetPlayers()
+				if table.find(GetPlayers,Player) then table.remove(GetPlayers,table.find(GetPlayers,Player)) end
+				return GetPlayers[math.random(#GetPlayers)]
+			elseif Name ~= "random" and Name ~= "all" and Name ~= "others" then
+				for _,x in next, Players:GetPlayers() do
+					if x ~= Player then
+						if x.Name:lower():match("^"..Name) then
+							return x;
+						elseif x.DisplayName:lower():match("^"..Name) then
+							return x;
+						end
+					end
+				end
+			else
+				return
+			end
+		end
+
+		local Message = function(_Title, _Text, Time)
+			game:GetService("StarterGui"):SetCore("SendNotification", {Title = _Title, Text = _Text, Duration = Time})
+		end
+
+		local SkidFling = function(TargetPlayer)
+			local Character = Player.Character
+			local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
+			local RootPart = Humanoid and Humanoid.RootPart
+
+			local TCharacter = TargetPlayer.Character
+			local THumanoid
+			local TRootPart
+			local THead
+			local Accessory
+			local Handle
+
+			if TCharacter:FindFirstChildOfClass("Humanoid") then
+				THumanoid = TCharacter:FindFirstChildOfClass("Humanoid")
+			end
+			if THumanoid and THumanoid.RootPart then
+				TRootPart = THumanoid.RootPart
+			end
+			if TCharacter:FindFirstChild("Head") then
+				THead = TCharacter.Head
+			end
+			if TCharacter:FindFirstChildOfClass("Accessory") then
+				Accessory = TCharacter:FindFirstChildOfClass("Accessory")
+			end
+			if Accessoy and Accessory:FindFirstChild("Handle") then
+				Handle = Accessory.Handle
+			end
+
+			if Character and Humanoid and RootPart then
+				if RootPart.Velocity.Magnitude < 50 then
+					getgenv().OldPos = RootPart.CFrame
+				end
+				if THumanoid and THumanoid.Sit and not AllBool then
+					return Message("Error Occurred", "Targeting is sitting", 5) -- u can remove dis part if u want lol
+				end
+				if THead then
+					workspace.CurrentCamera.CameraSubject = THead
+				elseif not THead and Handle then
+					workspace.CurrentCamera.CameraSubject = Handle
+				elseif THumanoid and TRootPart then
+					workspace.CurrentCamera.CameraSubject = THumanoid
+				end
+				if not TCharacter:FindFirstChildWhichIsA("BasePart") then
+					return
+				end
+				
+				local FPos = function(BasePart, Pos, Ang)
+					RootPart.CFrame = CFrame.new(BasePart.Position) * Pos * Ang
+					Character:SetPrimaryPartCFrame(CFrame.new(BasePart.Position) * Pos * Ang)
+					RootPart.Velocity = Vector3.new(9e7, 9e7 * 10, 9e7)
+					RootPart.RotVelocity = Vector3.new(9e8, 9e8, 9e8)
+				end
+				
+				local SFBasePart = function(BasePart)
+					local TimeToWait = 2
+					local Time = tick()
+					local Angle = 0
+
+					repeat
+						if RootPart and THumanoid then
+							if BasePart.Velocity.Magnitude < 50 then
+								Angle = Angle + 100
+
+								FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle),0 ,0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(2.25, 1.5, -2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(-2.25, -1.5, 2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+							else
+								FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, -THumanoid.WalkSpeed), CFrame.Angles(0, 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+								
+								FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, -TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(0, 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5 ,0), CFrame.Angles(math.rad(-90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+								task.wait()
+							end
+						else
+							break
+						end
+					until BasePart.Velocity.Magnitude > 500 or BasePart.Parent ~= TargetPlayer.Character or TargetPlayer.Parent ~= Players or not TargetPlayer.Character == TCharacter or THumanoid.Sit or Humanoid.Health <= 0 or tick() > Time + TimeToWait
+				end
+				
+				workspace.FallenPartsDestroyHeight = 0/0
+				
+				local BV = Instance.new("BodyVelocity")
+				BV.Name = "EpixVel"
+				BV.Parent = RootPart
+				BV.Velocity = Vector3.new(9e8, 9e8, 9e8)
+				BV.MaxForce = Vector3.new(1/0, 1/0, 1/0)
+				
+				Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false)
+				
+				if TRootPart and THead then
+					if (TRootPart.CFrame.p - THead.CFrame.p).Magnitude > 5 then
+						SFBasePart(THead)
+					else
+						SFBasePart(TRootPart)
+					end
+				elseif TRootPart and not THead then
+					SFBasePart(TRootPart)
+				elseif not TRootPart and THead then
+					SFBasePart(THead)
+				elseif not TRootPart and not THead and Accessory and Handle then
+					SFBasePart(Handle)
+				else
+					return Message("Error Occurred", "Target is missing everything", 5)
+				end
+				
+				BV:Destroy()
+				Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
+				workspace.CurrentCamera.CameraSubject = Humanoid
+				
+				repeat
+					RootPart.CFrame = getgenv().OldPos * CFrame.new(0, .5, 0)
+					Character:SetPrimaryPartCFrame(getgenv().OldPos * CFrame.new(0, .5, 0))
+					Humanoid:ChangeState("GettingUp")
+					table.foreach(Character:GetChildren(), function(_, x)
+						if x:IsA("BasePart") then
+							x.Velocity, x.RotVelocity = Vector3.new(), Vector3.new()
+						end
+					end)
+					task.wait()
+				until (RootPart.Position - getgenv().OldPos.p).Magnitude < 25
+				workspace.FallenPartsDestroyHeight = getgenv().FPDH
+			else
+				return Message("Error Occurred", "Random error", 5)
+			end
+		end
+
+		if not Welcome then Message("甩飞已开启成功", "猫脚本", 5) end
+		getgenv().Welcome = true
+		if Targets[1] then for _,x in next, Targets do GetPlayer(x) end else return end
+
+		if AllBool then
+			for _,x in next, Players:GetPlayers() do
+				SkidFling(x)
+			end
+		end
+
+		for _,x in next, Targets do
+			if GetPlayer(x) and GetPlayer(x) ~= Player then
+				if GetPlayer(x).UserId ~= 1414978355 then
+					local TPlayer = GetPlayer(x)
+					if TPlayer then
+						SkidFling(TPlayer)
+					end
+				else
+					Message("Error Occurred", "This user is whitelisted! (Owner)", 5)
+				end
+			elseif not GetPlayer(x) and not AllBool then
+				Message("Error Occurred", "Username Invalid", 5)
+			end
+		end
+	end)
+	MainSection:NewTextBox("Fling Player", "Flings player", function(txt)
+		local Targets = {txt} -- "All", "Target Name", "arian_was_here"
+
+		local Players = game:GetService("Players")
+		local Player = Players.LocalPlayer
+
+		local AllBool = false
+
+		local GetPlayer = function(Name)
+			Name = Name:lower()
+			if Name == "all" or Name == "others" then
+				AllBool = true
+				return
+			elseif Name == "random" then
+				local GetPlayers = Players:GetPlayers()
+				if table.find(GetPlayers,Player) then table.remove(GetPlayers,table.find(GetPlayers,Player)) end
+				return GetPlayers[math.random(#GetPlayers)]
+			elseif Name ~= "random" and Name ~= "all" and Name ~= "others" then
+				for _,x in next, Players:GetPlayers() do
+					if x ~= Player then
+						if x.Name:lower():match("^"..Name) then
+							return x;
+						elseif x.DisplayName:lower():match("^"..Name) then
+							return x;
+						end
+					end
+				end
+			else
+				return
+			end
+		end
+
+		local Message = function(_Title, _Text, Time)
+			game:GetService("StarterGui"):SetCore("SendNotification", {Title = _Title, Text = _Text, Duration = Time})
+		end
+
+		local SkidFling = function(TargetPlayer)
+			local Character = Player.Character
+			local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
+			local RootPart = Humanoid and Humanoid.RootPart
+
+			local TCharacter = TargetPlayer.Character
+			local THumanoid
+			local TRootPart
+			local THead
+			local Accessory
+			local Handle
+
+			if TCharacter:FindFirstChildOfClass("Humanoid") then
+				THumanoid = TCharacter:FindFirstChildOfClass("Humanoid")
+			end
+			if THumanoid and THumanoid.RootPart then
+				TRootPart = THumanoid.RootPart
+			end
+			if TCharacter:FindFirstChild("Head") then
+				THead = TCharacter.Head
+			end
+			if TCharacter:FindFirstChildOfClass("Accessory") then
+				Accessory = TCharacter:FindFirstChildOfClass("Accessory")
+			end
+			if Accessoy and Accessory:FindFirstChild("Handle") then
+				Handle = Accessory.Handle
+			end
+
+			if Character and Humanoid and RootPart then
+				if RootPart.Velocity.Magnitude < 50 then
+					getgenv().OldPos = RootPart.CFrame
+				end
+				if THumanoid and THumanoid.Sit and not AllBool then
+					return Message("Error Occurred", "Targeting is sitting", 5) -- u can remove dis part if u want lol
+				end
+				if THead then
+					workspace.CurrentCamera.CameraSubject = THead
+				elseif not THead and Handle then
+					workspace.CurrentCamera.CameraSubject = Handle
+				elseif THumanoid and TRootPart then
+					workspace.CurrentCamera.CameraSubject = THumanoid
+				end
+				if not TCharacter:FindFirstChildWhichIsA("BasePart") then
+					return
+				end
+				
+				local FPos = function(BasePart, Pos, Ang)
+					RootPart.CFrame = CFrame.new(BasePart.Position) * Pos * Ang
+					Character:SetPrimaryPartCFrame(CFrame.new(BasePart.Position) * Pos * Ang)
+					RootPart.Velocity = Vector3.new(9e7, 9e7 * 10, 9e7)
+					RootPart.RotVelocity = Vector3.new(9e8, 9e8, 9e8)
+				end
+				
+				local SFBasePart = function(BasePart)
+					local TimeToWait = 2
+					local Time = tick()
+					local Angle = 0
+
+					repeat
+						if RootPart and THumanoid then
+							if BasePart.Velocity.Magnitude < 50 then
+								Angle = Angle + 100
+
+								FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle),0 ,0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(2.25, 1.5, -2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(-2.25, -1.5, 2.25) + THumanoid.MoveDirection * BasePart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, 1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0) + THumanoid.MoveDirection,CFrame.Angles(math.rad(Angle), 0, 0))
+								task.wait()
+							else
+								FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, -THumanoid.WalkSpeed), CFrame.Angles(0, 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, 1.5, THumanoid.WalkSpeed), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+								
+								FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, -TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(0, 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, 1.5, TRootPart.Velocity.Magnitude / 1.25), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(math.rad(90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5 ,0), CFrame.Angles(math.rad(-90), 0, 0))
+								task.wait()
+
+								FPos(BasePart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+								task.wait()
+							end
+						else
+							break
+						end
+					until BasePart.Velocity.Magnitude > 500 or BasePart.Parent ~= TargetPlayer.Character or TargetPlayer.Parent ~= Players or not TargetPlayer.Character == TCharacter or THumanoid.Sit or Humanoid.Health <= 0 or tick() > Time + TimeToWait
+				end
+				
+				workspace.FallenPartsDestroyHeight = 0/0
+				
+				local BV = Instance.new("BodyVelocity")
+				BV.Name = "EpixVel"
+				BV.Parent = RootPart
+				BV.Velocity = Vector3.new(9e8, 9e8, 9e8)
+				BV.MaxForce = Vector3.new(1/0, 1/0, 1/0)
+				
+				Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false)
+				
+				if TRootPart and THead then
+					if (TRootPart.CFrame.p - THead.CFrame.p).Magnitude > 5 then
+						SFBasePart(THead)
+					else
+						SFBasePart(TRootPart)
+					end
+				elseif TRootPart and not THead then
+					SFBasePart(TRootPart)
+				elseif not TRootPart and THead then
+					SFBasePart(THead)
+				elseif not TRootPart and not THead and Accessory and Handle then
+					SFBasePart(Handle)
+				else
+					return Message("Error Occurred", "Target is missing everything", 5)
+				end
+				
+				BV:Destroy()
+				Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
+				workspace.CurrentCamera.CameraSubject = Humanoid
+				
+				repeat
+					RootPart.CFrame = getgenv().OldPos * CFrame.new(0, .5, 0)
+					Character:SetPrimaryPartCFrame(getgenv().OldPos * CFrame.new(0, .5, 0))
+					Humanoid:ChangeState("GettingUp")
+					table.foreach(Character:GetChildren(), function(_, x)
+						if x:IsA("BasePart") then
+							x.Velocity, x.RotVelocity = Vector3.new(), Vector3.new()
+						end
+					end)
+					task.wait()
+				until (RootPart.Position - getgenv().OldPos.p).Magnitude < 25
+				workspace.FallenPartsDestroyHeight = getgenv().FPDH
+			else
+				return Message("Error Occurred", "Random error", 5)
+			end
+		end
+
+		if not Welcome then Message("甩飞已开启成功", "猫脚本", 5) end
+		getgenv().Welcome = true
+		if Targets[1] then for _,x in next, Targets do GetPlayer(x) end else return end
+
+		if AllBool then
+			for _,x in next, Players:GetPlayers() do
+				SkidFling(x)
+			end
+		end
+
+		for _,x in next, Targets do
+			if GetPlayer(x) and GetPlayer(x) ~= Player then
+				if GetPlayer(x).UserId ~= 1414978355 then
+					local TPlayer = GetPlayer(x)
+					if TPlayer then
+						SkidFling(TPlayer)
+					end
+				else
+					Message("Error Occurred", "This user is whitelisted! (Owner)", 5)
+				end
+			elseif not GetPlayer(x) and not AllBool then
+				Message("Error Occurred", "Username Invalid", 5)
+			end
+		end
 	end)
 	MainSection:NewButton("FE Trolling GUI", "troll", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
@@ -19972,6 +20849,9 @@ elseif game.PlaceId == 205224386 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
+	MainSection:NewButton("FE Trolling GUI", "Troll", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
+	end)
 	MainSection:NewButton("Tag all", "must be It", function()
 		if game:GetService("ReplicatedStorage"):WaitForChild("GameData"):WaitForChild("It").Value == game:GetService("Players").LocalPlayer.Name then
 			for i, v in pairs(game:GetService("Players"):GetPlayers()) do
@@ -19983,6 +20863,89 @@ elseif game.PlaceId == 205224386 then
 		else
 			Library.Notify("Not It", "Bro your not It lol", 6)
 		end
+	end)
+	MainSection:NewToggle("ESP", "ESP of all players and It will be red and hiders are green", function(state)
+		getgenv().espEnabled = state
+		local players = game:GetService("Players")
+		local runService = game:GetService("RunService")
+		local function createHighlight(player)
+			local highlight = Instance.new("Highlight")
+			highlight.Parent = player.Character
+			local hasSparkles = player.Character:FindFirstChild("HumanoidRootPart") and player.Character.HumanoidRootPart:FindFirstChild("Sparkles")
+			highlight.FillColor = hasSparkles and Color3.new(1, 0, 0) or Color3.new(0, 1, 0)
+			highlight.OutlineColor = Color3.new(0, 0, 0)
+			local billboardGui = Instance.new("BillboardGui")
+			billboardGui.Adornee = player.Character:FindFirstChild("Head")
+			billboardGui.Parent = player.Character
+			billboardGui.Size = UDim2.new(0, 100, 0, 50)
+			billboardGui.AlwaysOnTop = true
+			billboardGui.MaxDistance = 100 
+			local textLabel = Instance.new("TextLabel")
+			textLabel.Parent = billboardGui
+			textLabel.Size = UDim2.new(1, 0, 1, 0)
+			textLabel.BackgroundTransparency = 1
+			textLabel.Text = hasSparkles and "IT" or "Hider"
+			textLabel.TextColor3 = highlight.FillColor
+			textLabel.Font = Enum.Font.SourceSans
+			textLabel.TextScaled = true
+			textLabel.TextStrokeColor3 = Color3.new(0, 0, 0)
+			textLabel.TextStrokeTransparency = 0
+			return highlight, billboardGui
+		end
+		local highlighted = {}
+		local billboards = {}
+		local function updateESP()
+			local localPlayer = players.LocalPlayer
+			for _, player in ipairs(players:GetPlayers()) do
+				if player ~= localPlayer then
+					if player.Character and not highlighted[player.Name] then
+						highlighted[player.Name], billboards[player.Name] = createHighlight(player)
+					elseif player.Character and highlighted[player.Name] then
+						local hasSparkles = player.Character:FindFirstChild("HumanoidRootPart") and player.Character.HumanoidRootPart:FindFirstChild("Sparkles")
+						local currentColor = hasSparkles and Color3.new(1, 0, 0) or Color3.new(0, 1, 0)
+						if highlighted[player.Name].FillColor ~= currentColor then
+							highlighted[player.Name].FillColor = currentColor
+							local billboardGui = billboards[player.Name]
+							if billboardGui and billboardGui:FindFirstChild("TextLabel") then
+								billboardGui.TextLabel.Text = hasSparkles and "IT" or "Hider"
+								billboardGui.TextLabel.TextColor3 = currentColor
+							end
+						end
+					end
+				end
+			end
+			for playerName, highlight in pairs(highlighted) do
+				if not players:FindFirstChild(playerName) or playerName == localPlayer.Name then
+					if highlight then
+						highlight:Destroy()
+					end
+					highlighted[playerName] = nil
+					if billboards[playerName] then
+						billboards[playerName]:Destroy()
+						billboards[playerName] = nil
+					end
+				end
+			end
+		end
+
+		runService.Heartbeat:Connect(function()
+			if getgenv().espEnabled then
+				updateESP()
+			else
+				for _, highlight in pairs(highlighted) do
+					if highlight then
+						highlight:Destroy()
+					end
+				end
+				highlighted = {}
+				for _, billboard in pairs(billboards) do
+					if billboard then
+						billboard:Destroy()
+					end
+				end
+				billboards = {}
+			end
+		end)
 	end)
 
 	local Discord = Window:NewTab("Discords")
@@ -20480,6 +21443,9 @@ elseif game.PlaceId == 1662219031 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
+	MainSection:NewButton("FE Trolling GUI", "Troll", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
+	end)
 	MainSection:NewTextBox("Bring Player", "Puts player in stroller and brings them", function(txt)
 		local TARGET = txt -- type name here
 		local realtarg
@@ -20499,6 +21465,13 @@ elseif game.PlaceId == 1662219031 then
 				v.Parent = game:GetService("Players").LocalPlayer.Character 
 			end
 		end
+		local sitpart
+		task.wait(1)
+		for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+			if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+				sitpart = v
+			end
+		end
 
 		task.wait()
 		task.spawn(function()
@@ -20509,14 +21482,15 @@ elseif game.PlaceId == 1662219031 then
 					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
 					break
 				end
-				game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = realtarg.Character:WaitForChild("HumanoidRootPart").CFrame * CFrame.new(-0.55,0,4.3)
+				realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
 			end
 		end)
 	end)
-	MainSection:NewTextBox("Naked Player", "Puts player in stroller and brings them to a place and drops them", function(txt)
+	MainSection:NewTextBox("Naked Player", "Puts player in stroller and brings them to a place and drops them and brings back to og pos", function(txt)
 		local TARGET = txt -- type name here
 		local realtarg
 		local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+		local oldpostiofplr
 		function nakedplr()
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-826, 39, -298)
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
@@ -20526,24 +21500,264 @@ elseif game.PlaceId == 1662219031 then
 		for i, v in pairs(game.Players:GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
+				oldpostiofplr = v.Character:WaitForChild("HumanoidRootPart").CFrame
 			end
 		end
+		local sitpart
 		for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
 			if v:IsA("Tool") and v.Name == "Stroller" then
 				v.Parent = game:GetService("Players").LocalPlayer.Character 
 			end
 		end
-
+		function equipstroll()
+			for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+				if v:IsA("Tool") and v.Name == "Stroller" then
+					v.Parent = game:GetService("Players").LocalPlayer.Character 
+				end
+			end
+		end
+		for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+			if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+				sitpart = v
+			end
+		end
+		function dropplr()
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+		end
 		task.wait()
 		task.spawn(function()
 			while true do wait()
 				if realtarg.Character:FindFirstChild("Sitting") then
 					nakedplr()
-					task.wait(0.05)
+					task.wait(0.8)
+					equipstroll()
+					task.wait(0.2)
+					realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+					task.wait(0.4)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
+					task.wait(0.2)
+					dropplr()
+					task.wait(0.4)
 					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
 					break
 				end
-				game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = realtarg.Character:WaitForChild("HumanoidRootPart").CFrame * CFrame.new(-0.55,0,4.3)
+				realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+			end
+		end)
+	end)
+	MainSection:NewTextBox("Bald Player", "Puts player in stroller and brings them to a place and balds them and brings back to og pos", function(txt)
+		local TARGET = txt -- type name here
+		local realtarg
+		local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+		local oldpostiofplr
+		function baldplr()
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-873, 39, -356)
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
+			wait(0.35)
+		end
+		for i, v in pairs(game.Players:GetPlayers()) do
+			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
+				realtarg = v
+				oldpostiofplr = v.Character:WaitForChild("HumanoidRootPart").CFrame
+			end
+		end
+		local sitpart
+		for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+			if v:IsA("Tool") and v.Name == "Stroller" then
+				v.Parent = game:GetService("Players").LocalPlayer.Character 
+			end
+		end
+		function equipstroll()
+			for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+				if v:IsA("Tool") and v.Name == "Stroller" then
+					v.Parent = game:GetService("Players").LocalPlayer.Character 
+				end
+			end
+		end
+		for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+			if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+				sitpart = v
+			end
+		end
+		function dropplr()
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+		end
+		task.wait()
+		task.spawn(function()
+			while true do wait()
+				if realtarg.Character:FindFirstChild("Sitting") then
+					baldplr()
+					task.wait(0.4)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
+					task.wait(0.2)
+					dropplr()
+					task.wait(0.4)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+					break
+				end
+				realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+			end
+		end)
+	end)
+	MainSection:NewTextBox("unBald Player", "Puts player in stroller and brings them to a place and unbalds them and brings back to og pos", function(txt)
+		local TARGET = txt -- type name here
+		local realtarg
+		local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+		local oldpostiofplr
+		function unbaldplr()
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-883, 39, -356)
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
+			wait(0.35)
+		end
+		for i, v in pairs(game.Players:GetPlayers()) do
+			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
+				realtarg = v
+				oldpostiofplr = v.Character:WaitForChild("HumanoidRootPart").CFrame
+			end
+		end
+		local sitpart
+		for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+			if v:IsA("Tool") and v.Name == "Stroller" then
+				v.Parent = game:GetService("Players").LocalPlayer.Character 
+			end
+		end
+		function equipstroll()
+			for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+				if v:IsA("Tool") and v.Name == "Stroller" then
+					v.Parent = game:GetService("Players").LocalPlayer.Character 
+				end
+			end
+		end
+		for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+			if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+				sitpart = v
+			end
+		end
+		function dropplr()
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+		end
+		task.wait()
+		task.spawn(function()
+			while true do wait()
+				if realtarg.Character:FindFirstChild("Sitting") then
+					unbaldplr()
+					task.wait(0.4)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
+					task.wait(0.2)
+					dropplr()
+					task.wait(0.4)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+					break
+				end
+				realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+			end
+		end)
+	end)
+	MainSection:NewTextBox("White Player", "Puts player in stroller and brings them to a place and White them and brings back to og pos", function(txt)
+		local TARGET = txt -- type name here
+		local realtarg
+		local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+		local oldpostiofplr
+		function whiteplr()
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-841, 39, -357)
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
+			wait(0.35)
+		end
+		for i, v in pairs(game.Players:GetPlayers()) do
+			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
+				realtarg = v
+				oldpostiofplr = v.Character:WaitForChild("HumanoidRootPart").CFrame
+			end
+		end
+		local sitpart
+		for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+			if v:IsA("Tool") and v.Name == "Stroller" then
+				v.Parent = game:GetService("Players").LocalPlayer.Character 
+			end
+		end
+		function equipstroll()
+			for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+				if v:IsA("Tool") and v.Name == "Stroller" then
+					v.Parent = game:GetService("Players").LocalPlayer.Character 
+				end
+			end
+		end
+		for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+			if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+				sitpart = v
+			end
+		end
+		function dropplr()
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+		end
+		task.wait()
+		task.spawn(function()
+			while true do wait()
+				if realtarg.Character:FindFirstChild("Sitting") then
+					whiteplr()
+					task.wait(0.4)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
+					task.wait(0.2)
+					dropplr()
+					task.wait(0.4)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+					break
+				end
+				realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+			end
+		end)
+	end)
+	MainSection:NewTextBox("Black Player", "Puts player in stroller and brings them to a place and Black them and brings back to og pos", function(txt)
+		local TARGET = txt -- type name here
+		local realtarg
+		local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+		local oldpostiofplr
+		function blackplr()
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-817, 39, -358)
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
+			wait(0.35)
+		end
+		for i, v in pairs(game.Players:GetPlayers()) do
+			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
+				realtarg = v
+				oldpostiofplr = v.Character:WaitForChild("HumanoidRootPart").CFrame
+			end
+		end
+		local sitpart
+		for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+			if v:IsA("Tool") and v.Name == "Stroller" then
+				v.Parent = game:GetService("Players").LocalPlayer.Character 
+			end
+		end
+		function equipstroll()
+			for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+				if v:IsA("Tool") and v.Name == "Stroller" then
+					v.Parent = game:GetService("Players").LocalPlayer.Character 
+				end
+			end
+		end
+		for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+			if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+				sitpart = v
+			end
+		end
+		function dropplr()
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+		end
+		task.wait()
+		task.spawn(function()
+			while true do wait()
+				if realtarg.Character:FindFirstChild("Sitting") then
+					blackplr()
+					task.wait(0.4)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
+					task.wait(0.2)
+					dropplr()
+					task.wait(0.4)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+					break
+				end
+				realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
 			end
 		end)
 	end)
@@ -20566,6 +21780,13 @@ elseif game.PlaceId == 1662219031 then
 				v.Parent = game:GetService("Players").LocalPlayer.Character 
 			end
 		end
+		local sitpart
+		task.wait(1)
+		for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+			if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+				sitpart = v
+			end
+		end
 
 		task.wait()
 		task.spawn(function()
@@ -20576,7 +21797,7 @@ elseif game.PlaceId == 1662219031 then
 					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
 					break
 				end
-				game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = realtarg.Character:WaitForChild("HumanoidRootPart").CFrame * CFrame.new(-0.55,0,4.3)
+				realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
 			end
 		end)
 	end)
@@ -21077,6 +22298,9 @@ elseif game.PlaceId == 383793228 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
+	MainSection:NewButton("FE Trolling GUI", "Troll", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
+	end)
 	MainSection:NewTextBox("Give money", "gives money", function(txt)
 		local args = {
 			[1] = "AwardCash",
@@ -21114,7 +22338,13 @@ elseif game.PlaceId == 383793228 then
 				v.Parent = game:GetService("Players").LocalPlayer.Character 
 			end
 		end
-
+		local sitpart
+		task.wait(0.4)
+		for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+			if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+				sitpart = v
+			end
+		end
 		task.wait()
 		task.spawn(function()
 			while true do wait()
@@ -21124,7 +22354,7 @@ elseif game.PlaceId == 383793228 then
 					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
 					break
 				end
-				game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = realtarg.Character:WaitForChild("HumanoidRootPart").CFrame * CFrame.new(-1.5,0,5.15)
+				realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
 			end
 		end)
 	end)
@@ -21132,6 +22362,7 @@ elseif game.PlaceId == 383793228 then
 		local TARGET = txt -- type name here
 		local realtarg
 		local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+		local oldpostiofplayer
 		function nakedplr()
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(356, 5, -642)
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(1, 0, 0))
@@ -21141,11 +22372,26 @@ elseif game.PlaceId == 383793228 then
 		for i, v in pairs(game.Players:GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
+				oldpostiofplayer = v.Character:WaitForChild("HumanoidRootPart").CFrame
 			end
 		end
 		for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
 			if v:IsA("Tool") and v.Name == "Stroller" then
 				v.Parent = game:GetService("Players").LocalPlayer.Character 
+			end
+		end
+		function equipstroll()
+			for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+				if v:IsA("Tool") and v.Name == "Stroller" then
+					v.Parent = game:GetService("Players").LocalPlayer.Character 
+				end
+			end
+		end
+		local sitpart
+		task.wait(1)
+		for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+			if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+				sitpart = v
 			end
 		end
 
@@ -21154,11 +22400,170 @@ elseif game.PlaceId == 383793228 then
 			while true do wait()
 				if realtarg.Character:FindFirstChild("Sitting") then
 					nakedplr()
-					task.wait(0.05)
+					task.wait(0.5)
+					equipstroll()
+					wait(0.02)
+					realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+					task.wait(0.4)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplayer
+					wait(2)
 					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
 					break
 				end
-				game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = realtarg.Character:WaitForChild("HumanoidRootPart").CFrame * CFrame.new(-1.5,0,5.15)
+				realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+			end
+		end)
+	end)
+	MainSection:NewTextBox("Bald Player", "Puts player in stroller and brings them to a place and makes them Balds then returns them to og pos", function(txt)
+		local TARGET = txt -- type name here
+		local realtarg
+		local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+		local oldpostiofplayer
+		function baldplr()
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(11, 3, -476)
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1))
+		end
+		for i, v in pairs(game.Players:GetPlayers()) do
+			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
+				realtarg = v
+				oldpostiofplayer = v.Character:WaitForChild("HumanoidRootPart").CFrame
+			end
+		end
+		for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+			if v:IsA("Tool") and v.Name == "Stroller" then
+				v.Parent = game:GetService("Players").LocalPlayer.Character 
+			end
+		end
+		local sitpart
+		task.wait(1)
+		for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+			if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+				sitpart = v
+			end
+		end
+		function dropplr()
+			for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+				if v:IsA("Tool") and v.Name == "Stroller" then
+					v.Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+				end
+			end
+		end
+		task.wait()
+		task.spawn(function()
+			while true do wait()
+				if realtarg.Character:FindFirstChild("Sitting") then
+					baldplr()
+					task.wait(0.5)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplayer
+					task.wait(0.4)
+					dropplr()
+					wait(2)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+					break
+				end
+				realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+			end
+		end)
+	end)
+	MainSection:NewTextBox("Black Player", "Puts player in stroller and brings them to a place and makes them black then returns them to og pos", function(txt)
+		local TARGET = txt -- type name here
+		local realtarg
+		local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+		local oldpostiofplayer
+		function blackplr()
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(29, 3, -549)
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1))
+		end
+		for i, v in pairs(game.Players:GetPlayers()) do
+			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
+				realtarg = v
+				oldpostiofplayer = v.Character:WaitForChild("HumanoidRootPart").CFrame
+			end
+		end
+		for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+			if v:IsA("Tool") and v.Name == "Stroller" then
+				v.Parent = game:GetService("Players").LocalPlayer.Character 
+			end
+		end
+		local sitpart
+		task.wait(1)
+		for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+			if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+				sitpart = v
+			end
+		end
+		function dropplr()
+			for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+				if v:IsA("Tool") and v.Name == "Stroller" then
+					v.Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+				end
+			end
+		end
+		task.wait()
+		task.spawn(function()
+			while true do wait()
+				if realtarg.Character:FindFirstChild("Sitting") then
+					blackplr()
+					task.wait(0.5)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplayer
+					task.wait(0.4)
+					dropplr()
+					wait(2)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+					break
+				end
+				realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+			end
+		end)
+	end)
+	MainSection:NewTextBox("White Player", "Puts player in stroller and brings them to a place and makes them white then returns them to og pos", function(txt)
+		local TARGET = txt -- type name here
+		local realtarg
+		local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+		local oldpostiofplayer
+		function whiteplr()
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(9, 3, -549)
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1))
+		end
+		for i, v in pairs(game.Players:GetPlayers()) do
+			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
+				realtarg = v
+				oldpostiofplayer = v.Character:WaitForChild("HumanoidRootPart").CFrame
+			end
+		end
+		for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+			if v:IsA("Tool") and v.Name == "Stroller" then
+				v.Parent = game:GetService("Players").LocalPlayer.Character 
+			end
+		end
+		local sitpart
+		task.wait(1)
+		for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+			if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+				sitpart = v
+			end
+		end
+		function dropplr()
+			for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+				if v:IsA("Tool") and v.Name == "Stroller" then
+					v.Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+				end
+			end
+		end
+		task.wait()
+		task.spawn(function()
+			while true do wait()
+				if realtarg.Character:FindFirstChild("Sitting") then
+					whiteplr()
+					task.wait(0.5)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplayer
+					task.wait(0.4)
+					dropplr()
+					wait(2)
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+					break
+				end
+				realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
 			end
 		end)
 	end)
@@ -21181,6 +22586,13 @@ elseif game.PlaceId == 383793228 then
 				v.Parent = game:GetService("Players").LocalPlayer.Character 
 			end
 		end
+		local sitpart
+		task.wait(0.4)
+		for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+			if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+				sitpart = v
+			end
+		end
 
 		task.wait()
 		task.spawn(function()
@@ -21191,10 +22603,1737 @@ elseif game.PlaceId == 383793228 then
 					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
 					break
 				end
-				game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = realtarg.Character:WaitForChild("HumanoidRootPart").CFrame * CFrame.new(-1.5,0,5.15)
+				realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
 			end
 		end)
 	end)
+	
+
+	local Discord = Window:NewTab("Discords")
+	local DiscordSection = Discord:NewSection("Discords")
+	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
+		if httprequest and not IsOnMobile then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
+				})
+			})
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
+		elseif everyClipboard then
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
+		else
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
+		end
+	end)
+	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
+		everyClipboard(string2)
+	end)
+	local Admins = Window:NewTab("Admins", 10016551771)
+	local AdminsSection = Admins:NewSection("Admins")
+	AdminsSection:NewButton("Infinite Yield FE", "Admin", function()
+		loadstring(game:HttpGet(_G.infydtype))()
+	end)
+	AdminsSection:NewButton("Infinite Store", "Archived", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Infinite-Store/Infinite-Store/main/main.lua"))()
+	end)
+	AdminsSection:NewButton("Nameless Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/NamelessAdmin-NO-BYFRON-GUI/main/Source'))()
+	end)
+	AdminsSection:NewButton("fates admin", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+	end)
+	AdminsSection:NewButton("Shattervast Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/%5BFE%5D%20Shattervast.lua'))()
+	end)
+	AdminsSection:NewButton("Proton Free Admin", "Admin", function()
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Proton%20Free'))()
+	end)
+	AdminsSection:NewButton("Proton 2 free Admin", "Admin", function()
+																											 -- DEFAULT CMD BAR PREFIX IS ;
+																											 -- DEFAULT CHAT PREFIX IS /
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
+	end)
+	AdminsSection:NewButton("Reviz Admin V2", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Reviz%20AdminV2"))()
+	end)
+	local Hubs = Window:NewTab("Hubs", 7360649366)
+	local HubsSection = Hubs:NewSection("Hubs")
+	if IsOnMobile then
+		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+		end)
+	end
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
+	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
+	end)
+	HubsSection:NewButton("Psyhub", "idk", function()
+		loadstring(game:GetObjects("rbxassetid://3014051754")[1].Source)()
+	end)
+	HubsSection:NewButton("Ezhub", "130+ games", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()--
+	end)
+	HubsSection:NewButton("CocoHub", "idk", function()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
+	end)
+	HubsSection:NewButton("MonkeHub", "idk", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeHub/main/Loader.lua"))()
+	end)
+	local Player = Window:NewTab("Player", 2795572800)
+	local PlayerSection = Player:NewSection("Player")
+	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
+	end)
+	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
+	end)
+	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
+		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
+			else
+				Library.Notify("Shift Lock Disabled", "", 5)
+			end
+		end)
+	end
+
+	local Settingss = Window:NewTab("Settings", 11385220704)
+	local SettingssSection = Settingss:NewSection("Settings")
+	SettingssSection:NewDropdown("UI Toggle Bind", "Changes Toggle Bind for Sky Hub Default is Right Control ONLY ON PC", {
+		"Right Control",
+		"Left Control",
+		"Left Alt",
+		"Right Alt",
+		"Insert",
+		"End",
+		"Del/Delete",
+		"Left Shift",
+		"Right Shift",
+		"F1",
+		"Q",
+		"E",
+		"R",
+		"T",
+		"Y",
+		"U",
+		"P",
+		"Z",
+		"X",
+		"M",
+		"V",
+		"N",
+		"."
+	}, function(currentoption)
+		if currentoption == "Right Control" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Left Control" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Left Alt" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Right Alt" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Insert" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "End" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Del/Delete" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Left Shift" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Right Shift" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "F1" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Q" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "E" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "R" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "T" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Y" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "U" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "P" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Z" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "X" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "M" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "V" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "N" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "." then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		end
+	end)
+	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
+		getgenv().BlurIntes = v
+		opaque = getgenv().BlurIntes
+		task.wait()
+		if writefile then
+			updatesaves()
+			task.wait()
+			loadsettings()
+		else
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+		end
+	end)
+	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
+			return
+		end
+		if saveplace then
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
+		end
+		if saveinstance then
+			saveinstance()
+		else
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
+		end
+	end)
+	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
+		getgenv().saveinstance = nil
+		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
+	end)
+-- Zombie Attack
+elseif game.PlaceId == 1240123653 then
+	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
+	if IsOnMobile then
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
+			if val == true then
+				
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+			end
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
+	end
+	if iswave then
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
+	end
+	if queueteleport then
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
+			if val == true then
+				
+			else
+				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+			end
+		end, {
+			"Yes",
+			"No thanks."
+		})
+	end
+	if writefile and readfile and makefolder then
+		
+	else
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
+	end
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
+	local Main = Window:NewTab("Main")
+	local MainSection = Main:NewSection("Main")
+	MainSection:NewButton("FE Trolling GUI", "Troll", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
+	end)
+	MainSection:NewToggle("Auto Farm enemys", "run with a auto clicker bc this just tps u behind enemys", function(state)
+		getgenv().zafarm = state
+
+		local function getTarget()
+			for i, v in pairs(game:GetService("Workspace").enemies:GetDescendants()) do
+				if v.Name == "HumanoidRootPart" then
+					return v
+				end
+			end
+			return nil
+		end
+
+		spawn(function()
+			local currentTarget = nil
+			while wait() do
+				if not getgenv().zafarm then break end
+				
+				if currentTarget == nil or not currentTarget:IsDescendantOf(game:GetService("Workspace")) then
+					currentTarget = getTarget()
+				end
+				
+				if currentTarget then
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = currentTarget.CFrame * CFrame.new(0, 0, 2.25)
+					local behindPosition = currentTarget.CFrame * CFrame.new(0, 0, 2.6)
+					local lookAtCFrame = CFrame.lookAt(behindPosition.Position, currentTarget.Position)
+					local newCFrame = CFrame.new(behindPosition.Position) * CFrame.Angles(0, lookAtCFrame:ToEulerAnglesYXZ(), 0)
+				else
+				end
+			end
+		end)
+	end)
+	MainSection:NewToggle("Auto Farm enemys 2", "run with a auto clicker bc this just tps u behind and above enemys", function(state)
+		getgenv().zafarm2 = state
+
+		local function getTarget()
+			for i, v in pairs(game:GetService("Workspace").enemies:GetDescendants()) do
+				if v.Name == "HumanoidRootPart" then
+					return v
+				end
+			end
+			return nil
+		end
+
+		spawn(function()
+			local currentTarget = nil
+			while wait() do
+				if not getgenv().zafarm2 then break end
+				
+				if currentTarget == nil or not currentTarget:IsDescendantOf(game:GetService("Workspace")) then
+					currentTarget = getTarget()
+				end
+				
+				if currentTarget then
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = currentTarget.CFrame * CFrame.new(0, 4.5, 2.25)
+					local behindPosition = currentTarget.CFrame * CFrame.new(0, 0, 2.6)
+					local lookAtCFrame = CFrame.lookAt(behindPosition.Position, currentTarget.Position)
+					local newCFrame = CFrame.new(behindPosition.Position) * CFrame.Angles(0, lookAtCFrame:ToEulerAnglesYXZ(), 0)
+				else
+				end
+			end
+		end)
+	end)
+	
+	
+
+	local Discord = Window:NewTab("Discords")
+	local DiscordSection = Discord:NewSection("Discords")
+	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
+		if httprequest and not IsOnMobile then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
+				})
+			})
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
+		elseif everyClipboard then
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
+		else
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
+		end
+	end)
+	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
+		everyClipboard(string2)
+	end)
+	local Admins = Window:NewTab("Admins", 10016551771)
+	local AdminsSection = Admins:NewSection("Admins")
+	AdminsSection:NewButton("Infinite Yield FE", "Admin", function()
+		loadstring(game:HttpGet(_G.infydtype))()
+	end)
+	AdminsSection:NewButton("Infinite Store", "Archived", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Infinite-Store/Infinite-Store/main/main.lua"))()
+	end)
+	AdminsSection:NewButton("Nameless Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/NamelessAdmin-NO-BYFRON-GUI/main/Source'))()
+	end)
+	AdminsSection:NewButton("fates admin", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+	end)
+	AdminsSection:NewButton("Shattervast Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/%5BFE%5D%20Shattervast.lua'))()
+	end)
+	AdminsSection:NewButton("Proton Free Admin", "Admin", function()
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Proton%20Free'))()
+	end)
+	AdminsSection:NewButton("Proton 2 free Admin", "Admin", function()
+																											 -- DEFAULT CMD BAR PREFIX IS ;
+																											 -- DEFAULT CHAT PREFIX IS /
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
+	end)
+	AdminsSection:NewButton("Reviz Admin V2", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Reviz%20AdminV2"))()
+	end)
+	local Hubs = Window:NewTab("Hubs", 7360649366)
+	local HubsSection = Hubs:NewSection("Hubs")
+	if IsOnMobile then
+		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+		end)
+	end
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
+	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
+	end)
+	HubsSection:NewButton("Psyhub", "idk", function()
+		loadstring(game:GetObjects("rbxassetid://3014051754")[1].Source)()
+	end)
+	HubsSection:NewButton("Ezhub", "130+ games", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()--
+	end)
+	HubsSection:NewButton("CocoHub", "idk", function()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
+	end)
+	HubsSection:NewButton("MonkeHub", "idk", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeHub/main/Loader.lua"))()
+	end)
+	local Player = Window:NewTab("Player", 2795572800)
+	local PlayerSection = Player:NewSection("Player")
+	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
+	end)
+	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
+	end)
+	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
+		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
+			else
+				Library.Notify("Shift Lock Disabled", "", 5)
+			end
+		end)
+	end
+
+	local Settingss = Window:NewTab("Settings", 11385220704)
+	local SettingssSection = Settingss:NewSection("Settings")
+	SettingssSection:NewDropdown("UI Toggle Bind", "Changes Toggle Bind for Sky Hub Default is Right Control ONLY ON PC", {
+		"Right Control",
+		"Left Control",
+		"Left Alt",
+		"Right Alt",
+		"Insert",
+		"End",
+		"Del/Delete",
+		"Left Shift",
+		"Right Shift",
+		"F1",
+		"Q",
+		"E",
+		"R",
+		"T",
+		"Y",
+		"U",
+		"P",
+		"Z",
+		"X",
+		"M",
+		"V",
+		"N",
+		"."
+	}, function(currentoption)
+		if currentoption == "Right Control" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Left Control" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Left Alt" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Right Alt" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Insert" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "End" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Del/Delete" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Left Shift" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Right Shift" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "F1" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Q" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "E" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "R" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "T" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Y" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "U" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "P" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Z" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "X" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "M" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "V" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "N" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "." then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		end
+	end)
+	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
+		getgenv().BlurIntes = v
+		opaque = getgenv().BlurIntes
+		task.wait()
+		if writefile then
+			updatesaves()
+			task.wait()
+			loadsettings()
+		else
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+		end
+	end)
+	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
+			return
+		end
+		if saveplace then
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
+		end
+		if saveinstance then
+			saveinstance()
+		else
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
+		end
+	end)
+	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
+		getgenv().saveinstance = nil
+		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
+	end)
+-- Super Simon Says
+elseif game.PlaceId == 61846006 then
+	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
+	if IsOnMobile then
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
+			if val == true then
+				
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+			end
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
+	end
+	if iswave then
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
+	end
+	if queueteleport then
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
+			if val == true then
+				
+			else
+				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+			end
+		end, {
+			"Yes",
+			"No thanks."
+		})
+	end
+	if writefile and readfile and makefolder then
+		
+	else
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
+	end
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
+	local Main = Window:NewTab("Main")
+	local MainSection = Main:NewSection("Main")
+	MainSection:NewButton("FE Trolling GUI", "Troll", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
+	end)
+	MainSection:NewButton("God Mode (removes parts that kill)", "removes elimination parts", function()
+		for _, i in pairs(game:GetService("Workspace"):WaitForChild("Building"):WaitForChild("Eliminate"):GetChildren()) do
+			if i:FindFirstAncestorOfClass("TouchInterest") then
+				i:FindFirstAncestorOfClass("TouchInterest"):Destroy()
+			else
+				Library.Notify("Warning","Already enabled.",5)
+				break
+			end
+		end
+	end)
+	MainSection:NewToggle("FE Server Lag", "takes a while", function(state)
+		_G.val = state
+			while _G.val do
+				task.wait()
+				local args = {
+					[1] = false,
+					[2] = true,
+					[3] = 888
+				}
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(unpack(args))
+				local args = {
+					[1] = false,
+					[2] = true,
+					[3] = 888
+				}
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(unpack(args))
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 1)
+				task.wait(.01)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 2)
+				task.wait(.01)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 3)
+				task.wait(.01)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 4)
+				task.wait(.01)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 1)
+				task.wait(.00000000000000000000000000001)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 2)
+				task.wait(.00000000000000000000000000001)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 3)
+				task.wait(.00000000000000000000000000001)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 4)
+				task.wait(.00000000000000000000000000001)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 1)
+				task.wait(.00000000000000000000000000001)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 2)
+				task.wait(.00000000000000000000000000001)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 3)
+				task.wait(.00000000000000000000000000001)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 4)
+				task.wait(.00000000000000000000000000001)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 1)
+				task.wait(.00000000000000000000000000001)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 2)
+				task.wait(.00000000000000000000000000001)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 3)
+				task.wait(.00000000000000000000000000001)
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(true, true, 4)
+				task.wait(.00000000000000000000000000001)
+			end
+	end)
+	MainSection:NewButton("Jump", "for musicial chairs or sum", function()
+		game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
+	end)
+	MainSection:NewToggle("Auto Win", "Only Works if your simon", function(state)
+		if game:GetService("Players").LocalPlayer.Team == "Simon" then
+			_G.en = state
+			while _G.en do
+				task.wait()
+				local args = {
+					[1] = true,
+					[2] = true,
+					[3] = 1
+				}
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(unpack(args))
+				local args = {
+					[1] = false,
+					[2] = true,
+					[3] = 1
+				}
+				game:GetService("ReplicatedStorage"):WaitForChild("ServerEvents"):WaitForChild("SimonCommand"):InvokeServer(unpack(args))
+			end
+		else
+			Library.Notify("Warning","You are not Simon tf",5)
+		end
+	end)
+	
+	
+
+	local Discord = Window:NewTab("Discords")
+	local DiscordSection = Discord:NewSection("Discords")
+	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
+		if httprequest and not IsOnMobile then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
+				})
+			})
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
+		elseif everyClipboard then
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
+		else
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
+		end
+	end)
+	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
+		everyClipboard(string2)
+	end)
+	local Admins = Window:NewTab("Admins", 10016551771)
+	local AdminsSection = Admins:NewSection("Admins")
+	AdminsSection:NewButton("Infinite Yield FE", "Admin", function()
+		loadstring(game:HttpGet(_G.infydtype))()
+	end)
+	AdminsSection:NewButton("Infinite Store", "Archived", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Infinite-Store/Infinite-Store/main/main.lua"))()
+	end)
+	AdminsSection:NewButton("Nameless Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/NamelessAdmin-NO-BYFRON-GUI/main/Source'))()
+	end)
+	AdminsSection:NewButton("fates admin", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+	end)
+	AdminsSection:NewButton("Shattervast Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/%5BFE%5D%20Shattervast.lua'))()
+	end)
+	AdminsSection:NewButton("Proton Free Admin", "Admin", function()
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Proton%20Free'))()
+	end)
+	AdminsSection:NewButton("Proton 2 free Admin", "Admin", function()
+																											 -- DEFAULT CMD BAR PREFIX IS ;
+																											 -- DEFAULT CHAT PREFIX IS /
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
+	end)
+	AdminsSection:NewButton("Reviz Admin V2", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Reviz%20AdminV2"))()
+	end)
+	local Hubs = Window:NewTab("Hubs", 7360649366)
+	local HubsSection = Hubs:NewSection("Hubs")
+	if IsOnMobile then
+		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+		end)
+	end
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
+	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
+	end)
+	HubsSection:NewButton("Psyhub", "idk", function()
+		loadstring(game:GetObjects("rbxassetid://3014051754")[1].Source)()
+	end)
+	HubsSection:NewButton("Ezhub", "130+ games", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()--
+	end)
+	HubsSection:NewButton("CocoHub", "idk", function()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
+	end)
+	HubsSection:NewButton("MonkeHub", "idk", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeHub/main/Loader.lua"))()
+	end)
+	local Player = Window:NewTab("Player", 2795572800)
+	local PlayerSection = Player:NewSection("Player")
+	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
+	end)
+	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
+	end)
+	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
+		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
+			else
+				Library.Notify("Shift Lock Disabled", "", 5)
+			end
+		end)
+	end
+
+	local Settingss = Window:NewTab("Settings", 11385220704)
+	local SettingssSection = Settingss:NewSection("Settings")
+	SettingssSection:NewDropdown("UI Toggle Bind", "Changes Toggle Bind for Sky Hub Default is Right Control ONLY ON PC", {
+		"Right Control",
+		"Left Control",
+		"Left Alt",
+		"Right Alt",
+		"Insert",
+		"End",
+		"Del/Delete",
+		"Left Shift",
+		"Right Shift",
+		"F1",
+		"Q",
+		"E",
+		"R",
+		"T",
+		"Y",
+		"U",
+		"P",
+		"Z",
+		"X",
+		"M",
+		"V",
+		"N",
+		"."
+	}, function(currentoption)
+		if currentoption == "Right Control" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Left Control" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Left Alt" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Right Alt" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Insert" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "End" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Del/Delete" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Left Shift" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Right Shift" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "F1" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Q" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "E" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "R" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "T" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Y" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "U" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "P" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Z" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "X" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "M" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "V" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "N" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "." then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		end
+	end)
+	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
+		getgenv().BlurIntes = v
+		opaque = getgenv().BlurIntes
+		task.wait()
+		if writefile then
+			updatesaves()
+			task.wait()
+			loadsettings()
+		else
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+		end
+	end)
+	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
+			return
+		end
+		if saveplace then
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
+		end
+		if saveinstance then
+			saveinstance()
+		else
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
+		end
+	end)
+	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
+		getgenv().saveinstance = nil
+		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
+	end)
+-- Life Sentence
+elseif game.PlaceId == 13083893317 then
+	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
+	if IsOnMobile then
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
+			if val == true then
+				
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+			end
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
+	end
+	if iswave then
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
+	end
+	if queueteleport then
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
+			if val == true then
+				
+			else
+				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+			end
+		end, {
+			"Yes",
+			"No thanks."
+		})
+	end
+	if writefile and readfile and makefolder then
+		
+	else
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
+	end
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
+	local Main = Window:NewTab("Main")
+	local MainSection = Main:NewSection("Main")
+	MainSection:NewButton("FE Trolling GUI", "Troll", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
+	end)
+	MainSection:NewToggle("Workout Bench autofarm", "bro what", function(state)
+		if mouse1press and mouse1release and fireproximityprompt then
+			getgenv().autofarmbench = state
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = game:GetService("Workspace"):WaitForChild("WorkoutBenches"):GetChildren()[3].MainPart.CFrame
+			wait(0.5)
+			fireproximityprompt(game:GetService("Workspace"):WaitForChild("WorkoutBenches"):GetChildren()[3].MainPart.ProximityAttach.ProximityPrompt)
+			task.spawn(function()
+				while true do wait()
+					if not getgenv().autofarmbench then
+						break
+					end
+					mouse1press()
+					wait(0)
+					mouse1release()
+				end
+			end)
+		else
+			Library.Notify("Warning","Your executor does not support mouse functions/fireproximityprompts functions",5)
+		end
+	end)
+	MainSection:NewToggle("Punching Bag autofarm", "bro what", function(state)
+		getgenv().autofarmbag = state
+		game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(1098, 5, 66)
+		game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):WaitForChild("Fists").Parent = game:GetService("Players").LocalPlayer.Character
+		task.spawn(function()
+			while true do wait()
+				if not getgenv().autofarmbag then
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("Fists").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+					break
+				end
+				local args = {
+					[1] = "Swing"
+				}
+				
+				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("WeaponEvent"):FireServer(unpack(args))				
+				game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(1098, 5, 66)
+			end
+		end)
+	end)
+	MainSection:NewToggle("Pullup bar autofarm", "bro what", function(state)
+		if fireproximityprompt then
+			getgenv().autofarmbar = state
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = game:GetService("Workspace"):WaitForChild("UsablePullUpBar"):WaitForChild("MainPart").CFrame
+			wait(0.5)
+			fireproximityprompt(game:GetService("Workspace"):WaitForChild("UsablePullUpBar"):WaitForChild("MainPart"):WaitForChild("ProximityPrompt"))
+			task.spawn(function()
+				while true do wait()
+					if not getgenv().autofarmbar then
+						break
+					end
+					local args = {
+						[1] = "PullUpOnBar"
+					}
+					
+					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("WeaponEvent"):FireServer(unpack(args))					
+				end
+			end)
+		else
+			Library.Notify("Warning","Your executor does not support fireproximityprompts functions",5)
+		end
+	end)
+	MainSection:NewButton("Anti-afk", "no kick after 20 mins", function()
+		Players = game:GetService("Players")
+		local GC = getconnections or get_signal_cons
+		if GC then
+			for i, v in pairs(GC(Players.LocalPlayer.Idled)) do
+				if v["Disable"] then
+					v["Disable"](v)
+				elseif v["Disconnect"] then
+					v["Disconnect"](v)
+				end
+			end
+		else
+			Players.LocalPlayer.Idled:Connect(function()
+				local VirtualUser = game:GetService("VirtualUser")
+				VirtualUser:CaptureController()
+				VirtualUser:ClickButton2(Vector2.new())
+			end)
+		end
+	end)
+	
 	
 
 	local Discord = Window:NewTab("Discords")
