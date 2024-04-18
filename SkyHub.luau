@@ -212,7 +212,7 @@ if game.PlaceId == 2788229376 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -817,7 +817,7 @@ if game.PlaceId == 2788229376 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -992,7 +992,7 @@ elseif game.PlaceId == 286090429 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -1288,7 +1288,7 @@ elseif game.PlaceId == 1962086868 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -1763,7 +1763,7 @@ elseif game.PlaceId == 1962086868 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -1936,7 +1936,7 @@ elseif game.PlaceId == 621129760 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -2579,7 +2579,7 @@ elseif game.PlaceId == 621129760 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -2752,7 +2752,7 @@ elseif game.PlaceId == 12109643 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -3761,7 +3761,7 @@ elseif game.PlaceId == 12109643 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -3934,7 +3934,7 @@ elseif game.PlaceId == 192800 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -4453,7 +4453,7 @@ elseif game.PlaceId == 192800 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -4626,7 +4626,7 @@ elseif game.PlaceId == 4832438542 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -5090,7 +5090,7 @@ elseif game.PlaceId == 4832438542 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -5263,7 +5263,7 @@ elseif game.PlaceId == 920587237 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -5739,7 +5739,7 @@ elseif game.PlaceId == 920587237 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -6445,7 +6445,7 @@ elseif game.PlaceId == 606849621 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -6621,7 +6621,7 @@ elseif game.PlaceId == 155615604 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -7220,7 +7220,7 @@ elseif game.PlaceId == 155615604 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -7393,7 +7393,7 @@ elseif game.PlaceId == 537413528 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -8022,7 +8022,7 @@ elseif game.PlaceId == 537413528 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -8195,7 +8195,7 @@ elseif game.PlaceId == 8690998110 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -8706,7 +8706,7 @@ elseif game.PlaceId == 8690998110 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -8880,7 +8880,7 @@ elseif game.PlaceId == 142823291 then
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -10412,7 +10412,7 @@ elseif game.PlaceId == 142823291 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -10586,7 +10586,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -11067,7 +11067,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -11258,7 +11258,7 @@ elseif game.PlaceId == 301549746 then
 	MainSection:NewButton("CocoHub", "idk", function()
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -11707,7 +11707,7 @@ elseif game.PlaceId == 301549746 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -11937,7 +11937,7 @@ elseif game.PlaceId == 6884319169 then
 			end)
 		end
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -12395,7 +12395,7 @@ elseif game.PlaceId == 6884319169 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -12581,7 +12581,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 	MainSection:NewButton("Skip Player Neighbors", "if you run out of skips Basically just tps to sum and kills you", function()
 		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Terrain.CFrame
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -13039,7 +13039,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -13256,7 +13256,7 @@ elseif game.PlaceId == 189707 then
 	MainSection:NewButton("VG Hub", "60+", function()
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -13711,7 +13711,7 @@ elseif game.PlaceId == 189707 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -13947,7 +13947,7 @@ elseif game.PlaceId == 914010731 then
 			end
 		end
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -14402,7 +14402,7 @@ elseif game.PlaceId == 914010731 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -14644,7 +14644,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 	MainSection:NewButton("auto parry", "idk", function()
 		loadstring(game:HttpGet("https://scriptblox.com/raw/Blade-Ball-Decent-LEGIT-Auto-Parry-8381"))()
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -15102,7 +15102,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -15282,7 +15282,7 @@ elseif game.PlaceId == 6284583030 or game.PlaceId == 10321372166 then
 	MainSection:NewButton("Unfair hub", "unfair", function()
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/rbIxscriptsnet/unfair/main/rblxhub.lua'), true))()
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -15451,7 +15451,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 	MainSection:NewButton("VG Hub", "60+", function()
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -15906,7 +15906,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -16125,7 +16125,7 @@ elseif game.PlaceId == 3101667897 then
 	MainSection:NewButton("Ice Hub", "hub", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMae17/LegendOfSpeed/main/IceHub"))()
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -16580,7 +16580,7 @@ elseif game.PlaceId == 3101667897 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -16775,7 +16775,7 @@ elseif game.PlaceId == 4924922222 then
 	MainSection:NewButton("Frozen Hub", "Hub", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/FrozenScripts/frozenhubb/main/frozen777", true))()
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -17233,7 +17233,7 @@ elseif game.PlaceId == 4924922222 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -17432,7 +17432,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			loadstring(game:HttpGet('https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua'))()
 		end)
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -17887,7 +17887,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -18077,7 +18077,7 @@ elseif game.PlaceId == 6441847031 then
 			loadstring(game:HttpGet('https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua'))()
 		end)
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -18535,7 +18535,7 @@ elseif game.PlaceId == 6441847031 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -18757,7 +18757,7 @@ elseif game.PlaceId == 3956818381 then
 	MainSection:NewButton("CocoHub", "idk", function()
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -19206,7 +19206,7 @@ elseif game.PlaceId == 3956818381 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -19727,7 +19727,7 @@ elseif game.PlaceId == 12640491155 then
 	end)
 	
 
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -20185,7 +20185,7 @@ elseif game.PlaceId == 12640491155 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -20427,7 +20427,7 @@ elseif game.PlaceId == 3527629287 then
 			loadstring(game:HttpGet('https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua'))()
 		end)
 	end)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -20882,7 +20882,7 @@ elseif game.PlaceId == 3527629287 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -21070,7 +21070,7 @@ elseif game.PlaceId == 9865958871 then
 	end)
 	
 
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -21528,7 +21528,7 @@ elseif game.PlaceId == 9865958871 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -21717,7 +21717,7 @@ elseif game.PlaceId == 3623096087 then
 	end)
 	
 
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -22169,7 +22169,7 @@ elseif game.PlaceId == 3623096087 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -22300,7 +22300,7 @@ elseif game.PlaceId == 5796917097 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -22386,7 +22386,7 @@ elseif game.PlaceId == 185655149 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -22571,7 +22571,7 @@ elseif game.PlaceId == 14426444782 then
 	end)
 	
 
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -23023,7 +23023,7 @@ elseif game.PlaceId == 14426444782 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -24284,7 +24284,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 		return old_mt(remote, table.unpack(args))
 	end)
 	setreadonly(mt, true)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -24736,7 +24736,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -25008,7 +25008,7 @@ elseif game.PlaceId == 205224386 then
 		end)
 	end)
 
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -25460,7 +25460,7 @@ elseif game.PlaceId == 205224386 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -26938,7 +26938,7 @@ end
 	end)
 	
 
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -27390,7 +27390,7 @@ end
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -28679,7 +28679,7 @@ end
 	end)
 	
 
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -29131,7 +29131,7 @@ end
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -29372,7 +29372,7 @@ elseif game.PlaceId == 1240123653 then
 	
 	
 
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -29824,7 +29824,7 @@ elseif game.PlaceId == 1240123653 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -30088,7 +30088,7 @@ elseif game.PlaceId == 61846006 then
 	
 	
 
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -30540,7 +30540,7 @@ elseif game.PlaceId == 61846006 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -30799,7 +30799,7 @@ elseif game.PlaceId == 13083893317 then
 	
 	
 
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -31251,7 +31251,7 @@ elseif game.PlaceId == 13083893317 then
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
@@ -31422,7 +31422,7 @@ else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
-	local Discord = Window:NewTab("Discords")
+	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
 	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
 		if httprequest and not IsOnMobile then
@@ -31886,7 +31886,7 @@ else
 		getgenv().saveinstance = nil
 		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
 	end)
-	local Games = Window:NewTab("Games", )
+	local Games = Window:NewTab("Games", 12689980465)
 	local GamesSection = Games:NewSection("Games")
 	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
 		game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
