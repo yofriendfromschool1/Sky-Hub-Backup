@@ -8710,6 +8710,29 @@ elseif game.PlaceId == 8690998110 then
 			loadstring(game:HttpGet('https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua'))()
 		end)
 	end)
+	MainSection:NewButton("Tag all", "tags all", function()
+		local lc = game:GetService("Players").LocalPlayer.Character
+		local oldpos = lc.HumanoidRootPart.CFrame
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+			if v.Character:WaitForChild("MonkeHead"):FindFirstChild("LAVA") then
+				continue
+			end
+			repeat lc:PivotTo(v.Character.HumanoidRootPart.CFrame) task.wait() until v.Character:WaitForChild("MonkeHead"):FindFirstChild("LAVA")
+		end
+	end)
+	MainSection:NewButton("Force Infect", "Makes urself Lava", function()
+		local lc = game:GetService("Players").LocalPlayer.Character
+		local oldpos = lc.HumanoidRootPart.CFrame
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+			if v~=game:GetService("Players").LocalPlayer then
+		if v.Character:WaitForChild("MonkeHead"):FindFirstChild("LAVA") then
+				repeat lc:PivotTo(v.Character.HumanoidRootPart.CFrame) task.wait() until lc:WaitForChild("MonkeHead"):FindFirstChild("LAVA")
+				break
+			end
+			end
+		end
+		lc:PivotTo(oldpos)
+	end)
 	MainSection:NewButton("V3rm Script", "idk", function()
                 -- Made by 13 YOLD
 		local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/miroeramaa/TurtleLib/main/TurtleUiLib.lua"))()
@@ -20632,7 +20655,7 @@ elseif game.PlaceId == 12640491155 then
 	end)
 	VehicleModsSection:NewToggle("Steal Color", "changes color of car to whatever part you click on", function(state)
 		if state then
-			local player = game.Players.LocalPlayer
+			local player = game:GetService("Players").LocalPlayer
 			local mouse = player:GetMouse()
 			getgenv().stealcolor = true
 			local cptsOnMouseClick
@@ -25292,7 +25315,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				end
 				for _, v in pairs(game:GetService("Workspace"):GetDescendants()) do
 					if v.Name == "Door" and v:IsA("MeshPart") and v.Parent:IsA("Model") and v.Parent.Name == "Door" and v.Parent:FindFirstChild("Func_Open") then
-						local distance = (v.Position - game.Players.LocalPlayer.Character.PrimaryPart.Position).magnitude
+						local distance = (v.Position - game:GetService("Players").LocalPlayer.Character.PrimaryPart.Position).magnitude
 						if distance > 200 then
 							if highlightedDoors[v] then
 								if highlightedDoors[v].highlight then
@@ -25362,7 +25385,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				end
 				for _, v in pairs(game:GetService("Workspace"):GetDescendants()) do
 					if v.Name == "Main" and v:IsA("MeshPart") and v.Parent.Name == "Wardrobe" then
-						local distance = (v.Position - game.Players.LocalPlayer.Character.PrimaryPart.Position).magnitude
+						local distance = (v.Position - game:GetService("Players").LocalPlayer.Character.PrimaryPart.Position).magnitude
 						if distance > 200 then
 							if highlightedcabs[v] then
 								if highlightedcabs[v].highlight then
@@ -25421,7 +25444,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 				end
 				for _, v in pairs(game:GetService("Workspace"):GetDescendants()) do
 					if v.Name == "Chest" or v.Name == "Chests" then
-						local distance = (v.Position - game.Players.LocalPlayer.Character.PrimaryPart.Position).magnitude
+						local distance = (v.Position - game:GetService("Players").LocalPlayer.Character.PrimaryPart.Position).magnitude
 						if distance > 200 then
 							if highlightedchests[v] then
 								if highlightedchests[v].highlight then
@@ -27904,7 +27927,7 @@ elseif game.PlaceId == 1662219031 then
 			wait(0.35)
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
 		end
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
 			end
@@ -27946,7 +27969,7 @@ elseif game.PlaceId == 1662219031 then
 			wait(0.35)
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
 		end
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
 				oldpostiofplr = v.Character:WaitForChild("HumanoidRootPart").CFrame
@@ -28004,7 +28027,7 @@ elseif game.PlaceId == 1662219031 then
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
 			wait(0.35)
 		end
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
 				oldpostiofplr = v.Character:WaitForChild("HumanoidRootPart").CFrame
@@ -28058,7 +28081,7 @@ elseif game.PlaceId == 1662219031 then
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
 			wait(0.35)
 		end
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
 				oldpostiofplr = v.Character:WaitForChild("HumanoidRootPart").CFrame
@@ -28112,7 +28135,7 @@ elseif game.PlaceId == 1662219031 then
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
 			wait(0.35)
 		end
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
 				oldpostiofplr = v.Character:WaitForChild("HumanoidRootPart").CFrame
@@ -28166,7 +28189,7 @@ elseif game.PlaceId == 1662219031 then
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
 			wait(0.35)
 		end
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
 				oldpostiofplr = v.Character:WaitForChild("HumanoidRootPart").CFrame
@@ -28219,7 +28242,7 @@ elseif game.PlaceId == 1662219031 then
 			wait(1)
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
 		end
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
 			end
@@ -29753,7 +29776,7 @@ elseif game.PlaceId == 383793228 then
 			wait(0.35)
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
 		end
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
 			end
@@ -29794,7 +29817,7 @@ elseif game.PlaceId == 383793228 then
 			wait(0.35)
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
 		end
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
 				oldpostiofplayer = v.Character:WaitForChild("HumanoidRootPart").CFrame
@@ -29848,7 +29871,7 @@ elseif game.PlaceId == 383793228 then
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(11, 3, -476)
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1))
 		end
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
 				oldpostiofplayer = v.Character:WaitForChild("HumanoidRootPart").CFrame
@@ -29899,7 +29922,7 @@ elseif game.PlaceId == 383793228 then
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(29, 3, -549)
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1))
 		end
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
 				oldpostiofplayer = v.Character:WaitForChild("HumanoidRootPart").CFrame
@@ -29950,7 +29973,7 @@ elseif game.PlaceId == 383793228 then
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(9, 3, -549)
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1))
 		end
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
 				oldpostiofplayer = v.Character:WaitForChild("HumanoidRootPart").CFrame
@@ -30001,7 +30024,7 @@ elseif game.PlaceId == 383793228 then
 			wait(1)
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
 		end
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #TARGET) == string.lower(TARGET) or string.sub(string.lower(v.DisplayName), 0, #TARGET) == string.lower(TARGET) and v ~= game:GetService("Players").LocalPlayer then
 				realtarg = v
 			end
@@ -34497,7 +34520,7 @@ else
 		elseif game.PlaceId == 8712817601 then -- barrys prison V2
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(10, 677, -915)
 			wait(1.25)
-			game.Players.LocalPlayer.Character.Humanoid.Jump = true
+			game:GetService("Players").LocalPlayer.Character.Humanoid.Jump = true
 			wait(5)
 			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-331, 873, -2726)
 		elseif game.PlaceId == 14184086618 then -- obby but bike
