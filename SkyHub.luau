@@ -26951,471 +26951,472 @@ elseif game.PlaceId == 1662219031 then
 	end)
 	MainSection:NewButton("admin", "type .cmds to see cmds", function()
 		local bring = ".bring"
-local kill = ".kill"
-local toplayer = ".goto"
-local baldplr = ".bald"
-local unbaldplr = ".unbald"
-local nakey = ".nk"
-local whitey = ".white"
-local blacky = ".black"
-local cmds = ".cmds"
-local plrs = game:GetService("Players")
-local plr = game:GetService("Players").LocalPlayer
-GetArgs = function(Args)
-	return Args:split(" ")
-end
-FindPlayer = function(h, h2)
-	if string.lower(h) == "me" then
-		return plr
-	else
-		h = h:gsub("%s+", "")
-		for m, n in pairs(game:GetService("Players"):GetPlayers()) do
-			if n.Name:lower():match("^" .. h:lower()) or n.DisplayName:lower():match("^" .. h:lower()) then
-				return n
+		local kill = ".kill"
+		local toplayer = ".goto"
+		local baldplr = ".bald"
+		local unbaldplr = ".unbald"
+		local nakey = ".nk"
+		local whitey = ".white"
+		local blacky = ".black"
+		local cmds = ".cmds"
+		local plrs = game:GetService("Players")
+		local plr = game:GetService("Players").LocalPlayer
+		GetArgs = function(Args)
+			return Args:split(" ")
+		end
+		FindPlayer = function(h, h2)
+			if string.lower(h) == "me" then
+				return plr
+			else
+				h = h:gsub("%s+", "")
+				for m, n in pairs(game:GetService("Players"):GetPlayers()) do
+					if n.Name:lower():match("^" .. h:lower()) or n.DisplayName:lower():match("^" .. h:lower()) then
+						return n
+					end
+				end
+			end
+			return nil
+		end
+		for i, v in pairs(plrs:GetPlayers()) do
+			if v.Name == game:GetService("Players").LocalPlayer.Name then
+				v.Chatted:Connect(function(message)
+					local playerchar = v.Character:WaitForChild("HumanoidRootPart").CFrame
+					local playertalk = v.Name
+					local playertake = v
+					if string.find(message, bring) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r and not r.Character.Humanoid.Sit then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now bringing " .. r.Name,  "All")
+							local realtarg
+							local oldpostia = playerchar * CFrame.new(0,0,-2)
+							function bringplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+								wait(0.35)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+							end
+							realtarg = r
+							for i, v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character
+								end
+							end
+							local sitpart
+							task.wait(1)
+							for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+							task.wait()
+							task.spawn(function()
+								while true do
+									wait()
+									if realtarg.Character:FindFirstChild("Sitting") then
+										bringplr()
+										task.wait(0.05)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
+							return
+						end
+					end
+					if string.find(message, kill) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r and not r.Character.Humanoid.Sit then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now killing " .. r.Name,  "All")
+							local realtarg
+							local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+							function killplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(0,-20,0)
+								wait(1)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+							end
+							realtarg = r
+							for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character 
+								end
+							end
+							local sitpart
+							task.wait(1)
+							for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+
+							task.wait()
+							task.spawn(function()
+								while true do wait()
+									if realtarg.Character:FindFirstChild("Sitting") then
+										killplr()
+										task.wait(0.05)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
+							return
+						end
+					end
+					if string.find(message, toplayer) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now taking you to  " .. r.Name,  "All")
+							local realtarg
+							local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+							function toplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = r.Character:WaitForChild("HumanoidRootPart").CFrame
+								wait(1)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+								task.wait(0.4)
+							end
+							realtarg = r
+							for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character 
+								end
+							end
+							local sitpart
+							task.wait(1)
+							for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+
+							task.wait()
+							task.spawn(function()
+								while true do wait()
+									if playertake.Character:FindFirstChild("Sitting") then
+										toplr()
+										task.wait(0.05)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									playertake.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player.",  "All")
+							return
+						end
+					end
+					if string.find(message, baldplr) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r and not r.Character.Humanoid.Sit then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now balding " .. r.Name,  "All")
+							local realtarg
+							local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+							local oldpostiofplr
+							function baldplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-873, 39, -356)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
+								wait(0.35)
+							end
+							realtarg = r
+							oldpostiofplr = r.Character:WaitForChild("HumanoidRootPart").CFrame
+							local sitpart
+							for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character 
+								end
+							end
+							function equipstroll()
+								for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+									if v:IsA("Tool") and v.Name == "Stroller" then
+										v.Parent = game:GetService("Players").LocalPlayer.Character 
+									end
+								end
+							end
+							for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+							function dropplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+							end
+							task.wait()
+							task.spawn(function()
+								while true do wait()
+									if realtarg.Character:FindFirstChild("Sitting") then
+										baldplr()
+										task.wait(0.4)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
+										task.wait(0.2)
+										dropplr()
+										task.wait(0.4)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
+							return
+						end
+					end
+					if string.find(message, unbaldplr) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r and not r.Character.Humanoid.Sit then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now unbalding " .. r.Name,  "All")
+							local realtarg
+							local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+							local oldpostiofplr
+							function unbaldplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-883, 39, -356)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
+								wait(0.35)
+							end
+							realtarg = r
+							oldpostiofplr = r.Character:WaitForChild("HumanoidRootPart").CFrame
+							local sitpart
+							for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character 
+								end
+							end
+							function equipstroll()
+								for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+									if v:IsA("Tool") and v.Name == "Stroller" then
+										v.Parent = game:GetService("Players").LocalPlayer.Character 
+									end
+								end
+							end
+							for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+							function dropplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+							end
+							task.wait()
+							task.spawn(function()
+								while true do wait()
+									if realtarg.Character:FindFirstChild("Sitting") then
+										unbaldplr()
+										task.wait(0.4)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
+										task.wait(0.2)
+										dropplr()
+										task.wait(0.4)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
+							return
+						end
+					end
+					if string.find(message, nakey) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r and not r.Character.Humanoid.Sit then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now ayooing " .. r.Name,  "All")
+							local realtarg
+							local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+							local oldpostiofplr
+							function nakedplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-826, 39, -298)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
+								wait(0.35)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+							end
+							realtarg = r 
+							oldpostiofplr = r.Character:WaitForChild("HumanoidRootPart").CFrame
+							local sitpart
+							for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character 
+								end
+							end
+							function equipstroll()
+								for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+									if v:IsA("Tool") and v.Name == "Stroller" then
+										v.Parent = game:GetService("Players").LocalPlayer.Character 
+									end
+								end
+							end
+							for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+							function dropplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+							end
+							task.wait()
+							task.spawn(function()
+								while true do wait()
+									if realtarg.Character:FindFirstChild("Sitting") then
+										nakedplr()
+										task.wait(0.8)
+										equipstroll()
+										task.wait(0.2)
+										realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+										task.wait(0.4)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
+										task.wait(0.2)
+										dropplr()
+										task.wait(0.4)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
+							return
+						end
+					end
+					if string.find(message, whitey) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r and not r.Character.Humanoid.Sit then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now making " .. r.Name .. "white",  "All")
+							local realtarg
+							local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+							local oldpostiofplr
+							function whiteplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-841, 39, -357)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
+								wait(0.35)
+							end
+							realtarg = r
+							oldpostiofplr = r.Character:WaitForChild("HumanoidRootPart").CFrame
+							local sitpart
+							for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character 
+								end
+							end
+							function equipstroll()
+								for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+									if v:IsA("Tool") and v.Name == "Stroller" then
+										v.Parent = game:GetService("Players").LocalPlayer.Character 
+									end
+								end
+							end
+							for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+							function dropplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+							end
+							task.wait()
+							task.spawn(function()
+								while true do wait()
+									if realtarg.Character:FindFirstChild("Sitting") then
+										whiteplr()
+										task.wait(0.4)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
+										task.wait(0.2)
+										dropplr()
+										task.wait(0.4)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
+							return
+						end
+					end
+					if string.find(message, blacky) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r and not r.Character.Humanoid.Sit then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now making " .. r.Name .. "black",  "All")
+							local realtarg
+							local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+							local oldpostiofplr
+							function blackplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-817, 39, -358)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
+								wait(0.35)
+							end
+							realtarg = r 
+							oldpostiofplr = r.Character:WaitForChild("HumanoidRootPart").CFrame
+							local sitpart
+							for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character 
+								end
+							end
+							function equipstroll()
+								for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+									if v:IsA("Tool") and v.Name == "Stroller" then
+										v.Parent = game:GetService("Players").LocalPlayer.Character 
+									end
+								end
+							end
+							for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+							function dropplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+							end
+							task.wait()
+							task.spawn(function()
+								while true do wait()
+									if realtarg.Character:FindFirstChild("Sitting") then
+										blackplr()
+										task.wait(0.4)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
+										task.wait(0.2)
+										dropplr()
+										task.wait(0.4)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
+							return
+						end
+					end
+					if string.find(message, cmds) then
+						game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(".bring [PLAYER] .kill [PLAYER] .bald [PLAYER] .unbald [PLAYER] .nk [PLAYER] .white [PLAYER] .black [PLAYER] .goto [PLAYER]", "All")
+					end
+				end)
 			end
 		end
-	end
-	return nil
-end
-for i, v in pairs(plrs:GetPlayers()) do
-	if v.Name == game:GetService("Players").LocalPlayer.Name then
-		v.Chatted:Connect(function(message)
-			local playerchar = v.Character:WaitForChild("HumanoidRootPart").CFrame
-			local playertalk = v.Name
-            local playertake = v
-			if string.find(message, bring) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r and not r.Character.Humanoid.Sit then
-					local TARGET = r -- type name here
-                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now bringing " .. r.Name,  "All")
-					local realtarg
-					local oldpostia = playerchar * CFrame.new(0,0,-2)
-					function bringplr()
-						game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-						wait(0.35)
-						game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-					end
-					realtarg = r
-					for i, v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-						if v:IsA("Tool") and v.Name == "Stroller" then
-							v.Parent = game:GetService("Players").LocalPlayer.Character
-						end
-					end
-					local sitpart
-					task.wait(1)
-					for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-						if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-							sitpart = v
-						end
-					end
-					task.wait()
-					task.spawn(function()
-						while true do
-							wait()
-							if realtarg.Character:FindFirstChild("Sitting") then
-								bringplr()
-								task.wait(0.05)
-								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-								break
-							end
-							realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-						end
-					end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
-					return
-				end
-			end
-            if string.find(message, kill) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r and not r.Character.Humanoid.Sit then
-					local TARGET = r -- type name here
-                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now killing " .. r.Name,  "All")
-                    local realtarg
-                    local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
-                    function killplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(0,-20,0)
-                        wait(1)
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-                    end
-                    realtarg = r
-                    for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                        if v:IsA("Tool") and v.Name == "Stroller" then
-                            v.Parent = game:GetService("Players").LocalPlayer.Character 
-                        end
-                    end
-                    local sitpart
-                    task.wait(1)
-                    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-                        if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-                            sitpart = v
-                        end
-                    end
-
-                    task.wait()
-                    task.spawn(function()
-                        while true do wait()
-                            if realtarg.Character:FindFirstChild("Sitting") then
-                                killplr()
-                                task.wait(0.05)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-                                break
-                            end
-                            realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-                        end
-                    end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
-					return
-				end
-			end
-            if string.find(message, toplayer) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r then
-					local TARGET = r -- type name here
-                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now taking you to  " .. r.Name,  "All")
-                    local realtarg
-                    local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
-                    function toplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = r.Character:WaitForChild("HumanoidRootPart").CFrame
-                        wait(1)
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-                        task.wait(0.4)
-                    end
-                    realtarg = r
-                    for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                        if v:IsA("Tool") and v.Name == "Stroller" then
-                            v.Parent = game:GetService("Players").LocalPlayer.Character 
-                        end
-                    end
-                    local sitpart
-                    task.wait(1)
-                    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-                        if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-                            sitpart = v
-                        end
-                    end
-
-                    task.wait()
-                    task.spawn(function()
-                        while true do wait()
-                            if playertake.Character:FindFirstChild("Sitting") then
-                                toplr()
-                                task.wait(0.05)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-                                break
-                            end
-                            playertake.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-                        end
-                    end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player.",  "All")
-					return
-				end
-			end
-            if string.find(message, baldplr) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r and not r.Character.Humanoid.Sit then
-					local TARGET = r -- type name here
-                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now balding " .. r.Name,  "All")
-                    local realtarg
-                    local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
-                    local oldpostiofplr
-                    function baldplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-873, 39, -356)
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
-                        wait(0.35)
-                    end
-                    realtarg = r
-                    oldpostiofplr = r.Character:WaitForChild("HumanoidRootPart").CFrame
-                    local sitpart
-                    for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                        if v:IsA("Tool") and v.Name == "Stroller" then
-                            v.Parent = game:GetService("Players").LocalPlayer.Character 
-                        end
-                    end
-                    function equipstroll()
-                        for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                            if v:IsA("Tool") and v.Name == "Stroller" then
-                                v.Parent = game:GetService("Players").LocalPlayer.Character 
-                            end
-                        end
-                    end
-                    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-                        if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-                            sitpart = v
-                        end
-                    end
-                    function dropplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-                    end
-                    task.wait()
-                    task.spawn(function()
-                        while true do wait()
-                            if realtarg.Character:FindFirstChild("Sitting") then
-                                baldplr()
-                                task.wait(0.4)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
-                                task.wait(0.2)
-                                dropplr()
-                                task.wait(0.4)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-                                break
-                            end
-                            realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-                        end
-                    end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
-					return
-				end
-			end
-            if string.find(message, unbaldplr) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r and not r.Character.Humanoid.Sit then
-					local TARGET = r -- type name here
-                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now unbalding " .. r.Name,  "All")
-                    local realtarg
-                    local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
-                    local oldpostiofplr
-                    function unbaldplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-883, 39, -356)
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
-                        wait(0.35)
-                    end
-                    realtarg = r
-                    oldpostiofplr = r.Character:WaitForChild("HumanoidRootPart").CFrame
-                    local sitpart
-                    for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                        if v:IsA("Tool") and v.Name == "Stroller" then
-                            v.Parent = game:GetService("Players").LocalPlayer.Character 
-                        end
-                    end
-                    function equipstroll()
-                        for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                            if v:IsA("Tool") and v.Name == "Stroller" then
-                                v.Parent = game:GetService("Players").LocalPlayer.Character 
-                            end
-                        end
-                    end
-                    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-                        if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-                            sitpart = v
-                        end
-                    end
-                    function dropplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-                    end
-                    task.wait()
-                    task.spawn(function()
-                        while true do wait()
-                            if realtarg.Character:FindFirstChild("Sitting") then
-                                unbaldplr()
-                                task.wait(0.4)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
-                                task.wait(0.2)
-                                dropplr()
-                                task.wait(0.4)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-                                break
-                            end
-                            realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-                        end
-                    end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
-					return
-				end
-			end
-            if string.find(message, nakey) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r and not r.Character.Humanoid.Sit then
-					local TARGET = r -- type name here
-                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now ayooing " .. r.Name,  "All")
-                    local realtarg
-                    local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
-                    local oldpostiofplr
-                    function nakedplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-826, 39, -298)
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
-                        wait(0.35)
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-                    end
-                    realtarg = r 
-                    oldpostiofplr = r.Character:WaitForChild("HumanoidRootPart").CFrame
-                    local sitpart
-                    for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                        if v:IsA("Tool") and v.Name == "Stroller" then
-                            v.Parent = game:GetService("Players").LocalPlayer.Character 
-                        end
-                    end
-                    function equipstroll()
-                        for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                            if v:IsA("Tool") and v.Name == "Stroller" then
-                                v.Parent = game:GetService("Players").LocalPlayer.Character 
-                            end
-                        end
-                    end
-                    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-                        if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-                            sitpart = v
-                        end
-                    end
-                    function dropplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-                    end
-                    task.wait()
-                    task.spawn(function()
-                        while true do wait()
-                            if realtarg.Character:FindFirstChild("Sitting") then
-                                nakedplr()
-                                task.wait(0.8)
-                                equipstroll()
-                                task.wait(0.2)
-                                realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-                                task.wait(0.4)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
-                                task.wait(0.2)
-                                dropplr()
-                                task.wait(0.4)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-                                break
-                            end
-                            realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-                        end
-                    end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
-					return
-				end
-			end
-            if string.find(message, whitey) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r and not r.Character.Humanoid.Sit then
-					local TARGET = r -- type name here
-                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now making " .. r.Name .. "white",  "All")
-                    local realtarg
-                    local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
-                    local oldpostiofplr
-                    function whiteplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-841, 39, -357)
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
-                        wait(0.35)
-                    end
-                    realtarg = r
-                    oldpostiofplr = r.Character:WaitForChild("HumanoidRootPart").CFrame
-                    local sitpart
-                    for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                        if v:IsA("Tool") and v.Name == "Stroller" then
-                            v.Parent = game:GetService("Players").LocalPlayer.Character 
-                        end
-                    end
-                    function equipstroll()
-                        for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                            if v:IsA("Tool") and v.Name == "Stroller" then
-                                v.Parent = game:GetService("Players").LocalPlayer.Character 
-                            end
-                        end
-                    end
-                    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-                        if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-                            sitpart = v
-                        end
-                    end
-                    function dropplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-                    end
-                    task.wait()
-                    task.spawn(function()
-                        while true do wait()
-                            if realtarg.Character:FindFirstChild("Sitting") then
-                                whiteplr()
-                                task.wait(0.4)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
-                                task.wait(0.2)
-                                dropplr()
-                                task.wait(0.4)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-                                break
-                            end
-                            realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-                        end
-                    end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
-					return
-				end
-			end
-            if string.find(message, blacky) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r and not r.Character.Humanoid.Sit then
-					local TARGET = r -- type name here
-                    local realtarg
-                    local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
-                    local oldpostiofplr
-                    function blackplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-817, 39, -358)
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1)) -- (putnumbershere)
-                        wait(0.35)
-                    end
-                    realtarg = r 
-                    oldpostiofplr = r.Character:WaitForChild("HumanoidRootPart").CFrame
-                    local sitpart
-                    for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                        if v:IsA("Tool") and v.Name == "Stroller" then
-                            v.Parent = game:GetService("Players").LocalPlayer.Character 
-                        end
-                    end
-                    function equipstroll()
-                        for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                            if v:IsA("Tool") and v.Name == "Stroller" then
-                                v.Parent = game:GetService("Players").LocalPlayer.Character 
-                            end
-                        end
-                    end
-                    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-                        if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-                            sitpart = v
-                        end
-                    end
-                    function dropplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-                    end
-                    task.wait()
-                    task.spawn(function()
-                        while true do wait()
-                            if realtarg.Character:FindFirstChild("Sitting") then
-                                blackplr()
-                                task.wait(0.4)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplr
-                                task.wait(0.2)
-                                dropplr()
-                                task.wait(0.4)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-                                break
-                            end
-                            realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-                        end
-                    end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
-					return
-				end
-			end
-			if string.find(message, cmds) then
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w " .. playertalk .. " .bring [PLAYER] .kill [PLAYER] .bald [PLAYER] .unbald [PLAYER] .nk [PLAYER] .white [PLAYER] .black [PLAYER] .goto [PLAYER]", "All")
-			end
-		end)
-	end
-end
 	end)
 	MainSection:NewTextBox("admin player", "admins a player", function(txt)
 		local targetplayer = txt -- put player to admin here
@@ -28940,401 +28941,401 @@ elseif game.PlaceId == 383793228 then
 	end)
 	MainSection:NewButton("admin", "type .cmds to see commands", function()
 		local bring = ".bring"
-local kill = ".kill"
-local toplayer = ".goto"
-local baldplr = ".bald"
-local nakey = ".nk"
-local whitey = ".white"
-local blacky = ".black"
-local cmds = ".cmds"
-local plrs = game:GetService("Players")
-local plr = game:GetService("Players").LocalPlayer
-GetArgs = function(Args)
-	return Args:split(" ")
-end
-FindPlayer = function(h, h2)
-	if string.lower(h) == "me" then
-		return plr
-	else
-		h = h:gsub("%s+", "")
-		for m, n in pairs(game:GetService("Players"):GetPlayers()) do
-			if n.Name:lower():match("^" .. h:lower()) or n.DisplayName:lower():match("^" .. h:lower()) then
-				return n
+		local kill = ".kill"
+		local toplayer = ".goto"
+		local baldplr = ".bald"
+		local nakey = ".nk"
+		local whitey = ".white"
+		local blacky = ".black"
+		local cmds = ".cmds"
+		local plrs = game:GetService("Players")
+		local plr = game:GetService("Players").LocalPlayer
+		GetArgs = function(Args)
+			return Args:split(" ")
+		end
+		FindPlayer = function(h, h2)
+			if string.lower(h) == "me" then
+				return plr
+			else
+				h = h:gsub("%s+", "")
+				for m, n in pairs(game:GetService("Players"):GetPlayers()) do
+					if n.Name:lower():match("^" .. h:lower()) or n.DisplayName:lower():match("^" .. h:lower()) then
+						return n
+					end
+				end
+			end
+			return nil
+		end
+		for i, v in pairs(plrs:GetPlayers()) do
+			if v.Name == game:GetService("Players").LocalPlayer.Name then
+				v.Chatted:Connect(function(message)
+					local playerchar = v.Character:WaitForChild("HumanoidRootPart").CFrame
+					local playertalk = v.Name
+					local playertake = v
+					if string.find(message, bring) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r and not r.Character.Humanoid.Sit then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now bringing " .. r.Name,  "All")
+							local realtarg
+							local oldpostia = playerchar * CFrame.new(0, 0, -2)
+							function bringplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+								wait(0.35)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+							end
+							realtarg = r
+							for i, v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character
+								end
+							end
+							local sitpart
+							task.wait(1)
+							for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+							task.wait()
+							task.spawn(function()
+								while true do
+									wait()
+									if realtarg.Character:FindFirstChild("Sitting") then
+										bringplr()
+										task.wait(0.05)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
+							return
+						end
+					end
+					if string.find(message, kill) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r and not r.Character.Humanoid.Sit then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now killing " .. r.Name,  "All")
+							local realtarg
+							local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+							function killplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(0, -20, 0)
+								wait(1)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+							end
+							realtarg = r
+							for i, v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character
+								end
+							end
+							local sitpart
+							task.wait(1)
+							for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+							task.wait()
+							task.spawn(function()
+								while true do
+									wait()
+									if realtarg.Character:FindFirstChild("Sitting") then
+										killplr()
+										task.wait(0.05)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting",  "All")
+							return
+						end
+					end
+					if string.find(message, toplayer) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now taking you to  " .. r.Name,  "All")
+							local realtarg
+							local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+							function toplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = r.Character:WaitForChild("HumanoidRootPart").CFrame
+								wait(1)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+								task.wait(0.4)
+							end
+							realtarg = r
+							for i, v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character
+								end
+							end
+							local sitpart
+							task.wait(1)
+							for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+							task.wait()
+							task.spawn(function()
+								while true do
+									wait()
+									if playertake.Character:FindFirstChild("Sitting") then
+										toplr()
+										task.wait(0.05)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									playertake.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player.",  "All")
+							return
+						end
+					end
+					if string.find(message, baldplr) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r and not r.Character.Humanoid.Sit then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now balding " .. r.Name,  "All")
+							local realtarg
+							local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+							local oldpostiofplayer
+							function baldplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(11, 3, -476)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1))
+							end
+							realtarg = r 
+							oldpostiofplayer = r.Character:WaitForChild("HumanoidRootPart").CFrame
+							for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character 
+								end
+							end
+							local sitpart
+							task.wait(1)
+							for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+							function dropplr()
+								for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+									if v:IsA("Tool") and v.Name == "Stroller" then
+										v.Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+									end
+								end
+							end
+							task.wait()
+							task.spawn(function()
+								while true do wait()
+									if realtarg.Character:FindFirstChild("Sitting") then
+										baldplr()
+										task.wait(0.5)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplayer
+										task.wait(0.4)
+										dropplr()
+										wait(2)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting",  "All")
+							return
+						end
+					end
+					if string.find(message, nakey) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r and not r.Character.Humanoid.Sit then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now ayooing " .. r.Name,  "All")
+							local realtarg
+							local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+							local oldpostiofplayer
+							function nakedplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(356, 5, -642)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(1, 0, 0))
+								wait(0.35)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+							end
+							realtarg = r 
+							oldpostiofplayer = r.Character:WaitForChild("HumanoidRootPart").CFrame
+							for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character 
+								end
+							end
+							function equipstroll()
+								for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+									if v:IsA("Tool") and v.Name == "Stroller" then
+										v.Parent = game:GetService("Players").LocalPlayer.Character 
+									end
+								end
+							end
+							local sitpart
+							task.wait(1)
+							for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+
+							task.wait()
+							task.spawn(function()
+								while true do wait()
+									if realtarg.Character:FindFirstChild("Sitting") then
+										nakedplr()
+										task.wait(0.5)
+										equipstroll()
+										wait(0.02)
+										realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+										task.wait(0.4)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplayer
+										wait(2)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting",  "All")
+							return
+						end
+					end
+					if string.find(message, whitey) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r and not r.Character.Humanoid.Sit then
+						local TARGET = r -- type name here
+						game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("now making " .. r.Name .. " white",  "All")
+						local realtarg
+						local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+						local oldpostiofplayer
+						function whiteplr()
+							game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(9, 3, -549)
+							game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1))
+						end
+						realtarg = r 
+						oldpostiofplayer = r.Character:WaitForChild("HumanoidRootPart").CFrame
+						for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+							if v:IsA("Tool") and v.Name == "Stroller" then
+								v.Parent = game:GetService("Players").LocalPlayer.Character 
+							end
+						end
+						local sitpart
+						task.wait(1)
+						for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+							if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+								sitpart = v
+							end
+						end
+						function dropplr()
+							for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+								end
+							end
+						end
+						task.wait()
+						task.spawn(function()
+							while true do wait()
+								if realtarg.Character:FindFirstChild("Sitting") then
+									whiteplr()
+									task.wait(0.5)
+									game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplayer
+									task.wait(0.4)
+									dropplr()
+									wait(2)
+									game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+									break
+								end
+								realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+							end
+						end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting",  "All")
+							return
+						end
+					end
+					if string.find(message, blacky) then
+						local Args = GetArgs(message)
+						local r = FindPlayer(Args[2])
+						if r and not r.Character.Humanoid.Sit then
+							local TARGET = r -- type name here
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("now making " .. r.Name .. " black",  "All")
+							local realtarg
+							local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+							local oldpostiofplayer
+							function blackplr()
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(29, 3, -549)
+								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1))
+							end
+							realtarg = r 
+							oldpostiofplayer = r.Character:WaitForChild("HumanoidRootPart").CFrame
+							for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
+								if v:IsA("Tool") and v.Name == "Stroller" then
+									v.Parent = game:GetService("Players").LocalPlayer.Character 
+								end
+							end
+							local sitpart
+							task.wait(1)
+							for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+								if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
+									sitpart = v
+								end
+							end
+							function dropplr()
+								for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+									if v:IsA("Tool") and v.Name == "Stroller" then
+										v.Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
+									end
+								end
+							end
+							task.wait()
+							task.spawn(function()
+								while true do wait()
+									if realtarg.Character:FindFirstChild("Sitting") then
+										blackplr()
+										task.wait(0.5)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplayer
+										task.wait(0.4)
+										dropplr()
+										wait(2)
+										game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
+										break
+									end
+									realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
+								end
+							end)
+						else
+							game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting",  "All")
+							return
+						end
+					end
+					if string.find(message, cmds) then
+						game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(".bring [PLAYER] .kill [PLAYER] .bald [PLAYER] .nk [PLAYER] .white [PLAYER] .black [PLAYER] .goto [PLAYER]", "All")
+					end
+				end)
 			end
 		end
-	end
-	return nil
-end
-for i, v in pairs(plrs:GetPlayers()) do
-	if v.Name == game:GetService("Players").LocalPlayer.Name then
-		v.Chatted:Connect(function(message)
-			local playerchar = v.Character:WaitForChild("HumanoidRootPart").CFrame
-			local playertalk = v.Name
-			local playertake = v
-			if string.find(message, bring) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r and not r.Character.Humanoid.Sit then
-					local TARGET = r -- type name here
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now bringing " .. r.Name,  "All")
-					local realtarg
-					local oldpostia = playerchar * CFrame.new(0, 0, -2)
-					function bringplr()
-						game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-						wait(0.35)
-						game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-					end
-					realtarg = r
-					for i, v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-						if v:IsA("Tool") and v.Name == "Stroller" then
-							v.Parent = game:GetService("Players").LocalPlayer.Character
-						end
-					end
-					local sitpart
-					task.wait(1)
-					for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-						if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-							sitpart = v
-						end
-					end
-					task.wait()
-					task.spawn(function()
-						while true do
-							wait()
-							if realtarg.Character:FindFirstChild("Sitting") then
-								bringplr()
-								task.wait(0.05)
-								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-								break
-							end
-							realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-						end
-					end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting.",  "All")
-					return
-				end
-			end
-			if string.find(message, kill) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r and not r.Character.Humanoid.Sit then
-					local TARGET = r -- type name here
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now killing " .. r.Name,  "All")
-					local realtarg
-					local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
-					function killplr()
-						game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(0, -20, 0)
-						wait(1)
-						game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-					end
-					realtarg = r
-					for i, v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-						if v:IsA("Tool") and v.Name == "Stroller" then
-							v.Parent = game:GetService("Players").LocalPlayer.Character
-						end
-					end
-					local sitpart
-					task.wait(1)
-					for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-						if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-							sitpart = v
-						end
-					end
-					task.wait()
-					task.spawn(function()
-						while true do
-							wait()
-							if realtarg.Character:FindFirstChild("Sitting") then
-								killplr()
-								task.wait(0.05)
-								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-								break
-							end
-							realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-						end
-					end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting",  "All")
-					return
-				end
-			end
-			if string.find(message, toplayer) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r then
-					local TARGET = r -- type name here
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now taking you to  " .. r.Name,  "All")
-					local realtarg
-					local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
-					function toplr()
-						game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = r.Character:WaitForChild("HumanoidRootPart").CFrame
-						wait(1)
-						game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-						task.wait(0.4)
-					end
-					realtarg = r
-					for i, v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-						if v:IsA("Tool") and v.Name == "Stroller" then
-							v.Parent = game:GetService("Players").LocalPlayer.Character
-						end
-					end
-					local sitpart
-					task.wait(1)
-					for i, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-						if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-							sitpart = v
-						end
-					end
-					task.wait()
-					task.spawn(function()
-						while true do
-							wait()
-							if playertake.Character:FindFirstChild("Sitting") then
-								toplr()
-								task.wait(0.05)
-								game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-								break
-							end
-							playertake.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-						end
-					end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player.",  "All")
-					return
-				end
-			end
-			if string.find(message, baldplr) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r and not r.Character.Humanoid.Sit then
-					local TARGET = r -- type name here
-                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now balding " .. r.Name,  "All")
-                    local realtarg
-                    local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
-                    local oldpostiofplayer
-                    function baldplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(11, 3, -476)
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1))
-                    end
-                    realtarg = r 
-                    oldpostiofplayer = r.Character:WaitForChild("HumanoidRootPart").CFrame
-                    for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                        if v:IsA("Tool") and v.Name == "Stroller" then
-                            v.Parent = game:GetService("Players").LocalPlayer.Character 
-                        end
-                    end
-                    local sitpart
-                    task.wait(1)
-                    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-                        if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-                            sitpart = v
-                        end
-                    end
-                    function dropplr()
-                        for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
-                            if v:IsA("Tool") and v.Name == "Stroller" then
-                                v.Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-                            end
-                        end
-                    end
-                    task.wait()
-                    task.spawn(function()
-                        while true do wait()
-                            if realtarg.Character:FindFirstChild("Sitting") then
-                                baldplr()
-                                task.wait(0.5)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplayer
-                                task.wait(0.4)
-                                dropplr()
-                                wait(2)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-                                break
-                            end
-                            realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-                        end
-                    end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting",  "All")
-					return
-				end
-			end
-			if string.find(message, nakey) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r and not r.Character.Humanoid.Sit then
-					local TARGET = r -- type name here
-                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Now ayooing " .. r.Name,  "All")
-                    local realtarg
-                    local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
-                    local oldpostiofplayer
-                    function nakedplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(356, 5, -642)
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(1, 0, 0))
-                        wait(0.35)
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("Stroller").Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-                    end
-                    realtarg = r 
-                    oldpostiofplayer = r.Character:WaitForChild("HumanoidRootPart").CFrame
-                    for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                        if v:IsA("Tool") and v.Name == "Stroller" then
-                            v.Parent = game:GetService("Players").LocalPlayer.Character 
-                        end
-                    end
-                    function equipstroll()
-                        for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                            if v:IsA("Tool") and v.Name == "Stroller" then
-                                v.Parent = game:GetService("Players").LocalPlayer.Character 
-                            end
-                        end
-                    end
-                    local sitpart
-                    task.wait(1)
-                    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-                        if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-                            sitpart = v
-                        end
-                    end
-
-                    task.wait()
-                    task.spawn(function()
-                        while true do wait()
-                            if realtarg.Character:FindFirstChild("Sitting") then
-                                nakedplr()
-                                task.wait(0.5)
-                                equipstroll()
-                                wait(0.02)
-                                realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-                                task.wait(0.4)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplayer
-                                wait(2)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-                                break
-                            end
-                            realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-                        end
-                    end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting",  "All")
-					return
-				end
-			end
-			if string.find(message, whitey) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r and not r.Character.Humanoid.Sit then
-				local TARGET = r -- type name here
-                game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("now making " .. r.Name .. " white",  "All")
-                local realtarg
-                local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
-                local oldpostiofplayer
-                function whiteplr()
-                    game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(9, 3, -549)
-                    game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1))
-                end
-                realtarg = r 
-                oldpostiofplayer = r.Character:WaitForChild("HumanoidRootPart").CFrame
-                for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                    if v:IsA("Tool") and v.Name == "Stroller" then
-                        v.Parent = game:GetService("Players").LocalPlayer.Character 
-                    end
-                end
-                local sitpart
-                task.wait(1)
-                for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-                    if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-                        sitpart = v
-                    end
-                end
-                function dropplr()
-                    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
-                        if v:IsA("Tool") and v.Name == "Stroller" then
-                            v.Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-                        end
-                    end
-                end
-                task.wait()
-                task.spawn(function()
-                    while true do wait()
-                        if realtarg.Character:FindFirstChild("Sitting") then
-                            whiteplr()
-                            task.wait(0.5)
-                            game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplayer
-                            task.wait(0.4)
-                            dropplr()
-                            wait(2)
-                            game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-                            break
-                        end
-                        realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-                    end
-                end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting",  "All")
-					return
-				end
-			end
-			if string.find(message, blacky) then
-				local Args = GetArgs(message)
-				local r = FindPlayer(Args[2])
-				if r and not r.Character.Humanoid.Sit then
-					local TARGET = r -- type name here
-                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("now making " .. r.Name .. " black",  "All")
-                    local realtarg
-                    local oldpostia = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
-                    local oldpostiofplayer
-                    function blackplr()
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(29, 3, -549)
-                        game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position + Vector3.new(0, 0, -1))
-                    end
-                    realtarg = r 
-                    oldpostiofplayer = r.Character:WaitForChild("HumanoidRootPart").CFrame
-                    for i,v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):GetChildren()) do
-                        if v:IsA("Tool") and v.Name == "Stroller" then
-                            v.Parent = game:GetService("Players").LocalPlayer.Character 
-                        end
-                    end
-                    local sitpart
-                    task.wait(1)
-                    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
-                        if v:FindFirstChild("TouchInterest") and v:FindFirstChild("Script") and v.Parent.Name == "Stroller" then
-                            sitpart = v
-                        end
-                    end
-                    function dropplr()
-                        for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
-                            if v:IsA("Tool") and v.Name == "Stroller" then
-                                v.Parent = game:GetService("Players").LocalPlayer:WaitForChild("Backpack")
-                            end
-                        end
-                    end
-                    task.wait()
-                    task.spawn(function()
-                        while true do wait()
-                            if realtarg.Character:FindFirstChild("Sitting") then
-                                blackplr()
-                                task.wait(0.5)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostiofplayer
-                                task.wait(0.4)
-                                dropplr()
-                                wait(2)
-                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpostia
-                                break
-                            end
-                            realtarg.Character:WaitForChild("HumanoidRootPart").CFrame = sitpart.CFrame
-                        end
-                    end)
-				else
-					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("cannot find player. or player is sitting",  "All")
-					return
-				end
-			end
-			if string.find(message, cmds) then
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(".bring [PLAYER] .kill [PLAYER] .bald [PLAYER] .nk [PLAYER] .white [PLAYER] .black [PLAYER] .goto [PLAYER]", "All")
-			end
-		end)
-	end
-end
 	end)
 	MainSection:NewTextBox("admin player", "admins a player", function(txt)
 		local targetplayer = "yofriendfromi" -- put player to admin here
