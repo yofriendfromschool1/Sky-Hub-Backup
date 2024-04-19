@@ -4934,8 +4934,67 @@ elseif game.PlaceId == 4832438542 then
 	MainSection:NewButton("FE Trolling GUI", "troll", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
 	end)
-	MainSection:NewButton("VR without VR", "no need vr E and R move both arms", function()
-		loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-Vr-Script-NO-VR-HEADSET-NEEDED-1538"))()
+	MainSection:NewButton("Get VR Players", "notify VR Players", function()
+		for i,v in pairs(workspace.VRPlayers:GetChildren()) do
+			Library.Notify("VR USER:",tostring(game:GetService("Players"):GetPlayerFromCharacter(v)),5)
+			task.wait(1)
+		end
+	end)
+	MainSection:NewTextBox("Tp to VR User", "teleports to a vr user", function(txt)
+		local player = txt
+		local targname = ""
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player)  then
+				targname = v
+			end
+		end
+		for i,v in pairs(targname.Character:GetDescendants()) do
+			if v.Name == "Head" and v.Parent.Name == "Appearance" then
+				game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame
+			end
+		end
+	end)
+	MainSection:NewToggle("Anti Pick up", "spams break free", function(state)
+		getgenv().toggablevr = state
+		task.spawn(function()
+			while true do task.wait()
+				if not getgenv().toggablevr then
+					break
+				end
+				game:GetService("ReplicatedStorage"):WaitForChild("COM"):WaitForChild("Pinch"):WaitForChild("LetMeGo"):FireServer()
+			end
+		end)
+	end)
+	MainSection:NewTextBox("vr user to annoy", "put user here to annoy then click the toggle", function(txt)
+		getgenv().annoyer = txt
+	end)
+	MainSection:NewToggle("annoy VR User", "teleports to a vr user and block their vision use fly with this in iy or sum", function(state)
+		getgenv().annoyvr = state
+		local player = getgenv().annoyer
+		local targname = ""
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player)  then
+				targname = v
+			end
+		end
+		
+		for i,v in pairs(targname.Character:GetDescendants()) do
+			if v.Name == "Head" and v.Parent.Name == "Appearance" then
+				annoy = v
+			end
+		end
+		task.spawn(function()
+			while true do task.wait()
+				if not getgenv().annoyvr then
+					break
+				end
+				for i,v in pairs(targname.Character:GetDescendants()) do
+					if v.Name == "Head" and v.Parent.Name == "Appearance" then
+						game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame * CFrame.new(0,-4,-20)
+					end
+				end
+			end
+		end)
 	end)
 	local Player = Window:NewTab("Player", 2795572800)
 	local PlayerSection = Player:NewSection("Player")
