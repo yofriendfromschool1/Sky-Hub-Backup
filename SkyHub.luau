@@ -29339,7 +29339,7 @@ elseif game.PlaceId == 383793228 then
 		end
 	end)
 	MainSection:NewTextBox("admin player", "admins a player", function(txt)
-		local targetplayer = "yofriendfromi" -- put player to admin here
+		local targetplayer = txt -- put player to admin here
 		local mmm
 		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #targetplayer) == string.lower(targetplayer) or string.sub(string.lower(v.DisplayName), 0, #targetplayer) == string.lower(targetplayer) then
