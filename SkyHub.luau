@@ -20629,6 +20629,158 @@ elseif game.PlaceId == 12640491155 then
 			end
 		end
 	end)
+	MainSection:NewButton("Notify all role play names", "rp names to usernames", function(txt)
+		for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do 
+			if v.Name == "RPName" and v.ClassName == "TextLabel" and v.Parent.Name == "Frame" then
+				Library.Notify(v.Text .. " Is",v.Parent.Parent.Parent.Parent.Name,4)
+				task.wait(1)
+			end
+		end
+	end)
+	MainSection:NewTextBox("Steal Players Fit", " make sure u have avatar gui open on body then character or take off everything in their first, wears anothers player outfit and saves it", function(txt)
+		local player = txt
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) or string.sub(string.lower(v.Character:FindFirstChild("Head"):WaitForChild("PlayerHover").Frame.RPName.Text), 0, #player) == string.lower(player) then
+				targ = v
+			end
+		end
+		local humanoiddescrip = targ.Character:WaitForChild("Humanoid"):FindFirstChild("HumanoidDescription")
+		local accessory = {
+			backaccessory = humanoiddescrip.BackAccessory,
+			faceaccessory = humanoiddescrip.FaceAccessory,
+			frontaccessory = humanoiddescrip.FrontAccessory,
+			hairaccessory = humanoiddescrip.HairAccessory,
+			neckaccessory = humanoiddescrip.NeckAccessory,
+			shouldersaccessory = humanoiddescrip.ShouldersAccessory,
+			waistaccessory = humanoiddescrip.WaistAccessory
+		}
+		local amins = {
+			climbanimation = humanoiddescrip.ClimbAnimation,
+			fallanimation = humanoiddescrip.FallAnimation,
+			idleanimation = humanoiddescrip.IdleAnimation,
+			jumpanimation = humanoiddescrip.JumpAnimation,
+			moodanimation = humanoiddescrip.MoodAnimation,
+			runanimation = humanoiddescrip.RunAnimation,
+			swimanimation = humanoiddescrip.SwimAnimation,
+			walkanimation = humanoiddescrip.WalkAnimation,
+		}
+		local bodypart = {
+			face = humanoiddescrip.Face,
+			head = humanoiddescrip.Head,
+			leftarm = humanoiddescrip.LeftArm,
+			leftleg = humanoiddescrip.LeftLeg,
+			rightarm = humanoiddescrip.RightArm,
+			rightleg = humanoiddescrip.RightLeg,
+			torso = humanoiddescrip.Torso
+		}
+		local clothe = {
+			graphictshirt = humanoiddescrip.GraphicTShirt,
+			pants = humanoiddescrip.Pants,
+			shirt = humanoiddescrip.Shirt
+		}
+		local color = humanoiddescrip.HeadColor
+		local function splitStringByComma(input)
+			local result = {}
+			for str in string.gmatch(input, "([^,]+)") do
+				table.insert(result, str)
+			end
+			return result
+		end
+		local splitstrings = {}
+		for i, v in pairs(accessory) do
+			local splitResults = splitStringByComma(v)
+			for _, splitStr in ipairs(splitResults) do
+				table.insert(splitstrings, splitStr)
+			end
+			task.wait()
+		end
+		for i, v in pairs(amins) do
+			local splitResults = splitStringByComma(v)
+			for _, splitStr in ipairs(splitResults) do
+				table.insert(splitstrings, splitStr)
+			end
+			task.wait()
+		end
+		for i, v in pairs(bodypart) do
+			local splitResults = splitStringByComma(v)
+			for _, splitStr in ipairs(splitResults) do
+				table.insert(splitstrings, splitStr)
+			end
+			task.wait()
+		end
+		for i, v in pairs(clothe) do
+			local splitResults = splitStringByComma(v)
+			for _, splitStr in ipairs(splitResults) do
+				table.insert(splitstrings, splitStr)
+			end
+			task.wait()
+		end
+		for i, v in pairs(game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("MainGui"):WaitForChild("AvatarFrame"):WaitForChild("Scroll"):GetChildren()) do
+			if v.Name ~= "UIGridLayout" and v.Name ~= "UIPadding" and v.Name ~= "Template" then
+				local args = {
+					[1] = "Update",
+					[2] = {
+						[1] = tonumber(v.Name),
+						[2] = "MoodAnimation"
+					}
+				}
+				
+				game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Avatar"):FireServer(unpack(args))
+				wait(0.75)
+			end
+		end
+		wait(2)	
+		if humanoiddescrip.Parent:FindFirstChild("HeadScale").Value > 1 then
+			local args = {
+				[1] = "Scale",
+				[2] = "Adult"
+			}
+			
+			game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Avatar"):FireServer(unpack(args))
+		else
+			local args = {
+				[1] = "Scale",
+				[2] = "Teen"
+			}
+			
+			game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Avatar"):FireServer(unpack(args))
+		end
+		local args = {
+			[1] = "SkinTone",
+			[2] = Color3.new(color)
+		}
+
+		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Avatar"):FireServer(unpack(args))
+		for i, v in pairs(splitstrings) do
+			local args = {
+				[1] = "Update",
+				[2] = v
+			}
+			
+			game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Avatar"):FireServer(unpack(args))
+			wait(0.85)
+		end
+		local args = {
+			[1] = "Info",
+			[2] = {
+				[1] = humanoiddescrip.Parent.Parent:WaitForChild("Head"):WaitForChild("PlayerHover"):WaitForChild("Frame"):WaitForChild("RPName").Text,
+				[2] = Color3.new(humanoiddescrip.Parent.Parent:WaitForChild("Head"):WaitForChild("PlayerHover"):WaitForChild("Frame"):WaitForChild("RPName").TextColor3)
+			},
+			[3] = {
+				[1] = humanoiddescrip.Parent.Parent:WaitForChild("Head"):WaitForChild("PlayerHover"):WaitForChild("Frame"):WaitForChild("Bio").Text,
+				[2] = Color3.new(humanoiddescrip.Parent.Parent:WaitForChild("Head"):WaitForChild("PlayerHover"):WaitForChild("Frame"):WaitForChild("Bio").TextColor3)
+			}
+		}
+
+		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Profile"):FireServer(unpack(args))
+		wait(1)
+		local args = {
+			[1] = "Role",
+			[2] = humanoiddescrip.Parent.Parent:WaitForChild("Head"):WaitForChild("PlayerHover"):WaitForChild("Frame"):WaitForChild("Role"):WaitForChild("Label").Text
+		}
+
+		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Profile"):FireServer(unpack(args))
+	end)
 	local VehicleMods = Window:NewTab("Vehicle Mods")
 	local VehicleModsSection = VehicleMods:NewSection("Vehicle Mods")
 	VehicleModsSection:NewSlider("Vehicle Max Speed", "laggy idk why, Sets max speed of vehicle", 9999, 1, function(lol86)
