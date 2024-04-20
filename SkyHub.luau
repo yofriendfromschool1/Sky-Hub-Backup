@@ -20598,20 +20598,22 @@ elseif game.PlaceId == 12640491155 then
 		end
 	end)	
 	MainSection:NewTextBox("Teleport in players car", "puts you in players passenger of car can put rp name too", function(txt)
-		for i, v in pairs(workspace.Vehicles:GetChildren()) do
-			local player = txt
-			local targname = ""
-			for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-				if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) or string.sub(string.lower(v.Character.Head:WaitForChild("PlayerHover").Frame.RPName.Text), 0, #player) == string.lower(player) then
-					targname = v.Name
+		repeat task.wait()
+			for i, v in pairs(workspace.Vehicles:GetChildren()) do
+				local player = txt
+				local targname = ""
+				for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+					if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) or string.sub(string.lower(v.Character.Head:WaitForChild("PlayerHover").Frame.RPName.Text), 0, #player) == string.lower(player) then
+						targname = v.Name
+					end
+				end
+				if v.Name == targname then
+					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Body.VehicleSeat.CFrame
+					wait(0.25)
+					fireproximityprompt(v.Body.VehicleSeat.ButtonPrompt)
 				end
 			end
-			if v.Name == targname then
-				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Body.VehicleSeat.CFrame
-				wait(0.25)
-				fireproximityprompt(v.Body.VehicleSeat.ButtonPrompt)
-			end
-		end
+		until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Sit == true
 	end)
 	MainSection:NewTextBox("Teleport to player", "can put rp name too for tp", function(txt)
 		for i, v in pairs(workspace:GetChildren()) do
