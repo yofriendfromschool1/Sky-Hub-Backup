@@ -4940,6 +4940,17 @@ elseif game.PlaceId == 4832438542 then
 			task.wait(1)
 		end
 	end)
+	MainSection:NewToggle("Disable VR Hands Collison", "VR People can hit u to space anymore lol", function(state)
+		for i,v in pairs(game:GetService("Workspace").VRPlayers:GetDescendants()) do
+			if v:IsA("Model") and v.Name == "LeftHand" or v.Name == "RightHand" then
+				for _, hand in pairs(v:GetDescendants()) do
+					if hand:IsA("Part") or hand:IsA("MeshPart") or hand:IsA("BasePart") then
+						hand.CanCollide = not state
+					end
+				end
+			end
+		end
+	end)
 	MainSection:NewTextBox("Tp to VR User", "teleports to a vr user", function(txt)
 		local player = txt
 		local targname = ""
@@ -4965,7 +4976,7 @@ elseif game.PlaceId == 4832438542 then
 			end
 		end)
 	end)
-	MainSection:NewTextBox("vr user to annoy", "put user here to annoy then click the toggle", function(txt)
+	MainSection:NewTextBox("vr user to annoy", "put user here to annoy then click the toggle annoy or weld", function(txt)
 		getgenv().annoyer = txt
 	end)
 	MainSection:NewToggle("annoy VR User", "teleports to a vr user and block their vision use fly with this in iy or sum", function(state)
@@ -4991,6 +5002,34 @@ elseif game.PlaceId == 4832438542 then
 				for i,v in pairs(targname.Character:GetDescendants()) do
 					if v.Name == "Head" and v.Parent.Name == "Appearance" then
 						game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame * CFrame.new(0,-4,-20)
+					end
+				end
+			end
+		end)
+	end)
+	MainSection:NewToggle("weld to  VR User hand", "weld to a players hand", function(state)
+		getgenv().annoyvr2 = state
+		local player = getgenv().annoyer
+		local targname = ""
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player)  then
+				targname = v
+			end
+		end
+		
+		for i,v in pairs(targname.Character:GetDescendants()) do
+			if v.Name == "IndexTip" and v.Parent.Parent.Name == "RightHand" then
+				annoy = v
+			end
+		end
+		task.spawn(function()
+			while true do task.wait()
+				if not getgenv().annoyvr2 then
+					break
+				end
+				for i,v in pairs(targname.Character:GetDescendants()) do
+					if v.Name == "IndexTip" and v.Parent.Parent.Name == "RightHand" then
+						game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame
 					end
 				end
 			end
