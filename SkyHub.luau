@@ -5001,7 +5001,7 @@ elseif game.PlaceId == 4832438542 then
 				end
 				for i,v in pairs(targname.Character:GetDescendants()) do
 					if v.Name == "Head" and v.Parent.Name == "Appearance" then
-						game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame * CFrame.new(0,-4,-20)
+						game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame * CFrame.new(0,2,-24)
 					end
 				end
 			end
