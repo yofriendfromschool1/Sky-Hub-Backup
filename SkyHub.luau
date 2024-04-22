@@ -5056,7 +5056,7 @@ elseif game.PlaceId == 4832438542 then
 		local player = txt
 		local targname = ""
 		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player)  then
+			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) and v ~= game:GetService("Players").LocalPlayer  then
 				targname = v
 			end
 		end
@@ -5085,7 +5085,7 @@ elseif game.PlaceId == 4832438542 then
 		local player = getgenv().annoyer
 		local targname = ""
 		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player)  then
+			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) and v ~= game:GetService("Players").LocalPlayer  then
 				targname = v
 			end
 		end
@@ -5113,7 +5113,7 @@ elseif game.PlaceId == 4832438542 then
 		local player = getgenv().annoyer
 		local targname = ""
 		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player)  then
+			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) and v ~= game:GetService("Players").LocalPlayer   then
 				targname = v
 			end
 		end
@@ -21214,7 +21214,7 @@ elseif game.PlaceId == 12640491155 then
 				local player = txt
 				local targname = ""
 				for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-					if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) or string.sub(string.lower(v.Character.Head:WaitForChild("PlayerHover").Frame.RPName.Text), 0, #player) == string.lower(player) then
+					if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) or string.sub(string.lower(v.Character.Head:WaitForChild("PlayerHover").Frame.RPName.Text), 0, #player) == string.lower(player) and v ~= game:GetService("Players").LocalPlayer  then
 						targname = v.Name
 					end
 				end
@@ -21231,7 +21231,7 @@ elseif game.PlaceId == 12640491155 then
 			local player = txt
 			local targname = ""
 			for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-				if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) or string.sub(string.lower(v.Character.Head:WaitForChild("PlayerHover").Frame.RPName.Text), 0, #player) == string.lower(player) then
+				if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) or string.sub(string.lower(v.Character.Head:WaitForChild("PlayerHover").Frame.RPName.Text), 0, #player) == string.lower(player) and v ~= game:GetService("Players").LocalPlayer  then
 					targname = v.Name
 				end
 			end
@@ -21251,7 +21251,7 @@ elseif game.PlaceId == 12640491155 then
 	MainSection:NewTextBox("Steal Players Fit", " make sure u have avatar gui open on body then character or take off everything in their first, wears anothers player outfit and saves it", function(txt)
 		local player = txt
 		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) or string.sub(string.lower(v.Character:FindFirstChild("Head"):WaitForChild("PlayerHover").Frame.RPName.Text), 0, #player) == string.lower(player) then
+			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) or string.sub(string.lower(v.Character:FindFirstChild("Head"):WaitForChild("PlayerHover").Frame.RPName.Text), 0, #player) == string.lower(player) and v ~= game:GetService("Players").LocalPlayer  then
 				targ = v
 			end
 		end
@@ -28422,7 +28422,7 @@ elseif game.PlaceId == 1662219031 then
 		local targetplayer = txt -- put player to admin here
 		local mmm
 		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-			if string.sub(string.lower(v.Name), 0, #targetplayer) == string.lower(targetplayer) or string.sub(string.lower(v.DisplayName), 0, #targetplayer) == string.lower(targetplayer) then
+			if string.sub(string.lower(v.Name), 0, #targetplayer) == string.lower(targetplayer) or string.sub(string.lower(v.DisplayName), 0, #targetplayer) == string.lower(targetplayer) and v ~= game:GetService("Players").LocalPlayer  then
 				mmm = v
 			end
 		end
@@ -30361,7 +30361,7 @@ elseif game.PlaceId == 383793228 then
 		local targetplayer = txt -- put player to admin here
 		local mmm
 		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-			if string.sub(string.lower(v.Name), 0, #targetplayer) == string.lower(targetplayer) or string.sub(string.lower(v.DisplayName), 0, #targetplayer) == string.lower(targetplayer) then
+			if string.sub(string.lower(v.Name), 0, #targetplayer) == string.lower(targetplayer) or string.sub(string.lower(v.DisplayName), 0, #targetplayer) == string.lower(targetplayer) and v ~= game:GetService("Players").LocalPlayer  then
 				mmm = v
 			end
 		end
@@ -34876,7 +34876,7 @@ elseif game.PlaceId == 5985232436 then
 	end)
 	MainSection:NewTextBox("put plr name here, Loop teleports behind player for easy grabbing", "put plr name here, Loop teleports behind player for easy grabbing", function(txt)
 		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-			if string.sub(string.lower(v.Name), 0, #txt) == string.lower(txt) or string.sub(string.lower(v.DisplayName), 0, #txt) == string.lower(txt) then
+			if string.sub(string.lower(v.Name), 0, #txt) == string.lower(txt) or string.sub(string.lower(v.DisplayName), 0, #txt) == string.lower(txt) and v ~= game:GetService("Players").LocalPlayer  then
 				getgenv().player = v
 			end
 		end
@@ -35656,6 +35656,27 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			end
 		end)
 	end)
+	MainSection:NewToggle("Loop kill all zombies", "lol", function(state)
+		getgenv().loopkzombies = state
+		task.spawn(function()
+			while true do 
+				task.wait(2)
+				if not getgenv().loopkzombies then 
+					break 
+				end
+				for i=0, 200 do
+					for i, v in pairs(workspace.WaveZombies:GetChildren()) do
+						local args = {
+							[1] = v:FindFirstChildOfClass("Humanoid"),
+							[2] = true
+						}
+					
+						game:GetService("Players").LocalPlayer.Backpack.Machete:WaitForChild("doDamage"):FireServer(unpack(args))
+					end
+				end
+			end
+		end)
+	end)
 	MainSection:NewToggle("Loop Bring all zombies", "CLIENT SIDED GOOD FOR FARMING", function(state)
 		getgenv().loopzombies = state
 		task.spawn(function()
@@ -35679,14 +35700,13 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 		getgenv().loopgold = state
 		task.spawn(function()
 			while true do
-				task.wait()
 				if not getgenv().loopgold then
 					break
 				end
 				local playerPosition = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
-				local newX = playerPosition.X + 2
-				local Y = playerPosition.Y
-				local newZ = playerPosition.Z + 2
+				local newX = playerPosition.X
+				local Y = playerPosition.Y + 1
+				local newZ = playerPosition.Z
 
 				local args = {
 					[1] = "gold1",
@@ -35695,6 +35715,59 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 				}
 				
 				game:GetService("Players").LocalPlayer.Character:WaitForChild("Pickaxe").CreateItemServer:FireServer(unpack(args))
+				task.wait()
+			end
+		end)
+	end)
+	MainSection:NewTextBox("give gold to a player", "put player name here to give gold to then press the toggle", function(txt)
+		getgenv().plrname = txt
+	end)
+	MainSection:NewToggle("Loop give Gold to player", "make sure you did the textbox first", function(state)
+		if getgenv().plrname == nil and state then
+			Library.Notify("WARNING","You did not put a player.",5)
+			return
+		end
+		if state then
+			Library.Notify("WARNING","Must have pickaxe out",7)
+		end
+		getgenv().loopgold2 = state
+		task.spawn(function()
+			while true do
+				if not getgenv().loopgold2 then
+					break
+				end
+				task.wait()
+				local plr = getgenv().plrname
+				local player
+				for i, v in pairs(game.Players:GetPlayers()) do
+					if string.sub(string.lower(v.Name), 0, #plr) == string.lower(plr) or string.sub(string.lower(v.DisplayName), 0, #plr) == string.lower(plr) and v ~= game:GetService("Players").LocalPlayer  then
+						player = v.Character:WaitForChild("HumanoidRootPart")
+					end
+				end
+				local playerPosition = player.Position
+				local newX = playerPosition.X
+				local Y = playerPosition.Y + 1
+				local newZ = playerPosition.Z
+
+				local args = {
+					[1] = "gold1",
+					[2] = CFrame.new(newX, Y, newZ, 0.7180852890014648, -0.03575795888900757, 0.6950358152389526, 0.25782227516174316, 0.9412902593612671, -0.21794530749320984, -0.6464372873306274, 0.33569931983947754, 0.685145914554596),
+					[3] = 0.5
+				}
+				
+				game:GetService("Players").LocalPlayer.Character:WaitForChild("Pickaxe").CreateItemServer:FireServer(unpack(args))
+			end
+		end)
+	end)
+	MainSection:NewToggle("Loop Give Money", "spams a remote and gives u hella cash", function(state)
+		getgenv().loopmoney = state
+		task.spawn(function()
+			while true do
+				task.wait()
+				if not getgenv().loopmoney then
+					break
+				end
+				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("SkipDay"):FireServer()
 			end
 		end)
 	end)
@@ -36585,6 +36658,10 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		if not tween then return err end
 		end
 		tp(-313.14785766602, 2.9999992847443, 419.82235717773)
+	end)
+	redlightSection:NewButton("UnFreeze Player", "if your a guard your character wont be stuck no more", function()
+		game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Anchored = false
+		game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = 50
 	end)
 	local Cookie = Window:NewTab("Cookie")
 	local CookieSection = Cookie:NewSection("Cookie")
