@@ -5052,6 +5052,17 @@ elseif game.PlaceId == 4832438542 then
 			end
 		end
 	end)
+	MainSection:NewToggle("Disable Props Collison", "props cant hit you no more", function(state)
+		for i,v in pairs(game:GetService("Workspace").Props:GetChildren()) do
+			if v:IsA("Model") then
+				for _, hand in pairs(v:GetDescendants()) do
+					if hand:IsA("Part") or hand:IsA("MeshPart") or hand:IsA("BasePart") then
+						hand.CanCollide = not state
+					end
+				end
+			end
+		end
+	end)
 	MainSection:NewTextBox("Tp to VR User", "teleports to a vr user", function(txt)
 		local player = txt
 		local targname = ""
