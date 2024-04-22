@@ -35589,6 +35589,121 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			task.wait()
 		end
 	end)
+	MainSection:NewButton("LAG SERVER/CRASH SERVER SO BAD", "just spawns so much gold", function()
+		Library.Notify("WARNING","you will lag so bad, and everyone else, but to start it hold out your pickaxe",10)
+		game:GetService("RunService").RenderStepped:Connect(function()
+			local playerPosition = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
+			local newX = playerPosition.X + 2
+			local Y = playerPosition.Y
+			local newZ = playerPosition.Z + 2
+			local args = {
+				[1] = "gold1",
+				[2] = CFrame.new(newX, Y, newZ, 0.7180852890014648, -0.03575795888900757, 0.6950358152389526, 0.25782227516174316, 0.9412902593612671, -0.21794530749320984, -0.6464372873306274, 0.33569931983947754, 0.685145914554596),
+				[3] = 0.5
+			}
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("Pickaxe").CreateItemServer:FireServer(unpack(args))
+			for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+				if v.Name == "point" and v:IsA("Model") then
+					v:Destroy()
+				end
+			end
+			task.spawn(function()
+				game:GetService("RunService").RenderStepped:Connect(function()
+					local playerPosition = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
+					local newX = playerPosition.X + 2
+					local Y = playerPosition.Y
+					local newZ = playerPosition.Z + 2
+					local args = {
+						[1] = "gold1",
+						[2] = CFrame.new(newX, Y, newZ, 0.7180852890014648, -0.03575795888900757, 0.6950358152389526, 0.25782227516174316, 0.9412902593612671, -0.21794530749320984, -0.6464372873306274, 0.33569931983947754, 0.685145914554596),
+						[3] = 0.5
+					}
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("Pickaxe").CreateItemServer:FireServer(unpack(args))
+					for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+						if v.Name == "point" and v:IsA("Model") then
+							v:Destroy()
+						end
+					end
+					task.spawn(function()
+						game:GetService("RunService").RenderStepped:Connect(function()
+							local playerPosition = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
+							local newX = playerPosition.X + 2
+							local Y = playerPosition.Y
+							local newZ = playerPosition.Z + 2
+							local args = {
+								[1] = "gold1",
+								[2] = CFrame.new(newX, Y, newZ, 0.7180852890014648, -0.03575795888900757, 0.6950358152389526, 0.25782227516174316, 0.9412902593612671, -0.21794530749320984, -0.6464372873306274, 0.33569931983947754, 0.685145914554596),
+								[3] = 0.5
+							}
+							game:GetService("Players").LocalPlayer.Character:WaitForChild("Pickaxe").CreateItemServer:FireServer(unpack(args))
+							for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+								if v.Name == "point" and v:IsA("Model") then
+									v:Destroy()
+								end
+							end
+							task.spawn(function()
+								game:GetService("RunService").RenderStepped:Connect(function()
+									local playerPosition = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
+									local newX = playerPosition.X + 2
+									local Y = playerPosition.Y
+									local newZ = playerPosition.Z + 2
+									local args = {
+										[1] = "gold1",
+										[2] = CFrame.new(newX, Y, newZ, 0.7180852890014648, -0.03575795888900757, 0.6950358152389526, 0.25782227516174316, 0.9412902593612671, -0.21794530749320984, -0.6464372873306274, 0.33569931983947754, 0.685145914554596),
+										[3] = 0.5
+									}
+									game:GetService("Players").LocalPlayer.Character:WaitForChild("Pickaxe").CreateItemServer:FireServer(unpack(args))
+									for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+										if v.Name == "point" and v:IsA("Model") then
+											v:Destroy()
+										end
+									end
+									task.spawn(function()
+										game:GetService("RunService").RenderStepped:Connect(function()
+											local playerPosition = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
+											local newX = playerPosition.X + 2
+											local Y = playerPosition.Y
+											local newZ = playerPosition.Z + 2
+											local args = {
+												[1] = "gold1",
+												[2] = CFrame.new(newX, Y, newZ, 0.7180852890014648, -0.03575795888900757, 0.6950358152389526, 0.25782227516174316, 0.9412902593612671, -0.21794530749320984, -0.6464372873306274, 0.33569931983947754, 0.685145914554596),
+												[3] = 0.5
+											}
+											game:GetService("Players").LocalPlayer.Character:WaitForChild("Pickaxe").CreateItemServer:FireServer(unpack(args))
+											for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+												if v.Name == "point" and v:IsA("Model") then
+													v:Destroy()
+												end
+											end
+											task.spawn(function()
+												game:GetService("RunService").RenderStepped:Connect(function()
+													local playerPosition = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
+													local newX = playerPosition.X + 2
+													local Y = playerPosition.Y
+													local newZ = playerPosition.Z + 2
+													local args = {
+														[1] = "gold1",
+														[2] = CFrame.new(newX, Y, newZ, 0.7180852890014648, -0.03575795888900757, 0.6950358152389526, 0.25782227516174316, 0.9412902593612671, -0.21794530749320984, -0.6464372873306274, 0.33569931983947754, 0.685145914554596),
+														[3] = 0.5
+													}
+													game:GetService("Players").LocalPlayer.Character:WaitForChild("Pickaxe").CreateItemServer:FireServer(unpack(args))
+													for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+														if v.Name == "point" and v:IsA("Model") then
+															v:Destroy()
+														end
+													end
+												end)
+											end)
+										end)
+									end)
+								end)
+							end)
+						end)
+					end)
+				end)
+			end)
+		end)
+	end)
 
 	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
