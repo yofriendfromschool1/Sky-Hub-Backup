@@ -36391,7 +36391,7 @@ else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
 	for i,v in pairs(game:GetService("ReplicatedStorage"):GetDescendants()) do
-		if v.Name == "DestroySegway" or "DeleteCar" or "HandlessSegway" or "Building Tools" or "SetNetworkOwnership" or "ChangeParent" or "despawn" then
+		if v.Name == "DestroySegway" or v.Name == "DeleteCar" or v.Name == "HandlessSegway" or v.Name == "Building Tools" or v.Name == "SetNetworkOwnership" or v.Name == "ChangeParent" or v.Name == "despawn" then
 			Library.Notify("OMG VULN FOUND","If you dm me in discord: dsgdfs or post the game u are currently playing in the discord I will give you a role. PLSSS",30)
 		end
 	end
