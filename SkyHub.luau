@@ -35704,6 +35704,12 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			end)
 		end)
 	end)
+	MainSection:NewButton("Give Secret Badge", "edge of map badge", function()
+		local oldpos = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+		game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(1282, -16, 1125)
+		wait(5)
+		game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpos
+	end)
 
 	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
