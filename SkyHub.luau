@@ -37879,6 +37879,9 @@ else
 	ACBypassSection:NewButton("Bypass Mosts anti cheat", "Stops anticheat from kicking you", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/AntiCheat/main/Bypass"))()
 	end)
+	ACBypassSection:NewButton("Bypass Mosts anti cheat 2", "Stops anticheat from kicking you", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/powerfulac.txt"))()
+	end)
 	ACBypassSection:NewButton("Bypass Mosts Adonis/newindex", "Stops anticheat from kicking you", function()
 		local getinfo = getinfo or debug.getinfo
 		local DEBUG = false
