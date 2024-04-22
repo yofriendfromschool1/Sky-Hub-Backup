@@ -8,14 +8,14 @@ games it supports Da Hood, Arsenal, Tower of Hell, KAT!, Fencing,
 Work At A Pizza Place, VR Hands, Adopt Me, Jailbreak, Prison Life,
 Build A Boat For Treasure, Gorilla Tag Professional, Murder Mystery 2, Blox Fruits, Counter Blox, Mic Up, Neighbors, Natural Disaster Survival, Ro-Ghoul, Blade Ball, Pet Simulator X,
 Pet Simulator 99, Legends of Speed, BrookHaven RP, Bedwars, CHAOS, Ninja Legends, Bayside High School, BIG PaintBall!, BIG PaintBall 2!, Muscle Legends, Road to Grambys, Bloxburg, Cursed Sea, Doors,
-Hide and Seek Extreme, Life in Paradise, Adopt and Raise a Baby, Zombie Attack, Super Simon Says, Life Sentence, Rainbow Friends, Infectious Smile and Universal.
+Hide and Seek Extreme, Life in Paradise, Adopt and Raise a Baby, Zombie Attack, Super Simon Says, Life Sentence, Rainbow Friends, Infectious Smile, Colony Survival and Universal.
 40+ games (Including some obbys)
 
 Rebuilt On IllusionHub
 
 Last Updated 4/21/2024
 
-Added Rainbow Friends and Infectious Smile
+Added Rainbow Friends and Infectious Smile and Colony Survival
 
 Library by Lua_u
 
@@ -993,6 +993,10 @@ if game.PlaceId == 2788229376 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 	
 	
@@ -1995,6 +1999,10 @@ elseif game.PlaceId == 1962086868 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 -- KAT!
 elseif game.PlaceId == 621129760 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -2862,6 +2870,10 @@ elseif game.PlaceId == 621129760 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
  -- Fencing
 elseif game.PlaceId == 12109643 then
@@ -4097,6 +4109,10 @@ elseif game.PlaceId == 12109643 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 -- Work at a Pizza Place
 elseif game.PlaceId == 192800 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -4840,6 +4856,10 @@ elseif game.PlaceId == 192800 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
  -- VR Hands
 elseif game.PlaceId == 4832438542 then
@@ -5628,6 +5648,10 @@ elseif game.PlaceId == 4832438542 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 -- Adopt me
 elseif game.PlaceId == 920587237 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -6328,6 +6352,10 @@ elseif game.PlaceId == 920587237 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 -- JailBreak
 elseif game.PlaceId == 606849621 then
@@ -7083,6 +7111,10 @@ elseif game.PlaceId == 606849621 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 
 	
@@ -7910,6 +7942,10 @@ elseif game.PlaceId == 155615604 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
     -- Build A Boat or BABFT
 elseif game.PlaceId == 537413528 then
@@ -8765,6 +8801,10 @@ elseif game.PlaceId == 537413528 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 -- Gorilla Tag Professional
 elseif game.PlaceId == 8690998110 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -9523,6 +9563,10 @@ elseif game.PlaceId == 8690998110 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
         
 -- Murder Mystery 2 or MM2
@@ -11282,6 +11326,10 @@ elseif game.PlaceId == 142823291 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
         
 -- Blox Fruits
 elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then
@@ -11988,6 +12036,10 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 	 
 			-- Counter Blox
@@ -12775,6 +12827,10 @@ elseif game.PlaceId == 301549746 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 				   	-- Mic Up
 elseif game.PlaceId == 6884319169 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -13515,6 +13571,10 @@ elseif game.PlaceId == 6884319169 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 				    	-- Neighbors
 elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceId == 13108856598 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -14210,6 +14270,10 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 -- Natural Disaster Survival
 elseif game.PlaceId == 189707 then
@@ -14934,6 +14998,10 @@ elseif game.PlaceId == 189707 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 -- Ro-Ghoul
 elseif game.PlaceId == 914010731 then
@@ -15677,6 +15745,10 @@ elseif game.PlaceId == 914010731 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 -- Blade Ball
 elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceId == 14915220621 or game.PlaceId == 15144787112 or game.PlaceId == 15264892126 or game.PlaceId == 15509350986 then
@@ -16429,6 +16501,10 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 
 -- Pet Simulator X
@@ -17289,6 +17365,10 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 	
 
 -- Legends of Speed
@@ -18015,6 +18095,10 @@ elseif game.PlaceId == 3101667897 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 
 -- Brookhaven RP
 elseif game.PlaceId == 4924922222 then
@@ -18719,6 +18803,10 @@ elseif game.PlaceId == 4924922222 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 -- Bedwars
 elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId == 8444591321 or game.PlaceId == 8560631822 then
@@ -19426,6 +19514,10 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 -- CHAOS
 elseif game.PlaceId == 6441847031 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -20125,6 +20217,10 @@ elseif game.PlaceId == 6441847031 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 -- Ninja Legends
 elseif game.PlaceId == 3956818381 then
@@ -20848,6 +20944,10 @@ elseif game.PlaceId == 3956818381 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 -- Bayside High School
 elseif game.PlaceId == 12640491155 then
@@ -22034,6 +22134,10 @@ elseif game.PlaceId == 12640491155 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 -- BIG PaintBall!
 elseif game.PlaceId == 3527629287 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -22783,6 +22887,10 @@ elseif game.PlaceId == 3527629287 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 -- BIG PaintBall! 2
 elseif game.PlaceId == 9865958871 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -23481,6 +23589,10 @@ elseif game.PlaceId == 9865958871 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 -- Muscle Legends
 elseif game.PlaceId == 3623096087 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -24174,6 +24286,10 @@ elseif game.PlaceId == 3623096087 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 -- Road to Grambys
 elseif game.PlaceId == 5796917097 then
 	-- dont expect much kinda annoying game to script
@@ -24361,6 +24477,24 @@ elseif game.PlaceId == 14426444782 then
 	MainSection:NewToggle("Auto Farm", "must be in first person or shift lock", function(state)
 		Library.Notify("Warning", "Must be in first person or shift lock", 20)
 		getgenv().lol = state
+		local playerNames = {}
+
+		local function updatePlayerNames()
+			playerNames = {}
+			for _, player in pairs(game:GetService("Players"):GetPlayers()) do
+				table.insert(playerNames, player.Name)
+			end
+		end
+
+		updatePlayerNames()
+		local function isNameInPlayerNames(name)
+			for _, playerName in pairs(playerNames) do
+				if name == playerName then
+					return true
+				end
+			end
+			return false
+		end
 		for _, tool in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 			if tool:IsA("Tool") and tool:FindFirstChild("combatClient") then
 				tool.Parent = game:GetService("Players").LocalPlayer.Character
@@ -24378,7 +24512,7 @@ elseif game.PlaceId == 14426444782 then
 		delplrs()
 		local function getTarget()
 			for _, v in pairs(workspace.entities:GetDescendants()) do
-				if v.Name == "HumanoidRootPart" then
+				if v.Name == "HumanoidRootPart" and not isNameInPlayerNames(v.Parent.Name) then
 					return v
 				end
 			end
@@ -24424,9 +24558,11 @@ elseif game.PlaceId == 14426444782 then
 			end
 		end)
 		game:GetService("Players").PlayerAdded:Connect(function(player)
+			updatePlayerNames()
 			delplrs()
 		end)
 		game:GetService("Players").CharacterAdded:Connect(function(player)
+			updatePlayerNames()
 			delplrs()
 		end)
 	end)
@@ -25079,6 +25215,10 @@ elseif game.PlaceId == 14426444782 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 -- Doors
 elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
@@ -26845,6 +26985,10 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 	-- Hide and Seek Extreme
 elseif game.PlaceId == 205224386 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -27620,6 +27764,10 @@ elseif game.PlaceId == 205224386 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 
 	-- Life in Paradise 
@@ -29605,6 +29753,10 @@ elseif game.PlaceId == 1662219031 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 
 -- Adopt and Raise a Baby 
 elseif game.PlaceId == 383793228 then
@@ -31398,6 +31550,10 @@ elseif game.PlaceId == 383793228 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 -- Zombie Attack
 elseif game.PlaceId == 1240123653 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -32142,6 +32298,10 @@ elseif game.PlaceId == 1240123653 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 -- Super Simon Says
 elseif game.PlaceId == 61846006 then
@@ -32911,6 +33071,10 @@ elseif game.PlaceId == 61846006 then
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 -- Life Sentence
 elseif game.PlaceId == 13083893317 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
@@ -33673,6 +33837,10 @@ elseif game.PlaceId == 13083893317 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 
 -- Rainbow Friends
@@ -34465,6 +34633,10 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
 	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
 
 -- Infectious Smile
 elseif game.PlaceId == 5985232436 then
@@ -34551,7 +34723,7 @@ elseif game.PlaceId == 5985232436 then
 		end)
 	end)
 	MainSection:NewTextBox("put plr name here, Loop teleports behind player for easy grabbing", "put plr name here, Loop teleports behind player for easy grabbing", function(txt)
-		for i, v in pairs(game.Players:GetPlayers()) do
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #txt) == string.lower(txt) or string.sub(string.lower(v.DisplayName), 0, #txt) == string.lower(txt) then
 				getgenv().player = v
 			end
@@ -35229,6 +35401,827 @@ elseif game.PlaceId == 5985232436 then
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
+
+
+-- Colony Survival
+elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
+	local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
+	if IsOnMobile then
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
+			if val == true then
+				
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+			end
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
+	end
+	if iswave then
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
+	end
+	if queueteleport then
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
+			if val == true then
+				
+			else
+				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+			end
+		end, {
+			"Yes",
+			"No thanks."
+		})
+	end
+	if writefile and readfile and makefolder then
+		
+	else
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
+	end
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
+	local Main = Window:NewTab("Main")
+	local MainSection = Main:NewSection("Main")
+	MainSection:NewButton("FE Trolling GUI", "Troll", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
+	end)
+	MainSection:NewToggle("Loop Destroy all placed blocks", "destroys all the placed blocks by players", function(state)
+		getgenv().loopdestroyblocks = state
+		if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Sell Tool") then
+
+		else
+			game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):FindFirstChild("Sell Tool").Parent = game:GetService("Players").LocalPlayer.Character
+		end
+		task.spawn(function()
+			while true do 
+				task.wait()
+				if not getgenv().loopdestroyblocks then 
+					break 
+				end
+				for i,v in pairs(game:GetService("Workspace"):WaitForChild("BuildingModel"):GetChildren()) do
+					task.spawn(function()
+						local args = {
+							[1] = v
+						}
+				
+						game:GetService("Players").LocalPlayer.Character:FindFirstChild("Sell Tool").removeBlock:InvokeServer(unpack(args))
+					end)
+				end
+			end
+		end)
+	end)
+	MainSection:NewToggle("Spam Sounds", "Spams sounds even tho its kinda quiet sometimes works idk why", function(state)
+		getgenv().spamsound = state
+		task.spawn(function()
+			while true do 
+				task.wait()
+				if not getgenv().spamsound then
+					break
+				end
+				local args = {
+					[1] = "Mine4"
+				}
+				
+				game:GetService("Players").LocalPlayer:WaitForChild("PlaySoundServer"):FireServer(unpack(args))
+			end
+		end)
+	end)
+	MainSection:NewToggle("Loop Bring all zombies", "CLIENT SIDED GOOD FOR FARMING", function(state)
+		getgenv().loopzombies = state
+		task.spawn(function()
+			while true do 
+				task.wait()
+				if not getgenv().loopzombies then 
+					break 
+				end
+				for i,v in pairs(game:GetService("Workspace").WaveZombies:GetDescendants()) do
+					if v.Name == "HumanoidRootPart" then
+						v.CFrame = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame + Vector3.new(0,0,-3)
+					end
+				end
+			end
+		end)
+	end)
+	MainSection:NewToggle("Loop Spawn Gold", "spawns gold in front of you sorta? idk but you need the pickaxe out btw", function(state)
+		if state then
+			Library.Notify("WARNING","Must have pickaxe out",7)
+		end
+		getgenv().loopgold = state
+		task.spawn(function()
+			while true do
+				task.wait()
+				if not getgenv().loopgold then
+					break
+				end
+				local playerPosition = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position
+				local newX = playerPosition.X + 2
+				local Y = playerPosition.Y
+				local newZ = playerPosition.Z + 2
+
+				local args = {
+					[1] = "gold1",
+					[2] = CFrame.new(newX, Y, newZ, 0.7180852890014648, -0.03575795888900757, 0.6950358152389526, 0.25782227516174316, 0.9412902593612671, -0.21794530749320984, -0.6464372873306274, 0.33569931983947754, 0.685145914554596),
+					[3] = 0.5
+				}
+				
+				game:GetService("Players").LocalPlayer.Character:WaitForChild("Pickaxe").CreateItemServer:FireServer(unpack(args))
+			end
+		end)
+	end)
+	MainSection:NewButton("Make a hole to the bottom of the map", "makes hella deep hole may lag and its skinny right underneath u btw", function()
+		for y = 0, -800, -1 do
+			local args = {
+				[1] = Vector3.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position.X, y, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position.Z),
+				[2] = Enum.Material.Grass,
+				[3] = 6
+			}
+		
+			game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("removeBlock"):FireServer(unpack(args))
+		end
+	end)
+	MainSection:NewToggle("Loop Make a hole to the bottom of the map", "Loops makes hella deep hole may lag and its skinny right underneath u btw", function(state)
+		getgenv().loopfall = state
+		task.spawn(function()
+			while true do
+				if not getgenv().loopfall then
+					break
+				end
+				for y = 0, -800, -1 do
+					local args = {
+						[1] = Vector3.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position.X, y, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position.Z),
+						[2] = Enum.Material.Grass,
+						[3] = 6
+					}
+
+					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("removeBlock"):FireServer(unpack(args))
+				end
+				wait(2)
+			end
+		end)
+	end)
+	MainSection:NewButton("MAKES A BIG ASS HOLE/POSSIBLY CRASH SERVER?", "lags so bad prob best if u have ur pickaxe out and dig down too? TAKES A WHILE", function()
+		for y = 0, -800, -1 do
+			for x = -15, 15 do
+				for z = -15, 15 do
+					local args = {
+						[1] = Vector3.new(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position.X + x, y, game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position.Z + z),
+						[2] = Enum.Material.Grass,
+						[3] = 6
+					}
+		
+					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("removeBlock"):FireServer(unpack(args))
+				end
+			end
+			task.wait()
+		end
+	end)
+
+	local Discord = Window:NewTab("Discords",16795709379)
+	local DiscordSection = Discord:NewSection("Discords")
+	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
+		if httprequest and not IsOnMobile then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {
+						code = 'xwy5Cu62Vw'
+					}
+				})
+			})
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
+		elseif everyClipboard then
+			everyClipboard("https://discord.gg/xwy5Cu62Vw")
+			Library.Notify("Copied to Clipboard", "", 5)
+		else
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xwy5Cu62Vw", 5)
+		end
+	end)
+	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
+		everyClipboard(string2)
+	end)
+	local Admins = Window:NewTab("Admins", 10016551771)
+	local AdminsSection = Admins:NewSection("Admins")
+	AdminsSection:NewButton("Infinite Yield FE", "Admin", function()
+		loadstring(game:HttpGet(_G.infydtype))()
+	end)
+	AdminsSection:NewButton("Infinite Store", "Archived", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Infinite-Store/Infinite-Store/main/main.lua"))()
+	end)
+	AdminsSection:NewButton("Nameless Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/NamelessAdmin-NO-BYFRON-GUI/main/Source'))()
+	end)
+	AdminsSection:NewButton("fates admin", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+	end)
+	AdminsSection:NewButton("Cmd", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/lxte/cmd/main/main.lua"))()
+	end)
+	AdminsSection:NewButton("Cmd (TEST)", "Admin tests", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/lxte/cmd/main/testing-main.lua"))()
+	end)
+	AdminsSection:NewButton("Shattervast Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/%5BFE%5D%20Shattervast.lua'))()
+	end)
+	AdminsSection:NewButton("Proton Free Admin", "Admin", function()
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Proton%20Free'))()
+	end)
+	AdminsSection:NewButton("Proton 2 free Admin", "Admin", function()
+																											 -- DEFAULT CMD BAR PREFIX IS ;
+																											 -- DEFAULT CHAT PREFIX IS /
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
+	end)
+	AdminsSection:NewButton("Reviz Admin V2", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Reviz%20AdminV2"))()
+	end)
+	local Hubs = Window:NewTab("Hubs", 7360649366)
+	local HubsSection = Hubs:NewSection("Hubs")
+	if IsOnMobile then
+		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+		end)
+	end
+	HubsSection:NewButton("FE Trolling GUI", "FE Scripts and more.", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau'), true))()
+	end)
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
+	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
+	end)
+	HubsSection:NewButton("Psyhub", "idk", function()
+		loadstring(game:GetObjects("rbxassetid://3014051754")[1].Source)()
+	end)
+	HubsSection:NewButton("Ezhub", "130+ games", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()--
+	end)
+	HubsSection:NewButton("CocoHub", "idk", function()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
+	end)
+	HubsSection:NewButton("MonkeHub", "idk", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeHub/main/Loader.lua"))()
+	end)
+	local Player = Window:NewTab("Player", 2795572800)
+	local PlayerSection = Player:NewSection("Player")
+	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
+	end)
+	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
+	end)
+	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
+		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	if IsOnMobile then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
+			else
+				Library.Notify("Shift Lock Disabled", "", 5)
+			end
+		end)
+	end
+
+	local Settingss = Window:NewTab("Settings", 11385220704)
+	local SettingssSection = Settingss:NewSection("Settings")
+	SettingssSection:NewDropdown("UI Toggle Bind", "Changes Toggle Bind for Sky Hub Default is Right Control ONLY ON PC", {
+		"Right Control",
+		"Left Control",
+		"Left Alt",
+		"Right Alt",
+		"Insert",
+		"End",
+		"Del/Delete",
+		"Left Shift",
+		"Right Shift",
+		"F1",
+		"Q",
+		"E",
+		"R",
+		"T",
+		"Y",
+		"U",
+		"P",
+		"Z",
+		"X",
+		"M",
+		"V",
+		"N",
+		"."
+	}, function(currentoption)
+		if currentoption == "Right Control" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Left Control" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Left Alt" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Right Alt" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Insert" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "End" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Del/Delete" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Left Shift" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Right Shift" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "F1" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Q" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "E" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "R" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "T" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Y" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "U" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "P" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "Z" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "X" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "M" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "V" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "N" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		elseif currentoption == "." then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+		end
+	end)
+	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
+		getgenv().BlurIntes = v
+		opaque = getgenv().BlurIntes
+		task.wait()
+		if writefile then
+			updatesaves()
+			task.wait()
+			loadsettings()
+		else
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+		end
+	end)
+	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
+			return
+		end
+		if saveplace then
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
+		end
+		if saveinstance then
+			saveinstance()
+		else
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
+		end
+	end)
+	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
+		getgenv().saveinstance = nil
+		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
+	end)
+	local Games = Window:NewTab("Games", 12689980465)
+	local GamesSection = Games:NewSection("Games")
+	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Arsenal", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(286090429,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Tower of Hell", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(1962086868,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("KAT", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(621129760,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Fencing", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(12109643,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Work at a Pizza Place", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(192800,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("VR Hands", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(4832438542,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Adopt Me!", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(920587237,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Jailbreak", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(606849621,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Prison Life", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(155615604,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Build A Boat For Treasure", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(537413528,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Gorilla Tag Professional", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(8690998110,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Murder Mystery 2", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(142823291,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Blox Fruits", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(2753915549,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Counter Blox", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(301549746,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Mic Up", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(6884319169,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Neighbors", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(12699642568,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Natural Disaster Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(189707,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Ro-Ghoul", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(914010731,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Blade Ball", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(13772394625,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Pet Simulator X", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(13772394625,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Pet Simulator 99", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(8737899170,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Legends Of Speed", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(3101667897,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Brookhaven RP", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(4924922222,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Bedwars", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(6872265039,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("CHAOS", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(6441847031,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Ninja Legends", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(3956818381,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Bayside High School", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(12640491155,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("BIG Paintball!", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(3527629287,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("BIG Paintball 2!", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(9865958871,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Muscle Legends", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(3623096087,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Road to Grambys", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(5796917097,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Bloxburg", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(185655149,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Cursed Sea", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14426444782,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Doors", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(6516141723,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Hide and Seek Extreme", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(205224386,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Life in Paradise", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(1662219031,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Adopt and Raise a Baby", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(383793228,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Zombie Attack", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(1240123653,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Super Simon Says", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(61846006,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Life Sentence", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(13083893317,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Rainbow Friends", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(7991339063,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 
 -- Universal
@@ -35975,6 +36968,10 @@ else
 	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
         game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
