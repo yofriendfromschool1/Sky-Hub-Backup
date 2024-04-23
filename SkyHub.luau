@@ -35926,7 +35926,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			end
 		end)
 	end)
-	MainSection:NewToggle("Loop Give Money", "spams a remote and gives u hella cash", function(state)
+	MainSection:NewToggle("Loop Give Money", "spams a remote and gives everyone hella cash", function(state)
 		getgenv().loopmoney = state
 		task.spawn(function()
 			while true do
