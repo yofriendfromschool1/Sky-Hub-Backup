@@ -5077,9 +5077,9 @@ elseif game.PlaceId == 4832438542 then
 		MainSection:NewToggle("Disable Props Collison", "props cant hit you no more", function(state)
 			for i,v in pairs(game:GetService("Workspace").Props:GetChildren()) do
 				if v:IsA("Model") then
-					for _, hand in pairs(v:GetDescendants()) do
-						if hand:IsA("Part") or hand:IsA("MeshPart") or hand:IsA("BasePart") then
-							hand.CanCollide = not state
+					for _, prop in pairs(v:GetDescendants()) do
+						if prop:IsA("Part") or prop:IsA("MeshPart") or prop:IsA("BasePart") then
+							prop.CanCollide = not state
 						end
 					end
 				end
@@ -5113,7 +5113,7 @@ elseif game.PlaceId == 4832438542 then
 		MainSection:NewTextBox("vr user to annoy", "put user here to annoy then click the toggle annoy or weld", function(txt)
 			getgenv().annoyer = txt
 		end)
-		MainSection:NewToggle("annoy VR User", "teleports to a vr user and block their vision use fly with this in iy or sum", function(state)
+		MainSection:NewToggle("annoy VR User", "loop teleports to a vr user and block their vision use fly with this in iy or sum", function(state)
 			getgenv().annoyvr = state
 			local player = getgenv().annoyer
 			local targname = ""
@@ -5141,7 +5141,7 @@ elseif game.PlaceId == 4832438542 then
 				end
 			end)
 		end)
-		MainSection:NewToggle("weld to  VR User hand", "weld to a players hand", function(state)
+		MainSection:NewToggle("weld to VR User hand", "weld to a vr players hand", function(state)
 			getgenv().annoyvr2 = state
 			local player = getgenv().annoyer
 			local targname = ""
@@ -5170,7 +5170,126 @@ elseif game.PlaceId == 4832438542 then
 			end)
 		end)
 	else
-		Library.Notify("Working on it.","I CANT SEE THE CURSOR SO ITS SO HARD TO SELECT SHIT ON DEX AND REMOTE SPY",5)
+		Library.Notify("VR Version Loaded.","",5)
+		MainSection:NewToggle("weld to VR User hand", "weld to a vr players hand", function(state)
+			if state then
+				getgenv().annoyvr2 = state
+				local player = getgenv().annoyer
+				local targname = getgenv().annoyer
+				
+				
+				for i,v in pairs(targname.Character:GetDescendants()) do
+					if v.Name == "IndexTip" and v.Parent.Parent.Name == "RightHand" then
+						annoy = v
+					end
+				end
+				getgenv().weldvr = game:GetService("RunService").RenderStepped:Connect(function()
+					for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+						if v:IsA("Part") or v:IsA("BasePart") or v:IsA("MeshPart") then
+							v.CFrame = annoy.CFrame
+							task.wait()
+						end
+					end
+				end)
+			else
+				getgenv().weldvr:Disconnect()
+			end
+		end)
+		local Players = Window:NewTab("Players", 2795572800)
+		local PlayersSection = Players:NewSection("Players")
+		for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+			if v ~= game:GetService("Players").LocalPlayer then
+				PlayersSection:NewButton(v.DisplayName, "selects a player by display name", function()
+					getgenv().annoyer = v
+				end)
+				task.wait()
+			end
+		end
+		PlayersSection:NewButton("Refresh Player list", "reloads script", function()
+			for i,v in pairs(game:GetService("CoreGui"):GetChildren()) do
+				if v.Name == "skyhub" then
+					v:Destroy()
+				end
+			end
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt"))()
+			game:GetService("Workspace").Camera.BlurSnox:Destroy()
+			game:GetService("Lighting")[" "]:Destroy()
+		end)
+		MainSection:NewToggle("annoy VR User", "loop teleports to a vr user and block their vision select player in Players tab", function(state)
+			if state then
+				local player = getgenv().annoyer
+				local targname = getgenv().annoyer
+				
+				for i,v in pairs(targname.Character:GetDescendants()) do
+					if v.Name == "Head" and v.Parent.Name == "Appearance" then
+						annoy = v
+					end
+				end
+				getgenv().annoyvr = game:GetService("RunService").RenderStepped:Connect(function()
+						for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+							if v:IsA("Part") or v:IsA("BasePart") or v:IsA("MeshPart") then
+								v.CFrame = annoy.CFrame * CFrame.new(0,2,-24)
+								task.wait()
+							end
+						end
+					end)
+			else
+				getgenv().annoyvr:Disconnect()
+			end
+		end)
+		MainSection:NewToggle("annoy User", "loop teleports to a user", function(state)
+			if state then
+				local player = getgenv().annoyer
+				local targname = getgenv().annoyer
+				
+				for i,v in pairs(targname.Character:GetDescendants()) do
+					if v.Name == "HumanoidRootPart" then
+						annoy = v
+					end
+				end
+				getgenv().annoyvr = game:GetService("RunService").RenderStepped:Connect(function()
+						for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+							if v:IsA("Part") or v:IsA("BasePart") or v:IsA("MeshPart") then
+								v.CFrame = annoy.CFrame
+								task.wait()
+							end
+						end
+					end)
+			else
+				getgenv().annoyvr:Disconnect()
+			end
+		end)
+		MainSection:NewToggle("Invisible", "loop teleports all parts of localplayer hella high", function(state)
+			if state then
+				getgenv().invisible = game:GetService("RunService").RenderStepped:Connect(function()
+					for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+						if v:IsA("Part") or v:IsA("BasePart") or v:IsA("MeshPart") then
+							v.CFrame = CFrame.new(0,99999,0)
+							task.wait()
+						end
+					end
+				end)
+			else
+				getgenv().invisible:Disconnect()
+				for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+					if v:IsA("Part") or v:IsA("BasePart") or v:IsA("MeshPart") then
+						v.CFrame = CFrame.new(0,0,0)
+						task.wait()
+					end
+				end
+			end
+		end)
+		MainSection:NewButton("FE Bring all props", "loop teleports all props to localplayer NOTE MOST OF THEM ARE NOT VISIBLE TO OTHERS BUT SOME ARE AND IF U SPAM IT MORE WILL BE FE", function()
+			for i, v in pairs(game:GetService("Workspace").Props:GetChildren()) do
+				if v:IsA("Model") then
+					for _, prop in pairs(v:GetDescendants()) do
+						if prop:IsA("Part") or prop:IsA("MeshPart") or prop:IsA("BasePart") then
+							prop.CFrame = game:GetService("Players").LocalPlayer.Character.RightHand:WaitForChild("ControllerPart").CFrame
+						end
+					end
+				end
+			end
+		end)
 	end
 	local Player = Window:NewTab("Player", 2795572800)
 	local PlayerSection = Player:NewSection("Player")
