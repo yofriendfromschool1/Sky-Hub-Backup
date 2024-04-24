@@ -545,7 +545,7 @@ local function HLBC_fake_script() -- ImageLabel.Script
 	end)
 
 	local RunService = game:GetService('RunService')
-	local camera = workspace.CurrentCamera
+	local camera = game:GetService("Workspace").CurrentCamera
 	local MTREL = ""
 	local binds = {}
 	local root = Instance.new('Folder', camera)
@@ -977,7 +977,7 @@ function AddSlider(name,tab,callback, maxi,min)
 	task.spawn(function()
 		local max = slider.Max
 		local bar = max.Bar
-		local player = game.Players.LocalPlayer
+		local player = game:GetService("Players").LocalPlayer
 		local mouse = player:GetMouse()
 		local uis = game:GetService("UserInputService")
 		local ap = Vector2.new(max.AbsolutePosition.X, max.AbsolutePosition.Y)
@@ -998,13 +998,13 @@ function AddSlider(name,tab,callback, maxi,min)
 			end
 		end)
 		local function ScaleToOffset(Scale)
-			local ViewPortSize = workspace.Camera.ViewportSize
+			local ViewPortSize = game:GetService("Workspace").Camera.ViewportSize
 			return ({ViewPortSize.X * Scale[1],ViewPortSize.Y * Scale[2]})
 		end
 
 
 		local function OffsetToScale(Offset)
-			local ViewPortSize = workspace.Camera.ViewportSize
+			local ViewPortSize = game:GetService("Workspace").Camera.ViewportSize
 			return Offset / max.Size
 		end
 		while task.wait(0.05) do
@@ -1263,7 +1263,7 @@ local UICorner_3 = Instance.new("UICorner")
 local UIListLayout = Instance.new("UIListLayout")
 
 NotifLib.Name = "NotifLib"
-NotifLib.Parent = game.CoreGui
+NotifLib.Parent = game:GetService("CoreGui")
 NotifLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Center.Name = "Center"
