@@ -810,8 +810,10 @@ local function HLBC_fake_script() -- ImageLabel.Script
 				end
 			end)
 		else
-			if inp.KeyCode == getgenv().SkyhubKeybind then
+			if inp.KeyCode == getgenv().SkyhubKeybind and visible == false then
 				visible = true
+			elseif inp.KeyCode == getgenv().SkyhubKeybind and visible == true then
+				visible = false
 			end
 		end
 	end)
