@@ -785,7 +785,7 @@ local function HLBC_fake_script() -- ImageLabel.Script
 
 	runService.Heartbeat:Connect(Update)
 	script.Parent.TopBar.Minimize.Activated:Connect(function()
-		if IsOnMobile then
+		if IsOnMobile or VREnabled then
 			Sky["DaIcon"].Visible = true
 			visible = false
 		else
@@ -800,7 +800,7 @@ local function HLBC_fake_script() -- ImageLabel.Script
 	end)
 	local uis = game:GetService("UserInputService")
 	uis.InputBegan:Connect(function(inp)
-		if IsOnMobile then
+		if IsOnMobile or VREnabled then
 			Sky["DaIcon"].MouseButton1Click:Connect(function()
 				Sky["DaIcon"].Visible = false
 				for i,v in pairs(game:GetService("CoreGui"):GetChildren()) do
