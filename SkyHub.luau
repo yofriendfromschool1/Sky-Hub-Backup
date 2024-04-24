@@ -40013,7 +40013,8 @@ else
 
 	end)
 
-
+	local Settingss = Window:NewTab("Settings", 11385220704)
+	local SettingssSection = Settingss:NewSection("Settings")
 	SettingssSection:NewDropdown("UI Toggle Bind", "Changes Toggle Bind for Sky Hub Default is Right Control ONLY ON PC", {
 		"Right Control",
 		"Left Control",
