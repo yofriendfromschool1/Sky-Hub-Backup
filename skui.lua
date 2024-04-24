@@ -61,13 +61,14 @@ local TempTab = Instance.new("ScrollingFrame")
 local UIGridLayout_3 = Instance.new("UIGridLayout")
 local Script = Instance.new("Script", ImageLabel)
 Script.Name = "Script"
+VREnabled = game:GetService("VRService").VREnabled
 UserInputService = game:GetService("UserInputService")
 local IsOnMobile = table.find({
 	Enum.Platform.IOS,
 	Enum.Platform.Android
 }, UserInputService:GetPlatform())
 local Sky = {}
-if IsOnMobile then
+if IsOnMobile or VREnabled then
 	Sky["Ui"] = Instance.new("ScreenGui", gethui())
 	Sky["Ui"].Name = "skyhubtoggle"
 
