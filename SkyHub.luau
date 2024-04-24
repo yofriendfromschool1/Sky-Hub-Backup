@@ -45,7 +45,7 @@ defaults = HttpService:JSONEncode(settings)
 local OptTheme = "Midnight"
 local string2 = "https://discord.com/invite/jVf7eSrED9"
 _G.infydtype = 1
-_G.guidragtype = "https://raw.githubusercontent.com/LLua-u/aw/main/skui.lua"
+_G.guidragtype = "https://raw.githubusercontent.com/yofriendfromschool1/aw-temp-fix/main/skui.lua"
 UserInputService = game:GetService("UserInputService")
 VREnabled = game:GetService("VRService").VREnabled
 local IsOnMobile = table.find({
@@ -210,6 +210,7 @@ if game.PlaceId == 2788229376 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -538,6 +539,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -549,6 +551,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -560,6 +563,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -571,6 +575,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -582,6 +587,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -593,6 +599,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -604,6 +611,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -615,6 +623,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -626,6 +635,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -637,6 +647,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -648,6 +659,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -659,6 +671,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -670,6 +683,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -681,6 +695,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -692,6 +707,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -703,6 +719,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -714,6 +731,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -725,6 +743,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -736,6 +755,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -747,6 +767,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -758,6 +779,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -769,6 +791,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -780,6 +803,7 @@ if game.PlaceId == 2788229376 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -1054,6 +1078,7 @@ elseif game.PlaceId == 286090429 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -1353,6 +1378,7 @@ elseif game.PlaceId == 1962086868 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -1551,6 +1577,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1562,6 +1589,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1573,6 +1601,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1584,6 +1613,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1595,6 +1625,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1606,6 +1637,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1617,6 +1649,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1628,6 +1661,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1639,6 +1673,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1650,6 +1685,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1661,6 +1697,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1672,6 +1709,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1683,6 +1721,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1694,6 +1733,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1705,6 +1745,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1716,6 +1757,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1727,6 +1769,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1738,6 +1781,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1749,6 +1793,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1760,6 +1805,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1771,6 +1817,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1782,6 +1829,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -1793,6 +1841,7 @@ elseif game.PlaceId == 1962086868 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -2065,6 +2114,7 @@ elseif game.PlaceId == 621129760 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -2431,6 +2481,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2442,6 +2493,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2453,6 +2505,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2464,6 +2517,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2475,6 +2529,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2486,6 +2541,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2497,6 +2553,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2508,6 +2565,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2519,6 +2577,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2530,6 +2589,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2541,6 +2601,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2552,6 +2613,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2563,6 +2625,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2574,6 +2637,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2585,6 +2649,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2596,6 +2661,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2607,6 +2673,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2618,6 +2685,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2629,6 +2697,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2640,6 +2709,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2651,6 +2721,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2662,6 +2733,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -2673,6 +2745,7 @@ elseif game.PlaceId == 621129760 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -2945,6 +3018,7 @@ elseif game.PlaceId == 12109643 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -3677,6 +3751,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3688,6 +3763,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3699,6 +3775,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3710,6 +3787,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3721,6 +3799,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3732,6 +3811,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3743,6 +3823,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3754,6 +3835,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3765,6 +3847,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3776,6 +3859,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3787,6 +3871,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3798,6 +3883,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3809,6 +3895,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3820,6 +3907,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3831,6 +3919,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3842,6 +3931,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3853,6 +3943,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3864,6 +3955,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3875,6 +3967,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3886,6 +3979,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3897,6 +3991,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3908,6 +4003,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -3919,6 +4015,7 @@ elseif game.PlaceId == 12109643 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -4191,6 +4288,7 @@ elseif game.PlaceId == 192800 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -4433,6 +4531,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4444,6 +4543,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4455,6 +4555,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4466,6 +4567,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4477,6 +4579,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4488,6 +4591,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4499,6 +4603,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4510,6 +4615,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4521,6 +4627,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4532,6 +4639,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4543,6 +4651,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4554,6 +4663,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4565,6 +4675,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4576,6 +4687,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4587,6 +4699,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4598,6 +4711,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4609,6 +4723,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4620,6 +4735,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4631,6 +4747,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4642,6 +4759,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4653,6 +4771,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4664,6 +4783,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -4675,6 +4795,7 @@ elseif game.PlaceId == 192800 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -4947,6 +5068,7 @@ elseif game.PlaceId == 4832438542 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -5366,6 +5488,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5377,6 +5500,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5388,6 +5512,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5399,6 +5524,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5410,6 +5536,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5421,6 +5548,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5432,6 +5560,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5443,6 +5572,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5454,6 +5584,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5465,6 +5596,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5476,6 +5608,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5487,6 +5620,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5498,6 +5632,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5509,6 +5644,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5520,6 +5656,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5531,6 +5668,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5542,6 +5680,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5553,6 +5692,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5564,6 +5704,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5575,6 +5716,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5586,6 +5728,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5597,6 +5740,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -5608,6 +5752,7 @@ elseif game.PlaceId == 4832438542 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -5880,6 +6025,7 @@ elseif game.PlaceId == 920587237 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -6079,6 +6225,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6090,6 +6237,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6101,6 +6249,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6112,6 +6261,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6123,6 +6273,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6134,6 +6285,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6145,6 +6297,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6156,6 +6309,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6167,6 +6321,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6178,6 +6333,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6189,6 +6345,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6200,6 +6357,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6211,6 +6369,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6222,6 +6381,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6233,6 +6393,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6244,6 +6405,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6255,6 +6417,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6266,6 +6429,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6277,6 +6441,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6288,6 +6453,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6299,6 +6465,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6310,6 +6477,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6321,6 +6489,7 @@ elseif game.PlaceId == 920587237 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -6593,6 +6762,7 @@ elseif game.PlaceId == 606849621 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
@@ -6846,6 +7016,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6857,6 +7028,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6868,6 +7040,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6879,6 +7052,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6890,6 +7064,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6901,6 +7076,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6912,6 +7088,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6923,6 +7100,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6934,6 +7112,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6945,6 +7124,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6956,6 +7136,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6967,6 +7148,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6978,6 +7160,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -6989,6 +7172,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7000,6 +7184,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7011,6 +7196,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7022,6 +7208,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7033,6 +7220,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7044,6 +7232,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7055,6 +7244,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7066,6 +7256,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7077,6 +7268,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7088,6 +7280,7 @@ elseif game.PlaceId == 606849621 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -7363,6 +7556,7 @@ elseif game.PlaceId == 155615604 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -7685,6 +7879,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7696,6 +7891,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7707,6 +7903,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7718,6 +7915,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7729,6 +7927,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7740,6 +7939,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7751,6 +7951,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7762,6 +7963,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7773,6 +7975,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7784,6 +7987,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7795,6 +7999,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7806,6 +8011,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7817,6 +8023,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7828,6 +8035,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7839,6 +8047,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7850,6 +8059,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7861,6 +8071,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7872,6 +8083,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7883,6 +8095,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7894,6 +8107,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7905,6 +8119,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7916,6 +8131,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -7927,6 +8143,7 @@ elseif game.PlaceId == 155615604 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -8199,6 +8416,7 @@ elseif game.PlaceId == 537413528 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -8551,6 +8769,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8562,6 +8781,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8573,6 +8793,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8584,6 +8805,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8595,6 +8817,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8606,6 +8829,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8617,6 +8841,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8628,6 +8853,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8639,6 +8865,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8650,6 +8877,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8661,6 +8889,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8672,6 +8901,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8683,6 +8913,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8694,6 +8925,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8705,6 +8937,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8716,6 +8949,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8727,6 +8961,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8738,6 +8973,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8749,6 +8985,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8760,6 +8997,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8771,6 +9009,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8782,6 +9021,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -8793,6 +9033,7 @@ elseif game.PlaceId == 537413528 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -9065,6 +9306,7 @@ elseif game.PlaceId == 8690998110 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -9322,6 +9564,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9333,6 +9576,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9344,6 +9588,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9355,6 +9600,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9366,6 +9612,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9377,6 +9624,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9388,6 +9636,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9399,6 +9648,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9410,6 +9660,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9421,6 +9672,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9432,6 +9684,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9443,6 +9696,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9454,6 +9708,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9465,6 +9720,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9476,6 +9732,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9487,6 +9744,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9498,6 +9756,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9509,6 +9768,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9520,6 +9780,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9531,6 +9792,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9542,6 +9804,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9553,6 +9816,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -9564,6 +9828,7 @@ elseif game.PlaceId == 8690998110 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -9837,6 +10102,7 @@ elseif game.PlaceId == 142823291 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -11092,6 +11358,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11103,6 +11370,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11114,6 +11382,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11125,6 +11394,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11136,6 +11406,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11147,6 +11418,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11158,6 +11430,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11169,6 +11442,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11180,6 +11454,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11191,6 +11466,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11202,6 +11478,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11213,6 +11490,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11224,6 +11502,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11235,6 +11514,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11246,6 +11526,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11257,6 +11538,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11268,6 +11550,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11279,6 +11562,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11290,6 +11574,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11301,6 +11586,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11312,6 +11598,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11323,6 +11610,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11334,6 +11622,7 @@ elseif game.PlaceId == 142823291 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -11607,6 +11896,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -11811,6 +12101,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11822,6 +12113,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11833,6 +12125,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11844,6 +12137,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11855,6 +12149,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11866,6 +12161,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11877,6 +12173,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11888,6 +12185,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11899,6 +12197,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11910,6 +12209,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11921,6 +12221,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11932,6 +12233,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11943,6 +12245,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11954,6 +12257,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11965,6 +12269,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11976,6 +12281,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11987,6 +12293,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -11998,6 +12305,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12009,6 +12317,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12020,6 +12329,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12031,6 +12341,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12042,6 +12353,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12053,6 +12365,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -12326,6 +12639,7 @@ elseif game.PlaceId == 301549746 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -12609,6 +12923,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12620,6 +12935,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12631,6 +12947,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12642,6 +12959,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12653,6 +12971,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12664,6 +12983,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12675,6 +12995,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12686,6 +13007,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12697,6 +13019,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12708,6 +13031,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12719,6 +13043,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12730,6 +13055,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12741,6 +13067,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12752,6 +13079,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12763,6 +13091,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12774,6 +13103,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12785,6 +13115,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12796,6 +13127,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12807,6 +13139,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12818,6 +13151,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12829,6 +13163,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12840,6 +13175,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -12851,6 +13187,7 @@ elseif game.PlaceId == 301549746 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -13123,6 +13460,7 @@ elseif game.PlaceId == 6884319169 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -13361,6 +13699,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13372,6 +13711,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13383,6 +13723,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13394,6 +13735,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13405,6 +13747,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13416,6 +13759,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13427,6 +13771,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13438,6 +13783,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13449,6 +13795,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13460,6 +13807,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13471,6 +13819,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13482,6 +13831,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13493,6 +13843,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13504,6 +13855,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13515,6 +13867,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13526,6 +13879,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13537,6 +13891,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13548,6 +13903,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13559,6 +13915,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13570,6 +13927,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13581,6 +13939,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13592,6 +13951,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -13603,6 +13963,7 @@ elseif game.PlaceId == 6884319169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -13875,6 +14236,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -14069,6 +14431,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14080,6 +14443,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14091,6 +14455,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14102,6 +14467,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14113,6 +14479,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14124,6 +14491,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14135,6 +14503,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14146,6 +14515,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14157,6 +14527,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14168,6 +14539,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14179,6 +14551,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14190,6 +14563,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14201,6 +14575,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14212,6 +14587,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14223,6 +14599,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14234,6 +14611,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14245,6 +14623,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14256,6 +14635,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14267,6 +14647,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14278,6 +14659,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14289,6 +14671,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14300,6 +14683,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14311,6 +14695,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -14583,6 +14968,7 @@ elseif game.PlaceId == 189707 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -14805,6 +15191,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14816,6 +15203,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14827,6 +15215,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14838,6 +15227,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14849,6 +15239,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14860,6 +15251,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14871,6 +15263,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14882,6 +15275,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14893,6 +15287,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14904,6 +15299,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14915,6 +15311,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14926,6 +15323,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14937,6 +15335,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14948,6 +15347,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14959,6 +15359,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14970,6 +15371,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14981,6 +15383,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -14992,6 +15395,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15003,6 +15407,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15014,6 +15419,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15025,6 +15431,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15036,6 +15443,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15047,6 +15455,7 @@ elseif game.PlaceId == 189707 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -15319,6 +15728,7 @@ elseif game.PlaceId == 914010731 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -15560,6 +15970,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15571,6 +15982,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15582,6 +15994,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15593,6 +16006,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15604,6 +16018,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15615,6 +16030,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15626,6 +16042,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15637,6 +16054,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15648,6 +16066,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15659,6 +16078,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15670,6 +16090,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15681,6 +16102,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15692,6 +16114,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15703,6 +16126,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15714,6 +16138,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15725,6 +16150,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15736,6 +16162,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15747,6 +16174,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15758,6 +16186,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15769,6 +16198,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15780,6 +16210,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15791,6 +16222,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -15802,6 +16234,7 @@ elseif game.PlaceId == 914010731 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -16074,6 +16507,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -16324,6 +16758,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16335,6 +16770,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16346,6 +16782,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16357,6 +16794,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16368,6 +16806,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16379,6 +16818,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16390,6 +16830,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16401,6 +16842,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16412,6 +16854,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16423,6 +16866,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16434,6 +16878,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16445,6 +16890,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16456,6 +16902,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16467,6 +16914,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16478,6 +16926,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16489,6 +16938,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16500,6 +16950,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16511,6 +16962,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16522,6 +16974,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16533,6 +16986,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16544,6 +16998,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16555,6 +17010,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -16566,6 +17022,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -16839,6 +17296,7 @@ elseif game.PlaceId == 6284583030 or game.PlaceId == 10321372166 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -17011,6 +17469,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -17195,6 +17654,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17206,6 +17666,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17217,6 +17678,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17228,6 +17690,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17239,6 +17702,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17250,6 +17714,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17261,6 +17726,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17272,6 +17738,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17283,6 +17750,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17294,6 +17762,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17305,6 +17774,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17316,6 +17786,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17327,6 +17798,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17338,6 +17810,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17349,6 +17822,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17360,6 +17834,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17371,6 +17846,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17382,6 +17858,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17393,6 +17870,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17404,6 +17882,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17415,6 +17894,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17426,6 +17906,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17437,6 +17918,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -17711,6 +18193,7 @@ elseif game.PlaceId == 3101667897 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -17933,6 +18416,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17944,6 +18428,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17955,6 +18440,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17966,6 +18452,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17977,6 +18464,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17988,6 +18476,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -17999,6 +18488,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18010,6 +18500,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18021,6 +18512,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18032,6 +18524,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18043,6 +18536,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18054,6 +18548,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18065,6 +18560,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18076,6 +18572,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18087,6 +18584,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18098,6 +18596,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18109,6 +18608,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18120,6 +18620,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18131,6 +18632,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18142,6 +18644,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18153,6 +18656,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18164,6 +18668,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18175,6 +18680,7 @@ elseif game.PlaceId == 3101667897 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -18448,6 +18954,7 @@ elseif game.PlaceId == 4924922222 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -18650,6 +19157,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18661,6 +19169,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18672,6 +19181,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18683,6 +19193,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18694,6 +19205,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18705,6 +19217,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18716,6 +19229,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18727,6 +19241,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18738,6 +19253,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18749,6 +19265,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18760,6 +19277,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18771,6 +19289,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18782,6 +19301,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18793,6 +19313,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18804,6 +19325,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18815,6 +19337,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18826,6 +19349,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18837,6 +19361,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18848,6 +19373,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18859,6 +19385,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18870,6 +19397,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18881,6 +19409,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -18892,6 +19421,7 @@ elseif game.PlaceId == 4924922222 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -19164,6 +19694,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -19368,6 +19899,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19379,6 +19911,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19390,6 +19923,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19401,6 +19935,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19412,6 +19947,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19423,6 +19959,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19434,6 +19971,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19445,6 +19983,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19456,6 +19995,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19467,6 +20007,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19478,6 +20019,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19489,6 +20031,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19500,6 +20043,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19511,6 +20055,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19522,6 +20067,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19533,6 +20079,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19544,6 +20091,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19555,6 +20103,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19566,6 +20115,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19577,6 +20127,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19588,6 +20139,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19599,6 +20151,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -19610,6 +20163,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -19882,6 +20436,7 @@ elseif game.PlaceId == 6441847031 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -20080,6 +20635,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20091,6 +20647,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20102,6 +20659,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20113,6 +20671,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20124,6 +20683,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20135,6 +20695,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20146,6 +20707,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20157,6 +20719,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20168,6 +20731,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20179,6 +20743,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20190,6 +20755,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20201,6 +20767,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20212,6 +20779,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20223,6 +20791,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20234,6 +20803,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20245,6 +20815,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20256,6 +20827,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20267,6 +20839,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20278,6 +20851,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20289,6 +20863,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20300,6 +20875,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20311,6 +20887,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20322,6 +20899,7 @@ elseif game.PlaceId == 6441847031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -20594,6 +21172,7 @@ elseif game.PlaceId == 3956818381 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -20815,6 +21394,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20826,6 +21406,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20837,6 +21418,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20848,6 +21430,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20859,6 +21442,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20870,6 +21454,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20881,6 +21466,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20892,6 +21478,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20903,6 +21490,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20914,6 +21502,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20925,6 +21514,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20936,6 +21526,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20947,6 +21538,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20958,6 +21550,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20969,6 +21562,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20980,6 +21574,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -20991,6 +21586,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -21002,6 +21598,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -21013,6 +21610,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -21024,6 +21622,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -21035,6 +21634,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -21046,6 +21646,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -21057,6 +21658,7 @@ elseif game.PlaceId == 3956818381 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -21329,6 +21931,7 @@ elseif game.PlaceId == 12640491155 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -22012,6 +22615,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22023,6 +22627,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22034,6 +22639,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22045,6 +22651,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22056,6 +22663,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22067,6 +22675,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22078,6 +22687,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22089,6 +22699,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22100,6 +22711,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22111,6 +22723,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22122,6 +22735,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22133,6 +22747,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22144,6 +22759,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22155,6 +22771,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22166,6 +22783,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22177,6 +22795,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22188,6 +22807,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22199,6 +22819,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22210,6 +22831,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22221,6 +22843,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22232,6 +22855,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22243,6 +22867,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22254,6 +22879,7 @@ elseif game.PlaceId == 12640491155 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -22526,6 +23152,7 @@ elseif game.PlaceId == 3527629287 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -22773,6 +23400,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22784,6 +23412,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22795,6 +23424,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22806,6 +23436,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22817,6 +23448,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22828,6 +23460,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22839,6 +23472,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22850,6 +23484,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22861,6 +23496,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22872,6 +23508,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22883,6 +23520,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22894,6 +23532,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22905,6 +23544,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22916,6 +23556,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22927,6 +23568,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22938,6 +23580,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22949,6 +23592,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22960,6 +23604,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22971,6 +23616,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22982,6 +23628,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -22993,6 +23640,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23004,6 +23652,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23015,6 +23664,7 @@ elseif game.PlaceId == 3527629287 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -23287,6 +23937,7 @@ elseif game.PlaceId == 9865958871 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -23483,6 +24134,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23494,6 +24146,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23505,6 +24158,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23516,6 +24170,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23527,6 +24182,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23538,6 +24194,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23549,6 +24206,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23560,6 +24218,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23571,6 +24230,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23582,6 +24242,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23593,6 +24254,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23604,6 +24266,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23615,6 +24278,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23626,6 +24290,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23637,6 +24302,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23648,6 +24314,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23659,6 +24326,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23670,6 +24338,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23681,6 +24350,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23692,6 +24362,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23703,6 +24374,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23714,6 +24386,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -23725,6 +24398,7 @@ elseif game.PlaceId == 9865958871 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -23997,6 +24671,7 @@ elseif game.PlaceId == 3623096087 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -24188,6 +24863,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24199,6 +24875,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24210,6 +24887,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24221,6 +24899,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24232,6 +24911,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24243,6 +24923,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24254,6 +24935,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24265,6 +24947,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24276,6 +24959,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24287,6 +24971,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24298,6 +24983,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24309,6 +24995,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24320,6 +25007,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24331,6 +25019,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24342,6 +25031,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24353,6 +25043,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24364,6 +25055,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24375,6 +25067,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24386,6 +25079,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24397,6 +25091,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24408,6 +25103,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24419,6 +25115,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -24430,6 +25127,7 @@ elseif game.PlaceId == 3623096087 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -24838,6 +25536,7 @@ elseif game.PlaceId == 14426444782 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -25126,6 +25825,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25137,6 +25837,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25148,6 +25849,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25159,6 +25861,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25170,6 +25873,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25181,6 +25885,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25192,6 +25897,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25203,6 +25909,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25214,6 +25921,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25225,6 +25933,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25236,6 +25945,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25247,6 +25957,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25258,6 +25969,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25269,6 +25981,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25280,6 +25993,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25291,6 +26005,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25302,6 +26017,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25313,6 +26029,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25324,6 +26041,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25335,6 +26053,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25346,6 +26065,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25357,6 +26077,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -25368,6 +26089,7 @@ elseif game.PlaceId == 14426444782 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -25640,6 +26362,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local doorsesp_color = Color3.fromRGB(255, 150, 200)
 	local cabnietsesp_color = Color3.fromRGB(19, 211, 13)
 	local chestsesp_color = Color3.fromRGB(131, 96, 168) 
@@ -26903,6 +27626,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -26914,6 +27638,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -26925,6 +27650,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -26936,6 +27662,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -26947,6 +27674,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -26958,6 +27686,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -26969,6 +27698,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -26980,6 +27710,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -26991,6 +27722,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27002,6 +27734,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27013,6 +27746,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27024,6 +27758,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27035,6 +27770,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27046,6 +27782,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27057,6 +27794,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27068,6 +27806,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27079,6 +27818,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27090,6 +27830,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27101,6 +27842,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27112,6 +27854,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27123,6 +27866,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27134,6 +27878,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27145,6 +27890,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -27417,6 +28163,7 @@ elseif game.PlaceId == 205224386 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -27691,6 +28438,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27702,6 +28450,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27713,6 +28462,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27724,6 +28474,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27735,6 +28486,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27746,6 +28498,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27757,6 +28510,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27768,6 +28522,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27779,6 +28534,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27790,6 +28546,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27801,6 +28558,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27812,6 +28570,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27823,6 +28582,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27834,6 +28594,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27845,6 +28606,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27856,6 +28618,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27867,6 +28630,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27878,6 +28642,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27889,6 +28654,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27900,6 +28666,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27911,6 +28678,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27922,6 +28690,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -27933,6 +28702,7 @@ elseif game.PlaceId == 205224386 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -28206,6 +28976,7 @@ elseif game.PlaceId == 1662219031 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -29687,6 +30458,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29698,6 +30470,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29709,6 +30482,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29720,6 +30494,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29731,6 +30506,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29742,6 +30518,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29753,6 +30530,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29764,6 +30542,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29775,6 +30554,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29786,6 +30566,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29797,6 +30578,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29808,6 +30590,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29819,6 +30602,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29830,6 +30614,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29841,6 +30626,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29852,6 +30638,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29863,6 +30650,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29874,6 +30662,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29885,6 +30674,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29896,6 +30686,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29907,6 +30698,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29918,6 +30710,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -29929,6 +30722,7 @@ elseif game.PlaceId == 1662219031 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -30202,6 +30996,7 @@ elseif game.PlaceId == 383793228 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -31492,6 +32287,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31503,6 +32299,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31514,6 +32311,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31525,6 +32323,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31536,6 +32335,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31547,6 +32347,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31558,6 +32359,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31569,6 +32371,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31580,6 +32383,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31591,6 +32395,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31602,6 +32407,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31613,6 +32419,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31624,6 +32431,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31635,6 +32443,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31646,6 +32455,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31657,6 +32467,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31668,6 +32479,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31679,6 +32491,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31690,6 +32503,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31701,6 +32515,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31712,6 +32527,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31723,6 +32539,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -31734,6 +32551,7 @@ elseif game.PlaceId == 383793228 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -32006,6 +32824,7 @@ elseif game.PlaceId == 1240123653 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -32249,6 +33068,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32260,6 +33080,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32271,6 +33092,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32282,6 +33104,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32293,6 +33116,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32304,6 +33128,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32315,6 +33140,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32326,6 +33152,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32337,6 +33164,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32348,6 +33176,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32359,6 +33188,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32370,6 +33200,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32381,6 +33212,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32392,6 +33224,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32403,6 +33236,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32414,6 +33248,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32425,6 +33260,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32436,6 +33272,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32447,6 +33284,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32458,6 +33296,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32469,6 +33308,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32480,6 +33320,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -32491,18 +33332,7 @@ elseif game.PlaceId == 1240123653 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
-		end
-	end)
-	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
-		getgenv().BlurIntes = v
-		opaque = getgenv().BlurIntes
-		task.wait()
-		if writefile then
-			updatesaves()
-			task.wait()
-			loadsettings()
-		else
-			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
@@ -32763,6 +33593,7 @@ elseif game.PlaceId == 61846006 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -33029,6 +33860,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33040,6 +33872,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33051,6 +33884,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33062,6 +33896,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33073,6 +33908,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33084,6 +33920,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33095,6 +33932,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33106,6 +33944,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33117,6 +33956,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33128,6 +33968,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33139,6 +33980,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33150,6 +33992,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33161,6 +34004,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33172,6 +34016,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33183,6 +34028,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33194,6 +34040,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33205,6 +34052,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33216,6 +34064,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33227,6 +34076,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33238,6 +34088,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33249,6 +34100,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33260,6 +34112,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33271,6 +34124,7 @@ elseif game.PlaceId == 61846006 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -33543,6 +34397,7 @@ elseif game.PlaceId == 13083893317 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -33804,6 +34659,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33815,6 +34671,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33826,6 +34683,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33837,6 +34695,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33848,6 +34707,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33859,6 +34719,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33870,6 +34731,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33881,6 +34743,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33892,6 +34755,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33903,6 +34767,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33914,6 +34779,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33925,6 +34791,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33936,6 +34803,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33947,6 +34815,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33958,6 +34827,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33969,6 +34839,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33980,6 +34851,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -33991,6 +34863,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34002,6 +34875,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34013,6 +34887,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34024,6 +34899,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34035,6 +34911,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34046,6 +34923,7 @@ elseif game.PlaceId == 13083893317 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -34319,6 +35197,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -34607,6 +35486,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34618,6 +35498,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34629,6 +35510,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34640,6 +35522,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34651,6 +35534,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34662,6 +35546,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34673,6 +35558,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34684,6 +35570,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34695,6 +35582,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34706,6 +35594,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34717,6 +35606,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34728,6 +35618,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34739,6 +35630,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34750,6 +35642,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34761,6 +35654,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34772,6 +35666,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34783,6 +35678,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34794,6 +35690,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34805,6 +35702,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34816,6 +35714,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34827,6 +35726,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34838,6 +35738,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -34849,6 +35750,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -35122,6 +36024,7 @@ elseif game.PlaceId == 5985232436 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -35384,6 +36287,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35395,6 +36299,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35406,6 +36311,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35417,6 +36323,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35428,6 +36335,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35439,6 +36347,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35450,6 +36359,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35461,6 +36371,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35472,6 +36383,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35483,6 +36395,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35494,6 +36407,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35505,6 +36419,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35516,6 +36431,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35527,6 +36443,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35538,6 +36455,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35549,6 +36467,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35560,6 +36479,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35571,6 +36491,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35582,6 +36503,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35593,6 +36515,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35604,6 +36527,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35615,6 +36539,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -35626,6 +36551,7 @@ elseif game.PlaceId == 5985232436 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -35900,6 +36826,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -36403,6 +37330,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36414,6 +37342,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36425,6 +37354,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36436,6 +37366,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36447,6 +37378,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36458,6 +37390,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36469,6 +37402,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36480,6 +37414,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36491,6 +37426,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36502,6 +37438,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36513,6 +37450,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36524,6 +37462,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36535,6 +37474,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36546,6 +37486,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36557,6 +37498,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36568,6 +37510,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36579,6 +37522,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36590,6 +37534,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36601,6 +37546,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36612,6 +37558,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36623,6 +37570,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36634,6 +37582,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -36645,6 +37594,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -36918,6 +37868,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -37504,6 +38455,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37515,6 +38467,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37526,6 +38479,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37537,6 +38491,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37548,6 +38503,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37559,6 +38515,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37570,6 +38527,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37581,6 +38539,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37592,6 +38551,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37603,6 +38563,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37614,6 +38575,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37625,6 +38587,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37636,6 +38599,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37647,6 +38611,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37658,6 +38623,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37669,6 +38635,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37680,6 +38647,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37691,6 +38659,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37702,6 +38671,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37713,6 +38683,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37724,6 +38695,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37735,6 +38707,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -37746,6 +38719,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -38019,6 +38993,7 @@ elseif game.PlaceId == 2768379856 then
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
 	local Main = Window:NewTab("Main")
 	local MainSection = Main:NewSection("Main")
@@ -38287,6 +39262,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38298,6 +39274,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38309,6 +39286,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38320,6 +39298,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38331,6 +39310,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38342,6 +39322,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38353,6 +39334,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38364,6 +39346,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38375,6 +39358,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38386,6 +39370,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38397,6 +39382,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38408,6 +39394,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38419,6 +39406,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38430,6 +39418,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38441,6 +39430,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38452,6 +39442,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38463,6 +39454,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38474,6 +39466,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38485,6 +39478,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38496,6 +39490,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38507,6 +39502,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38518,6 +39514,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -38529,6 +39526,7 @@ elseif game.PlaceId == 2768379856 then
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
@@ -38802,6 +39800,7 @@ else
 	else
 		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
 	end
+	Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 	for i,v in pairs(game:GetService("ReplicatedStorage"):GetDescendants()) do
 		if v.Name == "DestroySegway" or v.Name == "DeleteCar" or v.Name == "HandlessSegway" or v.Name == "Building Tools" or v.Name == "SetNetworkOwnership" or v.Name == "ChangeParent" or v.Name == "despawn" then
 			Library.Notify("OMG VULN FOUND","If you dm me in discord: dsgdfs or post the game u are currently playing in the discord I will give you a role. PLSSS",30)
@@ -39015,8 +40014,6 @@ else
 	end)
 
 
-	local Settingss = Window:NewTab("Settings", 11385220704)
-	local SettingssSection = Settingss:NewSection("Settings")
 	SettingssSection:NewDropdown("UI Toggle Bind", "Changes Toggle Bind for Sky Hub Default is Right Control ONLY ON PC", {
 		"Right Control",
 		"Left Control",
@@ -39053,6 +40050,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Control" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39064,6 +40062,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39075,6 +40074,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Alt" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39086,6 +40086,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Insert" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39097,6 +40098,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "End" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39108,6 +40110,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Del/Delete" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39119,6 +40122,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Left Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39130,6 +40134,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Right Shift" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39141,6 +40146,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "F1" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39152,6 +40158,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Q" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39163,6 +40170,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "E" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39174,6 +40182,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "R" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39185,6 +40194,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "T" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39196,6 +40206,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Y" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39207,6 +40218,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "U" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39218,6 +40230,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "P" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39229,6 +40242,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "Z" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39240,6 +40254,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "X" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39251,6 +40266,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "M" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39262,6 +40278,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "V" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39273,6 +40290,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "N" then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39284,6 +40302,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		elseif currentoption == "." then
 			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
 			ui_bind = getgenv().SkyhubKeybind
@@ -39295,6 +40314,7 @@ else
 			else
 				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
 			end
+			Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
 		end
 	end)
 	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
