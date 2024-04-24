@@ -39,7 +39,7 @@ local settings = {
 queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 HttpService = game:GetService("HttpService")
-everyClipboard = everyClipboard or toclipboard or set_clipboard or setrbxclipboard or (Clipboard and Clipboard.set)
+everyClipboard = setclipboard or toclipboard or set_clipboard or setrbxclipboard or (Clipboard and Clipboard.set)
 HttpService = cloneref(game:GetService("HttpService")) or game:GetService("HttpService")
 defaults = HttpService:JSONEncode(settings)
 local OptTheme = "Midnight"
@@ -47,6 +47,7 @@ local string2 = "https://discord.com/invite/jVf7eSrED9"
 _G.infydtype = 1
 _G.guidragtype = "https://raw.githubusercontent.com/LLua-u/aw/main/skui.lua"
 UserInputService = game:GetService("UserInputService")
+VREnabled = game:GetService("VRService").VREnabled
 local IsOnMobile = table.find({
 	Enum.Platform.IOS,
 	Enum.Platform.Android
@@ -168,7 +169,7 @@ save()
 if game.PlaceId == 2788229376 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -280,7 +281,7 @@ if game.PlaceId == 2788229376 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -483,7 +484,7 @@ if game.PlaceId == 2788229376 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -1012,7 +1013,7 @@ if game.PlaceId == 2788229376 then
 elseif game.PlaceId == 286090429 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -1119,7 +1120,7 @@ elseif game.PlaceId == 286090429 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -1311,7 +1312,7 @@ elseif game.PlaceId == 286090429 then
 elseif game.PlaceId == 1962086868 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -1423,7 +1424,7 @@ elseif game.PlaceId == 1962086868 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -1496,7 +1497,7 @@ elseif game.PlaceId == 1962086868 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -2023,7 +2024,7 @@ elseif game.PlaceId == 1962086868 then
 elseif game.PlaceId == 621129760 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -2135,7 +2136,7 @@ elseif game.PlaceId == 621129760 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -2376,7 +2377,7 @@ elseif game.PlaceId == 621129760 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -2903,7 +2904,7 @@ elseif game.PlaceId == 621129760 then
 elseif game.PlaceId == 12109643 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -3015,7 +3016,7 @@ elseif game.PlaceId == 12109643 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -3622,7 +3623,7 @@ elseif game.PlaceId == 12109643 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -4149,7 +4150,7 @@ elseif game.PlaceId == 12109643 then
 elseif game.PlaceId == 192800 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -4261,7 +4262,7 @@ elseif game.PlaceId == 192800 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -4378,7 +4379,7 @@ elseif game.PlaceId == 192800 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -4905,7 +4906,7 @@ elseif game.PlaceId == 192800 then
 elseif game.PlaceId == 4832438542 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -5017,7 +5018,7 @@ elseif game.PlaceId == 4832438542 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -5055,118 +5056,122 @@ elseif game.PlaceId == 4832438542 then
 	MainSection:NewButton("FE Trolling GUI", "troll", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
 	end)
-	MainSection:NewButton("Get VR Players", "notify VR Players", function()
-		for i,v in pairs(workspace.VRPlayers:GetChildren()) do
-			Library.Notify("VR USER:",tostring(game:GetService("Players"):GetPlayerFromCharacter(v)),5)
-			task.wait(1)
-		end
-	end)
-	MainSection:NewToggle("Disable VR Hands Collison", "VR People can hit u to space anymore lol", function(state)
-		for i,v in pairs(game:GetService("Workspace").VRPlayers:GetDescendants()) do
-			if v:IsA("Model") and v.Name == "LeftHand" or v.Name == "RightHand" then
-				for _, hand in pairs(v:GetDescendants()) do
-					if hand:IsA("Part") or hand:IsA("MeshPart") or hand:IsA("BasePart") then
-						hand.CanCollide = not state
-					end
-				end
-			end
-		end
-	end)
-	MainSection:NewToggle("Disable Props Collison", "props cant hit you no more", function(state)
-		for i,v in pairs(game:GetService("Workspace").Props:GetChildren()) do
-			if v:IsA("Model") then
-				for _, hand in pairs(v:GetDescendants()) do
-					if hand:IsA("Part") or hand:IsA("MeshPart") or hand:IsA("BasePart") then
-						hand.CanCollide = not state
-					end
-				end
-			end
-		end
-	end)
-	MainSection:NewTextBox("Tp to VR User", "teleports to a vr user", function(txt)
-		local player = txt
-		local targname = ""
-		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) and v ~= game:GetService("Players").LocalPlayer  then
-				targname = v
-			end
-		end
-		for i,v in pairs(targname.Character:GetDescendants()) do
-			if v.Name == "Head" and v.Parent.Name == "Appearance" then
-				game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame
-			end
-		end
-	end)
-	MainSection:NewToggle("Anti Pick up", "spams break free", function(state)
-		getgenv().toggablevr = state
-		task.spawn(function()
-			while true do task.wait()
-				if not getgenv().toggablevr then
-					break
-				end
-				game:GetService("ReplicatedStorage"):WaitForChild("COM"):WaitForChild("Pinch"):WaitForChild("LetMeGo"):FireServer()
+	if not VREnabled then
+		MainSection:NewButton("Get VR Players", "notify VR Players", function()
+			for i,v in pairs(workspace.VRPlayers:GetChildren()) do
+				Library.Notify("VR USER:",tostring(game:GetService("Players"):GetPlayerFromCharacter(v)),5)
+				task.wait(1)
 			end
 		end)
-	end)
-	MainSection:NewTextBox("vr user to annoy", "put user here to annoy then click the toggle annoy or weld", function(txt)
-		getgenv().annoyer = txt
-	end)
-	MainSection:NewToggle("annoy VR User", "teleports to a vr user and block their vision use fly with this in iy or sum", function(state)
-		getgenv().annoyvr = state
-		local player = getgenv().annoyer
-		local targname = ""
-		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) and v ~= game:GetService("Players").LocalPlayer  then
-				targname = v
-			end
-		end
-		
-		for i,v in pairs(targname.Character:GetDescendants()) do
-			if v.Name == "Head" and v.Parent.Name == "Appearance" then
-				annoy = v
-			end
-		end
-		task.spawn(function()
-			while true do task.wait()
-				if not getgenv().annoyvr then
-					break
-				end
-				for i,v in pairs(targname.Character:GetDescendants()) do
-					if v.Name == "Head" and v.Parent.Name == "Appearance" then
-						game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame * CFrame.new(0,2,-24)
+		MainSection:NewToggle("Disable VR Hands Collison", "VR People can hit u to space anymore lol", function(state)
+			for i,v in pairs(game:GetService("Workspace").VRPlayers:GetDescendants()) do
+				if v:IsA("Model") and v.Name == "LeftHand" or v.Name == "RightHand" then
+					for _, hand in pairs(v:GetDescendants()) do
+						if hand:IsA("Part") or hand:IsA("MeshPart") or hand:IsA("BasePart") then
+							hand.CanCollide = not state
+						end
 					end
 				end
 			end
 		end)
-	end)
-	MainSection:NewToggle("weld to  VR User hand", "weld to a players hand", function(state)
-		getgenv().annoyvr2 = state
-		local player = getgenv().annoyer
-		local targname = ""
-		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-			if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) and v ~= game:GetService("Players").LocalPlayer   then
-				targname = v
-			end
-		end
-		
-		for i,v in pairs(targname.Character:GetDescendants()) do
-			if v.Name == "IndexTip" and v.Parent.Parent.Name == "RightHand" then
-				annoy = v
-			end
-		end
-		task.spawn(function()
-			while true do task.wait()
-				if not getgenv().annoyvr2 then
-					break
-				end
-				for i,v in pairs(targname.Character:GetDescendants()) do
-					if v.Name == "IndexTip" and v.Parent.Parent.Name == "RightHand" then
-						game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame
+		MainSection:NewToggle("Disable Props Collison", "props cant hit you no more", function(state)
+			for i,v in pairs(game:GetService("Workspace").Props:GetChildren()) do
+				if v:IsA("Model") then
+					for _, hand in pairs(v:GetDescendants()) do
+						if hand:IsA("Part") or hand:IsA("MeshPart") or hand:IsA("BasePart") then
+							hand.CanCollide = not state
+						end
 					end
 				end
 			end
 		end)
-	end)
+		MainSection:NewTextBox("Tp to VR User", "teleports to a vr user", function(txt)
+			local player = txt
+			local targname = ""
+			for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+				if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) and v ~= game:GetService("Players").LocalPlayer  then
+					targname = v
+				end
+			end
+			for i,v in pairs(targname.Character:GetDescendants()) do
+				if v.Name == "Head" and v.Parent.Name == "Appearance" then
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame
+				end
+			end
+		end)
+		MainSection:NewToggle("Anti Pick up", "spams break free", function(state)
+			getgenv().toggablevr = state
+			task.spawn(function()
+				while true do task.wait()
+					if not getgenv().toggablevr then
+						break
+					end
+					game:GetService("ReplicatedStorage"):WaitForChild("COM"):WaitForChild("Pinch"):WaitForChild("LetMeGo"):FireServer()
+				end
+			end)
+		end)
+		MainSection:NewTextBox("vr user to annoy", "put user here to annoy then click the toggle annoy or weld", function(txt)
+			getgenv().annoyer = txt
+		end)
+		MainSection:NewToggle("annoy VR User", "teleports to a vr user and block their vision use fly with this in iy or sum", function(state)
+			getgenv().annoyvr = state
+			local player = getgenv().annoyer
+			local targname = ""
+			for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+				if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) and v ~= game:GetService("Players").LocalPlayer  then
+					targname = v
+				end
+			end
+			
+			for i,v in pairs(targname.Character:GetDescendants()) do
+				if v.Name == "Head" and v.Parent.Name == "Appearance" then
+					annoy = v
+				end
+			end
+			task.spawn(function()
+				while true do task.wait()
+					if not getgenv().annoyvr then
+						break
+					end
+					for i,v in pairs(targname.Character:GetDescendants()) do
+						if v.Name == "Head" and v.Parent.Name == "Appearance" then
+							game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame * CFrame.new(0,2,-24)
+						end
+					end
+				end
+			end)
+		end)
+		MainSection:NewToggle("weld to  VR User hand", "weld to a players hand", function(state)
+			getgenv().annoyvr2 = state
+			local player = getgenv().annoyer
+			local targname = ""
+			for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+				if string.sub(string.lower(v.Name), 0, #player) == string.lower(player) or string.sub(string.lower(v.DisplayName), 0, #player) == string.lower(player) and v ~= game:GetService("Players").LocalPlayer   then
+					targname = v
+				end
+			end
+			
+			for i,v in pairs(targname.Character:GetDescendants()) do
+				if v.Name == "IndexTip" and v.Parent.Parent.Name == "RightHand" then
+					annoy = v
+				end
+			end
+			task.spawn(function()
+				while true do task.wait()
+					if not getgenv().annoyvr2 then
+						break
+					end
+					for i,v in pairs(targname.Character:GetDescendants()) do
+						if v.Name == "IndexTip" and v.Parent.Parent.Name == "RightHand" then
+							game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame
+						end
+					end
+				end
+			end)
+		end)
+	else
+		Library.Notify("Working on it.","I CANT SEE THE CURSOR SO ITS SO HARD TO SELECT SHIT ON DEX AND REMOTE SPY",5)
+	end
 	local Player = Window:NewTab("Player", 2795572800)
 	local PlayerSection = Player:NewSection("Player")
 	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
@@ -5188,7 +5193,7 @@ elseif game.PlaceId == 4832438542 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -5715,7 +5720,7 @@ elseif game.PlaceId == 4832438542 then
 elseif game.PlaceId == 920587237 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -5822,7 +5827,7 @@ elseif game.PlaceId == 920587237 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -5901,7 +5906,7 @@ elseif game.PlaceId == 920587237 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -6428,7 +6433,7 @@ elseif game.PlaceId == 920587237 then
 elseif game.PlaceId == 606849621 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -6668,7 +6673,7 @@ elseif game.PlaceId == 606849621 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -7198,7 +7203,7 @@ elseif game.PlaceId == 606849621 then
 elseif game.PlaceId == 155615604 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -7310,7 +7315,7 @@ elseif game.PlaceId == 155615604 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -7507,7 +7512,7 @@ elseif game.PlaceId == 155615604 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -8034,7 +8039,7 @@ elseif game.PlaceId == 155615604 then
 elseif game.PlaceId == 537413528 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -8146,7 +8151,7 @@ elseif game.PlaceId == 537413528 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -8373,7 +8378,7 @@ elseif game.PlaceId == 537413528 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -8900,7 +8905,7 @@ elseif game.PlaceId == 537413528 then
 elseif game.PlaceId == 8690998110 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -9012,7 +9017,7 @@ elseif game.PlaceId == 8690998110 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -9144,7 +9149,7 @@ elseif game.PlaceId == 8690998110 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -9672,7 +9677,7 @@ elseif game.PlaceId == 8690998110 then
 elseif game.PlaceId == 142823291 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -9784,7 +9789,7 @@ elseif game.PlaceId == 142823291 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -10914,7 +10919,7 @@ elseif game.PlaceId == 142823291 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -11442,7 +11447,7 @@ elseif game.PlaceId == 142823291 then
 elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -11554,7 +11559,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -11633,7 +11638,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -12161,7 +12166,7 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 elseif game.PlaceId == 301549746 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -12384,7 +12389,7 @@ elseif game.PlaceId == 301549746 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -12431,7 +12436,7 @@ elseif game.PlaceId == 301549746 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -12958,7 +12963,7 @@ elseif game.PlaceId == 301549746 then
 elseif game.PlaceId == 6884319169 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -13127,7 +13132,7 @@ elseif game.PlaceId == 6884319169 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -13183,7 +13188,7 @@ elseif game.PlaceId == 6884319169 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -13710,7 +13715,7 @@ elseif game.PlaceId == 6884319169 then
 elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceId == 13108856598 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -13835,7 +13840,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -13891,7 +13896,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -14418,7 +14423,7 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 elseif game.PlaceId == 189707 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -14574,7 +14579,7 @@ elseif game.PlaceId == 189707 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -14627,7 +14632,7 @@ elseif game.PlaceId == 189707 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -15154,7 +15159,7 @@ elseif game.PlaceId == 189707 then
 elseif game.PlaceId == 914010731 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -15329,7 +15334,7 @@ elseif game.PlaceId == 914010731 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -15382,7 +15387,7 @@ elseif game.PlaceId == 914010731 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -15909,7 +15914,7 @@ elseif game.PlaceId == 914010731 then
 elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceId == 14915220621 or game.PlaceId == 15144787112 or game.PlaceId == 15264892126 or game.PlaceId == 15509350986 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -16090,7 +16095,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -16146,7 +16151,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -16674,7 +16679,7 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 elseif game.PlaceId == 6284583030 or game.PlaceId == 10321372166 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -16792,7 +16797,7 @@ elseif game.PlaceId == 6284583030 or game.PlaceId == 10321372166 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -16846,7 +16851,7 @@ elseif game.PlaceId == 6284583030 or game.PlaceId == 10321372166 then
 elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -16964,7 +16969,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -17017,7 +17022,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -17546,7 +17551,7 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 elseif game.PlaceId == 3101667897 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -17702,7 +17707,7 @@ elseif game.PlaceId == 3101667897 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -17755,7 +17760,7 @@ elseif game.PlaceId == 3101667897 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -18283,7 +18288,7 @@ elseif game.PlaceId == 3101667897 then
 elseif game.PlaceId == 4924922222 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -18416,7 +18421,7 @@ elseif game.PlaceId == 4924922222 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -18472,7 +18477,7 @@ elseif game.PlaceId == 4924922222 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -18999,7 +19004,7 @@ elseif game.PlaceId == 4924922222 then
 elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId == 8444591321 or game.PlaceId == 8560631822 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -19137,7 +19142,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -19190,7 +19195,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -19717,7 +19722,7 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 elseif game.PlaceId == 6441847031 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -19846,7 +19851,7 @@ elseif game.PlaceId == 6441847031 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -19902,7 +19907,7 @@ elseif game.PlaceId == 6441847031 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -20429,7 +20434,7 @@ elseif game.PlaceId == 6441847031 then
 elseif game.PlaceId == 3956818381 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -20590,7 +20595,7 @@ elseif game.PlaceId == 3956818381 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -20637,7 +20642,7 @@ elseif game.PlaceId == 3956818381 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -21164,7 +21169,7 @@ elseif game.PlaceId == 3956818381 then
 elseif game.PlaceId == 12640491155 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -21778,7 +21783,7 @@ elseif game.PlaceId == 12640491155 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -21834,7 +21839,7 @@ elseif game.PlaceId == 12640491155 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -22361,7 +22366,7 @@ elseif game.PlaceId == 12640491155 then
 elseif game.PlaceId == 3527629287 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -22542,7 +22547,7 @@ elseif game.PlaceId == 3527629287 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -22595,7 +22600,7 @@ elseif game.PlaceId == 3527629287 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -23122,7 +23127,7 @@ elseif game.PlaceId == 3527629287 then
 elseif game.PlaceId == 9865958871 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -23249,7 +23254,7 @@ elseif game.PlaceId == 9865958871 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -23305,7 +23310,7 @@ elseif game.PlaceId == 9865958871 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -23832,7 +23837,7 @@ elseif game.PlaceId == 9865958871 then
 elseif game.PlaceId == 3623096087 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -23960,7 +23965,7 @@ elseif game.PlaceId == 3623096087 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -24010,7 +24015,7 @@ elseif game.PlaceId == 3623096087 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -24673,7 +24678,7 @@ elseif game.PlaceId == 185655149 then
 elseif game.PlaceId == 14426444782 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -24898,7 +24903,7 @@ elseif game.PlaceId == 14426444782 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -24948,7 +24953,7 @@ elseif game.PlaceId == 14426444782 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -25475,7 +25480,7 @@ elseif game.PlaceId == 14426444782 then
 elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -26675,7 +26680,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -26725,7 +26730,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -27252,7 +27257,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 elseif game.PlaceId == 205224386 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -27463,7 +27468,7 @@ elseif game.PlaceId == 205224386 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -27513,7 +27518,7 @@ elseif game.PlaceId == 205224386 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -28041,7 +28046,7 @@ elseif game.PlaceId == 205224386 then
 elseif game.PlaceId == 1662219031 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -29459,7 +29464,7 @@ elseif game.PlaceId == 1662219031 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -29509,7 +29514,7 @@ elseif game.PlaceId == 1662219031 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -30037,7 +30042,7 @@ elseif game.PlaceId == 1662219031 then
 elseif game.PlaceId == 383793228 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -31264,7 +31269,7 @@ elseif game.PlaceId == 383793228 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -31314,7 +31319,7 @@ elseif game.PlaceId == 383793228 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -31841,7 +31846,7 @@ elseif game.PlaceId == 383793228 then
 elseif game.PlaceId == 1240123653 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -32021,7 +32026,7 @@ elseif game.PlaceId == 1240123653 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -32071,7 +32076,7 @@ elseif game.PlaceId == 1240123653 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -32598,7 +32603,7 @@ elseif game.PlaceId == 1240123653 then
 elseif game.PlaceId == 61846006 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -32801,7 +32806,7 @@ elseif game.PlaceId == 61846006 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -32851,7 +32856,7 @@ elseif game.PlaceId == 61846006 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -33378,7 +33383,7 @@ elseif game.PlaceId == 61846006 then
 elseif game.PlaceId == 13083893317 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -33576,7 +33581,7 @@ elseif game.PlaceId == 13083893317 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -33626,7 +33631,7 @@ elseif game.PlaceId == 13083893317 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -34154,7 +34159,7 @@ elseif game.PlaceId == 13083893317 then
 elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId == 13622981808 or game.PlaceId == 8588743386 or game.PlaceId == 8888615802 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -34379,7 +34384,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -34429,7 +34434,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -34957,7 +34962,7 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 elseif game.PlaceId == 5985232436 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -35156,7 +35161,7 @@ elseif game.PlaceId == 5985232436 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -35206,7 +35211,7 @@ elseif game.PlaceId == 5985232436 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -35735,7 +35740,7 @@ elseif game.PlaceId == 5985232436 then
 elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -36175,7 +36180,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -36225,7 +36230,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -36753,7 +36758,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -37276,7 +37281,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -37326,7 +37331,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -37854,7 +37859,7 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 elseif game.PlaceId == 2768379856 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -37931,6 +37936,65 @@ elseif game.PlaceId == 2768379856 then
 			end
 		end
 	end)
+	MainSection:NewToggle("Worker ESP", "esp", function(state)
+		getgenv().workesp = state
+		local highlightedworkers = {}
+		task.spawn(function()
+			while wait() do
+				if not getgenv().workesp then
+					for _, objects in pairs(highlightedworkers) do
+						if objects.highlight then
+							objects.highlight:Destroy()
+						end
+						if objects.ui then
+							objects.ui:Destroy()
+						end
+					end
+					highlightedworkers = {}
+					break
+				end
+				for _, v in pairs(game:GetService("Workspace").GameObjects.Physical.Employees:GetDescendants()) do
+					if v.Name == "HumanoidRootPart" and v:IsA("Part") and v.Parent:IsA("Model") then
+						local distance = (v.Position - game:GetService("Players").LocalPlayer.Character.PrimaryPart.Position).magnitude
+						if distance > 200 then
+							if highlightedworkers[v] then
+								if highlightedworkers[v].highlight then
+									highlightedworkers[v].highlight:Destroy()
+								end
+								if highlightedworkers[v].ui then
+									highlightedworkers[v].ui:Destroy()
+								end
+								highlightedworkers[v] = nil
+							end
+						else
+							if not highlightedworkers[v] then
+								local Highlight = Instance.new("Highlight", v.Parent)
+								Highlight.FillColor = Color3.fromRGB(255,0,0)
+								Highlight.OutlineColor = Color3.fromRGB(0,0,0)
+								local UI = Instance.new("BillboardGui", v.Parent)
+								UI.Size = UDim2.new(0, 1000, 0, 30)
+								UI.AlwaysOnTop = true
+								UI.StudsOffset = Vector3.new(0, 3, 0)
+								local Label = Instance.new("TextLabel", UI)
+								Label.Size = UDim2.new(1, 0, 1, 0)
+								Label.BackgroundTransparency = 1
+								Label.TextScaled = true
+								Label.Text = "Worker"
+								Label.TextColor3 = Color3.fromRGB(0,0,0)
+								Label.Font = Enum.Font.Oswald
+								Label.TextStrokeTransparency = 0
+								Label.TextStrokeColor3 = Color3.fromRGB(255,0,0)
+								highlightedworkers[v] = {
+									highlight = Highlight,
+									ui = UI
+								}
+							end
+						end
+					end
+				end
+			end
+		end)
+	end)
 
 	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
@@ -38000,7 +38064,7 @@ elseif game.PlaceId == 2768379856 then
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -38050,7 +38114,7 @@ elseif game.PlaceId == 2768379856 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -38578,7 +38642,7 @@ elseif game.PlaceId == 2768379856 then
 else
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
 			if val == true then
 				
@@ -38720,7 +38784,7 @@ else
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
@@ -39341,7 +39405,7 @@ else
 	end)
 	local Hubs = Window:NewTab("Hubs", 7360649366)
 	local HubsSection = Hubs:NewSection("Hubs")
-	if IsOnMobile then
+	if IsOnMobile or VREnabled then
 		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
 		end)
@@ -40126,7 +40190,7 @@ else
 						CloseInfoBox.Visible = true
 					end)
 					newScript.Share.MouseButton1Click:Connect(function()
-						setclipboard(v.slug)
+						everyClipboard(v.slug)
 					end)
 				end)
 			end
