@@ -1384,7 +1384,7 @@ elseif game.PlaceId == 286090429 then
 		end
 	end)
 -- Tower Of Hell
-elseif game.PlaceId == 1962086868 then
+elseif game.PlaceId == 1962086868 or game.PlaceId == 3582763398 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile or VREnabled then
