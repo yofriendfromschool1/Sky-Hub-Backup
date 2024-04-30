@@ -23349,7 +23349,7 @@ elseif game.PlaceId == 12640491155 then
 			pants = humanoiddescrip.Pants,
 			shirt = humanoiddescrip.Shirt
 		}
-		local color = humanoiddescrip.HeadColor
+		local color = humanoiddescrip.Parent.Parent.Head.BrickColor.Color
 		local function splitStringByComma(input)
 			local result = {}
 			for str in string.gmatch(input, "([^,]+)") do
@@ -23435,11 +23435,11 @@ elseif game.PlaceId == 12640491155 then
 			[1] = "Info",
 			[2] = {
 				[1] = humanoiddescrip.Parent.Parent:WaitForChild("Head"):WaitForChild("PlayerHover"):WaitForChild("Frame"):WaitForChild("RPName").Text,
-				[2] = Color3.new(humanoiddescrip.Parent.Parent:WaitForChild("Head"):WaitForChild("PlayerHover"):WaitForChild("Frame"):WaitForChild("RPName").TextColor3)
+				[2] = humanoiddescrip.Parent.Parent:WaitForChild("Head"):WaitForChild("PlayerHover"):WaitForChild("Frame"):WaitForChild("RPName").TextColor3
 			},
 			[3] = {
 				[1] = humanoiddescrip.Parent.Parent:WaitForChild("Head"):WaitForChild("PlayerHover"):WaitForChild("Frame"):WaitForChild("Bio").Text,
-				[2] = Color3.new(humanoiddescrip.Parent.Parent:WaitForChild("Head"):WaitForChild("PlayerHover"):WaitForChild("Frame"):WaitForChild("Bio").TextColor3)
+				[2] = humanoiddescrip.Parent.Parent:WaitForChild("Head"):WaitForChild("PlayerHover"):WaitForChild("Frame"):WaitForChild("Bio").TextColor3
 			}
 		}
 
