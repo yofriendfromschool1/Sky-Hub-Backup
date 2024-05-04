@@ -36220,6 +36220,36 @@ elseif game.PlaceId == 13083893317 then
 			Library.Notify("Warning","Your executor does not support fireproximityprompts functions",5)
 		end
 	end)
+	MainSection:NewButton("Janitor autofarm", "bro what sorry for no toggle lol", function()
+		local function NoclipLoop()
+			for _, child in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+				if child:IsA("BasePart") and child.CanCollide == true then
+					child.CanCollide = false
+					game:GetService("Workspace").Gravity = 0
+				end
+			end
+		end
+		Noclipping = game:GetService("RunService").Stepped:Connect(NoclipLoop)
+		game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(1042, 5, 128)
+		repeat wait() until game:GetService("Players").LocalPlayer:FindFirstChild("CurrentJob")
+		task.wait(1)
+		game:GetService("Players").LocalPlayer:WaitForChild("Backpack"):FindFirstChild("Mop").Parent = game:GetService("Players").LocalPlayer.Character
+		task.wait(2)
+		for i, v in pairs(game:GetService("Workspace").TrashMopUpDecal:GetDescendants()) do
+			if v.Name == "Part" and v.Parent.Name == "TrashMopUpDecal" and v:FindFirstChild("BillboardGui").Enabled == true then
+				repeat
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame + Vector3.new(0,-0.3,0)
+					local args = {
+						[1] = "Mop"
+					}
+					
+					game:GetService("Players").LocalPlayer.Character.Mop.RemoteEvent:FireServer(unpack(args))
+					task.wait()
+				until v:FindFirstChild("BillboardGui").Enabled == false
+				task.wait()        
+			end
+		end
+	end)
 	MainSection:NewButton("Anti-afk", "no kick after 20 mins", function()
 		Players = game:GetService("Players")
 		local GC = getconnections or get_signal_cons
