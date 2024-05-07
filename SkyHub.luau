@@ -487,6 +487,48 @@ if game.PlaceId == 2788229376 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -1617,6 +1659,48 @@ elseif game.PlaceId == 1962086868 or game.PlaceId == 3582763398 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -2610,6 +2694,48 @@ elseif game.PlaceId == 621129760 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -3971,6 +4097,48 @@ elseif game.PlaceId == 12109643 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -4840,6 +5008,48 @@ elseif game.PlaceId == 192800 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -5904,6 +6114,48 @@ elseif game.PlaceId == 4832438542 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -6730,6 +6982,48 @@ elseif game.PlaceId == 920587237 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -7611,6 +7905,48 @@ elseif game.PlaceId == 606849621 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -8564,6 +8900,48 @@ elseif game.PlaceId == 155615604 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -9545,6 +9923,48 @@ elseif game.PlaceId == 537413528 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -10429,6 +10849,48 @@ elseif game.PlaceId == 8690998110 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -12314,6 +12776,48 @@ elseif game.PlaceId == 142823291 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -13146,6 +13650,48 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -14059,6 +14605,48 @@ elseif game.PlaceId == 301549746 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -14925,6 +15513,48 @@ elseif game.PlaceId == 6884319169 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -15746,6 +16376,48 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -16596,6 +17268,48 @@ elseif game.PlaceId == 189707 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -17465,6 +18179,48 @@ elseif game.PlaceId == 914010731 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -18343,6 +19099,48 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -19332,6 +20130,48 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -20184,6 +21024,48 @@ elseif game.PlaceId == 3101667897 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -21014,6 +21896,48 @@ elseif game.PlaceId == 4924922222 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -21847,6 +22771,48 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -22672,6 +23638,48 @@ elseif game.PlaceId == 6441847031 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -23521,6 +24529,48 @@ elseif game.PlaceId == 3956818381 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -24833,6 +25883,48 @@ elseif game.PlaceId == 12640491155 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -25708,6 +26800,48 @@ elseif game.PlaceId == 3527629287 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -26532,6 +27666,48 @@ elseif game.PlaceId == 9865958871 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -27350,6 +28526,48 @@ elseif game.PlaceId == 3623096087 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -28402,6 +29620,48 @@ elseif game.PlaceId == 14426444782 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -30294,6 +31554,48 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -31195,6 +32497,48 @@ elseif game.PlaceId == 205224386 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -33306,6 +34650,48 @@ elseif game.PlaceId == 1662219031 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -35225,6 +36611,48 @@ elseif game.PlaceId == 383793228 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -36095,6 +37523,48 @@ elseif game.PlaceId == 1240123653 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -36977,6 +38447,48 @@ elseif game.PlaceId == 61846006 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -37902,6 +39414,48 @@ elseif game.PlaceId == 13083893317 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -38819,6 +40373,48 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -39709,6 +41305,48 @@ elseif game.PlaceId == 5985232436 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -40842,6 +42480,48 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
@@ -42058,6 +43738,48 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -43059,6 +44781,48 @@ elseif game.PlaceId == 2768379856 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
 			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -43842,6 +45606,48 @@ else
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
 	end)
 	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 		if state then
