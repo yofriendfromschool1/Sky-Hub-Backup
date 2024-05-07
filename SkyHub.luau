@@ -487,6 +487,22 @@ if game.PlaceId == 2788229376 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -1601,6 +1617,22 @@ elseif game.PlaceId == 1962086868 or game.PlaceId == 3582763398 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -2503,8 +2535,8 @@ elseif game.PlaceId == 621129760 then
 							if not workspace:FindPartOnRayWithIgnoreList(toRay, {
 								game:GetService("Players").LocalPlayer.Character,
 								v.Character,
-								workspace.WorldIgnore,
-								workspace.CurrentCamera
+								game:GetService("Workspace").WorldIgnore,
+								game:GetService("Workspace").CurrentCamera
 							}) then
 								dist = newVec.magnitude
 								ray = toRay
@@ -2578,6 +2610,22 @@ elseif game.PlaceId == 621129760 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -3421,7 +3469,7 @@ elseif game.PlaceId == 12109643 then
 		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-130, 3.5, 30)
 	end)
 	MainSection:NewButton("FE Perm God Mode", "permeanent God mode", function()
-		button              = workspace.Button
+		button              = game:GetService("Workspace").Button
 		button.CanCollide   = false
 		button.Transparency = 1
 		game:GetService("RunService").Heartbeat:connect(function(step)
@@ -3922,6 +3970,22 @@ elseif game.PlaceId == 12109643 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -4737,7 +4801,7 @@ elseif game.PlaceId == 192800 then
 			end
 		end
 		while wait() do
-			for i, Car in pairs(workspace.Cars:GetChildren()) do
+			for i, Car in pairs(game:GetService("Workspace").Cars:GetChildren()) do
 				PaintCar(Car, Color.Number)
 			end
 		end
@@ -4746,11 +4810,11 @@ elseif game.PlaceId == 192800 then
 		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/GabX'), true))()
 	end)
 	MainSection:NewButton("FE Pizza Toppings Troll", "troll", function()
-		for i, v in pairs(workspace.AllDough:GetChildren()) do
-			workspace.GameService.AddIngredientToPizza:FireServer(v, "Sausage")
-			workspace.GameService.AddIngredientToPizza:FireServer(v, "Cheese")
-			workspace.GameService.AddIngredientToPizza:FireServer(v, "Pepperoni")
-			workspace.GameService.AddIngredientToPizza:FireServer(v, "TomatoSauce")
+		for i, v in pairs(game:GetService("Workspace").AllDough:GetChildren()) do
+			game:GetService("Workspace").GameService.AddIngredientToPizza:FireServer(v, "Sausage")
+			game:GetService("Workspace").GameService.AddIngredientToPizza:FireServer(v, "Cheese")
+			game:GetService("Workspace").GameService.AddIngredientToPizza:FireServer(v, "Pepperoni")
+			game:GetService("Workspace").GameService.AddIngredientToPizza:FireServer(v, "TomatoSauce")
 		end
 	end)
 	MainSection:NewButton("FE Teleport To manager chair", "it tps to manager chair", function()
@@ -4776,6 +4840,22 @@ elseif game.PlaceId == 192800 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -5554,7 +5634,7 @@ elseif game.PlaceId == 4832438542 then
 	end)
 	if not VREnabled then
 		MainSection:NewButton("Get VR Players", "notify VR Players", function()
-			for i,v in pairs(workspace.VRPlayers:GetChildren()) do
+			for i,v in pairs(game:GetService("Workspace").VRPlayers:GetChildren()) do
 				Library.Notify("VR USER:",tostring(game:GetService("Players"):GetPlayerFromCharacter(v)),5)
 				task.wait(1)
 			end
@@ -5823,6 +5903,22 @@ elseif game.PlaceId == 4832438542 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -6634,6 +6730,22 @@ elseif game.PlaceId == 920587237 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -7499,6 +7611,22 @@ elseif game.PlaceId == 606849621 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -8437,6 +8565,22 @@ elseif game.PlaceId == 155615604 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -9215,7 +9359,7 @@ elseif game.PlaceId == 537413528 then
 			local autoFarm = function(currentRun)
 				-- // Variables
 				local Character = LocalPlayer.Character
-				local NormalStages = Workspace.BoatStages.NormalStages
+				local NormalStages = game:GetService("Workspace").BoatStages.NormalStages
 
 				-- // Go to each stage thing
 				for i = 1, 10 do
@@ -9289,7 +9433,7 @@ elseif game.PlaceId == 537413528 then
 			local autoFarm = function(currentRun)
 				-- // Variables
 				local Character = LocalPlayer.Character
-				local NormalStages = Workspace.BoatStages.NormalStages
+				local NormalStages = game:GetService("Workspace").BoatStages.NormalStages
 
 				-- // Go to each stage thing
 				for i = 1, 10 do
@@ -9400,6 +9544,22 @@ elseif game.PlaceId == 537413528 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -10269,6 +10429,22 @@ elseif game.PlaceId == 8690998110 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -11149,11 +11325,11 @@ elseif game.PlaceId == 142823291 then
 					return Message("Error Occurred", "Targeting is sitting", 5) -- u can remove dis part if u want lol
 				end
 				if THead then
-					workspace.CurrentCamera.CameraSubject = THead
+					game:GetService("Workspace").CurrentCamera.CameraSubject = THead
 				elseif not THead and Handle then
-					workspace.CurrentCamera.CameraSubject = Handle
+					game:GetService("Workspace").CurrentCamera.CameraSubject = Handle
 				elseif THumanoid and TRootPart then
-					workspace.CurrentCamera.CameraSubject = THumanoid
+					game:GetService("Workspace").CurrentCamera.CameraSubject = THumanoid
 				end
 				if not TCharacter:FindFirstChildWhichIsA("BasePart") then
 					return
@@ -11230,7 +11406,7 @@ elseif game.PlaceId == 142823291 then
 					until BasePart.Velocity.Magnitude > 500 or BasePart.Parent ~= TargetPlayer.Character or TargetPlayer.Parent ~= Players or not TargetPlayer.Character == TCharacter or THumanoid.Sit or Humanoid.Health <= 0 or tick() > Time + TimeToWait
 				end
 				
-				workspace.FallenPartsDestroyHeight = 0/0
+				game:GetService("Workspace").FallenPartsDestroyHeight = 0/0
 				
 				local BV = Instance.new("BodyVelocity")
 				BV.Name = "EpixVel"
@@ -11258,7 +11434,7 @@ elseif game.PlaceId == 142823291 then
 				
 				BV:Destroy()
 				Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
-				workspace.CurrentCamera.CameraSubject = Humanoid
+				game:GetService("Workspace").CurrentCamera.CameraSubject = Humanoid
 				
 				repeat
 					RootPart.CFrame = getgenv().OldPos * CFrame.new(0, .5, 0)
@@ -11271,7 +11447,7 @@ elseif game.PlaceId == 142823291 then
 					end)
 					task.wait()
 				until (RootPart.Position - getgenv().OldPos.p).Magnitude < 25
-				workspace.FallenPartsDestroyHeight = getgenv().FPDH
+				game:GetService("Workspace").FallenPartsDestroyHeight = getgenv().FPDH
 			else
 				return Message("Error Occurred", "Random error", 5)
 			end
@@ -11362,11 +11538,11 @@ elseif game.PlaceId == 142823291 then
 					return Message("Error Occurred", "Targeting is sitting", 5) -- u can remove dis part if u want lol
 				end
 				if THead then
-					workspace.CurrentCamera.CameraSubject = THead
+					game:GetService("Workspace").CurrentCamera.CameraSubject = THead
 				elseif not THead and Handle then
-					workspace.CurrentCamera.CameraSubject = Handle
+					game:GetService("Workspace").CurrentCamera.CameraSubject = Handle
 				elseif THumanoid and TRootPart then
-					workspace.CurrentCamera.CameraSubject = THumanoid
+					game:GetService("Workspace").CurrentCamera.CameraSubject = THumanoid
 				end
 				if not TCharacter:FindFirstChildWhichIsA("BasePart") then
 					return
@@ -11443,7 +11619,7 @@ elseif game.PlaceId == 142823291 then
 					until BasePart.Velocity.Magnitude > 500 or BasePart.Parent ~= TargetPlayer.Character or TargetPlayer.Parent ~= Players or not TargetPlayer.Character == TCharacter or THumanoid.Sit or Humanoid.Health <= 0 or tick() > Time + TimeToWait
 				end
 				
-				workspace.FallenPartsDestroyHeight = 0/0
+				game:GetService("Workspace").FallenPartsDestroyHeight = 0/0
 				
 				local BV = Instance.new("BodyVelocity")
 				BV.Name = "EpixVel"
@@ -11471,7 +11647,7 @@ elseif game.PlaceId == 142823291 then
 				
 				BV:Destroy()
 				Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
-				workspace.CurrentCamera.CameraSubject = Humanoid
+				game:GetService("Workspace").CurrentCamera.CameraSubject = Humanoid
 				
 				repeat
 					RootPart.CFrame = getgenv().OldPos * CFrame.new(0, .5, 0)
@@ -11484,7 +11660,7 @@ elseif game.PlaceId == 142823291 then
 					end)
 					task.wait()
 				until (RootPart.Position - getgenv().OldPos.p).Magnitude < 25
-				workspace.FallenPartsDestroyHeight = getgenv().FPDH
+				game:GetService("Workspace").FallenPartsDestroyHeight = getgenv().FPDH
 			else
 				return Message("Error Occurred", "Random error", 5)
 			end
@@ -11575,11 +11751,11 @@ elseif game.PlaceId == 142823291 then
 					return Message("Error Occurred", "Targeting is sitting", 5) -- u can remove dis part if u want lol
 				end
 				if THead then
-					workspace.CurrentCamera.CameraSubject = THead
+					game:GetService("Workspace").CurrentCamera.CameraSubject = THead
 				elseif not THead and Handle then
-					workspace.CurrentCamera.CameraSubject = Handle
+					game:GetService("Workspace").CurrentCamera.CameraSubject = Handle
 				elseif THumanoid and TRootPart then
-					workspace.CurrentCamera.CameraSubject = THumanoid
+					game:GetService("Workspace").CurrentCamera.CameraSubject = THumanoid
 				end
 				if not TCharacter:FindFirstChildWhichIsA("BasePart") then
 					return
@@ -11656,7 +11832,7 @@ elseif game.PlaceId == 142823291 then
 					until BasePart.Velocity.Magnitude > 500 or BasePart.Parent ~= TargetPlayer.Character or TargetPlayer.Parent ~= Players or not TargetPlayer.Character == TCharacter or THumanoid.Sit or Humanoid.Health <= 0 or tick() > Time + TimeToWait
 				end
 				
-				workspace.FallenPartsDestroyHeight = 0/0
+				game:GetService("Workspace").FallenPartsDestroyHeight = 0/0
 				
 				local BV = Instance.new("BodyVelocity")
 				BV.Name = "EpixVel"
@@ -11684,7 +11860,7 @@ elseif game.PlaceId == 142823291 then
 				
 				BV:Destroy()
 				Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
-				workspace.CurrentCamera.CameraSubject = Humanoid
+				game:GetService("Workspace").CurrentCamera.CameraSubject = Humanoid
 				
 				repeat
 					RootPart.CFrame = getgenv().OldPos * CFrame.new(0, .5, 0)
@@ -11697,7 +11873,7 @@ elseif game.PlaceId == 142823291 then
 					end)
 					task.wait()
 				until (RootPart.Position - getgenv().OldPos.p).Magnitude < 25
-				workspace.FallenPartsDestroyHeight = getgenv().FPDH
+				game:GetService("Workspace").FallenPartsDestroyHeight = getgenv().FPDH
 			else
 				return Message("Error Occurred", "Random error", 5)
 			end
@@ -11800,11 +11976,11 @@ elseif game.PlaceId == 142823291 then
 					return Message("Error Occurred", "Targeting is sitting", 5) -- u can remove dis part if u want lol
 				end
 				if THead then
-					workspace.CurrentCamera.CameraSubject = THead
+					game:GetService("Workspace").CurrentCamera.CameraSubject = THead
 				elseif not THead and Handle then
-					workspace.CurrentCamera.CameraSubject = Handle
+					game:GetService("Workspace").CurrentCamera.CameraSubject = Handle
 				elseif THumanoid and TRootPart then
-					workspace.CurrentCamera.CameraSubject = THumanoid
+					game:GetService("Workspace").CurrentCamera.CameraSubject = THumanoid
 				end
 				if not TCharacter:FindFirstChildWhichIsA("BasePart") then
 					return
@@ -11881,7 +12057,7 @@ elseif game.PlaceId == 142823291 then
 					until BasePart.Velocity.Magnitude > 500 or BasePart.Parent ~= TargetPlayer.Character or TargetPlayer.Parent ~= Players or not TargetPlayer.Character == TCharacter or THumanoid.Sit or Humanoid.Health <= 0 or tick() > Time + TimeToWait
 				end
 				
-				workspace.FallenPartsDestroyHeight = 0/0
+				game:GetService("Workspace").FallenPartsDestroyHeight = 0/0
 				
 				local BV = Instance.new("BodyVelocity")
 				BV.Name = "EpixVel"
@@ -11909,7 +12085,7 @@ elseif game.PlaceId == 142823291 then
 				
 				BV:Destroy()
 				Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
-				workspace.CurrentCamera.CameraSubject = Humanoid
+				game:GetService("Workspace").CurrentCamera.CameraSubject = Humanoid
 				
 				repeat
 					RootPart.CFrame = getgenv().OldPos * CFrame.new(0, .5, 0)
@@ -11922,7 +12098,7 @@ elseif game.PlaceId == 142823291 then
 					end)
 					task.wait()
 				until (RootPart.Position - getgenv().OldPos.p).Magnitude < 25
-				workspace.FallenPartsDestroyHeight = getgenv().FPDH
+				game:GetService("Workspace").FallenPartsDestroyHeight = getgenv().FPDH
 			else
 				return Message("Error Occurred", "Random error", 5)
 			end
@@ -12137,6 +12313,22 @@ elseif game.PlaceId == 142823291 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -12954,6 +13146,22 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -13851,6 +14059,22 @@ elseif game.PlaceId == 301549746 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -14701,6 +14925,22 @@ elseif game.PlaceId == 6884319169 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -15506,6 +15746,22 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -16340,6 +16596,22 @@ elseif game.PlaceId == 189707 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -17193,6 +17465,22 @@ elseif game.PlaceId == 914010731 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -18055,6 +18343,22 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -19028,6 +19332,22 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -19864,6 +20184,22 @@ elseif game.PlaceId == 3101667897 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -20678,6 +21014,22 @@ elseif game.PlaceId == 4924922222 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -21495,6 +21847,22 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -22304,6 +22672,22 @@ elseif game.PlaceId == 6441847031 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -23138,6 +23522,22 @@ elseif game.PlaceId == 3956818381 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -23920,7 +24320,7 @@ elseif game.PlaceId == 12640491155 then
 	end)	
 	MainSection:NewTextBox("Teleport in players car", "puts you in players passenger of car can put rp name too", function(txt)
 		repeat task.wait()
-			for i, v in pairs(workspace.Vehicles:GetChildren()) do
+			for i, v in pairs(game:GetService("Workspace").Vehicles:GetChildren()) do
 				local player = txt
 				local targname = ""
 				for i, v in pairs(game:GetService("Players"):GetPlayers()) do
@@ -24432,6 +24832,22 @@ elseif game.PlaceId == 12640491155 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -25133,7 +25549,7 @@ elseif game.PlaceId == 3527629287 then
 		while RS.RenderStepped:Wait() and _G.active do
 			local targets = get_target_players()
 			for i, v in next, targets do
-				local cam = workspace.CurrentCamera
+				local cam = game:GetService("Workspace").CurrentCamera
 				repeat
 					local char, humr = getPlayer()
 					local target_char = v.Character
@@ -25291,6 +25707,22 @@ elseif game.PlaceId == 3527629287 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -26100,6 +26532,22 @@ elseif game.PlaceId == 9865958871 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -26903,6 +27351,22 @@ elseif game.PlaceId == 3623096087 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -27565,7 +28029,7 @@ elseif game.PlaceId == 5796917097 then
 	MainSection:NewToggle("no clip ", "go tru walls", function(state)
 		if state then
 			local charpath
-			for _, v in pairs(workspace.WorldObjects:GetDescendants()) do
+			for _, v in pairs(game:GetService("Workspace").WorldObjects:GetDescendants()) do
 				if v:IsA("BasePart") then
 					if v.Name == "Head" and v.Transparency == 1 then
 						charpath = v.Parent.Parent
@@ -27579,7 +28043,7 @@ elseif game.PlaceId == 5796917097 then
 			end
 		else
 			local charpath
-			for _, v in pairs(workspace.WorldObjects:GetDescendants()) do
+			for _, v in pairs(game:GetService("Workspace").WorldObjects:GetDescendants()) do
 				if v:IsA("BasePart") then
 					if v.Name == "Head" and v.Transparency == 1 then
 						charpath = v.Parent.Parent
@@ -27745,7 +28209,7 @@ elseif game.PlaceId == 14426444782 then
 		end
 		delplrs()
 		local function getTarget()
-			for _, v in pairs(workspace.entities:GetDescendants()) do
+			for _, v in pairs(game:GetService("Workspace").entities:GetDescendants()) do
 				if v.Name == "HumanoidRootPart" and not isNameInPlayerNames(v.Parent.Name) then
 					return v
 				end
@@ -27938,6 +28402,22 @@ elseif game.PlaceId == 14426444782 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -28624,7 +29104,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	local SpeedBoost = 0
 	local ScreechSafeRooms = {}
 	local PrimaryPart = Character.PrimaryPart
-	local CurrentRooms = workspace.CurrentRooms
+	local CurrentRooms = game:GetService("Workspace").CurrentRooms
 	local EntityInfo = ReplicatedStorage.EntityInfo
 	local ClientModules = ReplicatedStorage.ClientModules
 	local DeathHint = EntityInfo.DeathHint
@@ -28936,11 +29416,11 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 								if Floor.Value == "Rooms" then
 									RoomName = ""
 								else
-									workspace.CurrentRooms:WaitForChild(tonumber(Object.Parent.Name) + 1, math.huge)
+									game:GetService("Workspace").CurrentRooms:WaitForChild(tonumber(Object.Parent.Name) + 1, math.huge)
 									if not OtherESP then
 										return
 									end
-									local OldString = workspace.CurrentRooms[tonumber(Object.Parent.Name) + 1]:GetAttribute("OriginalName"):sub(7, 99)
+									local OldString = game:GetService("Workspace").CurrentRooms[tonumber(Object.Parent.Name) + 1]:GetAttribute("OriginalName"):sub(7, 99)
 									local NewString = ""
 									for i = 1, #OldString do
 										if i == 1 then
@@ -29153,8 +29633,8 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 		ApplyCustoms()
 		ApplyCharacter()
 	end)
-	workspace.DescendantAdded:Connect(ApplySettings)
-	workspace.ChildRemoved:Connect(function(Object)
+	game:GetService("Workspace").DescendantAdded:Connect(ApplySettings)
+	game:GetService("Workspace").ChildRemoved:Connect(function(Object)
 		if Object.Name == "Eyes" then
 			if not workspace:FindFirstChild("Eyes") then
 				EyesOnMap = false
@@ -29195,7 +29675,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	if Floor.Value == "Hotel" or Floor.Value == "Fools" then
 		MainSection:NewToggle("Disable Dupe Doors", "Makes it so you can't open duped doors", function(state)
 			DisableDupe = state
-			for _, Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+			for _, Object in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do
 				if Object.Name == "DoorFake" then
 					ApplySettings(Object)
 				end
@@ -29203,7 +29683,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 		end)
 		MainSection:NewToggle("Disable Seek Trigger", "Makes it so you can't trigger Seek to spawn. Other players still can.", function(state)
 			DisableSeek = state
-			for _, Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+			for _, Object in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do
 				if Object.Name == "Collision" then
 					ApplySettings(Object)
 				end
@@ -29211,7 +29691,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 		end)
 		MainSection:NewToggle("Disable Snare", "Makes it so you won't get stunned or take damage from Snare when stepping on it.", function(state)
 			DisableSnare = state
-			for _, Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+			for _, Object in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do
 				if Object.Name == "Snare" then
 					ApplySettings(Object)
 				end
@@ -29220,7 +29700,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	end
 	MainSection:NewToggle("Enable All Interactions", "Sets the Enabled property of all Proximity Prompts to true. Useful for getting to the Rooms without a Skeleton Key.", function(state)
 		EnableInteractions = state
-		for _, Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+		for _, Object in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do
 			if Object:IsA("ProximityPrompt") then
 				if EnableInteractions and Object.Enabled then
 					table.insert(OldEnabled, Object)
@@ -29263,7 +29743,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	end)
 	MainSection:NewToggle("Increased Interaction Range", "Doubles the Max Activation Distance for Proximity Prompts.", function(state)
 		IncreasedDistance = state
-		for _, Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+		for _, Object in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do
 			if Object:IsA("ProximityPrompt") then
 				Object.MaxActivationDistance *= IncreasedDistance and 2 or 0.5
 			end
@@ -29271,7 +29751,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	end)
 	MainSection:NewToggle("Instant Interact", "Removes having to hold down the button for a long period of time on Proximity Prompts.", function(state)
 		InstantInteract = state
-		for _, Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+		for _, Object in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do
 			if Object:IsA("ProximityPrompt") then
 				Object.HoldDuration = -Object.HoldDuration
 			end
@@ -29279,7 +29759,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	end)
 	MainSection:NewToggle("Interact Through Objects", "Lets you interact with Proximity Prompts through Parts. Could be useful for grabbing book faster.", function(state)
 		InteractNoclip = Bool
-		for _, Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+		for _, Object in pairs(game:GetService("Workspace").CurrentRooms:GetDescendants()) do
 			if Object:IsA("ProximityPrompt") then
 				Object.RequiresLineOfSight = not InteractNoclip
 			end
@@ -29813,6 +30293,22 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -30699,6 +31195,22 @@ elseif game.PlaceId == 205224386 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -32794,6 +33306,22 @@ elseif game.PlaceId == 1662219031 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -34697,6 +35225,22 @@ elseif game.PlaceId == 383793228 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -35551,6 +36095,22 @@ elseif game.PlaceId == 1240123653 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -36417,6 +36977,22 @@ elseif game.PlaceId == 61846006 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -37326,6 +37902,22 @@ elseif game.PlaceId == 13083893317 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -38227,6 +38819,22 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -39102,6 +39710,22 @@ elseif game.PlaceId == 5985232436 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -39826,7 +40450,7 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 					break 
 				end
 				for i=0, 200 do
-					for i, v in pairs(workspace.WaveZombies:GetChildren()) do
+					for i, v in pairs(game:GetService("Workspace").WaveZombies:GetChildren()) do
 						local args = {
 							[1] = v:FindFirstChildOfClass("Humanoid"),
 							[2] = true
@@ -40218,6 +40842,22 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -41418,6 +42058,22 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -42403,6 +43059,22 @@ elseif game.PlaceId == 2768379856 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
 		local oldbrit = aLighting.Brightness
@@ -43170,6 +43842,22 @@ else
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
 	end)
 	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
 		local aLighting = game:GetService("Lighting")
@@ -44794,9 +45482,9 @@ else
 				Callback = NotificationBindable;
 			})
 			wait(15)
-			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Stages.Stage130.Checkpoint.Checkpoint.CFrame
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Stages.Stage130.Checkpoint.Checkpoint.CFrame
 			wait(2)
-			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Stages.END["The End Obby..!!"].Checkpoint.CFrame
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Stages.END["The End Obby..!!"].Checkpoint.CFrame
 		elseif game.PlaceId == 13413789725 then -- emo obby
 			getgenv().collectOrbsToggle = true
 			spawn(function()
@@ -44814,19 +45502,19 @@ else
 					end
 					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(160, 285, 371)
 					wait(10.8)
-					fireproximityprompt(workspace.endlobby.Rebirth.Prompt)
+					fireproximityprompt(game:GetService("Workspace").endlobby.Rebirth.Prompt)
 					wait(2)
 				end
 			end)
 		elseif game.PlaceId == 11364184405 then -- 725 obby
 			while true do
 				wait()
-				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints.Floor8["725"].Detector.CFrame
+				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Checkpoints.Floor8["725"].Detector.CFrame
 				wait(2)
 				game:GetService("ReplicatedStorage"):WaitForChild("Honeypot"):WaitForChild("Internal"):WaitForChild("RemoteStorage"):WaitForChild("Rebirth - RemoteEvent"):FireServer()
 			end
 		elseif game.PlaceId == 10760024537 then -- ultimate easy obby
-			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints["50"].DetectorPart.CFrame
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Checkpoints["50"].DetectorPart.CFrame
 		elseif game.PlaceId == 3587619225 then -- mega easy obby 825 stages
 			local checkpoints = game:GetService("Workspace").Checkpoints:GetChildren()
 			table.sort(checkpoints, function(a, b)
@@ -44858,7 +45546,7 @@ else
 		elseif game.PlaceId == 14184086618 then -- obby but bike
 			loadstring(game:HttpGet("https://github.com/KhSaeed90/Roblox/raw/workspace/14184086618"))()
 		elseif game.PlaceId == 13326256431 then -- obby but no jump
-			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints["48"].CFrame
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Checkpoints["48"].CFrame
 		elseif game.PlaceId == 1946695497 then -- escape butcher obby
 			local checkpoints = game:GetService("Workspace").Stages:GetChildren()
 			table.sort(checkpoints, function(a, b)
@@ -44869,7 +45557,7 @@ else
 				wait(0.5) -- Adjust the wait time as needed
 			end
 		elseif game.PlaceId == 12357508217 then
-			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Checkpoints["60"].Detector.CFrame
+			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Checkpoints["60"].Detector.CFrame
 		else -- universal
 			game.StarterGui:SetCore("SendNotification",  {
 				Title = "Game Not Supported";
