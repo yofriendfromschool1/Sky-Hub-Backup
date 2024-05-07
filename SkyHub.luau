@@ -2532,7 +2532,7 @@ elseif game.PlaceId == 621129760 then
 						local newVec = (v.Character.Head.Position - game:GetService("Players").LocalPlayer.Character.Head.Position)
 						if newVec.magnitude < dist then
 							local toRay = Ray.new(game:GetService("Players").LocalPlayer.Character.Head.Position, newVec)
-							if not workspace:FindPartOnRayWithIgnoreList(toRay, {
+							if not game:GetService("Workspace"):FindPartOnRayWithIgnoreList(toRay, {
 								game:GetService("Players").LocalPlayer.Character,
 								v.Character,
 								game:GetService("Workspace").WorldIgnore,
@@ -3415,7 +3415,7 @@ elseif game.PlaceId == 12109643 then
 			Notification.new("warning", "Warning", "Unfortunately no one else can hear it in this game, try a different one.\nMaybe an older game will work.")
 		end
 		while wait() do
-			for _, sound in next, workspace:GetDescendants() do
+			for _, sound in next, game:GetService("Workspace"):GetDescendants() do
 				if sound:IsA("Sound") then
 					sound.Volume = 10
 					sound:Play()
@@ -4775,7 +4775,7 @@ elseif game.PlaceId == 192800 then
 			Notification.new("warning", "Warning", "Unfortunately no one else can hear it in this game, try a different one.\nMaybe an older game will work.")
 		end
 		while wait() do
-			for _, sound in next, workspace:GetDescendants() do
+			for _, sound in next, game:GetService("Workspace"):GetDescendants() do
 				if sound:IsA("Sound") then
 					sound.Volume = 10
 					sound:Play()
@@ -8527,7 +8527,7 @@ elseif game.PlaceId == 155615604 then
 			Notification.new("warning", "Warning", "Unfortunately no one else can hear it in this game, try a different one.\nMaybe an older game will work.")
 		end
 		while wait() do
-			for _, sound in next, workspace:GetDescendants() do
+			for _, sound in next, game:GetService("Workspace"):GetDescendants() do
 				if sound:IsA("Sound") then
 					sound.Volume = 10
 					sound:Play()
@@ -14748,7 +14748,7 @@ elseif game.PlaceId == 6884319169 then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
 	end)
 	MainSection:NewButton("FE Mic Up lag and noise spam", "yu", function()
-		for i, v in pairs(workspace:GetDescendants()) do
+		for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
 			if v:IsA('ClickDetector') and not v.Parent.Name:match('Purchase') then
 				spawn(function()
 					for i = 1, 20 do
@@ -24248,7 +24248,7 @@ elseif game.PlaceId == 12640491155 then
 		elseif currentOption == "Penthouse" then
 			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-510, 101, 441)
 		elseif currentOption == "Party" then 
-			for i, v in pairs(workspace:GetDescendants()) do
+			for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
 				if v.Name == "PartyParticle" then
 					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame
 				end
@@ -24276,7 +24276,7 @@ elseif game.PlaceId == 12640491155 then
 		elseif currentOption == "Library" then
 			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-399, 17, -118)
 		elseif currentOption == "Bus" then
-			for i, v in pairs(workspace:GetDescendants()) do
+			for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
 				if v.Name == "BusSeat" then
 					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
 				end
@@ -24337,7 +24337,7 @@ elseif game.PlaceId == 12640491155 then
 		until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Sit == true
 	end)
 	MainSection:NewTextBox("Teleport to player", "can put rp name too for tp", function(txt)
-		for i, v in pairs(workspace:GetChildren()) do
+		for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
 			local player = txt
 			local targname = ""
 			for i, v in pairs(game:GetService("Players"):GetPlayers()) do
@@ -24505,7 +24505,7 @@ elseif game.PlaceId == 12640491155 then
 	local VehicleMods = Window:NewTab("Vehicle Mods")
 	local VehicleModsSection = VehicleMods:NewSection("Vehicle Mods")
 	VehicleModsSection:NewSlider("Vehicle Max Speed", "laggy idk why, Sets max speed of vehicle", 9999, 1, function(lol86)
-		for i, v in pairs(workspace:GetDescendants()) do
+		for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
 			if v.Name == game:GetService("Players").LocalPlayer.Name then
 				for i, v in pairs(v:GetChildren()) do
 					if v.Name == "Stats" then
@@ -24520,7 +24520,7 @@ elseif game.PlaceId == 12640491155 then
 		end
 	end)
 	VehicleModsSection:NewSlider("Vehicle Torque", "laggy idk why, Sets torque/horsepower/hp/Acceleration of vehicle", 9999, 1, function(lol86)
-		for i, v in pairs(workspace:GetDescendants()) do
+		for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
 			if v.Name == game:GetService("Players").LocalPlayer.Name then
 				for i, v in pairs(v:GetChildren()) do
 					if v.Name == "Stats" then
@@ -24535,7 +24535,7 @@ elseif game.PlaceId == 12640491155 then
 		end
 	end)
 	VehicleModsSection:NewSlider("Vehicle Max Turn Speed", "laggy idk why, Sets turn speed of vehicle", 9999, 1, function(lol86)
-		for i, v in pairs(workspace:GetDescendants()) do
+		for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
 			if v.Name == game:GetService("Players").LocalPlayer.Name then
 				for i, v in pairs(v:GetChildren()) do
 					if v.Name == "Stats" then
@@ -24675,7 +24675,7 @@ elseif game.PlaceId == 12640491155 then
 		end
 	end)
 	Misc23Section:NewButton("Remove Most House/Dorm Doors", "Client sided ofc", function()
-		for i, v in pairs(workspace:GetDescendants()) do
+		for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
 			if v.Name == "DormDoor" then
 				v:Destroy()
 			end
@@ -29636,7 +29636,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	game:GetService("Workspace").DescendantAdded:Connect(ApplySettings)
 	game:GetService("Workspace").ChildRemoved:Connect(function(Object)
 		if Object.Name == "Eyes" then
-			if not workspace:FindFirstChild("Eyes") then
+			if not game:GetService("Workspace"):FindFirstChild("Eyes") then
 				EyesOnMap = false
 			end
 		end
@@ -29726,14 +29726,14 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	end)
 	MainSection:NewToggle("Eyes Invincibility", "Makes the game (and other players) think you are looking down whenever eyes spawns.", function(state)
 		DisableEyes = state
-		if workspace:FindFirstChild("Eyes") then
+		if game:GetService("Workspace"):FindFirstChild("Eyes") then
 			MotorReplication:FireServer(0, DisableEyes and -120 or 0, 0, false)
 		end
 	end)
 	MainSection:NewToggle("Increased Door Opening Range", "Makes it so you can open doors from much further away.", function(state)
 		if state then
 			DoorRange = RunService.Heartbeat:Connect(function()
-				if not workspace:FindFirstChild("A120") then
+				if not game:GetService("Workspace"):FindFirstChild("A120") then
 					CurrentRooms:WaitForChild(LatestRoom.Value):WaitForChild("Door"):WaitForChild("ClientOpen"):FireServer()
 				end
 			end)
@@ -29780,7 +29780,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	end)
 	if Floor.Value == "Hotel" or Floor.Value == "Fools" then
 		MainSection:NewButton("Unlock Library Padlock", "Instantly inputs the Padlock code for Room 50. Can guess up to 3 digits. Requires 1 Player to have the hint paper.", function()
-			local Paper = workspace:FindFirstChild("LibraryHintPaper", true) or workspace:FindFirstChild("LibraryHintPaperHard", true) or Players:FindFirstChild("LibraryHintPaper", true) or Players:FindFirstChild("LibraryHintPaperHard", true)
+			local Paper = game:GetService("Workspace"):FindFirstChild("LibraryHintPaper", true) or game:GetService("Workspace"):FindFirstChild("LibraryHintPaperHard", true) or Players:FindFirstChild("LibraryHintPaper", true) or Players:FindFirstChild("LibraryHintPaperHard", true)
 			if not Paper then
 				Library.Notify("Someone needs to have the Hint Paper to use this.", "", 5)
 				return
@@ -29913,7 +29913,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	local ESPlolSection = ESPlol:NewSection("ESP")
 	ESPlolSection:NewToggle("Entity Esp", "See Entities through walls", function(state)
 		EntityESP = state
-		for _, Object in pairs(workspace:GetDescendants()) do
+		for _, Object in pairs(game:GetService("Workspace"):GetDescendants()) do
 			if ESP_Entities[Object.Name] then
 				ApplySettings(Object)
 			end
@@ -29921,7 +29921,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	end)
 	ESPlolSection:NewToggle("Item Esp", "See Items through walls", function(state)
 		ItemESP = state
-		for _, Object in pairs(workspace:GetDescendants()) do
+		for _, Object in pairs(game:GetService("Workspace"):GetDescendants()) do
 			if ESP_Items[Object.Name] then
 				ApplySettings(Object)
 			end
@@ -29929,7 +29929,7 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	end)
 	ESPlolSection:NewToggle("Other Esp", "See Other stuff through walls", function(state)
 		OtherESP = Bool
-		for _, Object in pairs(workspace:GetDescendants()) do
+		for _, Object in pairs(game:GetService("Workspace"):GetDescendants()) do
 			if ESP_Other[Object.Name] then
 				ApplySettings(Object)
 			end
@@ -41622,7 +41622,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 	local glassbSection = glassb:NewSection("Glass Bridge")
 	glassbSection:NewButton("Break all Fake Glass", "breaks all the fake glass", function()
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("1R")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("1R")
 		}
 		
 		
@@ -41632,7 +41632,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("1L")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("1L")
 		}
 		
 		
@@ -41642,7 +41642,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("2R")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("2R")
 		}
 		
 		
@@ -41652,7 +41652,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("2L")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("2L")
 		}
 		
 		
@@ -41662,7 +41662,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("3R")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("3R")
 		}
 		
 		
@@ -41672,7 +41672,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("3L")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("3L")
 		}
 		
 		
@@ -41682,7 +41682,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("4R")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("4R")
 		}
 		
 		
@@ -41692,7 +41692,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("4L")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("4L")
 		}
 		
 		
@@ -41702,7 +41702,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("5R")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("5R")
 		}
 		
 		
@@ -41712,7 +41712,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("5L")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("5L")
 		}
 		
 		
@@ -41722,7 +41722,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("6R")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("6R")
 		}
 		
 		
@@ -41732,7 +41732,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("6L")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("6L")
 		}
 		
 		
@@ -41742,7 +41742,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("7R")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("7R")
 		}
 		
 		
@@ -41752,7 +41752,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("7L")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("7L")
 		}
 		
 		
@@ -41762,7 +41762,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("8R")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("8R")
 		}
 		
 		
@@ -41772,7 +41772,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("8L")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("8L")
 		}
 		
 		
@@ -41782,7 +41782,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("9R")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("9R")
 		}
 		
 		
@@ -41792,7 +41792,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("9L")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("9L")
 		}
 		
 		
@@ -41802,7 +41802,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("10R")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("10R")
 		}
 		
 		
@@ -41812,7 +41812,7 @@ elseif game.PlaceId == 7540891731 or game.PlaceId == 7577073048 then
 		
 		
 		local args = {
-			[1] = workspace:WaitForChild("Glass"):WaitForChild("10L")
+			[1] = game:GetService("Workspace"):WaitForChild("Glass"):WaitForChild("10L")
 		}
 		
 		
@@ -45566,7 +45566,7 @@ else
 				Duration = 5;
 				Callback = NotificationBindable;
 			})
-			if workspace:FindFirstChild('Checkpoints') then
+			if game:GetService("Workspace"):FindFirstChild('Checkpoints') then
 				local checkpoints = game:GetService("Workspace").Checkpoints:GetChildren()
 				table.sort(checkpoints, function(a, b)
 					return tonumber(a.Name) < tonumber(b.Name)
@@ -45575,7 +45575,7 @@ else
 					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = checkpoint.CFrame
 					wait(6) -- Adjust the wait time as needed
 				end
-			elseif workspace:FindFirstChild('Stages') then
+			elseif game:GetService("Workspace"):FindFirstChild('Stages') then
 				local checkpoints = game:GetService("Workspace").Stages:GetChildren()
 				table.sort(checkpoints, function(a, b)
 					return tonumber(a.Name) < tonumber(b.Name)
@@ -45622,7 +45622,7 @@ else
 				x.CFrame = root.CFrame
 			end
 		end
-		for _, descendant in ipairs(workspace:GetDescendants()) do
+		for _, descendant in ipairs(game:GetService("Workspace"):GetDescendants()) do
 			if descendant:IsA("TouchTransmitter") then
 				touch(descendant)
 			end
@@ -45638,7 +45638,7 @@ else
 		})
 		wait(5)
 		local ftiamount = 0
-		for _, v in pairs(workspace:GetDescendants()) do
+		for _, v in pairs(game:GetService("Workspace"):GetDescendants()) do
 			if v:IsA("TouchTransmitter") then
 				ftiamount = ftiamount + 1
 				firetouchinterest(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart"), v.Parent, 0) --0 is touch
