@@ -41033,7 +41033,18 @@ elseif game.PlaceId == 2768379856 then
 			Library.Notify("WARNING","ALREADY ENABLED",5)
 		end
 	end)
-	MainSection:NewTextBox("teleport to player", "teleport to player THEY MUST HAVE A TOOL OUT WITH A PART IN IT OR ELSE IT WILL NOT WORK", function(txt)
+	MainSection:NewTextBox("teleport to player", "teleport to player by teleporting around the map until their character is loaded may take a while.", function(txt)
+		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+			if string.sub(string.lower(v.Name), 0, #txt) == string.lower(txt) or string.sub(string.lower(v.DisplayName), 0, #txt) == string.lower(txt) and v ~= game:GetService("Players").LocalPlayer then
+				repeat
+					game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(math.random(1,2547),25,math.random(10,2541))
+					task.wait()
+				until v.Character:FindFirstChild("HumanoidRootPart")
+				game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = v.Character.HumanoidRootPart.CFrame
+			end
+		end
+	end)
+	MainSection:NewTextBox("teleport to player", "teleport to player 2 THEY MUST HAVE A TOOL OUT WITH A PART IN IT OR ELSE IT WILL NOT WORK", function(txt)
 		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #txt) == string.lower(txt) or string.sub(string.lower(v.DisplayName), 0, #txt) == string.lower(txt) and v ~= game:GetService("Players").LocalPlayer then
 				for _, part in pairs(v.Character:GetDescendants()) do
@@ -41044,7 +41055,7 @@ elseif game.PlaceId == 2768379856 then
 			end
 		end
 	end)
-	MainSection:NewTextBox("teleport to player", "teleport to player 2 THEY MUST HAVE A TOOL IN BACKPACK WITH A PART IN IT OR ELSE IT WILL NOT WORK", function(txt)
+	MainSection:NewTextBox("teleport to player", "teleport to player 3 THEY MUST HAVE A TOOL IN BACKPACK WITH A PART IN IT OR ELSE IT WILL NOT WORK", function(txt)
 		for i, v in pairs(game:GetService("Players"):GetPlayers()) do
 			if string.sub(string.lower(v.Name), 0, #txt) == string.lower(txt) or string.sub(string.lower(v.DisplayName), 0, #txt) == string.lower(txt) and v ~= game:GetService("Players").LocalPlayer then
 				for _, part in pairs(v:GetDescendants()) do
