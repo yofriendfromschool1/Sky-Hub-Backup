@@ -487,6 +487,32 @@ if game.PlaceId == 2788229376 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -1575,6 +1601,32 @@ elseif game.PlaceId == 1962086868 or game.PlaceId == 3582763398 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -2526,6 +2578,32 @@ elseif game.PlaceId == 621129760 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -3845,6 +3923,32 @@ elseif game.PlaceId == 12109643 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -4672,6 +4776,32 @@ elseif game.PlaceId == 192800 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -5694,6 +5824,32 @@ elseif game.PlaceId == 4832438542 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -6478,6 +6634,32 @@ elseif game.PlaceId == 920587237 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -7317,6 +7499,32 @@ elseif game.PlaceId == 606849621 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -8228,6 +8436,32 @@ elseif game.PlaceId == 155615604 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -9167,6 +9401,32 @@ elseif game.PlaceId == 537413528 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -10009,6 +10269,32 @@ elseif game.PlaceId == 8690998110 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -11852,6 +12138,32 @@ elseif game.PlaceId == 142823291 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -12642,6 +12954,32 @@ elseif game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId 
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -13513,6 +13851,32 @@ elseif game.PlaceId == 301549746 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -14337,6 +14701,32 @@ elseif game.PlaceId == 6884319169 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -15116,6 +15506,32 @@ elseif game.PlaceId == 12699642568 or game.PlaceId == 14236925335 or game.PlaceI
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -15924,6 +16340,32 @@ elseif game.PlaceId == 189707 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -16751,6 +17193,32 @@ elseif game.PlaceId == 914010731 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -17587,6 +18055,32 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -18534,6 +19028,32 @@ elseif game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -19344,6 +19864,32 @@ elseif game.PlaceId == 3101667897 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -20132,6 +20678,32 @@ elseif game.PlaceId == 4924922222 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -20923,6 +21495,32 @@ elseif game.PlaceId == 6872265039 or game.PlaceId == 6872274481 or game.PlaceId 
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -21706,6 +22304,32 @@ elseif game.PlaceId == 6441847031 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -22513,6 +23137,32 @@ elseif game.PlaceId == 3956818381 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -23783,6 +24433,32 @@ elseif game.PlaceId == 12640491155 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -24616,6 +25292,32 @@ elseif game.PlaceId == 3527629287 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -25398,6 +26100,32 @@ elseif game.PlaceId == 9865958871 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -26174,6 +26902,32 @@ elseif game.PlaceId == 3623096087 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -27184,6 +27938,32 @@ elseif game.PlaceId == 14426444782 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -29034,6 +29814,32 @@ elseif game.PlaceId == 6516141723 or game.PlaceId == 6839171747 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -29893,6 +30699,32 @@ elseif game.PlaceId == 205224386 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -31962,6 +32794,32 @@ elseif game.PlaceId == 1662219031 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -33839,6 +34697,32 @@ elseif game.PlaceId == 383793228 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -34667,6 +35551,32 @@ elseif game.PlaceId == 1240123653 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -35507,6 +36417,32 @@ elseif game.PlaceId == 61846006 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -36390,6 +37326,32 @@ elseif game.PlaceId == 13083893317 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -37265,6 +38227,32 @@ elseif game.PlaceId == 7991339063 or game.PlaceId == 13622985049 or game.PlaceId
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -38113,6 +39101,32 @@ elseif game.PlaceId == 5985232436 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -39204,6 +40218,32 @@ elseif game.PlaceId == 14888386963 or game.PlaceId == 14972061219 then
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
@@ -40378,6 +41418,32 @@ tp(-500.35690307617, 78.206008911133, -470.29962158203)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -41337,6 +42403,32 @@ elseif game.PlaceId == 2768379856 then
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
 			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
@@ -42078,6 +43170,32 @@ else
 	end)
 	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
 		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
 	end)
 	if IsOnMobile or VREnabled then
 		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
