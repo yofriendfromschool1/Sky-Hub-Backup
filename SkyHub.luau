@@ -2,7 +2,7 @@
 
 Sky Hub
 
-By Sky/dsgdfs
+By Sky/jazminethecooles2001
 
 games it supports Da Hood, Arsenal, Tower of Hell, KAT!, Fencing,
 Work At A Pizza Place, VR Hands, Adopt Me, Jailbreak, Prison Life,
@@ -47584,7 +47584,7 @@ else
 	end
 	for i,v in pairs(game:GetService("ReplicatedStorage"):GetDescendants()) do
 		if v.Name == "DestroySegway" or v.Name == "DeleteCar" or v.Name == "HandlessSegway" or v.Name == "Building Tools" or v.Name == "SetNetworkOwnership" or v.Name == "ChangeParent" or v.Name == "despawn" then
-			Library.Notify("OMG VULN FOUND","If you dm me in discord: dsgdfs or post the game u are currently playing in the discord I will give you a role. PLSSS",30)
+			Library.Notify("OMG VULN FOUND","If you dm me in discord: jazminethecooles2001 or post the game u are currently playing in the discord I will give you a role. PLSSS",30)
 		end
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
