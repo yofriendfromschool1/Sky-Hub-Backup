@@ -19047,7 +19047,99 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/zippy6349/Blade_Ball/main/Blade%20Ball.txt"))()
 	end)
 	MainSection:NewButton("auto parry", "idk", function()
-		loadstring(game:HttpGet("https://scriptblox.com/raw/Blade-Ball-Decent-LEGIT-Auto-Parry-8381"))()
+		local L_1_ = setmetatable({}, {
+			__index = function(L_7_arg0, L_8_arg1)
+				local L_9_ = game:GetService(L_8_arg1)
+				L_7_arg0[L_8_arg1] = L_9_;
+				return L_9_
+			end
+		})
+		local L_2_ = L_1_.Players;
+		local L_3_ = L_1_.Workspace;
+		local L_4_ = L_2_.LocalPlayer;
+		local L_5_ = L_3_.Balls;
+		local L_6_ = {}
+		do
+			shared.Util = L_6_;
+			function L_6_.getBalls()
+				local L_10_, L_11_;
+				for L_12_forvar0 = 1, #L_5_:GetChildren() do
+					local L_13_ = L_5_:GetChildren()[L_12_forvar0]
+					if not L_13_:IsA("BasePart") then
+						continue
+					end;
+					local L_14_ = L_13_:GetAttribute("realBall")
+					if L_14_ == nil then
+						continue
+					end;
+					if L_14_ then
+						L_10_ = L_13_
+					else
+						L_11_ = L_13_
+					end;
+					if L_10_ and L_11_ then
+						break
+					end
+				end;
+				return L_10_, L_11_
+			end;
+			function L_6_.isHunting()
+				local L_15_ = L_6_.getBalls()
+				if not L_15_ then
+					return false
+				end;
+				local L_16_ = L_15_:GetAttribute("target")
+				if not L_16_ then
+					return false
+				end;
+				return L_16_ == L_4_.Name
+			end
+		end;
+		L_5_.ChildAdded:Connect(function()
+			task.wait(1.5)
+			local L_17_, L_18_;
+			for L_19_forvar0 = 1, #L_5_:GetChildren() do
+				local L_20_ = L_5_:GetChildren()[L_19_forvar0]
+				if not L_20_:IsA("BasePart") then
+					continue
+				end;
+				local L_21_ = L_20_.Velocity.Magnitude;
+				if L_21_ == 0 then
+					L_17_ = L_20_
+				else
+					L_18_ = L_20_
+				end;
+				if L_17_ and L_18_ then
+					break
+				end
+			end;
+			if L_17_ then
+				local L_22_ = false;
+				local L_23_ = L_17_.Position;
+				local L_24_ = L_18_.Velocity;
+				L_17_:GetPropertyChangedSignal("Position"):Connect(function()
+					if not L_6_.isHunting() then
+						return
+					end;
+					local L_25_ = L_4_.Character and L_4_.Character.PrimaryPart and L_4_.Character.PrimaryPart.Position;
+					if not L_25_ then
+						return
+					end;
+					local L_26_ = L_18_ and L_18_.Velocity.Magnitude or 0;
+					local L_27_ = L_23_ + L_24_;
+					local L_28_ = (L_27_ - L_25_).Magnitude;
+					L_23_ = L_17_.Position;
+					L_24_ = L_17_.Velocity;
+					local L_29_ = L_28_ / (L_26_ == 0 and 1 or L_26_)
+					if L_29_ <= 0.75 and not L_22_ then
+						mouse1press()
+						mouse1release()
+					elseif L_29_ > 1.3 then
+						L_22_ = false
+					end
+				end)
+			end
+		end)
 	end)
 	local Discord = Window:NewTab("Discords",16795709379)
 	local DiscordSection = Discord:NewSection("Discords")
@@ -45720,13 +45812,18 @@ elseif game.PlaceId == 3281073759 then
 			["objectze"] = "lipstick",
 			["objectzf"] = "magnet",
 			["objectzg"] = "computer",
+			["objectzh"] = "chest",
+			["objectzi"] = "brush",
+			["objectzj"] = "compass",
 			["material"] = "gold",
+			["materiala"] = "diamond",
 			["fruit"] = "melon",
 			["fruita"] = "apple",
 			["fruitb"] = "corn",
 			["fruitc"] = "orange",
 			["fruitd"] = "strawberry",
 			["fruite"] = "tomato",
+			["fruitf"] = "banana",
 			["other"] = "mcdonalds",
 			["othera"] = "earth",
 			["otherb"] = "tree",
@@ -45816,6 +45913,11 @@ elseif game.PlaceId == 3281073759 then
 			["otherzzzj"] = "pencil",
 			["otherzzzk"] = "belt",
 			["otherzzzl"] = "tent",
+			["otherzzzm"] = "flag",
+			["otherzzzn"] = "kettle",
+			["otherzzzo"] = "rain",
+			["otherzzzp"] = "toothpaste",
+			["otherzzzq"] = "tower",
 			["noun"] = "ninja",
 			["nouna"] = "zombie",
 			["nounb"] = "pirate",
@@ -45857,6 +45959,10 @@ elseif game.PlaceId == 3281073759 then
 			["animalzd"] = "alligator",
 			["animalze"] = "turtle",
 			["animalzf"] = "scorpion",
+			["animalzg"] = "crocodile",
+			["animalzh"] = "snail",
+			["animalzi"] = "whale",
+			["animalzj"] = "kitten",
 			["vehicle"] = "bus",
 			["vehiclea"] = "minivan",
 			["vehicleb"] = "boat",
@@ -45919,13 +46025,18 @@ elseif game.PlaceId == 3281073759 then
 			["objectze"] = "lipstick",
 			["objectzf"] = "magnet",
 			["objectzg"] = "computer",
+			["objectzh"] = "chest",
+			["objectzi"] = "brush",
+			["objectzj"] = "compass",
 			["material"] = "gold",
+			["materiala"] = "diamond",
 			["fruit"] = "melon",
 			["fruita"] = "apple",
 			["fruitb"] = "corn",
 			["fruitc"] = "orange",
 			["fruitd"] = "strawberry",
 			["fruite"] = "tomato",
+			["fruitf"] = "banana",
 			["other"] = "mcdonalds",
 			["othera"] = "earth",
 			["otherb"] = "tree",
@@ -46015,6 +46126,11 @@ elseif game.PlaceId == 3281073759 then
 			["otherzzzj"] = "pencil",
 			["otherzzzk"] = "belt",
 			["otherzzzl"] = "tent",
+			["otherzzzm"] = "flag",
+			["otherzzzn"] = "kettle",
+			["otherzzzo"] = "rain",
+			["otherzzzp"] = "toothpaste",
+			["otherzzzq"] = "tower",
 			["noun"] = "ninja",
 			["nouna"] = "zombie",
 			["nounb"] = "pirate",
@@ -46056,6 +46172,10 @@ elseif game.PlaceId == 3281073759 then
 			["animalzd"] = "alligator",
 			["animalze"] = "turtle",
 			["animalzf"] = "scorpion",
+			["animalzg"] = "crocodile",
+			["animalzh"] = "snail",
+			["animalzi"] = "whale",
+			["animalzj"] = "kitten",
 			["vehicle"] = "bus",
 			["vehiclea"] = "minivan",
 			["vehicleb"] = "boat",
@@ -46120,13 +46240,18 @@ elseif game.PlaceId == 3281073759 then
 				["objectze"] = "lipstick",
 				["objectzf"] = "magnet",
 				["objectzg"] = "computer",
+				["objectzh"] = "chest",
+				["objectzi"] = "brush",
+				["objectzj"] = "compass",
 				["material"] = "gold",
+				["materiala"] = "diamond",
 				["fruit"] = "melon",
 				["fruita"] = "apple",
 				["fruitb"] = "corn",
 				["fruitc"] = "orange",
 				["fruitd"] = "strawberry",
 				["fruite"] = "tomato",
+				["fruitf"] = "banana",
 				["other"] = "mcdonalds",
 				["othera"] = "earth",
 				["otherb"] = "tree",
@@ -46216,6 +46341,11 @@ elseif game.PlaceId == 3281073759 then
 				["otherzzzj"] = "pencil",
 				["otherzzzk"] = "belt",
 				["otherzzzl"] = "tent",
+				["otherzzzm"] = "flag",
+				["otherzzzn"] = "kettle",
+				["otherzzzo"] = "rain",
+				["otherzzzp"] = "toothpaste",
+				["otherzzzq"] = "tower",
 				["noun"] = "ninja",
 				["nouna"] = "zombie",
 				["nounb"] = "pirate",
@@ -46257,6 +46387,10 @@ elseif game.PlaceId == 3281073759 then
 				["animalzd"] = "alligator",
 				["animalze"] = "turtle",
 				["animalzf"] = "scorpion",
+				["animalzg"] = "crocodile",
+				["animalzh"] = "snail",
+				["animalzi"] = "whale",
+				["animalzj"] = "kitten",
 				["vehicle"] = "bus",
 				["vehiclea"] = "minivan",
 				["vehicleb"] = "boat",
@@ -46319,13 +46453,18 @@ elseif game.PlaceId == 3281073759 then
 			["objectze"] = "lipstick",
 			["objectzf"] = "magnet",
 			["objectzg"] = "computer",
+			["objectzh"] = "chest",
+			["objectzi"] = "brush",
+			["objectzj"] = "compass",
 			["material"] = "gold",
+			["materiala"] = "diamond",
 			["fruit"] = "melon",
 			["fruita"] = "apple",
 			["fruitb"] = "corn",
 			["fruitc"] = "orange",
 			["fruitd"] = "strawberry",
 			["fruite"] = "tomato",
+			["fruitf"] = "banana",
 			["other"] = "mcdonalds",
 			["othera"] = "earth",
 			["otherb"] = "tree",
@@ -46415,6 +46554,11 @@ elseif game.PlaceId == 3281073759 then
 			["otherzzzj"] = "pencil",
 			["otherzzzk"] = "belt",
 			["otherzzzl"] = "tent",
+			["otherzzzm"] = "flag",
+			["otherzzzn"] = "kettle",
+			["otherzzzo"] = "rain",
+			["otherzzzp"] = "toothpaste",
+			["otherzzzq"] = "tower",
 			["noun"] = "ninja",
 			["nouna"] = "zombie",
 			["nounb"] = "pirate",
@@ -46456,6 +46600,10 @@ elseif game.PlaceId == 3281073759 then
 			["animalzd"] = "alligator",
 			["animalze"] = "turtle",
 			["animalzf"] = "scorpion",
+			["animalzg"] = "crocodile",
+			["animalzh"] = "snail",
+			["animalzi"] = "whale",
+			["animalzj"] = "kitten",
 			["vehicle"] = "bus",
 			["vehiclea"] = "minivan",
 			["vehicleb"] = "boat",
