@@ -18930,7 +18930,7 @@ elseif game.PlaceId == 914010731 then
         game:GetService("TeleportService"):Teleport(3281073759,game:GetService("Players").LocalPlayer)
 	end)
 -- Blade Ball
-elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceId == 14915220621 or game.PlaceId == 15144787112 or game.PlaceId == 15264892126 or game.PlaceId == 15509350986 then
+elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceId == 14915220621 or game.PlaceId == 15144787112 or game.PlaceId == 15264892126 or game.PlaceId == 15509350986 or game.PlaceId == 16281300371 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile or VREnabled then
@@ -19046,7 +19046,8 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 	MainSection:NewButton("Blade Ball Scripts", "idk", function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/zippy6349/Blade_Ball/main/Blade%20Ball.txt"))()
 	end)
-	MainSection:NewButton("auto parry", "idk", function()
+	MainSection:NewToggle("auto parry", "idk", function(state)
+		getgenv().toggableparry = state
 		local L_1_ = setmetatable({}, {
 			__index = function(L_7_arg0, L_8_arg1)
 				local L_9_ = game:GetService(L_8_arg1)
@@ -19132,8 +19133,16 @@ elseif game.PlaceId == 13772394625 or game.PlaceId == 14732610803 or game.PlaceI
 					L_24_ = L_17_.Velocity;
 					local L_29_ = L_28_ / (L_26_ == 0 and 1 or L_26_)
 					if L_29_ <= 0.75 and not L_22_ then
-						mouse1press()
-						mouse1release()
+						if not getgenv().toggableparry then
+							return
+						end
+						if mouse1press and mouse1release then
+							mouse1press()
+							mouse1release()
+						else
+							Library.Notify("WARNING","Your executor does not support mouse functions.",5)
+							return
+						end
 					elseif L_29_ > 1.3 then
 						L_22_ = false
 					end
@@ -45815,6 +45824,9 @@ elseif game.PlaceId == 3281073759 then
 			["objectzh"] = "chest",
 			["objectzi"] = "brush",
 			["objectzj"] = "compass",
+			["objectzk"] = "cap",
+			["objectzl"] = "wheel",
+			["objectzm"] = "ball",
 			["material"] = "gold",
 			["materiala"] = "diamond",
 			["fruit"] = "melon",
@@ -45918,6 +45930,10 @@ elseif game.PlaceId == 3281073759 then
 			["otherzzzo"] = "rain",
 			["otherzzzp"] = "toothpaste",
 			["otherzzzq"] = "tower",
+			["otherzzzr"] = "ear",
+			["otherzzzs"] = "jump rope",
+			["otherzzzt"] = "sushi",
+			["otherzzzu"] = "school",
 			["noun"] = "ninja",
 			["nouna"] = "zombie",
 			["nounb"] = "pirate",
@@ -46028,6 +46044,9 @@ elseif game.PlaceId == 3281073759 then
 			["objectzh"] = "chest",
 			["objectzi"] = "brush",
 			["objectzj"] = "compass",
+			["objectzk"] = "cap",
+			["objectzl"] = "wheel",
+			["objectzm"] = "ball",
 			["material"] = "gold",
 			["materiala"] = "diamond",
 			["fruit"] = "melon",
@@ -46131,6 +46150,10 @@ elseif game.PlaceId == 3281073759 then
 			["otherzzzo"] = "rain",
 			["otherzzzp"] = "toothpaste",
 			["otherzzzq"] = "tower",
+			["otherzzzr"] = "ear",
+			["otherzzzs"] = "jump rope",
+			["otherzzzt"] = "sushi",
+			["otherzzzu"] = "school",
 			["noun"] = "ninja",
 			["nouna"] = "zombie",
 			["nounb"] = "pirate",
@@ -46243,6 +46266,9 @@ elseif game.PlaceId == 3281073759 then
 				["objectzh"] = "chest",
 				["objectzi"] = "brush",
 				["objectzj"] = "compass",
+				["objectzk"] = "cap",
+				["objectzl"] = "wheel",
+				["objectzm"] = "ball",
 				["material"] = "gold",
 				["materiala"] = "diamond",
 				["fruit"] = "melon",
@@ -46346,6 +46372,10 @@ elseif game.PlaceId == 3281073759 then
 				["otherzzzo"] = "rain",
 				["otherzzzp"] = "toothpaste",
 				["otherzzzq"] = "tower",
+				["otherzzzr"] = "ear",
+				["otherzzzs"] = "jump rope",
+				["otherzzzt"] = "sushi",
+				["otherzzzu"] = "school",
 				["noun"] = "ninja",
 				["nouna"] = "zombie",
 				["nounb"] = "pirate",
@@ -46456,6 +46486,9 @@ elseif game.PlaceId == 3281073759 then
 			["objectzh"] = "chest",
 			["objectzi"] = "brush",
 			["objectzj"] = "compass",
+			["objectzk"] = "cap",
+			["objectzl"] = "wheel",
+			["objectzm"] = "ball",
 			["material"] = "gold",
 			["materiala"] = "diamond",
 			["fruit"] = "melon",
@@ -46559,6 +46592,10 @@ elseif game.PlaceId == 3281073759 then
 			["otherzzzo"] = "rain",
 			["otherzzzp"] = "toothpaste",
 			["otherzzzq"] = "tower",
+			["otherzzzr"] = "ear",
+			["otherzzzs"] = "jump rope",
+			["otherzzzt"] = "sushi",
+			["otherzzzu"] = "school",
 			["noun"] = "ninja",
 			["nouna"] = "zombie",
 			["nounb"] = "pirate",
