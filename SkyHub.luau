@@ -7689,7 +7689,7 @@ elseif game.PlaceId == 920587237 then
         game:GetService("TeleportService"):Teleport(3281073759,game:GetService("Players").LocalPlayer)
 	end)
 -- JailBreak
-elseif game.PlaceId == 606849621 then
+elseif game.PlaceId == 606849621 or game.PlaceId == 17190407811 then
 	local Library = loadstring(game:HttpGet(_G.guidragtype))()
 	loadsettings()
 	if IsOnMobile or VREnabled then
