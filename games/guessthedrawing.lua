@@ -1,0 +1,1938 @@
+local nosaves = false
+local saved_settings
+local settings = {
+	ui_bind = "Enum.KeyCode.RightControl";
+	opaque = 0.4;
+}
+queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
+HttpService = game:GetService("HttpService")
+everyClipboard = setclipboard or toclipboard or set_clipboard or setrbxclipboard or (Clipboard and Clipboard.set)
+HttpService = cloneref(game:GetService("HttpService")) or game:GetService("HttpService")
+defaults = HttpService:JSONEncode(settings)
+local OptTheme = "Midnight"
+local string2 = "https://discord.com/invite/jVf7eSrED9"
+_G.infydtype = 1
+_G.guidragtype = "https://raw.githubusercontent.com/yofriendfromschool1/aw-temp-fix/main/skui.lua"
+UserInputService = game:GetService("UserInputService")
+VREnabled = game:GetService("VRService").VREnabled
+local IsOnMobile = table.find({
+	Enum.Platform.IOS,
+	Enum.Platform.Android
+}, UserInputService:GetPlatform())
+
+if IsOnMobile then
+	_G.infydtype = "https://raw.githubusercontent.com/yofriendfromschool1/mobile-delta-inf-yield/main/deltainfyield.txt"
+elseif iswave then
+	_G.infydtype = "https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/iy.lua"
+else
+	_G.infydtype = "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"
+end
+local iswave = false
+if detourfunction then
+	if not IsOnMobile then
+		iswave = true
+	end
+end
+
+_G.lmao24 = "loo"
+if game:GetService("SoundService").RespectFilteringEnabled == true then
+	_G.lmao24 = "Enabled"
+else
+	_G.lmao24 = "Disabled"
+end
+function save()
+	if not isfolder("Sky Hub") and not nosaves then
+		makefolder("Sky Hub")
+		nosaves = true
+		task.wait()
+		local update = {
+			["ui_bind"] = settings["ui_bind"],
+			["opaque"] = settings["opaque"]
+		}
+		task.wait()
+		writefile([[Sky Hub/Sky Hub Settings.json]], HttpService:JSONEncode(update))
+	end
+end
+function updatesaves()
+	local update = {
+		ui_bind = ui_bind;
+		opaque = opaque;
+	}
+	writefile("Sky Hub/Sky Hub Settings.json", HttpService:JSONEncode(update))
+end
+task.wait()
+function loadsettings()
+	task.wait(1)
+	if isfolder("Sky Hub") and isfile([[Sky Hub/Sky Hub Settings.json]]) then
+		local success, response = pcall(function()
+			local settings = HttpService:JSONDecode(readfile([[Sky Hub/Sky Hub Settings.json]]))
+			if settings.ui_bind ~= nil or settings.ui_bind ~= "null" then
+				if settings.ui_bind == "Enum.KeyCode.RightControl" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.RightControl
+				elseif settings.ui_bind == "Enum.KeyCode.LeftControl" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.LeftControl
+				elseif settings.ui_bind == "Enum.KeyCode.LeftAlt" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.LeftAlt
+				elseif settings.ui_bind == "Enum.KeyCode.RightAlt" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.RightAlt
+				elseif settings.ui_bind == "Enum.KeyCode.Insert" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.Insert
+				elseif settings.ui_bind == "Enum.KeyCode.End" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.End
+				elseif settings.ui_bind == "Enum.KeyCode.Delete" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.Delete
+				elseif settings.ui_bind == "Enum.KeyCode.LeftShift" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.LeftShift
+				elseif settings.ui_bind == "Enum.KeyCode.RightShift" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.RightShift
+				elseif settings.ui_bind == "Enum.KeyCode.F1" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.F1
+				elseif settings.ui_bind == "Enum.KeyCode.Q" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.Q
+				elseif settings.ui_bind == "Enum.KeyCode.E" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.E
+				elseif settings.ui_bind == "Enum.KeyCode.R" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.R
+				elseif settings.ui_bind == "Enum.KeyCode.T" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.T
+				elseif settings.ui_bind == "Enum.KeyCode.Y" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.Y
+				elseif settings.ui_bind == "Enum.KeyCode.U" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.U
+				elseif settings.ui_bind == "Enum.KeyCode.P" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.P
+				elseif settings.ui_bind == "Enum.KeyCode.Z" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.Z
+				elseif settings.ui_bind == "Enum.KeyCode.X" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.X
+				elseif settings.ui_bind == "Enum.KeyCode.M" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.M
+				elseif settings.ui_bind == "Enum.KeyCode.V" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.V
+				elseif settings.ui_bind == "Enum.KeyCode.N" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.N
+				elseif settings.ui_bind == "Enum.KeyCode.Period" then
+					getgenv().SkyhubKeybind = Enum.KeyCode.Period
+				end
+			else
+				getgenv().SkyhubKeybind = Enum.KeyCode.RightControl 
+			end
+			if settings.opaque ~= nil or settings.opaque ~= "null" then
+				getgenv().BlurIntes = settings.opaque 
+			else 
+				getgenv().BlurIntes = 0.4 
+			end
+		end)
+		if not success then
+			Library.Notify("Warning", "Something went wrong while loading saves", 5)
+			task.wait()
+			save()
+		end
+	end
+end
+task.wait()
+save()
+local Library = loadstring(game:HttpGet(_G.guidragtype))()
+	loadsettings()
+	if IsOnMobile or VREnabled then
+		Library.Notify("Warning", 'your OS is not supported with some scripts since of keyboard functions, do you want to execute a keyboard script?', 35, function(val)
+			if val == true then
+				
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+			end
+		end, {
+			"Yes Please!",
+			"Nah"
+		})
+	end
+	if iswave then
+		Library.Notify("Warning", 'Your Executor "Wave" Is dog shit and file functions are shit so would you like a fix for them so more support for more scripts or disable them? or ingore this and keep somewhat functions (takes abt 40 secs to go away)', 35, function(val)
+			if val == true then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/Disable%20file%20and%20folder%20functions%20Wave.lua"))()
+			else
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/wave_fixedscripts/main/FileFixes.lua"))()
+			end
+		end, {
+			"Enable Fix for file functions",
+			"Disable File/Folder functions"
+		})
+	end
+	if queueteleport then
+		Library.Notify("Warning", "Would you like to bring this script with you on teleport/ to the next game?", 15, function(val)
+			if val == true then
+				
+			else
+				queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+			end
+		end, {
+			"Yes",
+			"No thanks."
+		})
+	end
+	if writefile and readfile and makefolder then
+		
+	else
+		Library.Notify("Warning", "Your Executor does not support saving files, Settings will not save.", 15)
+	end
+	if not IsOnMobile then
+		Library.Notify("Current Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your current keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+	end
+	local Window = Library.CreateLib("Sky Hub", OptTheme)
+	local Main = Window:NewTab("Main")
+	local MainSection = Main:NewSection("Main")
+	MainSection:NewButton("FE Trolling GUI", "Troll", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
+	end)
+	-- SORRY THAT ITS NOT 100% BUT I WILL KEEP ADDING WORDS UNTIL IT ISSSSS
+	MainSection:NewToggle("guess all words", "guesses all words but takes so fucking long", function(state)
+		getgenv().omgifudontstoprnbro = state
+		-- more words will be added on im pretty sure this is a lot tho and maybe get it right 75% of the time but soon i wanna make it a 100% or as close as i can so i will keep adding words eveyday until then :)
+		-- if there arent any words that are on here but is in the game let me know at discord: jasminethecoolest2001
+		local words = {
+			["object"] = "waterwheel",
+			["objecta"] = "pot",
+			["objectb"] = "laptop",
+			["objectc"] = "camera",
+			["objectd"] = "sword",
+			["objecte"] = "watch",
+			["objectf"] = "recycle",
+			["objectg"] = "ruler",
+			["objecth"] = "bell",
+			["objecti"] = "light",
+			["objectj"] = "axe",
+			["objectk"] = "cup",
+			["objectl"] = "fan",
+			["objectm"] = "rock",
+			["objectn"] = "vase",
+			["objecto"] = "hat",
+			["objectp"] = "megaphone",
+			["objectq"] = "unicycle",
+			["objectr"] = "buckle",
+			["objects"] = "arrow",
+			["objectt"] = "ring",
+			["objectu"] = "anvil",
+			["objectv"] = "paintbrush",
+			["objectw"] = "lamp",
+			["objecty"] = "bucket",
+			["objectz"] = "drone",
+			["objectza"] = "coin",
+			["objectzb"] = "table",
+			["objectzc"] = "crown",
+			["objectzd"] = "pickaxe",
+			["objectze"] = "lipstick",
+			["objectzf"] = "magnet",
+			["objectzg"] = "computer",
+			["objectzh"] = "chest",
+			["objectzi"] = "brush",
+			["objectzj"] = "compass",
+			["objectzk"] = "cap",
+			["objectzl"] = "wheel",
+			["objectzm"] = "ball",
+			["material"] = "gold",
+			["materiala"] = "diamond",
+			["fruit"] = "melon",
+			["fruita"] = "apple",
+			["fruitb"] = "corn",
+			["fruitc"] = "orange",
+			["fruitd"] = "strawberry",
+			["fruite"] = "tomato",
+			["fruitf"] = "banana",
+			["other"] = "mcdonalds",
+			["othera"] = "earth",
+			["otherb"] = "tree",
+			["otherc"] = "arm",
+			["otherd"] = "mouth",
+			["othere"] = "mountain",
+			["otherf"] = "circle",
+			["otherg"] = "pool",
+			["otherh"] = "hand",
+			["otheri"] = "chips",
+			["otherj"] = "juice",
+			["otherk"] = "space",
+			["otherl"] = "ocean",
+			["otherm"] = "brain",
+			["othern"] = "forest",
+			["othero"] = "sleeping",
+			["otherp"] = "house",
+			["otherq"] = "music",
+			["otherr"] = "moon",
+			["others"] = "boot",
+			["othert"] = "box",
+			["otheru"] = "pants",
+			["otherv"] = "alarm clock",
+			["otherw"] = "door knob",
+			["otherx"] = "elevator",
+			["othery"] = "rocket",
+			["otherz"] = "calendar",
+			["otherza"] = "leg",
+			["otherzb"] = "head",
+			["otherzc"] = "fire",
+			["otherzd"] = "toast",
+			["otherze"] = "farm",
+			["otherzf"] = "square",
+			["otherzg"] = "jail",
+			["otherzh"] = "wall",
+			["otherzi"] = "bomb",
+			["otherzj"] = "nail",
+			["otherzk"] = "snowball",
+			["otherzl"] = "ceiling",
+			["otherzm"] = "pacifier",
+			["otherzn"] = "pen",
+			["otherzo"] = "tire",
+			["otherzp"] = "seatbelt",
+			["otherzq"] = "heart",
+			["otherzr"] = "library",
+			["otherzs"] = "mail",
+			["otherzt"] = "snow",
+			["otherzu"] = "nose",
+			["otherzv"] = "iceberg",
+			["otherzw"] = "scissors",
+			["otherzy"] = "swing",
+			["otherzz"] = "cake",
+			["otherzza"] = "birthday",
+			["otherzzb"] = "bubbles",
+			["otherzzc"] = "ballon",
+			["otherzzd"] = "chain saw",
+			["otherzze"] = "gift",
+			["otherzzf"] = "fries",
+			["otherzzg"] = "egg",
+			["otherzzh"] = "bridge",
+			["otherzzi"] = "jetpack",
+			["otherzzj"] = "windmill",
+			["otherzzk"] = "sun",
+			["otherzzl"] = "running",
+			["otherzzm"] = "snowman",
+			["otherzzn"] = "television",
+			["otherzzo"] = "roller coaster",
+			["otherzzp"] = "beard",
+			["otherzzq"] = "chandelier",
+			["otherzzr"] = "socks",
+			["otherzzs"] = "chips",
+			["otherzzt"] = "money",
+			["otherzzu"] = "eyebrows",
+			["otherzzv"] = "bed",
+			["otherzzw"] = "rug",
+			["otherzzy"] = "water",
+			["otherzzz"] = "fence",
+			["otherzzza"] = "trampoline",
+			["otherzzzb"] = "cloud",
+			["otherzzzc"] = "sunburn",
+			["otherzzzd"] = "stork",
+			["otherzzze"] = "gum",
+			["otherzzzf"] = "bedroom",
+			["otherzzzg"] = "eiffel tower",
+			["otherzzzh"] = "lollipop",
+			["otherzzzi"] = "home",
+			["otherzzzj"] = "pencil",
+			["otherzzzk"] = "belt",
+			["otherzzzl"] = "tent",
+			["otherzzzm"] = "flag",
+			["otherzzzn"] = "kettle",
+			["otherzzzo"] = "rain",
+			["otherzzzp"] = "toothpaste",
+			["otherzzzq"] = "tower",
+			["otherzzzr"] = "ear",
+			["otherzzzs"] = "jump rope",
+			["otherzzzt"] = "sushi",
+			["otherzzzu"] = "school",
+			["noun"] = "ninja",
+			["nouna"] = "zombie",
+			["nounb"] = "pirate",
+			["nounc"] = "robot",
+			["nound"] = "doctor",
+			["noune"] = "baby",
+			["nounf"] = "teacher",
+			["emotions"] = "sad",
+			["emotionsa"] = "angry",
+			["animal"] = "starfish",
+			["animala"] = "bear",
+			["animalb"] = "fish",
+			["animalc"] = "jellyfish",
+			["animald"] = "mouse",
+			["animale"] = "tiger",
+			["animalf"] = "ant",
+			["animalg"] = "squid",
+			["animalh"] = "mermaid",
+			["animali"] = "lion",
+			["animalj"] = "pig",
+			["animalk"] = "elephant",
+			["animall"] = "dolphin",
+			["animalm"] = "shark",
+			["animaln"] = "dinosaur",
+			["animalo"] = "rabbit",
+			["animalp"] = "bee",
+			["animalq"] = "dog",
+			["animalr"] = "kangaroo",
+			["animals"] = "eel",
+			["animalt"] = "crab",
+			["animalu"] = "camel",
+			["animalv"] = "chicken",
+			["animalw"] = "tadpole",
+			["animaly"] = "giraffe",
+			["animalz"] = "frog",
+			["animalza"] = "octopus",
+			["animalzb"] = "sheep",
+			["animalzc"] = "duck",
+			["animalzd"] = "alligator",
+			["animalze"] = "turtle",
+			["animalzf"] = "scorpion",
+			["animalzg"] = "crocodile",
+			["animalzh"] = "snail",
+			["animalzi"] = "whale",
+			["animalzj"] = "kitten",
+			["vehicle"] = "bus",
+			["vehiclea"] = "minivan",
+			["vehicleb"] = "boat",
+			["vehiclec"] = "helicopter",
+			["vehicled"] = "tricycle",
+			["vehiclee"] = "train",
+			["sport"] = "football",
+			["social"] = "facebook"
+		}
+		for i = 1,10 do
+			local line = string.rep("-", 999)
+			warn(line)
+		end
+		for i, v in pairs(words) do
+			if not getgenv().omgifudontstoprnbro then
+				break
+			end
+			local args = {
+				[1] = v
+			}
+			game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("chat"):FireServer(unpack(args))
+			warn(v,"this is in order btw so if its guessed the word on this one that means its the correct word")
+			task.wait(0.4)
+		end
+	end)
+	MainSection:NewTextBox("put amount of letters here to guess", "put amount of letters here to guess", function(txt)
+		-- more words will be added on im pretty sure this is a lot tho and maybe get it right 75% of the time but soon i wanna make it a 100% or as close as i can so i will keep adding words eveyday until then :)
+		-- if there arent any words that are on here but is in the game let me know at discord: jasminethecoolest2001
+		local words = {
+			["object"] = "waterwheel",
+			["objecta"] = "pot",
+			["objectb"] = "laptop",
+			["objectc"] = "camera",
+			["objectd"] = "sword",
+			["objecte"] = "watch",
+			["objectf"] = "recycle",
+			["objectg"] = "ruler",
+			["objecth"] = "bell",
+			["objecti"] = "light",
+			["objectj"] = "axe",
+			["objectk"] = "cup",
+			["objectl"] = "fan",
+			["objectm"] = "rock",
+			["objectn"] = "vase",
+			["objecto"] = "hat",
+			["objectp"] = "megaphone",
+			["objectq"] = "unicycle",
+			["objectr"] = "buckle",
+			["objects"] = "arrow",
+			["objectt"] = "ring",
+			["objectu"] = "anvil",
+			["objectv"] = "paintbrush",
+			["objectw"] = "lamp",
+			["objecty"] = "bucket",
+			["objectz"] = "drone",
+			["objectza"] = "coin",
+			["objectzb"] = "table",
+			["objectzc"] = "crown",
+			["objectzd"] = "pickaxe",
+			["objectze"] = "lipstick",
+			["objectzf"] = "magnet",
+			["objectzg"] = "computer",
+			["objectzh"] = "chest",
+			["objectzi"] = "brush",
+			["objectzj"] = "compass",
+			["objectzk"] = "cap",
+			["objectzl"] = "wheel",
+			["objectzm"] = "ball",
+			["material"] = "gold",
+			["materiala"] = "diamond",
+			["fruit"] = "melon",
+			["fruita"] = "apple",
+			["fruitb"] = "corn",
+			["fruitc"] = "orange",
+			["fruitd"] = "strawberry",
+			["fruite"] = "tomato",
+			["fruitf"] = "banana",
+			["other"] = "mcdonalds",
+			["othera"] = "earth",
+			["otherb"] = "tree",
+			["otherc"] = "arm",
+			["otherd"] = "mouth",
+			["othere"] = "mountain",
+			["otherf"] = "circle",
+			["otherg"] = "pool",
+			["otherh"] = "hand",
+			["otheri"] = "chips",
+			["otherj"] = "juice",
+			["otherk"] = "space",
+			["otherl"] = "ocean",
+			["otherm"] = "brain",
+			["othern"] = "forest",
+			["othero"] = "sleeping",
+			["otherp"] = "house",
+			["otherq"] = "music",
+			["otherr"] = "moon",
+			["others"] = "boot",
+			["othert"] = "box",
+			["otheru"] = "pants",
+			["otherv"] = "alarm clock",
+			["otherw"] = "door knob",
+			["otherx"] = "elevator",
+			["othery"] = "rocket",
+			["otherz"] = "calendar",
+			["otherza"] = "leg",
+			["otherzb"] = "head",
+			["otherzc"] = "fire",
+			["otherzd"] = "toast",
+			["otherze"] = "farm",
+			["otherzf"] = "square",
+			["otherzg"] = "jail",
+			["otherzh"] = "wall",
+			["otherzi"] = "bomb",
+			["otherzj"] = "nail",
+			["otherzk"] = "snowball",
+			["otherzl"] = "ceiling",
+			["otherzm"] = "pacifier",
+			["otherzn"] = "pen",
+			["otherzo"] = "tire",
+			["otherzp"] = "seatbelt",
+			["otherzq"] = "heart",
+			["otherzr"] = "library",
+			["otherzs"] = "mail",
+			["otherzt"] = "snow",
+			["otherzu"] = "nose",
+			["otherzv"] = "iceberg",
+			["otherzw"] = "scissors",
+			["otherzy"] = "swing",
+			["otherzz"] = "cake",
+			["otherzza"] = "birthday",
+			["otherzzb"] = "bubbles",
+			["otherzzc"] = "ballon",
+			["otherzzd"] = "chain saw",
+			["otherzze"] = "gift",
+			["otherzzf"] = "fries",
+			["otherzzg"] = "egg",
+			["otherzzh"] = "bridge",
+			["otherzzi"] = "jetpack",
+			["otherzzj"] = "windmill",
+			["otherzzk"] = "sun",
+			["otherzzl"] = "running",
+			["otherzzm"] = "snowman",
+			["otherzzn"] = "television",
+			["otherzzo"] = "roller coaster",
+			["otherzzp"] = "beard",
+			["otherzzq"] = "chandelier",
+			["otherzzr"] = "socks",
+			["otherzzs"] = "chips",
+			["otherzzt"] = "money",
+			["otherzzu"] = "eyebrows",
+			["otherzzv"] = "bed",
+			["otherzzw"] = "rug",
+			["otherzzy"] = "water",
+			["otherzzz"] = "fence",
+			["otherzzza"] = "trampoline",
+			["otherzzzb"] = "cloud",
+			["otherzzzc"] = "sunburn",
+			["otherzzzd"] = "stork",
+			["otherzzze"] = "gum",
+			["otherzzzf"] = "bedroom",
+			["otherzzzg"] = "eiffel tower",
+			["otherzzzh"] = "lollipop",
+			["otherzzzi"] = "home",
+			["otherzzzj"] = "pencil",
+			["otherzzzk"] = "belt",
+			["otherzzzl"] = "tent",
+			["otherzzzm"] = "flag",
+			["otherzzzn"] = "kettle",
+			["otherzzzo"] = "rain",
+			["otherzzzp"] = "toothpaste",
+			["otherzzzq"] = "tower",
+			["otherzzzr"] = "ear",
+			["otherzzzs"] = "jump rope",
+			["otherzzzt"] = "sushi",
+			["otherzzzu"] = "school",
+			["noun"] = "ninja",
+			["nouna"] = "zombie",
+			["nounb"] = "pirate",
+			["nounc"] = "robot",
+			["nound"] = "doctor",
+			["noune"] = "baby",
+			["nounf"] = "teacher",
+			["emotions"] = "sad",
+			["emotionsa"] = "angry",
+			["animal"] = "starfish",
+			["animala"] = "bear",
+			["animalb"] = "fish",
+			["animalc"] = "jellyfish",
+			["animald"] = "mouse",
+			["animale"] = "tiger",
+			["animalf"] = "ant",
+			["animalg"] = "squid",
+			["animalh"] = "mermaid",
+			["animali"] = "lion",
+			["animalj"] = "pig",
+			["animalk"] = "elephant",
+			["animall"] = "dolphin",
+			["animalm"] = "shark",
+			["animaln"] = "dinosaur",
+			["animalo"] = "rabbit",
+			["animalp"] = "bee",
+			["animalq"] = "dog",
+			["animalr"] = "kangaroo",
+			["animals"] = "eel",
+			["animalt"] = "crab",
+			["animalu"] = "camel",
+			["animalv"] = "chicken",
+			["animalw"] = "tadpole",
+			["animaly"] = "giraffe",
+			["animalz"] = "frog",
+			["animalza"] = "octopus",
+			["animalzb"] = "sheep",
+			["animalzc"] = "duck",
+			["animalzd"] = "alligator",
+			["animalze"] = "turtle",
+			["animalzf"] = "scorpion",
+			["animalzg"] = "crocodile",
+			["animalzh"] = "snail",
+			["animalzi"] = "whale",
+			["animalzj"] = "kitten",
+			["vehicle"] = "bus",
+			["vehiclea"] = "minivan",
+			["vehicleb"] = "boat",
+			["vehiclec"] = "helicopter",
+			["vehicled"] = "tricycle",
+			["vehiclee"] = "train",
+			["sport"] = "football",
+			["social"] = "facebook"
+		}
+		for i = 1,10 do
+			local line = string.rep("-", 999)
+			warn(line)
+		end
+		for i, v in pairs(words) do
+			if string.len(v) == tonumber(txt) then
+				local args = {
+					[1] = v
+				}
+				game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("chat"):FireServer(unpack(args))
+				warn(v,"this is in order btw so if its guessed the word on this one that means its the correct word")
+				task.wait(0.4)
+			end
+		end
+	end)
+	MainSection:NewTextBox("put catergory of things to guess", "put catergory of things to guess if u dont know any type help", function(txt)
+		if txt == "help" then
+			Library.Notify("Here is all the current catergories.","object, material, fruit, other, noun, emotions, animal, vehicle, sport, and social.",25)
+		else
+			-- more words will be added on im pretty sure this is a lot tho and maybe get it right 75% of the time but soon i wanna make it a 100% or as close as i can so i will keep adding words eveyday until then :)
+			-- if there arent any words that are on here but is in the game let me know at discord: jasminethecoolest2001
+			local words = {
+				["object"] = "waterwheel",
+				["objecta"] = "pot",
+				["objectb"] = "laptop",
+				["objectc"] = "camera",
+				["objectd"] = "sword",
+				["objecte"] = "watch",
+				["objectf"] = "recycle",
+				["objectg"] = "ruler",
+				["objecth"] = "bell",
+				["objecti"] = "light",
+				["objectj"] = "axe",
+				["objectk"] = "cup",
+				["objectl"] = "fan",
+				["objectm"] = "rock",
+				["objectn"] = "vase",
+				["objecto"] = "hat",
+				["objectp"] = "megaphone",
+				["objectq"] = "unicycle",
+				["objectr"] = "buckle",
+				["objects"] = "arrow",
+				["objectt"] = "ring",
+				["objectu"] = "anvil",
+				["objectv"] = "paintbrush",
+				["objectw"] = "lamp",
+				["objecty"] = "bucket",
+				["objectz"] = "drone",
+				["objectza"] = "coin",
+				["objectzb"] = "table",
+				["objectzc"] = "crown",
+				["objectzd"] = "pickaxe",
+				["objectze"] = "lipstick",
+				["objectzf"] = "magnet",
+				["objectzg"] = "computer",
+				["objectzh"] = "chest",
+				["objectzi"] = "brush",
+				["objectzj"] = "compass",
+				["objectzk"] = "cap",
+				["objectzl"] = "wheel",
+				["objectzm"] = "ball",
+				["material"] = "gold",
+				["materiala"] = "diamond",
+				["fruit"] = "melon",
+				["fruita"] = "apple",
+				["fruitb"] = "corn",
+				["fruitc"] = "orange",
+				["fruitd"] = "strawberry",
+				["fruite"] = "tomato",
+				["fruitf"] = "banana",
+				["other"] = "mcdonalds",
+				["othera"] = "earth",
+				["otherb"] = "tree",
+				["otherc"] = "arm",
+				["otherd"] = "mouth",
+				["othere"] = "mountain",
+				["otherf"] = "circle",
+				["otherg"] = "pool",
+				["otherh"] = "hand",
+				["otheri"] = "chips",
+				["otherj"] = "juice",
+				["otherk"] = "space",
+				["otherl"] = "ocean",
+				["otherm"] = "brain",
+				["othern"] = "forest",
+				["othero"] = "sleeping",
+				["otherp"] = "house",
+				["otherq"] = "music",
+				["otherr"] = "moon",
+				["others"] = "boot",
+				["othert"] = "box",
+				["otheru"] = "pants",
+				["otherv"] = "alarm clock",
+				["otherw"] = "door knob",
+				["otherx"] = "elevator",
+				["othery"] = "rocket",
+				["otherz"] = "calendar",
+				["otherza"] = "leg",
+				["otherzb"] = "head",
+				["otherzc"] = "fire",
+				["otherzd"] = "toast",
+				["otherze"] = "farm",
+				["otherzf"] = "square",
+				["otherzg"] = "jail",
+				["otherzh"] = "wall",
+				["otherzi"] = "bomb",
+				["otherzj"] = "nail",
+				["otherzk"] = "snowball",
+				["otherzl"] = "ceiling",
+				["otherzm"] = "pacifier",
+				["otherzn"] = "pen",
+				["otherzo"] = "tire",
+				["otherzp"] = "seatbelt",
+				["otherzq"] = "heart",
+				["otherzr"] = "library",
+				["otherzs"] = "mail",
+				["otherzt"] = "snow",
+				["otherzu"] = "nose",
+				["otherzv"] = "iceberg",
+				["otherzw"] = "scissors",
+				["otherzy"] = "swing",
+				["otherzz"] = "cake",
+				["otherzza"] = "birthday",
+				["otherzzb"] = "bubbles",
+				["otherzzc"] = "ballon",
+				["otherzzd"] = "chain saw",
+				["otherzze"] = "gift",
+				["otherzzf"] = "fries",
+				["otherzzg"] = "egg",
+				["otherzzh"] = "bridge",
+				["otherzzi"] = "jetpack",
+				["otherzzj"] = "windmill",
+				["otherzzk"] = "sun",
+				["otherzzl"] = "running",
+				["otherzzm"] = "snowman",
+				["otherzzn"] = "television",
+				["otherzzo"] = "roller coaster",
+				["otherzzp"] = "beard",
+				["otherzzq"] = "chandelier",
+				["otherzzr"] = "socks",
+				["otherzzs"] = "chips",
+				["otherzzt"] = "money",
+				["otherzzu"] = "eyebrows",
+				["otherzzv"] = "bed",
+				["otherzzw"] = "rug",
+				["otherzzy"] = "water",
+				["otherzzz"] = "fence",
+				["otherzzza"] = "trampoline",
+				["otherzzzb"] = "cloud",
+				["otherzzzc"] = "sunburn",
+				["otherzzzd"] = "stork",
+				["otherzzze"] = "gum",
+				["otherzzzf"] = "bedroom",
+				["otherzzzg"] = "eiffel tower",
+				["otherzzzh"] = "lollipop",
+				["otherzzzi"] = "home",
+				["otherzzzj"] = "pencil",
+				["otherzzzk"] = "belt",
+				["otherzzzl"] = "tent",
+				["otherzzzm"] = "flag",
+				["otherzzzn"] = "kettle",
+				["otherzzzo"] = "rain",
+				["otherzzzp"] = "toothpaste",
+				["otherzzzq"] = "tower",
+				["otherzzzr"] = "ear",
+				["otherzzzs"] = "jump rope",
+				["otherzzzt"] = "sushi",
+				["otherzzzu"] = "school",
+				["noun"] = "ninja",
+				["nouna"] = "zombie",
+				["nounb"] = "pirate",
+				["nounc"] = "robot",
+				["nound"] = "doctor",
+				["noune"] = "baby",
+				["nounf"] = "teacher",
+				["emotions"] = "sad",
+				["emotionsa"] = "angry",
+				["animal"] = "starfish",
+				["animala"] = "bear",
+				["animalb"] = "fish",
+				["animalc"] = "jellyfish",
+				["animald"] = "mouse",
+				["animale"] = "tiger",
+				["animalf"] = "ant",
+				["animalg"] = "squid",
+				["animalh"] = "mermaid",
+				["animali"] = "lion",
+				["animalj"] = "pig",
+				["animalk"] = "elephant",
+				["animall"] = "dolphin",
+				["animalm"] = "shark",
+				["animaln"] = "dinosaur",
+				["animalo"] = "rabbit",
+				["animalp"] = "bee",
+				["animalq"] = "dog",
+				["animalr"] = "kangaroo",
+				["animals"] = "eel",
+				["animalt"] = "crab",
+				["animalu"] = "camel",
+				["animalv"] = "chicken",
+				["animalw"] = "tadpole",
+				["animaly"] = "giraffe",
+				["animalz"] = "frog",
+				["animalza"] = "octopus",
+				["animalzb"] = "sheep",
+				["animalzc"] = "duck",
+				["animalzd"] = "alligator",
+				["animalze"] = "turtle",
+				["animalzf"] = "scorpion",
+				["animalzg"] = "crocodile",
+				["animalzh"] = "snail",
+				["animalzi"] = "whale",
+				["animalzj"] = "kitten",
+				["vehicle"] = "bus",
+				["vehiclea"] = "minivan",
+				["vehicleb"] = "boat",
+				["vehiclec"] = "helicopter",
+				["vehicled"] = "tricycle",
+				["vehiclee"] = "train",
+				["sport"] = "football",
+				["social"] = "facebook"
+			}
+			for i = 1,10 do
+				local line = string.rep("-", 999)
+				warn(line)
+			end
+			for i, v in pairs(words) do
+				if string.match(i,txt) then
+					local args = {
+						[1] = v
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("chat"):FireServer(unpack(args))
+					warn(v,"this is in order btw so if its guessed the word on this one that means its the correct word")
+					task.wait(0.4)
+				end
+			end
+		end
+	end)
+	MainSection:NewTextBox("put exactly what u see at the top for like __x__ or wtv", "put exactly what u see at the top for like __x__ or wtv to guess more accurate", function(txt)
+		-- more words will be added on im pretty sure this is a lot tho and maybe get it right 75% of the time but soon i wanna make it a 100% or as close as i can so i will keep adding words eveyday until then :)
+		-- if there arent any words that are on here but is in the game let me know at discord: jasminethecoolest2001
+		local words = {
+			["object"] = "waterwheel",
+			["objecta"] = "pot",
+			["objectb"] = "laptop",
+			["objectc"] = "camera",
+			["objectd"] = "sword",
+			["objecte"] = "watch",
+			["objectf"] = "recycle",
+			["objectg"] = "ruler",
+			["objecth"] = "bell",
+			["objecti"] = "light",
+			["objectj"] = "axe",
+			["objectk"] = "cup",
+			["objectl"] = "fan",
+			["objectm"] = "rock",
+			["objectn"] = "vase",
+			["objecto"] = "hat",
+			["objectp"] = "megaphone",
+			["objectq"] = "unicycle",
+			["objectr"] = "buckle",
+			["objects"] = "arrow",
+			["objectt"] = "ring",
+			["objectu"] = "anvil",
+			["objectv"] = "paintbrush",
+			["objectw"] = "lamp",
+			["objecty"] = "bucket",
+			["objectz"] = "drone",
+			["objectza"] = "coin",
+			["objectzb"] = "table",
+			["objectzc"] = "crown",
+			["objectzd"] = "pickaxe",
+			["objectze"] = "lipstick",
+			["objectzf"] = "magnet",
+			["objectzg"] = "computer",
+			["objectzh"] = "chest",
+			["objectzi"] = "brush",
+			["objectzj"] = "compass",
+			["objectzk"] = "cap",
+			["objectzl"] = "wheel",
+			["objectzm"] = "ball",
+			["material"] = "gold",
+			["materiala"] = "diamond",
+			["fruit"] = "melon",
+			["fruita"] = "apple",
+			["fruitb"] = "corn",
+			["fruitc"] = "orange",
+			["fruitd"] = "strawberry",
+			["fruite"] = "tomato",
+			["fruitf"] = "banana",
+			["other"] = "mcdonalds",
+			["othera"] = "earth",
+			["otherb"] = "tree",
+			["otherc"] = "arm",
+			["otherd"] = "mouth",
+			["othere"] = "mountain",
+			["otherf"] = "circle",
+			["otherg"] = "pool",
+			["otherh"] = "hand",
+			["otheri"] = "chips",
+			["otherj"] = "juice",
+			["otherk"] = "space",
+			["otherl"] = "ocean",
+			["otherm"] = "brain",
+			["othern"] = "forest",
+			["othero"] = "sleeping",
+			["otherp"] = "house",
+			["otherq"] = "music",
+			["otherr"] = "moon",
+			["others"] = "boot",
+			["othert"] = "box",
+			["otheru"] = "pants",
+			["otherv"] = "alarm clock",
+			["otherw"] = "door knob",
+			["otherx"] = "elevator",
+			["othery"] = "rocket",
+			["otherz"] = "calendar",
+			["otherza"] = "leg",
+			["otherzb"] = "head",
+			["otherzc"] = "fire",
+			["otherzd"] = "toast",
+			["otherze"] = "farm",
+			["otherzf"] = "square",
+			["otherzg"] = "jail",
+			["otherzh"] = "wall",
+			["otherzi"] = "bomb",
+			["otherzj"] = "nail",
+			["otherzk"] = "snowball",
+			["otherzl"] = "ceiling",
+			["otherzm"] = "pacifier",
+			["otherzn"] = "pen",
+			["otherzo"] = "tire",
+			["otherzp"] = "seatbelt",
+			["otherzq"] = "heart",
+			["otherzr"] = "library",
+			["otherzs"] = "mail",
+			["otherzt"] = "snow",
+			["otherzu"] = "nose",
+			["otherzv"] = "iceberg",
+			["otherzw"] = "scissors",
+			["otherzy"] = "swing",
+			["otherzz"] = "cake",
+			["otherzza"] = "birthday",
+			["otherzzb"] = "bubbles",
+			["otherzzc"] = "ballon",
+			["otherzzd"] = "chain saw",
+			["otherzze"] = "gift",
+			["otherzzf"] = "fries",
+			["otherzzg"] = "egg",
+			["otherzzh"] = "bridge",
+			["otherzzi"] = "jetpack",
+			["otherzzj"] = "windmill",
+			["otherzzk"] = "sun",
+			["otherzzl"] = "running",
+			["otherzzm"] = "snowman",
+			["otherzzn"] = "television",
+			["otherzzo"] = "roller coaster",
+			["otherzzp"] = "beard",
+			["otherzzq"] = "chandelier",
+			["otherzzr"] = "socks",
+			["otherzzs"] = "chips",
+			["otherzzt"] = "money",
+			["otherzzu"] = "eyebrows",
+			["otherzzv"] = "bed",
+			["otherzzw"] = "rug",
+			["otherzzy"] = "water",
+			["otherzzz"] = "fence",
+			["otherzzza"] = "trampoline",
+			["otherzzzb"] = "cloud",
+			["otherzzzc"] = "sunburn",
+			["otherzzzd"] = "stork",
+			["otherzzze"] = "gum",
+			["otherzzzf"] = "bedroom",
+			["otherzzzg"] = "eiffel tower",
+			["otherzzzh"] = "lollipop",
+			["otherzzzi"] = "home",
+			["otherzzzj"] = "pencil",
+			["otherzzzk"] = "belt",
+			["otherzzzl"] = "tent",
+			["otherzzzm"] = "flag",
+			["otherzzzn"] = "kettle",
+			["otherzzzo"] = "rain",
+			["otherzzzp"] = "toothpaste",
+			["otherzzzq"] = "tower",
+			["otherzzzr"] = "ear",
+			["otherzzzs"] = "jump rope",
+			["otherzzzt"] = "sushi",
+			["otherzzzu"] = "school",
+			["noun"] = "ninja",
+			["nouna"] = "zombie",
+			["nounb"] = "pirate",
+			["nounc"] = "robot",
+			["nound"] = "doctor",
+			["noune"] = "baby",
+			["nounf"] = "teacher",
+			["emotions"] = "sad",
+			["emotionsa"] = "angry",
+			["animal"] = "starfish",
+			["animala"] = "bear",
+			["animalb"] = "fish",
+			["animalc"] = "jellyfish",
+			["animald"] = "mouse",
+			["animale"] = "tiger",
+			["animalf"] = "ant",
+			["animalg"] = "squid",
+			["animalh"] = "mermaid",
+			["animali"] = "lion",
+			["animalj"] = "pig",
+			["animalk"] = "elephant",
+			["animall"] = "dolphin",
+			["animalm"] = "shark",
+			["animaln"] = "dinosaur",
+			["animalo"] = "rabbit",
+			["animalp"] = "bee",
+			["animalq"] = "dog",
+			["animalr"] = "kangaroo",
+			["animals"] = "eel",
+			["animalt"] = "crab",
+			["animalu"] = "camel",
+			["animalv"] = "chicken",
+			["animalw"] = "tadpole",
+			["animaly"] = "giraffe",
+			["animalz"] = "frog",
+			["animalza"] = "octopus",
+			["animalzb"] = "sheep",
+			["animalzc"] = "duck",
+			["animalzd"] = "alligator",
+			["animalze"] = "turtle",
+			["animalzf"] = "scorpion",
+			["animalzg"] = "crocodile",
+			["animalzh"] = "snail",
+			["animalzi"] = "whale",
+			["animalzj"] = "kitten",
+			["vehicle"] = "bus",
+			["vehiclea"] = "minivan",
+			["vehicleb"] = "boat",
+			["vehiclec"] = "helicopter",
+			["vehicled"] = "tricycle",
+			["vehiclee"] = "train",
+			["sport"] = "football",
+			["social"] = "facebook"
+		}
+		function matchPattern(pattern, word)
+			local modifiedPattern = pattern:gsub("_", ".")
+			modifiedPattern = "^" .. modifiedPattern .. "$"
+			return word:match(modifiedPattern) ~= nil
+		end
+		for i = 1,10 do
+			local line = string.rep("-", 999)
+			warn(line)
+		end
+		for i, v in pairs(words) do
+			if matchPattern(txt,v) then
+				local args = {
+					[1] = v
+				}
+				game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("chat"):FireServer(unpack(args))
+				warn(v,"this is in order btw so if its guessed the word on this one that means its the correct word")
+				task.wait(0.4)
+			end
+		end
+	end)
+	MainSection:NewTextBox("say something while drawing", "u can say stuff while being the drawer", function(txt)
+		local args = {
+			[1] = txt
+		}
+
+		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("chat"):FireServer(unpack(args))
+	end)
+	MainSection:NewToggle("chat spam", "spams chat with -", function(state)
+		getgenv().whywontustop = state
+		task.spawn(function()
+			while true do
+				if not getgenv().whywontustop then
+					break
+				end
+				local line = string.rep("-", 299)
+				local args = {
+					[1] = line
+				}
+			
+				game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("chat"):FireServer(unpack(args))
+				task.wait(0.4)
+			end
+		end)
+	end)
+	MainSection:NewToggle("block drawer cam", "blocks the person drawing camera", function(state)
+		local blocking = state
+		stoppls = false
+		if state then
+			oldpos = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+			task.wait()
+			game:GetService("Workspace").Gravity = 0
+			repeat
+				if stoppls then
+					break
+				end
+				game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(0,26,-66.5)
+				task.wait()
+			until blocking == false
+		else
+			stoppls = true
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldpos
+			game:GetService("Workspace").Gravity = 196.2
+		end
+	end)
+	MainSection:NewToggle("block canvas", "blocks (barely) the canvas just looptps random pos on canvas", function(state)
+		local blocking2 = state
+		stoppls2 = false
+		if state then
+			oldposa = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame
+			task.wait()
+			game:GetService("Workspace").Gravity = 0
+			repeat
+				if stoppls2 then
+					break
+				end
+				game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(math.random(-52,52),math.random(-1,62),-142)
+				task.wait()
+			until blocking2 == false
+		else
+			stoppls2 = true
+			game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = oldposa
+			game:GetService("Workspace").Gravity = 196.2
+		end
+	end)
+
+	local Discord = Window:NewTab("Discords",16795709379)
+	local DiscordSection = Discord:NewSection("Discords")
+	DiscordSection:NewButton("Discord Invite", "copys discord link", function()
+		if httprequest and not IsOnMobile then
+			httprequest({
+				Url = 'http://127.0.0.1:6463/rpc?v=1',
+				Method = 'POST',
+				Headers = {
+					['Content-Type'] = 'application/json',
+					Origin = 'https://discord.com'
+				},
+				Body = HttpService:JSONEncode({
+					cmd = 'INVITE_BROWSER',
+					nonce = HttpService:GenerateGUID(false),
+					args = {
+						code = 'xPDF3DkKhk'
+					}
+				})
+			})
+			Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
+		elseif everyClipboard then
+			everyClipboard("https://discord.gg/xPDF3DkKhk")
+			Library.Notify("Copied to Clipboard", "", 5)
+		else
+			Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xPDF3DkKhk", 5)
+		end
+	end)
+	DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
+		everyClipboard(string2)
+	end)
+	local Admins = Window:NewTab("Admins", 10016551771)
+	local AdminsSection = Admins:NewSection("Admins")
+	AdminsSection:NewButton("Infinite Yield FE", "Admin", function()
+		loadstring(game:HttpGet(_G.infydtype))()
+	end)
+	AdminsSection:NewButton("Infinite Store", "Archived", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Infinite-Store/Infinite-Store/main/main.lua"))()
+	end)
+	AdminsSection:NewButton("Nameless Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/NamelessAdmin-NO-BYFRON-GUI/main/Source'))()
+	end)
+	AdminsSection:NewButton("fates admin", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+	end)
+	AdminsSection:NewButton("Cmd", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/lxte/cmd/main/main.lua"))()
+	end)
+	AdminsSection:NewButton("Cmd (TEST)", "Admin tests", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/lxte/cmd/main/testing-main.lua"))()
+	end)
+	AdminsSection:NewButton("Shattervast Admin", "Admin", function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/%5BFE%5D%20Shattervast.lua'))()
+	end)
+	AdminsSection:NewButton("Proton Free Admin", "Admin", function()
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Proton%20Free'))()
+	end)
+	AdminsSection:NewButton("Proton 2 free Admin", "Admin", function()
+																											 -- DEFAULT CMD BAR PREFIX IS ;
+																											 -- DEFAULT CHAT PREFIX IS /
+		_G.UI_Id = "default" --set this to "default" for the default ui
+		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
+	end)
+	AdminsSection:NewButton("Reviz Admin V2", "Admin", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Reviz%20AdminV2"))()
+	end)
+	local Hubs = Window:NewTab("Hubs", 7360649366)
+	local HubsSection = Hubs:NewSection("Hubs")
+	if IsOnMobile or VREnabled then
+		HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+		end)
+	end
+	HubsSection:NewButton("FE Trolling GUI", "FE Scripts and more.", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau'), true))()
+	end)
+	HubsSection:NewButton("Sirius", "cool asl", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
+	end)
+	HubsSection:NewButton("Orca", "cool asff", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
+	end)
+	HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
+	end)
+	HubsSection:NewButton("Psyhub", "idk", function()
+		loadstring(game:GetObjects("rbxassetid://3014051754")[1].Source)()
+	end)
+	HubsSection:NewButton("Ezhub", "130+ games", function()--
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()--
+	end)
+	HubsSection:NewButton("CocoHub", "idk", function()
+		loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
+	end)
+	HubsSection:NewButton("MonkeHub", "idk", function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeHub/main/Loader.lua"))()
+	end)
+	local Player = Window:NewTab("Player", 2795572800)
+	local PlayerSection = Player:NewSection("Player")
+	PlayerSection:NewSlider("WalkSpeed", "Changes how fast you walk", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
+	end)
+	PlayerSection:NewSlider("Jumppower", "Changes how high you jump", 500, 1, function(v)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
+	end)
+	PlayerSection:NewSlider("Gravity", "Changes gravity", 500, 1, function(v)
+		game:GetService("Workspace").Gravity = v
+	end)
+	PlayerSection:NewSlider("FOV", "Changes Field Of View", 120, 1, function(v)
+		game:GetService("Workspace"):WaitForChild("Camera").FieldOfView = v
+	end)
+	PlayerSection:NewButton("Unlock Third Person", "unlocks on most games", function()
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = 99999
+		game:GetService("Players").LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	end)
+	PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99999, 1, function(v)
+		game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
+	end)
+	PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		settings().Rendering.QualityLevel = 1
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
+			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					RunService.Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
+		end)
+	end)
+	PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
+		if state then
+			ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
+				game:FindService("VirtualUser"):Button2Down(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+				task.wait(1)
+				game:FindService("VirtualUser"):Button2Up(Vector2.new(0,0),game:GetService("Workspace").CurrentCamera.CFrame)
+			end)
+			Library.Notify("WARNING","Successfully Enabled Anti-AFK!",5)
+		else
+			if ANTIAFK then
+				ANTIAFK:Disconnect()
+				wait();
+				Library.Notify("WARNING","Successfully Disabled Anti-AFK!",5)
+			end
+		end
+	end)
+	PlayerSection:NewToggle("Loop Full Bright", "makes game bright so if its dark u can actually see", function(state)
+		local aLighting = game:GetService("Lighting")
+		local oldbrit = aLighting.Brightness
+		local oldclocktime = aLighting.ClockTime
+		local oldfogend = aLighting.FogEnd
+		local oldglobshads = aLighting.GlobalShadows
+		local oldoutdooramb = aLighting.OutdoorAmbient
+		local Lighting = cloneref(game:GetService("Lighting"))
+		if not state then
+			brightLoop:Disconnect()
+			Lighting.Brightness = oldbrit
+			Lighting.ClockTime = oldclocktime
+			Lighting.FogEnd = oldfogend
+			Lighting.GlobalShadows = oldglobshads
+			Lighting.OutdoorAmbient = oldoutdooramb
+		end
+		local function brightFunc()
+			Lighting.Brightness = 2
+			Lighting.ClockTime = 14
+			Lighting.FogEnd = 100000
+			Lighting.GlobalShadows = false
+			Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	
+		brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+	end)
+	if IsOnMobile or VREnabled then
+		PlayerSection:NewButton("enable Shiftlock", "unlocks on most games", function()
+			Library.Notify("Shift Lock Enabled", "Gui should pop up on your right", 5)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/mobileshiftlock.txt"))()
+		end)
+	else
+		PlayerSection:NewToggle("enable/disable shiftlock", "unlocks on most games", function(value)
+			game:GetService("Players").LocalPlayer.DevEnableMouseLock = value
+			if value then
+				Library.Notify("Shift Lock Enabled", "Just press shift or enable it in roblox settings", 5)
+			else
+				Library.Notify("Shift Lock Disabled", "", 5)
+			end
+		end)
+	end
+
+	local Settingss = Window:NewTab("Settings", 11385220704)
+	local SettingssSection = Settingss:NewSection("Settings")
+	SettingssSection:NewDropdown("UI Toggle Bind", "Changes Toggle Bind for Sky Hub Default is Right Control ONLY ON PC", {
+		"Right Control",
+		"Left Control",
+		"Left Alt",
+		"Right Alt",
+		"Insert",
+		"End",
+		"Del/Delete",
+		"Left Shift",
+		"Right Shift",
+		"F1",
+		"Q",
+		"E",
+		"R",
+		"T",
+		"Y",
+		"U",
+		"P",
+		"Z",
+		"X",
+		"M",
+		"V",
+		"N",
+		"."
+	}, function(currentoption)
+		if currentoption == "Right Control" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightControl"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "Left Control" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftControl"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "Left Alt" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftAlt"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "Right Alt" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightAlt"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "Insert" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Insert"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "End" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.End"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "Del/Delete" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Delete"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "Left Shift" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.LeftShift"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "Right Shift" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.RightShift"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "F1" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.F1"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "Q" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Q"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "E" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.E"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "R" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.R"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "T" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.T"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "Y" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Y"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "U" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.U"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "P" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.P"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "Z" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Z"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "X" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.X"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "M" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.M"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "V" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.V"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "N" then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.N"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		elseif currentoption == "." then
+			getgenv().SkyhubKeybind = "Enum.KeyCode.Period"
+			ui_bind = getgenv().SkyhubKeybind
+			task.wait()
+			if writefile then
+				updatesaves()
+				task.wait()
+				loadsettings()
+			else
+				Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+			end
+			if not IsOnMobile then
+				Library.Notify("New Keybind: " .. tostring(getgenv().SkyhubKeybind),"Your new keybind to toggle the gui is: " ..tostring(getgenv().SkyhubKeybind), 5)
+			end
+		end
+	end)
+	SettingssSection:NewSlider("Blur/Opaque Intensitiy", "Changes blurryness", 1, 0, function(v)
+		getgenv().BlurIntes = v
+		opaque = getgenv().BlurIntes
+		task.wait()
+		if writefile then
+			updatesaves()
+			task.wait()
+			loadsettings()
+		else
+			Library.Notify("DOG SHIT EXECUTOR", "Doesnt have file functions lol", 5)
+		end
+	end)
+	SettingssSection:NewButton("Save Game", "Saves game MUST HAVE saveinstance()", function()
+		local SSSSSS = ""
+		if identifyexecutor then
+			SSSSSS = select(1, identifyexecutor())
+		end
+		if SSSSSS == "Krampus" then
+			saveplace({
+				FileName = "SkyHubSavedGame",
+				CopyToClipboard = true
+			})
+			return
+		end
+		if saveplace then
+			saveplace({
+				FileName = "SkyHubSavedGame"
+			})
+		end
+		if saveinstance then
+			saveinstance()
+		else
+			Library.Notify("Your executor doesnt have a saveinstance() function try Save Game 2", "", 10)
+		end
+	end)
+	SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()", function()
+		getgenv().saveinstance = nil
+		loadstring(game:HttpGet("https://github.com/MuhXd/Roblox-mobile-script/blob/main/Arecus-X-Neo/Saveinstance.lua?raw=true"))();
+	end)
+	local Games = Window:NewTab("Games", 12689980465)
+	local GamesSection = Games:NewSection("Games")
+	GamesSection:NewButton("Da Hood", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(2788229376,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Arsenal", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(286090429,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Tower of Hell", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(1962086868,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("KAT", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(621129760,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Fencing", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(12109643,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Work at a Pizza Place", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(192800,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("VR Hands", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(4832438542,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Adopt Me!", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(920587237,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Jailbreak", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(606849621,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Prison Life", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(155615604,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Build A Boat For Treasure", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(537413528,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Gorilla Tag Professional", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(8690998110,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Murder Mystery 2", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(142823291,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Blox Fruits", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(2753915549,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Counter Blox", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(301549746,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Mic Up", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(6884319169,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Neighbors", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(12699642568,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Natural Disaster Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(189707,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Ro-Ghoul", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(914010731,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Blade Ball", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(13772394625,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Pet Simulator X", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(13772394625,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Pet Simulator 99", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(8737899170,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Legends Of Speed", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(3101667897,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Brookhaven RP", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(4924922222,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Bedwars", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(6872265039,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("CHAOS", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(6441847031,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Ninja Legends", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(3956818381,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Bayside High School", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(12640491155,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("BIG Paintball!", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(3527629287,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("BIG Paintball 2!", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(9865958871,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Muscle Legends", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(3623096087,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Road to Grambys", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(5796917097,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Bloxburg", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(185655149,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Cursed Sea", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14426444782,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Doors", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(6516141723,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Hide and Seek Extreme", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(205224386,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Life in Paradise", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(1662219031,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Adopt and Raise a Baby", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(383793228,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Zombie Attack", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(1240123653,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Super Simon Says", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(61846006,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Life Sentence", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(13083893317,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Rainbow Friends", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(7991339063,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(5985232436,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(14888386963,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Red Light, Green Light", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(7540891731,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("3008", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(2768379856,game:GetService("Players").LocalPlayer)
+	end)
+	GamesSection:NewButton("Guess the drawing!", "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+        game:GetService("TeleportService"):Teleport(3281073759,game:GetService("Players").LocalPlayer)
+	end)
