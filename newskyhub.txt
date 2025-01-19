@@ -501,12 +501,14 @@ else
 	end
 	for i,v in pairs(game:GetService("ReplicatedStorage"):GetDescendants()) do
 		if v:IsA("RemoteEvent") and (v.Name == "DestroySegway" or v.Name == "DeleteCar" or v.Name == "HandlessSegway" or v.Name == "Building Tools" or v.Name == "SetNetworkOwnership" or v.Name == "ChangeParent" or v.Name == "despawn" or v.Name == "AC6_FE_Sounds") then
-			Library.Notify("OMG VULN/AC6 sound FOUND","Vuln name: '" .. v.Name .. "' if you want you can join the discord server and share it in #share-vuln-ac6-games and provides an explaination",30)
+			Library.Notify("OMG VULN/AC6 sound FOUND","Vuln name: '" .. v.Name .. "' if you want you can join the discord server and share it in #share-vuln-ac6-games by pasting the text, and provides an explaination",30)
+			everyClipboard("https://www.roblox.com/games/"..game.PlaceId, v.Name)
 		end
 	end
 	for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
 		if v:IsA("RemoteEvent") and (v.Name == "DestroySegway" or v.Name == "DeleteCar" or v.Name == "HandlessSegway" or v.Name == "Building Tools" or v.Name == "SetNetworkOwnership" or v.Name == "ChangeParent" or v.Name == "despawn" or v.Name == "AC6_FE_Sounds") then
-			Library.Notify("OMG VULN/AC6 sound FOUND","Vuln name: '" .. v.Name .. "' if you want you can join the discord server and share it in #share-vuln-ac6-games and provides an explaination",30)
+			Library.Notify("OMG VULN/AC6 sound FOUND","Vuln name: '" .. v.Name .. "' if you want you can join the discord server and share it in #share-vuln-ac6-games by pasting the text, and provides an explaination",30)
+			everyClipboard("https://www.roblox.com/games/"..game.PlaceId, v.Name)
 		end
 	end
 	local Window = Library.CreateLib("Sky Hub", OptTheme)
