@@ -1,3 +1,16 @@
+if game:GetService("CoreGui"):FindFirstChild("incognito") then
+    oldstring = loadstring
+    getfenv().loadstring = function(code)
+        local source = code
+        source = source:gsub("(%a+)%s*([%+%-%*/])=%s*", "%1 = %1 %2 ")
+        return oldstring(source)
+    end
+end
+if not getgenv then
+    getfenv().getgenv = function(layer)
+        return getfenv(layer)
+    end
+end
 local nosaves = false
 local saved_settings
 local settings = {
@@ -8,6 +21,130 @@ queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus 
 httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 HttpService = game:GetService("HttpService")
 everyClipboard = setclipboard or toclipboard or set_clipboard or setrbxclipboard or (Clipboard and Clipboard.set)
+if not everyClipboard then
+	-- creds to vxsty
+getgenv().setclipboard = function(data)
+    local vim = game:GetService('VirtualInputManager');
+    local old = game:GetService("UserInputService"):GetFocusedTextBox()
+    local copy = tostring(data)
+    local gui = Instance.new("ScreenGui", getgenv().gethui())
+    local a = Instance.new('TextBox', gui)
+    a.PlaceholderText = ''
+    a.Text = copy
+    a.ClearTextOnFocus = false
+    a.Size = UDim2.new(.1, 0, .15, 0)
+    a.Position = UDim2.new(10, 0, 10, 0)
+    a:CaptureFocus()
+    a = Enum.KeyCode
+    local Keys = {
+     a.RightControl, a.A
+    }
+    local Keys2 = {
+     a.RightControl, a.C, a.V
+    }
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    gui:Destroy()
+    if old then old:CaptureFocus() end
+end
+-- creds to vxsty
+getgenv().setrbxclipboard = function(data)
+    local vim = game:GetService('VirtualInputManager');
+    local old = game:GetService("UserInputService"):GetFocusedTextBox()
+    local copy = tostring(data)
+    local gui = Instance.new("ScreenGui", getgenv().gethui())
+    local a = Instance.new('TextBox', gui)
+    a.PlaceholderText = ''
+    a.Text = copy
+    a.ClearTextOnFocus = false
+    a.Size = UDim2.new(.1, 0, .15, 0)
+    a.Position = UDim2.new(10, 0, 10, 0)
+    a:CaptureFocus()
+    a = Enum.KeyCode
+    local Keys = {
+     a.RightControl, a.A
+    }
+    local Keys2 = {
+     a.RightControl, a.C, a.V
+    }
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    gui:Destroy()
+    if old then old:CaptureFocus() end
+end
+-- creds to vxsty
+getgenv().toclipboard = function(data)
+    local vim = game:GetService('VirtualInputManager');
+    local old = game:GetService("UserInputService"):GetFocusedTextBox()
+    local copy = tostring(data)
+    local gui = Instance.new("ScreenGui", getgenv().gethui())
+    local a = Instance.new('TextBox', gui)
+    a.PlaceholderText = ''
+    a.Text = copy
+    a.ClearTextOnFocus = false
+    a.Size = UDim2.new(.1, 0, .15, 0)
+    a.Position = UDim2.new(10, 0, 10, 0)
+    a:CaptureFocus()
+    a = Enum.KeyCode
+    local Keys = {
+     a.RightControl, a.A
+    }
+    local Keys2 = {
+     a.RightControl, a.C, a.V
+    }
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    gui:Destroy()
+    if old then old:CaptureFocus() end
+end
+end
+if not cloneref then
+	getgenv().cloneref = function(a)
+		local s, _ = pcall(function() return a:Clone() end) return s and _ or a
+	end
+end
 HttpService = cloneref(game:GetService("HttpService")) or game:GetService("HttpService")
 defaults = HttpService:JSONEncode(settings)
 local OptTheme = "Midnight"
@@ -322,13 +459,13 @@ PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99
 end)
 PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
 	local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+	Lighting = game:GetService("Lighting")
 	Terrain.WaterWaveSize = 0
 	Terrain.WaterWaveSpeed = 0
 	Terrain.WaterReflectance = 0
 	Terrain.WaterTransparency = 0
 	Lighting.GlobalShadows = false
 	Lighting.FogEnd = 9e9
-	settings().Rendering.QualityLevel = 1
 	for i, v in pairs(game:GetDescendants()) do
 		if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
 			v.Material = "Plastic"
@@ -350,13 +487,13 @@ PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boos
 	game:GetService("Workspace").DescendantAdded:Connect(function(child)
 		task.spawn(function()
 			if child:IsA('ForceField') then
-				RunService.Heartbeat:Wait()
+				game:GetService("RunService").Heartbeat:Wait()
 				child:Destroy()
 			elseif child:IsA('Sparkles') then
-				RunService.Heartbeat:Wait()
+				game:GetService("RunService").Heartbeat:Wait()
 				child:Destroy()
 			elseif child:IsA('Smoke') or child:IsA('Fire') then
-				RunService.Heartbeat:Wait()
+				game:GetService("RunService").Heartbeat:Wait()
 				child:Destroy()
 			end
 		end)
@@ -810,191 +947,12 @@ SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()",
 end)
 local Games = Window:NewTab("Games", 12689980465)
 local GamesSection = Games:NewSection("Games")
-GamesSection:NewButton("Da Hood", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(2788229376, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Arsenal", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(286090429, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Tower of Hell", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(1962086868, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("KAT", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(621129760, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Fencing", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(12109643, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Work at a Pizza Place", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(192800, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("VR Hands", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(4832438542, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Adopt Me!", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(920587237, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Jailbreak", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(606849621, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Prison Life", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(155615604, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Build A Boat For Treasure", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(537413528, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Gorilla Tag Professional", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(8690998110, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Murder Mystery 2", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(142823291, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Blox Fruits", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(2753915549, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Counter Blox", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(301549746, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Mic Up", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(6884319169, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Neighbors", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(12699642568, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Natural Disaster Survival", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(189707, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Ro-Ghoul", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(914010731, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Blade Ball", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(13772394625, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Pet Simulator X", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(13772394625, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Pet Simulator 99", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(8737899170, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Legends Of Speed", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3101667897, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Brookhaven RP", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(4924922222, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Bedwars", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(6872265039, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("CHAOS", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(6441847031, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Ninja Legends", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3956818381, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Bayside High School", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(12640491155, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("BIG Paintball!", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3527629287, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("BIG Paintball 2!", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(9865958871, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Muscle Legends", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3623096087, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Road to Grambys", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(5796917097, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Bloxburg", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(185655149, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Cursed Sea", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(14426444782, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Doors", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(6516141723, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Hide and Seek Extreme", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(205224386, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Life in Paradise", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(1662219031, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Adopt and Raise a Baby", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(383793228, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Zombie Attack", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(1240123653, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Super Simon Says", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(61846006, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Life Sentence", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(13083893317, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Rainbow Friends", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(7991339063, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(5985232436, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(14888386963, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Red Light, Green Light", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(7540891731, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("3008", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(2768379856, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Guess the drawing!", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3281073759, game:GetService("Players").LocalPlayer)
-end)
+	
+local gamedata = loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/tpgames.lua"))()
+
+for _, v in ipairs(gamedata) do
+	GamesSection:NewButton(v.name, "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+		game:GetService("TeleportService"):Teleport(v.placeId, game:GetService("Players").LocalPlayer)
+	end)
+end
