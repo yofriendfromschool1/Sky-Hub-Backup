@@ -1,3 +1,16 @@
+if game:GetService("CoreGui"):FindFirstChild("incognito") then
+    oldstring = loadstring
+    getfenv().loadstring = function(code)
+        local source = code
+        source = source:gsub("(%a+)%s*([%+%-%*/])=%s*", "%1 = %1 %2 ")
+        return oldstring(source)
+    end
+end
+if not getgenv then
+    getfenv().getgenv = function(layer)
+        return getfenv(layer)
+    end
+end
 local nosaves = false
 local saved_settings
 local settings = {
@@ -8,6 +21,130 @@ queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus 
 httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 HttpService = game:GetService("HttpService")
 everyClipboard = setclipboard or toclipboard or set_clipboard or setrbxclipboard or (Clipboard and Clipboard.set)
+if not everyClipboard then
+	-- creds to vxsty
+getgenv().setclipboard = function(data)
+    local vim = game:GetService('VirtualInputManager');
+    local old = game:GetService("UserInputService"):GetFocusedTextBox()
+    local copy = tostring(data)
+    local gui = Instance.new("ScreenGui", getgenv().gethui())
+    local a = Instance.new('TextBox', gui)
+    a.PlaceholderText = ''
+    a.Text = copy
+    a.ClearTextOnFocus = false
+    a.Size = UDim2.new(.1, 0, .15, 0)
+    a.Position = UDim2.new(10, 0, 10, 0)
+    a:CaptureFocus()
+    a = Enum.KeyCode
+    local Keys = {
+     a.RightControl, a.A
+    }
+    local Keys2 = {
+     a.RightControl, a.C, a.V
+    }
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    gui:Destroy()
+    if old then old:CaptureFocus() end
+end
+-- creds to vxsty
+getgenv().setrbxclipboard = function(data)
+    local vim = game:GetService('VirtualInputManager');
+    local old = game:GetService("UserInputService"):GetFocusedTextBox()
+    local copy = tostring(data)
+    local gui = Instance.new("ScreenGui", getgenv().gethui())
+    local a = Instance.new('TextBox', gui)
+    a.PlaceholderText = ''
+    a.Text = copy
+    a.ClearTextOnFocus = false
+    a.Size = UDim2.new(.1, 0, .15, 0)
+    a.Position = UDim2.new(10, 0, 10, 0)
+    a:CaptureFocus()
+    a = Enum.KeyCode
+    local Keys = {
+     a.RightControl, a.A
+    }
+    local Keys2 = {
+     a.RightControl, a.C, a.V
+    }
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    gui:Destroy()
+    if old then old:CaptureFocus() end
+end
+-- creds to vxsty
+getgenv().toclipboard = function(data)
+    local vim = game:GetService('VirtualInputManager');
+    local old = game:GetService("UserInputService"):GetFocusedTextBox()
+    local copy = tostring(data)
+    local gui = Instance.new("ScreenGui", getgenv().gethui())
+    local a = Instance.new('TextBox', gui)
+    a.PlaceholderText = ''
+    a.Text = copy
+    a.ClearTextOnFocus = false
+    a.Size = UDim2.new(.1, 0, .15, 0)
+    a.Position = UDim2.new(10, 0, 10, 0)
+    a:CaptureFocus()
+    a = Enum.KeyCode
+    local Keys = {
+     a.RightControl, a.A
+    }
+    local Keys2 = {
+     a.RightControl, a.C, a.V
+    }
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    gui:Destroy()
+    if old then old:CaptureFocus() end
+end
+end
+if not cloneref then
+	getgenv().cloneref = function(a)
+		local s, _ = pcall(function() return a:Clone() end) return s and _ or a
+	end
+end
 HttpService = cloneref(game:GetService("HttpService")) or game:GetService("HttpService")
 defaults = HttpService:JSONEncode(settings)
 local OptTheme = "Midnight"
@@ -179,6 +316,755 @@ end
 local Window = Library.CreateLib("Sky Hub", OptTheme)
 local Main = Window:NewTab("Main")
 local MainSection = Main:NewSection("Main")
+MainSection:NewButton("FE Antikick for mic", "if you dont have a mic you wont get kicked", function()
+	--Invisible function isnt mainly mine but i modified 100% (fixes + lag efficency + bad value changes + etc) of it everything else is mine
+	--credits: secment (aka respectfilteringenabled on discord), creator of invisible function is unknown
+	BetterLc=true --better localplayer cloning
+	FFTime=true --if set to true it will be the spawn location's duration if a spawnlocation exists else it will be 10 seconds if set to false will always be 10 seconds
+	--[[Untested]]
+	NetworkPeer=false --Recreates NetworkPeer
+	NetworkServer=false --Recreates NetworkServer
+	NetworkReplicator=false --Recreates NetworkReplicator
+	--[[]]
+	Respawn=false --if set to true the user will respawn in 5 seconds if set to false user will respawn in the game's respawn time and by setting to false the user can edit the respawn time by using game.Players.RespawnTime
+	LoadCharacter=true --Will make :LoadCharacter work in localscripts (executor too) (make LoadCharacterWithHumanoidDescription yourself)
+	cim=false --close inspect menu (what it does is unknown)
+	forcecf=false --put as true to disable spawn location and instead teleport to where the player executed the script 
+	fixedtool=false --Fixes non client-sided tools not being able to be used (fixed tool must be equipped) (rarely works)
+	inventoryfix=false --replicates inventory back (when disabled you dont lose your tools on death) (if you're expirementing and trying to find tool exploits please keep this disabled)
+	experimental=false --If you're a scripter and want to help us find more helpful things turn experimental on! it will clone every deleted thing and print their fullname in the console if you find something that can be of help please dm respectfilteringenabled on discord
+	NetworkFixer=false --instead of CREATING a client replicator it instead uses the existing one. (will not get detected by :GetChildren and :GetDescendants) and is expiremental and shouldnt be enabled unless for bug finding
+	--[[
+	IF THE PLAYER KICK IS game.Players.LocalPlayer:Destroy() AND YOU'RE ON MOBILE PLEASE USE Tap to move
+	]]
+	--[[executor reccomendations:
+	Codex: synapse x 2019 source leak dll
+	Arceus x: synapse x 2019 source leak dll
+	Delta: good dll
+	Icognito: better than nothing
+	Solara: better than nothing
+	]]
+	--site: https://nex-swart.vercel.app/Index.html (112 lines of code)
+	function NEX()
+	print[[
+	OWNED BY TEAM NEX
+	https://nex-swart.vercel.app/Index.html
+				........                                                                                 
+				.-=----.........                                                                         
+				.-=-------------.......                                                                  
+				..---=+*#*+====-===----:......                                                            
+				.---=+-  .=**###**+===-------.........                                                    
+			.=---=*. .        :+*###*+==--------==-:......                                             
+			.=---++ .::::::..        :*%###*++====-------.                                             
+			.----=*. ::::::::::::::...      .-**##*+=----..                                             
+			.----=# .::::::::::::::::::::::.       +=----.                                              
+			.----=*. ::::::::::::::::::::::::::::: .*=---=.                                              
+			.=---+* .::::::::::::::::::::::::::::. #=--=-.                                               
+			..---=*. :::::::::..  .::::::::::::::: .*=----.              .                                
+			.---==+ .:::::::::. +     .::::::::::. ++----.              .======:                          
+		..---=*- .::::::::. +#*##%% :::::::::: .*=---=.              =============-.                   
+		.----=* .:::::::::. #=--=*  :::::::::. =+=---.               ====*####*+===========.           
+		.*---=+= .:::::::::.*%##*** .:::::::::  #=---..              :===+#   -#%#####*++==========:    
+		.----=# .::::::::::.     -- .::::::::. =+=-=-.               ====** ..      .+#######*+=====    
+		.---=+= .::::::::::::::..  .:::::::::  #=----.              .===+#. ::::::::.      .:=+====.    
+		..=--=# .::::::::::::::::::::::::::::. ++----:.              ====** :::::::::::::::.  #+====     
+		.---=+- .::::::::::::::::::::::::::::. *=---:-*.          - :===+#: :::::    .:::::: :#+====     
+		.:---==       ..:::::::::::::::::::::. -+=---:%*+++++++++++*+====*# .::::.=#**-:::::: #*====:     
+		.----==+###*+:       ...:::::::::::::. +==--:=#++++++++++++*+====#- ::::::#%##:::::: .#+===-      
+	.--------====+*###%#=.        ..:::::: :*=---.%*.         .=*====*# .:::::. .=+ ::::: +#====.      
+		......=----------==+*####*=:       .. *=---:=#+            +===+#: ::::::::. .:::::. #+===:       
+			.........-----=--===+**###**-   *=---.%*+            ====++   .:::::::::::::: +#====        
+					.......--------====++*#*=---:=#++           .====+*##=        .:::::. #+====        
+							......:--------------:#*++           =======+*######*=:       +#====:        
+								.........-----:=#+++               :========++*#######*:#+====         
+											......+#+++                     :=========+++**+====.         
+												:#++++                           .=============          
+												+++++                                    .===:          
+												+++++                                                   
+												+++++                 .===.                             
+												+++++                 ==========-                       
+												+++++                 ====++++========-                 
+												+++++                 ===+#*%@@%%#*++=========-.        
+												+++++                .===*%     .=#@@@%%#++++====+==.   
+												+++++               .===+#= :::.       .*@@@%#+====.    
+												+++++               -===*#..:::::::::::      :+====     
+												+++++              .===+#+ ::::::::::::::::. %+====     
+												+++++.            :====+#. ::::.     :::::: =#====-     
+												+++++++++++++++++*=====*# ::::: *@@@+.::::. #*====      
+												++++++++++++++++**====+%  :::::.@@@@ .:::: :#+===.      
+																-+====## ::::::.    .::::: **+===       
+																.====+%  :::::::::::::::: .%+===.       
+																====+=      .::::::::::: #*====        
+																.====+#%@@@%=       ..:: .%+====        
+																.==========+*#%@@@%*:     #*====.        
+																		.========++##%%@@##+====         
+																			.========++++====.         
+																					.==========          
+																							..          
+
+
+	]]
+	end
+	NEX()
+	cloneref=cloneref or function(x) return x end
+	OldClientReplicatorInstance=game.NetworkClient.ClientReplicator
+	function NetworkPeer()
+	task.spawn(function()
+		local OldNameCall = nil
+
+		OldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
+			local Args = {...}
+			local NamecallMethod = getnamecallmethod()
+
+			if not checkcaller() and Self == game and NamecallMethod == "GetService" and Args[1] == 'NetworkPeer' then
+				return game.NetworkClient
+			end
+
+			return OldNameCall(Self, ...)
+		end)
+
+	end)
+	task.spawn(function()
+	local OldIndex = nil
+
+	OldIndex = hookmetamethod(game, "__index", function(Self, Key)
+		if not checkcaller() and Self==game and Key == 'NetworkPeer' then
+			return game.NetworkClient
+		end
+
+		return OldIndex(Self, Key)
+	end)
+	end)
+	end
+	function MakeService(x)
+	local ser={}
+	ser.Name=x
+	ser.Parent=game
+	ser.ClassName=x
+	ser.Texture="http://www.roblox.com/asset/?id=17741196734"
+	function ser:Clone()
+	return nil
+	end
+	function ser:Destroy()
+	error'The parent property of this instance is locked'
+	end
+	task.spawn(function()
+		local OldNameCall = nil
+
+		OldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
+			local Args = {...}
+			local NamecallMethod = getnamecallmethod()
+
+			if not checkcaller() and Self == game and NamecallMethod == "GetService" and Args[1] == x then
+				return ser
+			end
+
+			return OldNameCall(Self, ...)
+		end)
+
+		end)
+	task.spawn(function()
+	local OldIndex = nil
+
+	OldIndex = hookmetamethod(game, "__index", function(Self, Key)
+		if not checkcaller() and Self==game and Key == x then
+			return ser
+		end
+
+		return OldIndex(Self, Key)
+	end)
+		end)
+	return ser
+	end
+	function MakeReplicator(x, y)
+	x[y]={}
+	x[y].Name=y
+	x[y].ClassName=y
+	x[y].Parent=x
+	x[y].Texture='http://www.roblox.com/asset/?id=17741561061'
+	local bomb=x[y]
+	function bomb:GetPlayer()
+	return game.Players.LocalPlayer
+	end
+	end
+	if NetworkPeer==true then
+	NetworkPeer()
+	end
+	if NetworkServer==true then
+	local ns=MakeService'NetworkService'
+	MakeReplicator(ns, 'ServerReplicator')
+	end
+	if NetworkReplicator==true then
+	local nr=MakeService'NetworkReplicator'
+	function nr:GetPlayer()
+	return game.Players.LocalPlayer
+	end
+	end
+	local RealOldPlayer=game.Players.LocalPlayer
+	local OldPlayer=Instance.new'Folder'
+	UserId=game.Players.LocalPlayer.UserId
+	Name=game.Players.LocalPlayer.Name
+	DName=game.Players.LocalPlayer.DisplayName
+	Cai=game.Players.LocalPlayer.CharacterAppearanceId
+	repc=game.Players.LocalPlayer.Character
+	oldmb=game.Players.LocalPlayer.MembershipType
+	underage=game.Players.LocalPlayer:GetUnder13()
+	for i,v in pairs(game.Players.LocalPlayer:GetChildren()) do
+	pcall(function()
+	v:Clone().Parent=OldPlayer
+		end)
+	end
+	Guis=Instance.new'Folder'
+	Guis.Name='PlayerGui'
+	for i,v in pairs(game.Players.LocalPlayer.PlayerGui:GetChildren()) do
+	v:Clone().Parent=Guis
+	end
+	tablep=game:HttpGet'https://scripts-murex.vercel.app/Table%20of%20properties%20by%20secment.lua' --160 lines of codes
+	Properties=loadstring(tablep)()
+	function spc(x, y)
+	for i,v in pairs(Properties) do
+	task.wait()
+		pcall(function()
+	x[i]=y[i]
+			end)
+		end
+	end
+	function SuperClone(x)
+	local new=Instance.new(x.ClassName)
+	spc(new, x)
+	for i,v in pairs(x:GetChildren()) do
+		pcall(function()
+		v:Clone().Parent=new
+			end)
+		end
+	end
+	function MoveTo(x)
+	for i,v in pairs(OldPlayer:GetChildren()) do
+		if BetterLc==false then
+		v.Parent=x
+		else
+		if v.Name~='Backpack' then
+		v.Parent=x
+		end
+		end
+	end
+	Guis.Parent=game.CoreGui
+	end
+	function AntiConsoleLag()
+	if experimental==true then
+	pcall(function()
+	while task.wait() do
+	game:FindService'LogService':ClearOutput()
+	end
+		end)
+	end
+	end
+	function DisableCustomConsole()
+		pcall(function()
+	for i,v in pairs(getconnections(game:FindService'LogService'.MessageOut)) do
+	v:Disable()
+	end
+		end)
+	end
+
+	function Player()
+	if BetterLc==false then
+	local d=Instance.new'Player'
+	spc(d, game.Players.LocalPlayer)
+	d.UserId=UserId
+	d.Name=Name
+	d.DisplayName=DName
+	d.CharacterAppearanceId=Cai
+	d.Character=repc
+	d.Parent=game.Players
+	MoveTo(d)
+	task.spawn(function()
+	local OldIndex = nil
+
+	OldIndex = hookmetamethod(game.Players, "__index", function(Self, Key)
+		if not checkcaller() and Self==game.Players and Key == "LocalPlayer" then
+			return d
+		end
+
+		return OldIndex(Self, Key)
+	end)
+		end)
+		task.spawn(function()
+		DisableCustomConsole()
+		AntiConsoleLag()
+		end)
+	elseif BetterLc==true then
+	game.Players:ResetLocalPlayer()
+	local d=game.Players:CreateLocalPlayer()
+	game.Players:SetLocalPlayerInfo(UserId, Name, DName, oldmb, underage)
+	d.CharacterAppearanceId=Cai
+	d.Character=repc
+	MoveTo(d)
+	d.Parent=game.Players
+	end
+	return d
+	end 
+	function streamingenabled()
+	task.spawn(function()
+	while task.wait() do
+	workspace.StreamingEnabled=true
+		end
+		end)
+	end
+	if experimental==true then
+	local sets=settings()
+	local netw=sets.Network
+	streamingenabled()
+	netw.RenderStreamedRegions=true --game info for streamingenabled games
+	netw.RandomizeJoinInstanceOrder=true --to show whatt happpens overtime
+	netw.ShowActiveAnimationAsset=true --animations seem to be weird so this might help
+	netw.PrintPhysicsErrors=true --serversided parts physics dont seem to work
+	game.DescendantRemoving:Connect(function(x)
+		print(x:GetFullName())
+		local clone = x:Clone()
+		if clone~=nil then
+		clone.Parent = x.Parent
+		end
+	end)
+	end
+	--If you find a way to clone game.NetworkClient.ClientReplicator (protected instance) or change it's parent (automatically destroyed on kick and replaced with a RemoteEvent instance) dm respectfilteringenabled on discord 
+	--code (my coding style is pretty bad so dont try to edit anything unless you're a professional)
+
+	function rep()
+	pcall(function() --real roblox source (some executors disable AddCoreLocalScript)
+		-- Creates all neccessary scripts for the gui on initial load, everything except build tools
+		-- Created by Ben T. 10/29/10
+		-- Please note that these are loaded in a specific order to diminish errors/perceived load time by user
+		local scriptContext = game:GetService("ScriptContext")
+		local touchEnabled = game:GetService("UserInputService").TouchEnabled
+
+		local RobloxGui = game:GetService("CoreGui"):WaitForChild("RobloxGui")
+
+		local soundFolder = Instance.new("Folder")
+		soundFolder.Name = "Sounds"
+		soundFolder.Parent = RobloxGui
+
+		-- This can be useful in cases where a flag configuration issue causes requiring a CoreScript to fail
+		local function safeRequire(moduleScript)
+			local moduleReturnValue = nil
+			local success, err = pcall(function() moduleReturnValue = require(moduleScript) end)
+			if not success then
+			warn("Failure to Start CoreScript module" ..moduleScript.Name.. ".\n" ..err)
+			end
+			return moduleReturnValue
+		end
+
+		-- TopBar
+		scriptContext:AddCoreScriptLocal("CoreScripts/Topbar", RobloxGui)
+
+		-- MainBotChatScript (the Lua part of Dialogs)
+		scriptContext:AddCoreScriptLocal("CoreScripts/MainBotChatScript2", RobloxGui)
+
+		-- In-game notifications script
+		scriptContext:AddCoreScriptLocal("CoreScripts/NotificationScript2", RobloxGui)
+
+		-- Performance Stats Management
+		scriptContext:AddCoreScriptLocal("CoreScripts/PerformanceStatsManagerScript",
+			RobloxGui)
+
+		-- Chat script
+		spawn(function() safeRequire(RobloxGui.Modules.ChatSelector) end)
+		spawn(function() safeRequire(RobloxGui.Modules.PlayerlistModule) end)
+
+		-- Purchase Prompt Script
+		scriptContext:AddCoreScriptLocal("CoreScripts/PurchasePromptScript2", RobloxGui)
+
+		-- Prompt Block Player Script
+		scriptContext:AddCoreScriptLocal("CoreScripts/BlockPlayerPrompt", RobloxGui)
+		scriptContext:AddCoreScriptLocal("CoreScripts/FriendPlayerPrompt", RobloxGui)
+
+		-- Avatar Context Menu
+		scriptContext:AddCoreScriptLocal("CoreScripts/AvatarContextMenu", RobloxGui)
+
+		-- Backpack!
+		spawn(function() safeRequire(RobloxGui.Modules.BackpackScript) end)
+
+		scriptContext:AddCoreScriptLocal("CoreScripts/VehicleHud", RobloxGui)
+
+		scriptContext:AddCoreScriptLocal("CoreScripts/GamepadMenu", RobloxGui)
+
+		if touchEnabled then -- touch devices don't use same control frame
+			-- only used for touch device button generation
+			scriptContext:AddCoreScriptLocal("CoreScripts/ContextActionTouch", RobloxGui)
+
+			RobloxGui:WaitForChild("ControlFrame")
+			RobloxGui.ControlFrame:WaitForChild("BottomLeftControl")
+			RobloxGui.ControlFrame.BottomLeftControl.Visible = false
+		end
+
+		spawn(function()
+			local VRService = game:GetService('VRService')
+			local function onVREnabledChanged()
+			if VRService.VREnabled then
+				safeRequire(RobloxGui.Modules.VR.VirtualKeyboard)
+				safeRequire(RobloxGui.Modules.VR.UserGui)
+			end
+			end
+			onVREnabledChanged()
+			VRService:GetPropertyChangedSignal("VREnabled"):connect(onVREnabledChanged)
+		end)
+
+		-- Boot up the VR App Shell
+		if UserSettings().GameSettings:InStudioMode() then
+			local VRService = game:GetService('VRService')
+			local function onVREnabledChanged()
+			if VRService.VREnabled then
+				local shellInVRSuccess, shellInVRFlagValue = pcall(function() return settings():GetFFlag("EnabledAppShell3D") end)
+				local shellInVR = (shellInVRSuccess and shellInVRFlagValue == true)
+				local modulesFolder = RobloxGui.Modules
+				local appHomeModule = modulesFolder:FindFirstChild('Shell') and modulesFolder:FindFirstChild('Shell'):FindFirstChild('AppHome')
+				if shellInVR and appHomeModule then
+				safeRequire(appHomeModule)
+				end
+			end
+			end
+
+			spawn(function()
+			if VRService.VREnabled then
+				onVREnabledChanged()
+			end
+			VRService:GetPropertyChangedSignal("VREnabled"):connect(onVREnabledChanged)
+			end)
+		end
+		end)
+	end
+	e = Instance.new'Folder'
+	e.Name = 'PlayerScripts'
+	for i, v in pairs(game.Players.LocalPlayer.PlayerScripts:GetChildren()) do
+	v.Archivable = true
+	v:Clone().Parent = e
+	end
+	oldchar=game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+	old = oldchar.PrimaryPart.CFrame
+	function cleartools()
+	for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+		if v:IsA('Tool') then v:Destroy()
+		end
+	end
+		for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+		if v:IsA('Tool') then v:Destroy()
+		end
+	end
+	end
+	function bringtools()
+	local sp = game.Players.LocalPlayer.StarterGear
+	for i,v in pairs(sp:GetChildren()) do
+		if v:IsA'Tool' then
+	v:Clone().Parent=game.Players.LocalPlayer.Backpack
+	end
+	end
+	end
+	function fixtools(y)
+	cleartools()
+	bringtools()
+	for i,v in pairs(y:GetChildren()) do
+	if v:IsA'Tool' then
+	v.Parent=game.Players.LocalPlayer.Backpack
+		end
+	end
+	end
+	local function p()
+	task.defer(function()
+	for i, v in pairs(e:GetDescendants()) do
+		if v:IsA 'LocalScript' then
+		v.Disabled = false
+		end
+		e.Parent = game.Players.LocalPlayer.Character
+	end
+	end)
+	task.defer(function()
+		while task.wait() do
+		game:GetService("GuiService"):ClearError()
+		end
+	end)
+
+	local Player = game:GetService("Players").LocalPlayer
+
+	local RealCharacter = Player.Character or Player.CharacterAdded:Wait()
+
+	RealCharacter.Archivable = true
+	local FakeCharacter = RealCharacter:Clone()
+	local Part
+	Part = Instance.new("Part", workspace)
+	Part.Anchored = true
+	Part.Size = Vector3.new(200, 1, 200)
+	Part.CFrame = CFrame.new(0, -500, 0)
+	Part.CanCollide = true
+	FakeCharacter.Parent = workspace
+	FakeCharacter.HumanoidRootPart.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
+
+	for i, v in pairs(RealCharacter:GetChildren()) do
+		if v:IsA("LocalScript") then
+		local clone = v:Clone()
+		clone.Disabled = true
+		clone.Parent = FakeCharacter
+		end
+	end
+	for i, v in pairs(RealCharacter.PrimaryPart:GetChildren()) do
+		if v:IsA("Sound") then
+		v.Archivable = true
+		v:Clone().Parent = FakeCharacter
+		end
+	end
+	local PseudoAnchor
+	game:GetService("RunService").RenderStepped:Connect(function()
+		if PseudoAnchor ~= nil then
+		PseudoAnchor.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
+		end
+	end)
+
+	PseudoAnchor = FakeCharacter.HumanoidRootPart
+
+	local function Invisible()
+		local StoredCF = RealCharacter.HumanoidRootPart.CFrame
+		RealCharacter.HumanoidRootPart.CFrame = FakeCharacter.HumanoidRootPart.CFrame
+		FakeCharacter.HumanoidRootPart.CFrame = StoredCF
+		FakeCharacter:WaitForChild("Humanoid").DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+		Player.Character = FakeCharacter
+		if fixedtool==true then
+		fixtools(RealCharacter)
+		end
+		FakeCharacter.Humanoid.Health = FakeCharacter.Humanoid.MaxHealth
+		workspace.CurrentCamera.CameraSubject = FakeCharacter.Humanoid
+		PseudoAnchor = RealCharacter.HumanoidRootPart
+		for i, v in pairs(FakeCharacter:GetChildren()) do
+		if v:IsA("LocalScript") then
+			v.Disabled = false
+		end
+		end
+	end
+
+	Invisible()
+	return FakeCharacter
+	end
+
+	repeat wait() until (not game.NetworkClient:FindFirstChild('ClientReplicator'))
+	task.spawn(function()
+	if game.Players:FindFirstChild(game.Players.LocalPlayer.Name)==nil then
+	Player()
+	end
+	end)
+	if LoadCharacter==true then
+	task.spawn(function()
+		local OldNamecall
+			OldNamecall = hookmetamethod(game.Players.LocalPlayer, "__namecall", newcclosure(function(self, ...)
+			local g = getnamecallmethod()
+			if g=='LoadCharacter' then cleartools() return p()
+			end
+			return OldNamecall(self, ...)
+			end))
+		end)
+	end
+	if cim ==true then
+	task.spawn(function()
+	while task.wait() do
+			game.GuiService:CloseInspectMenu()
+		end
+		end)
+	end
+	task.defer(function()
+	for i, v in pairs(e:GetDescendants()) do
+		if v:IsA 'LocalScript' then
+		v.Disabled = false
+		end
+		e.Parent = game.Players.LocalPlayer.Character
+	end
+	end)
+
+	task.defer(function()
+	while task.wait() do
+		game:GetService("GuiService"):ClearError()
+	end
+	end)
+	rep()
+	if NetworkFixer~= true then
+	task.spawn(function()
+	local function setupClientReplicator()
+		local ClientReplicator = Instance.new('RemoteEvent')
+		ClientReplicator.Parent = game.NetworkClient
+		ClientReplicator.Name = 'ClientReplicator'
+
+		local OldNamecall
+		OldNamecall = hookmetamethod(ClientReplicator, "__namecall", newcclosure(function(self, ...)
+			local g = getnamecallmethod()
+			if g == 'GetPlayer' then
+				return game.Players.LocalPlayer
+			end
+			return OldNamecall(self, ...)
+		end))
+
+		local OldIndex = nil
+		OldIndex = hookmetamethod(game, "__index", function(Self, Key)
+			if not checkcaller() and Self == ClientReplicator and Key == "ClassName" then
+				return 'ClientReplicator'
+			end
+			return OldIndex(Self, Key)
+		end)
+	end
+
+	setupClientReplicator()
+	end)
+	else
+	task.spawn(function()
+		local OldIndex = nil
+			OldIndex = hookmetamethod(game.NetworkClient, "__index", function(Self, Key)
+				if not checkcaller() and Self == game.NetworkClient and Key == "ClientReplicator" then
+					return OldClientReplicatorInstance
+				end
+				return OldIndex(Self, Key)
+			end)
+		end)
+	DisableCustomConsole()
+		end
+	local Player = game:GetService("Players").LocalPlayer
+	Sp = Player.RespawnLocation
+	pcall(function()
+	Sp.CanCollide = false
+	end)
+	local RealCharacter = Player.Character or Player.CharacterAdded:Wait()
+	local IsInvisible = false
+	RealCharacter.Archivable = true
+	local FakeCharacter = RealCharacter:Clone()
+	local Part
+	Part = Instance.new("Part", workspace)
+	Part.Anchored = true
+	Part.Size = Vector3.new(200, 1, 200)
+	Part.CFrame = CFrame.new(0, -500, 0)
+	Part.CanCollide = true
+	FakeCharacter.Parent = workspace
+	FakeCharacter.HumanoidRootPart.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
+	for i, v in pairs(RealCharacter:GetChildren()) do
+	if v:IsA("LocalScript") then
+		local clone = v:Clone()
+		clone.Disabled = true
+		clone.Parent = FakeCharacter
+	end
+	end
+	for i, v in pairs(RealCharacter.PrimaryPart:GetChildren()) do
+	if v:IsA("Sound") then
+		v.Archivable = true
+		v:Clone().Parent = FakeCharacter
+	end
+	end
+	local CanInvis = true
+	local PseudoAnchor
+	game:GetService "RunService".RenderStepped:Connect(
+	function()
+		if PseudoAnchor ~= nil then
+		PseudoAnchor.CFrame = Part.CFrame * CFrame.new(0, 5, 0)
+		end
+	end
+	)
+
+	PseudoAnchor = FakeCharacter.HumanoidRootPart
+	local function Invisible()
+	local StoredCF = RealCharacter.HumanoidRootPart.CFrame
+	RealCharacter.HumanoidRootPart.CFrame = FakeCharacter.HumanoidRootPart.CFrame
+	FakeCharacter.HumanoidRootPart.CFrame = StoredCF
+	FakeCharacter:WaitForChild("Humanoid").DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+	Player.Character = FakeCharacter
+	if fixedtool==true then
+	fixtools(RealCharacter)
+	end
+	FakeCharacter.Humanoid.Health = FakeCharacter.Humanoid.MaxHealth
+	workspace.CurrentCamera.CameraSubject = FakeCharacter.Humanoid
+	PseudoAnchor = RealCharacter.HumanoidRootPart
+	for i, v in pairs(FakeCharacter:GetChildren()) do
+		if v:IsA("LocalScript") then
+		v.Disabled = false
+		end
+	end
+	RealCharacter:Destroy()
+	end
+	died = false
+
+	function ff(x)
+	local f = Instance.new('ForceField')
+	f.Parent = x
+	if FFTime == false then
+	wait(10)
+	elseif FFTime==true then
+	if Sp~=nil then
+	if Sp.Duration>0 then
+	wait(Sp.Duration)
+		end
+		else
+	wait(10)
+		end
+	end
+	f:Destroy()
+	end
+
+	function c()
+	if FakeCharacter.Humanoid.Health <= 0 and died == false then
+		died = true
+		if FakeCharacter.PrimaryPart:FindFirstChild('Died') then
+		FakeCharacter.PrimaryPart.Died:Play()
+		end
+		if Respawn==true then
+		wait(5)
+		elseif Respawn==false then
+		wait(tonumber(game.Players.RespawnTime))
+		end
+		if not game.Players.LocalPlayer.RespawnLocation == nil and forcecf==false then
+	FakeCharacter:MoveTo(game:GetService("Players").LocalPlayer.RespawnLocation.Position)
+		else
+		FakeCharacter.PrimaryPart.CFrame = old
+		end
+		if inventoryfix==true then
+		cleartools()
+		end
+		pcall(function()
+		FakeCharacter.Humanoid:UnequipTools()
+		end)
+		e.Parent=game.ReplicatedStorage
+		local fk = p()
+		fk.Humanoid:UnequipTools()
+		FakeCharacter:Remove()
+		FakeCharacter = fk
+		e.Parent=FakeCharacter
+		ff(FakeCharacter)
+		if inventoryfix==true then
+		bringtools()
+		end
+		died = false
+	end
+	end
+
+	Invisible()
+	while task.wait() do
+	c()
+	end
+	local mt = getrawmetatable(game)
+
+	setreadonly(mt, false)
+
+	local oldmt = mt.__namecall
+
+	mt.__namecall = newcclosure(function(Self, ...)
+
+
+	local method = getnamecallmethod()
+
+	if method == 'Kick' then
+	
+		print("Tried To kick")
+		wait(9e9)
+		return nil
+
+	end
+
+	return oldmt(Self, ...)
+
+	end)
+
+	setreadonly(mt, true)
+end)
 MainSection:NewButton("FE Trolling GUI", "troll", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
 end)
@@ -360,13 +1246,13 @@ PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99
 end)
 PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
 	local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+	Lighting = game:GetService("Lighting")
 	Terrain.WaterWaveSize = 0
 	Terrain.WaterWaveSpeed = 0
 	Terrain.WaterReflectance = 0
 	Terrain.WaterTransparency = 0
 	Lighting.GlobalShadows = false
 	Lighting.FogEnd = 9e9
-	settings().Rendering.QualityLevel = 1
 	for i, v in pairs(game:GetDescendants()) do
 		if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
 			v.Material = "Plastic"
@@ -388,13 +1274,13 @@ PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boos
 	game:GetService("Workspace").DescendantAdded:Connect(function(child)
 		task.spawn(function()
 			if child:IsA('ForceField') then
-				RunService.Heartbeat:Wait()
+				game:GetService("RunService").Heartbeat:Wait()
 				child:Destroy()
 			elseif child:IsA('Sparkles') then
-				RunService.Heartbeat:Wait()
+				game:GetService("RunService").Heartbeat:Wait()
 				child:Destroy()
 			elseif child:IsA('Smoke') or child:IsA('Fire') then
-				RunService.Heartbeat:Wait()
+				game:GetService("RunService").Heartbeat:Wait()
 				child:Destroy()
 			end
 		end)
@@ -848,191 +1734,12 @@ SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()",
 end)
 local Games = Window:NewTab("Games", 12689980465)
 local GamesSection = Games:NewSection("Games")
-GamesSection:NewButton("Da Hood", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(2788229376, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Arsenal", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(286090429, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Tower of Hell", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(1962086868, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("KAT", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(621129760, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Fencing", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(12109643, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Work at a Pizza Place", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(192800, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("VR Hands", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(4832438542, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Adopt Me!", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(920587237, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Jailbreak", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(606849621, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Prison Life", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(155615604, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Build A Boat For Treasure", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(537413528, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Gorilla Tag Professional", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(8690998110, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Murder Mystery 2", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(142823291, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Blox Fruits", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(2753915549, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Counter Blox", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(301549746, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Mic Up", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(6884319169, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Neighbors", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(12699642568, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Natural Disaster Survival", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(189707, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Ro-Ghoul", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(914010731, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Blade Ball", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(13772394625, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Pet Simulator X", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(13772394625, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Pet Simulator 99", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(8737899170, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Legends Of Speed", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3101667897, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Brookhaven RP", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(4924922222, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Bedwars", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(6872265039, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("CHAOS", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(6441847031, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Ninja Legends", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3956818381, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Bayside High School", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(12640491155, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("BIG Paintball!", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3527629287, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("BIG Paintball 2!", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(9865958871, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Muscle Legends", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3623096087, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Road to Grambys", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(5796917097, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Bloxburg", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(185655149, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Cursed Sea", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(14426444782, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Doors", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(6516141723, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Hide and Seek Extreme", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(205224386, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Life in Paradise", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(1662219031, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Adopt and Raise a Baby", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(383793228, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Zombie Attack", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(1240123653, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Super Simon Says", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(61846006, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Life Sentence", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(13083893317, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Rainbow Friends", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(7991339063, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(5985232436, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(14888386963, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Red Light, Green Light", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(7540891731, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("3008", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(2768379856, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Guess the drawing!", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3281073759, game:GetService("Players").LocalPlayer)
-end)
+	
+local gamedata = loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/tpgames.lua"))()
+
+for _, v in ipairs(gamedata) do
+	GamesSection:NewButton(v.name, "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+		game:GetService("TeleportService"):Teleport(v.placeId, game:GetService("Players").LocalPlayer)
+	end)
+end
