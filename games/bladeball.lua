@@ -1,3 +1,16 @@
+if game:GetService("CoreGui"):FindFirstChild("incognito") then
+    oldstring = loadstring
+    getfenv().loadstring = function(code)
+        local source = code
+        source = source:gsub("(%a+)%s*([%+%-%*/])=%s*", "%1 = %1 %2 ")
+        return oldstring(source)
+    end
+end
+if not getgenv then
+    getfenv().getgenv = function(layer)
+        return getfenv(layer)
+    end
+end
 local nosaves = false
 local saved_settings
 local settings = {
@@ -8,6 +21,195 @@ queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus 
 httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 HttpService = game:GetService("HttpService")
 everyClipboard = setclipboard or toclipboard or set_clipboard or setrbxclipboard or (Clipboard and Clipboard.set)
+if not everyClipboard then
+	-- creds to vxsty
+getgenv().setclipboard = function(data)
+    local vim = game:GetService('VirtualInputManager');
+    local old = game:GetService("UserInputService"):GetFocusedTextBox()
+    local copy = tostring(data)
+    local gui = Instance.new("ScreenGui", getgenv().gethui())
+    local a = Instance.new('TextBox', gui)
+    a.PlaceholderText = ''
+    a.Text = copy
+    a.ClearTextOnFocus = false
+    a.Size = UDim2.new(.1, 0, .15, 0)
+    a.Position = UDim2.new(10, 0, 10, 0)
+    a:CaptureFocus()
+    a = Enum.KeyCode
+    local Keys = {
+     a.RightControl, a.A
+    }
+    local Keys2 = {
+     a.RightControl, a.C, a.V
+    }
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    gui:Destroy()
+    if old then old:CaptureFocus() end
+end
+-- creds to vxsty
+getgenv().setrbxclipboard = function(data)
+    local vim = game:GetService('VirtualInputManager');
+    local old = game:GetService("UserInputService"):GetFocusedTextBox()
+    local copy = tostring(data)
+    local gui = Instance.new("ScreenGui", getgenv().gethui())
+    local a = Instance.new('TextBox', gui)
+    a.PlaceholderText = ''
+    a.Text = copy
+    a.ClearTextOnFocus = false
+    a.Size = UDim2.new(.1, 0, .15, 0)
+    a.Position = UDim2.new(10, 0, 10, 0)
+    a:CaptureFocus()
+    a = Enum.KeyCode
+    local Keys = {
+     a.RightControl, a.A
+    }
+    local Keys2 = {
+     a.RightControl, a.C, a.V
+    }
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    gui:Destroy()
+    if old then old:CaptureFocus() end
+end
+-- creds to vxsty
+getgenv().toclipboard = function(data)
+    local vim = game:GetService('VirtualInputManager');
+    local old = game:GetService("UserInputService"):GetFocusedTextBox()
+    local copy = tostring(data)
+    local gui = Instance.new("ScreenGui", getgenv().gethui())
+    local a = Instance.new('TextBox', gui)
+    a.PlaceholderText = ''
+    a.Text = copy
+    a.ClearTextOnFocus = false
+    a.Size = UDim2.new(.1, 0, .15, 0)
+    a.Position = UDim2.new(10, 0, 10, 0)
+    a:CaptureFocus()
+    a = Enum.KeyCode
+    local Keys = {
+     a.RightControl, a.A
+    }
+    local Keys2 = {
+     a.RightControl, a.C, a.V
+    }
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(true, v, false, game)
+     task.wait()
+    end
+    for i, v in ipairs(Keys2) do
+     vim:SendKeyEvent(false, v, false, game)
+     task.wait()
+    end
+    gui:Destroy()
+    if old then old:CaptureFocus() end
+end
+end
+if not cloneref then
+	getgenv().cloneref = function(a)
+		local s, _ = pcall(function() return a:Clone() end) return s and _ or a
+	end
+end
+if not mouse1press and not mouse1release then
+	-- creds to vxsty
+getgenv().mouse1click = function(x, y)
+	local vim = game:GetService('VirtualInputManager');
+    x = x or 0
+	y = y or 0
+	vim:SendMouseButtonEvent(x, y, 0, true, game, false)
+	task.wait()
+	vim:SendMouseButtonEvent(x, y, 0, false, game, false)
+end
+getgenv().mouse2click = function(x, y)
+    local vim = game:GetService('VirtualInputManager');
+	x = x or 0
+	y = y or 0
+	vim:SendMouseButtonEvent(x, y, 1, true, game, false)
+	task.wait()
+	vim:SendMouseButtonEvent(x, y, 1, false, game, false)
+end
+getgenv().mouse1press = function(x, y)
+    local vim = game:GetService('VirtualInputManager');
+	x = x or 0
+	y = y or 0
+	vim:SendMouseButtonEvent(x, y, 0, true, game, false)
+end
+getgenv().mouse1release = function(x, y)
+    local vim = game:GetService('VirtualInputManager');
+	x = x or 0
+	y = y or 0
+	vim:SendMouseButtonEvent(x, y, 0, false, game, false)
+end
+getgenv().mouse2press = function(x, y)
+    local vim = game:GetService('VirtualInputManager');
+	x = x or 0
+	y = y or 0
+	vim:SendMouseButtonEvent(x, y, 1, true, game, false)
+end
+getgenv().mouse2release = function(x, y)
+    local vim = game:GetService('VirtualInputManager');
+	x = x or 0
+	y = y or 0
+	vim:SendMouseButtonEvent(x, y, 1, false, game, false)
+end
+getgenv().mousescroll = function(x, y, a)
+    local vim = game:GetService('VirtualInputManager');
+	x = x or 0
+	y = y or 0
+	a = a and true or false
+	vim:SendMouseWheelEvent(x, y, a, game)
+end
+getgenv().mousemoverel = function(relx, rely)
+    local vim = game:GetService('VirtualInputManager');
+	local Pos = workspace.CurrentCamera.ViewportSize
+	relx = relx or 0
+	rely = rely or 0
+	local x = Pos.X * relx
+	local y = Pos.Y * rely
+	vim:SendMouseMoveEvent(x, y, game)
+end
+getgenv().mousemoveabs = function(x, y)
+    local vim = game:GetService('VirtualInputManager');
+	x = x or 0
+	y = y or 0
+	vim:SendMouseMoveEvent(x, y, game)
+end
+end
 HttpService = cloneref(game:GetService("HttpService")) or game:GetService("HttpService")
 defaults = HttpService:JSONEncode(settings)
 local OptTheme = "Midnight"
@@ -242,8 +444,499 @@ end)
 MainSection:NewButton("Bedol V2 Premium", "Hub", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-c-a-t-s-u-s/-beta-/main/AutoParry.lua"))()
 end)
+MainSection:NewButton("FFJ Hub", "Hub", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/FFJ1/Roblox-Exploits/main/scripts/Loader.lua"))()
+end)
+MainSection:NewButton("Dungkee", "by pulawat6680", function()
+	loadstring(game:HttpGet("https://github.com/Stang001/pulawat/blob/main/BladeBall.lua?raw=true"))()
+end)
 MainSection:NewButton("Blade Ball Scripts", "idk", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/zippy6349/Blade_Ball/main/Blade%20Ball.txt"))()
+end)
+MainSection:NewButton("AFGClient", "idk", function()
+	do
+		local version = "1.0";
+		print("Afg Client *BLADEBALL*");
+		print(version);
+		warn("Updated Script UI and some funcs arent made by me");
+		local Stats = game:GetService("Stats");
+		local Players = game:GetService("Players");
+		local RunService = game:GetService("RunService");
+		local ReplicatedStorage = game:GetService("ReplicatedStorage");
+		local TweenService = game:GetService("TweenService");
+		local Nurysium_Util = loadstring(game:HttpGet("https://raw.githubusercontent.com/flezzpe/Nurysium/main/nurysium_helper.lua"))();
+		local local_player = Players.LocalPlayer;
+		local camera = game:GetService("Workspace").CurrentCamera;
+		local nurysium_Data = nil;
+		local hit_Sound = nil;
+		local closest_Entity = nil;
+		local parry_remote = nil;
+		getgenv().aura_Enabled = false;
+		getgenv().hit_sound_Enabled = false;
+		getgenv().hit_effect_Enabled = false;
+		getgenv().night_mode_Enabled = false;
+		getgenv().trail_Enabled = false;
+		getgenv().self_effect_Enabled = false;
+		getgenv().kill_effect_Enabled = false;
+		getgenv().shaders_effect_Enabled = false;
+		getgenv().ai_Enabled = false;
+		getgenv().spectate_Enabled = false;
+		local Services = {
+			game:GetService("AdService"),
+			game:GetService("SocialService")
+		};
+		local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/flezzpe/Nurysium/main/nurysium_ui.lua"))();
+		task.wait(0.5);
+		library:init("Afg Client | Blade Ball V "   .. version , game:GetService("UserInputService").TouchEnabled, game:GetService("CoreGui"));
+		library:create_section("Combat", 17440545793);
+		library:create_section("World", 17440865331);
+		library:create_section("Misc", 17440868530);
+		function initializate(dataFolder_name)
+			local nurysium_Data = Instance.new("Folder", game:GetService("CoreGui"));
+			nurysium_Data.Name = dataFolder_name;
+			hit_Sound = Instance.new("Sound", nurysium_Data);
+			hit_Sound.SoundId = "rbxassetid://6607204501";
+			hit_Sound.Volume = 6;
+		end
+		local function get_closest_entity(Object)
+			task.spawn(function()
+				local closest;
+				local max_distance = math.huge;
+				for index, entity in game:GetService("Workspace").Alive:GetChildren() do
+					if (entity.Name ~= Players.LocalPlayer.Name) then
+						local distance = (Object.Position - entity.HumanoidRootPart.Position).Magnitude;
+						if (distance < max_distance) then
+							closest_Entity = entity;
+							max_distance = distance;
+						end
+					end
+				end
+				return closest_Entity;
+			end);
+		end
+		local function get_center()
+			for _, object in game:GetService("Workspace").Map:GetDescendants() do
+				if (object.Name == "BALLSPAWN") then
+					return object;
+				end
+			end
+		end
+		function resolve_parry_Remote()
+			for _, value in Services do
+				local temp_remote = value:FindFirstChildOfClass("RemoteEvent");
+				if  not temp_remote then
+					continue;
+				end
+				if  not temp_remote.Name:find("\n") then
+					continue;
+				end
+				parry_remote = temp_remote;
+			end
+		end
+		function walk_to(position)
+			local_player.Character.Humanoid:MoveTo(position);
+		end
+		library:create_toggle("Aura", "Combat", function(toggled)
+			resolve_parry_Remote();
+			getgenv().aura_Enabled = toggled;
+		end);
+		library:create_toggle("AI - Beta", "Combat", function(toggled)
+			resolve_parry_Remote();
+			getgenv().ai_Enabled = toggled;
+		end);
+		library:create_toggle("Hit Sound", "Combat", function(toggled)
+			getgenv().hit_sound_Enabled = toggled;
+		end);
+		library:create_toggle("Hit Effect", "World", function(toggled)
+			getgenv().hit_effect_Enabled = toggled;
+		end);
+		library:create_toggle("Night Mode", "World", function(toggled)
+			getgenv().night_mode_Enabled = toggled;
+		end);
+		library:create_toggle("Trail", "World", function(toggled)
+			getgenv().trail_Enabled = toggled;
+		end);
+		library:create_toggle("Self Effect", "World", function(toggled)
+			getgenv().self_effect_Enabled = toggled;
+		end);
+		library:create_toggle("Kill Effect", "World", function(toggled)
+			getgenv().kill_effect_Enabled = toggled;
+		end);
+		library:create_toggle("Shaders", "World", function(toggled)
+			getgenv().shaders_effect_Enabled = toggled;
+		end);
+		library:create_toggle("Spectate Ball", "World", function(toggled)
+			getgenv().spectate_Enabled = toggled;
+		end);
+		library:create_toggle("FPS Unlocker", "Misc", function(toggled)
+			if toggled then
+				setfpscap(8999999488);
+			else
+				setfpscap(60);
+			end
+		end);
+		local originalMaterials = {};
+		local fpsBoosterEnabled = false;
+		library:create_toggle("FPS Booster", "Misc", function(toggled)
+			fpsBoosterEnabled = toggled;
+			if toggled then
+				game:GetService("Lighting").GlobalShadows = false;
+				setfpscap(8999999488);
+				task.spawn(function()
+					while fpsBoosterEnabled do
+						local descendants = game:GetDescendants();
+						local batchSize = 100;
+						for i = 1, #descendants, batchSize do
+							local batch = {
+								unpack(descendants, i, math.min((i + batchSize) - 1 , #descendants))
+							};
+							for _, descendant in ipairs(batch) do
+								if (descendant:IsA("Part") or descendant:IsA("UnionOperation") or descendant:IsA("MeshPart") or descendant:IsA("CornerWedgePart") or descendant:IsA("TrussPart")) then
+									if  not originalMaterials[descendant] then
+										originalMaterials[descendant] = {
+											Material = descendant.Material,
+											Reflectance = descendant.Reflectance
+										};
+									end
+									descendant.Material = Enum.Material.Plastic;
+									descendant.Reflectance = 0;
+								elseif descendant:IsA("Decal") then
+									descendant.Transparency = 1;
+								elseif (descendant:IsA("ParticleEmitter") or descendant:IsA("Trail")) then
+									descendant.Lifetime = NumberRange.new(0);
+								elseif descendant:IsA("Explosion") then
+									descendant.BlastPressure = 1;
+									descendant.BlastRadius = 1;
+								end
+							end
+							task.wait(0.1);
+						end
+						local lightingDescendants = game:GetService("Lighting"):GetDescendants();
+						for _, effect in pairs(lightingDescendants) do
+							if (effect:IsA("BlurEffect") or effect:IsA("SunRaysEffect") or effect:IsA("ColorCorrectionEffect") or effect:IsA("BloomEffect") or effect:IsA("DepthOfFieldEffect")) then
+								effect.Enabled = false;
+							end
+							task.defer(function()
+							end);
+						end
+						task.wait(2.5);
+					end
+				end);
+			else
+				for part, originalData in pairs(originalMaterials) do
+					if (part:IsA("Part") or part:IsA("UnionOperation") or part:IsA("MeshPart") or part:IsA("CornerWedgePart") or part:IsA("TrussPart")) then
+						part.Material = originalData.Material;
+						part.Reflectance = originalData.Reflectance;
+					end
+				end
+				originalMaterials = {};
+				game:GetService("Lighting").GlobalShadows = true;
+				setfpscap(120);
+			end
+		end);
+		library:create_toggle("Discord Invite", "Misc", function(toggle)
+			setclipboard("https://discord.com/invite/BKPQBt2K9k");
+			toclipboard("https://discord.com/invite/BKPQBt2K9k");
+		end);
+		function play_kill_effect(Part)
+			task.defer(function()
+				local bell = game:GetObjects("rbxassetid://17519762269")[1];
+				bell.Name = "Yeat_BELL";
+				bell.Parent = game:GetService("Workspace");
+				bell.Position = Part.Position - Vector3.new(0, 20, 0) ;
+				bell:WaitForChild("Sound"):Play();
+				TweenService:Create(bell, TweenInfo.new(0.85, Enum.EasingStyle.Exponential, Enum.EasingDirection.InOut), {
+					Position = Part.Position + Vector3.new(0, 10, 0)
+				}):Play();
+				task.delay(5, function()
+					TweenService:Create(bell, TweenInfo.new(1.75, Enum.EasingStyle.Exponential, Enum.EasingDirection.InOut), {
+						Position = Part.Position + Vector3.new(0, 100, 0)
+					}):Play();
+				end);
+				task.delay(6, function()
+					bell:Destroy();
+				end);
+			end);
+		end
+		task.defer(function()
+			game:GetService("Workspace").Alive.ChildRemoved:Connect(function(child)
+				if ( not game:GetService("Workspace").Dead:FindFirstChild(child.Name) and (child ~= local_player.Character) and ( #game:GetService("Workspace").Alive:GetChildren() > 1)) then
+					return;
+				end
+				if getgenv().kill_effect_Enabled then
+					play_kill_effect(child.HumanoidRootPart);
+				end
+			end);
+		end);
+		task.defer(function()
+			game:GetService("RunService").Heartbeat:Connect(function()
+				if  not local_player.Character then
+					return;
+				end
+				if getgenv().self_effect_Enabled then
+					local effect = game:GetObjects("rbxassetid://17519530107")[1];
+					effect.Name = "nurysium_efx";
+					if local_player.Character.PrimaryPart:FindFirstChild("nurysium_efx") then
+						return;
+					end
+					effect.Parent = local_player.Character.PrimaryPart;
+				elseif local_player.Character.PrimaryPart:FindFirstChild("nurysium_efx") then
+					local_player.Character.PrimaryPart['nurysium_efx']:Destroy();
+				end
+			end);
+		end);
+		task.defer(function()
+			game:GetService("RunService").Heartbeat:Connect(function()
+				if  not local_player.Character then
+					return;
+				end
+				if getgenv().trail_Enabled then
+					local trail = game:GetObjects("rbxassetid://17483658369")[1];
+					trail.Name = "nurysium_fx";
+					if local_player.Character.PrimaryPart:FindFirstChild("nurysium_fx") then
+						return;
+					end
+					local Attachment0 = Instance.new("Attachment", local_player.Character.PrimaryPart);
+					local Attachment1 = Instance.new("Attachment", local_player.Character.PrimaryPart);
+					Attachment0.Position = Vector3.new(0, -2.411, 0);
+					Attachment1.Position = Vector3.new(0, 2.504, 0);
+					trail.Parent = local_player.Character.PrimaryPart;
+					trail.Attachment0 = Attachment0;
+					trail.Attachment1 = Attachment1;
+				elseif local_player.Character.PrimaryPart:FindFirstChild("nurysium_fx") then
+					local_player.Character.PrimaryPart['nurysium_fx']:Destroy();
+				end
+			end);
+		end);
+		task.defer(function()
+			while task.wait(1) do
+				if getgenv().night_mode_Enabled then
+					TweenService:Create(game:GetService("Lighting"), TweenInfo.new(3), {
+						ClockTime = 1.9
+					}):Play();
+				else
+					TweenService:Create(game:GetService("Lighting"), TweenInfo.new(3), {
+						ClockTime = 13.5
+					}):Play();
+				end
+			end
+		end);
+		task.defer(function()
+			RunService.RenderStepped:Connect(function()
+				if getgenv().spectate_Enabled then
+					local self = Nurysium_Util.getBall();
+					if  not self then
+						return;
+					end
+					game:GetService("Workspace").CurrentCamera.CFrame = game:GetService("Workspace").CurrentCamera.CFrame:Lerp(CFrame.new(game:GetService("Workspace").CurrentCamera.CFrame.Position, self.Position), 1.5);
+				end
+			end);
+		end);
+		task.defer(function()
+			while task.wait(1) do
+				if getgenv().shaders_effect_Enabled then
+					TweenService:Create(game:GetService("Lighting").Bloom, TweenInfo.new(4), {
+						Size = 100,
+						Intensity = 2.1
+					}):Play();
+					game:GetService("Lighting").GlobalShadows = true;
+				else
+					TweenService:Create(game:GetService("Lighting").Bloom, TweenInfo.new(3), {
+						Size = 3,
+						Intensity = 1
+					}):Play();
+				end
+			end
+		end);
+		ReplicatedStorage.Remotes.ParrySuccess.OnClientEvent:Connect(function()
+			if getgenv().hit_sound_Enabled then
+				hit_Sound:Play();
+			end
+			if getgenv().hit_effect_Enabled then
+				local hit_effect = game:GetObjects("rbxassetid://17407244385")[1];
+				hit_effect.Parent = Nurysium_Util.getBall();
+				hit_effect:Emit(3);
+				task.delay(5, function()
+					hit_effect:Destroy();
+				end);
+			end
+		end);
+		local aura = {
+			can_parry = true,
+			is_spamming = false,
+			parry_Range = 0,
+			spam_Range = 0,
+			hit_Count = 0,
+			hit_Time = tick(),
+			ball_Warping = tick(),
+			is_ball_Warping = false,
+			last_target = nil
+		};
+		task.defer(function()
+			game:GetService("RunService").Heartbeat:Connect(function()
+				if (getgenv().ai_Enabled and game:GetService("Workspace").Alive:FindFirstChild(local_player.Character.Name)) then
+					local self = Nurysium_Util.getBall();
+					if ( not self or  not closest_Entity) then
+						return;
+					end
+					if  not closest_Entity:FindFirstChild("HumanoidRootPart") then
+						walk_to(local_player.Character.HumanoidRootPart.Position + Vector3.new(math.sin(tick()) * math.random(35, 50) , 0, math.cos(tick()) * math.random(35, 50) ) );
+						return;
+					end
+					local ball_Position = self.Position;
+					local ball_Speed = self.AssemblyLinearVelocity.Magnitude;
+					local ball_Distance = local_player:DistanceFromCharacter(ball_Position);
+					local player_Position = local_player.Character.PrimaryPart.Position;
+					local target_Position = closest_Entity.HumanoidRootPart.Position;
+					local target_Distance = local_player:DistanceFromCharacter(target_Position);
+					local target_LookVector = closest_Entity.HumanoidRootPart.CFrame.LookVector;
+					local resolved_Position = Vector3.zero;
+					local target_Humanoid = closest_Entity:FindFirstChildOfClass("Humanoid");
+					if (target_Humanoid and (target_Humanoid:GetState() == Enum.HumanoidStateType.Jumping) and (local_player.Character.Humanoid.FloorMaterial ~= Enum.Material.Air)) then
+						local_player.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping);
+					end
+					if (((ball_Position - player_Position):Dot(local_player.Character.PrimaryPart.CFrame.LookVector) < -0.2) and ((tick() % 4) <= 2)) then
+						return;
+					end
+					if ((tick() % 4) <= 2) then
+						if (target_Distance > 10) then
+							resolved_Position = target_Position + ((player_Position - target_Position).Unit * 8) ;
+						else
+							resolved_Position = target_Position + ((player_Position - target_Position).Unit * 25) ;
+						end
+					else
+						resolved_Position = target_Position - (target_LookVector * (math.random(8.5, 13.5) + (ball_Distance / math.random(8, 20)))) ;
+					end
+					if ((player_Position - target_Position).Magnitude < 8) then
+						resolved_Position = target_Position + ((player_Position - target_Position).Unit * 35) ;
+					end
+					if (ball_Distance < 8) then
+						resolved_Position = player_Position + ((player_Position - ball_Position).Unit * 10) ;
+					end
+					if aura.is_spamming then
+						resolved_Position = player_Position + ((ball_Position - player_Position).Unit * 12) ;
+					end
+					walk_to(resolved_Position + Vector3.new(math.sin(tick()) * 10 , 0, math.cos(tick()) * 10 ) );
+				end
+			end);
+		end);
+		ReplicatedStorage.Remotes.ParrySuccessAll.OnClientEvent:Connect(function()
+			aura.hit_Count += 1
+			task.delay(0.005, function()
+				aura.hit_Count -= 1
+			end);
+		end);
+		task.spawn(function()
+			RunService.PreRender:Connect(function()
+				if  not getgenv().aura_Enabled then
+					return;
+				end
+				if closest_Entity then
+					if game:GetService("Workspace").Alive:FindFirstChild(closest_Entity.Name) then
+						if aura.is_spamming then
+							if (local_player:DistanceFromCharacter(closest_Entity.HumanoidRootPart.Position) <= aura.spam_Range) then
+								parry_remote:FireServer(0, CFrame.new(camera.CFrame.Position, Vector3.zero), {
+									[closest_Entity.Name] = closest_Entity.HumanoidRootPart.Position
+								}, {
+									closest_Entity.HumanoidRootPart.Position.X,
+									closest_Entity.HumanoidRootPart.Position.Y
+								}, false);
+							end
+						end
+					end
+				end
+			end);
+			RunService.PreRender:Connect(function()
+				if  not getgenv().aura_Enabled then
+					return;
+				end
+				game:GetService("Workspace"):WaitForChild("Balls").ChildRemoved:Once(function(child)
+					aura.hit_Count = 0;
+					aura.is_ball_Warping = false;
+					aura.is_spamming = false;
+					aura.can_parry = true;
+					aura.last_target = nil;
+				end);
+				local ping = Stats.Network.ServerStatsItem["Data Ping"]:GetValue() / 10 ;
+				local self = Nurysium_Util.getBall();
+				if  not self then
+					return;
+				end
+				self:GetAttributeChangedSignal("target"):Once(function()
+					aura.can_parry = true;
+				end);
+				self:GetAttributeChangedSignal("from"):Once(function()
+					aura.last_target = game:GetService("Workspace").Alive:FindFirstChild(self:GetAttribute("from"));
+				end);
+				if ((self:GetAttribute("target") ~= local_player.Name) or  not aura.can_parry) then
+					return;
+				end
+				get_closest_entity(local_player.Character.PrimaryPart);
+				local player_Position = local_player.Character.PrimaryPart.Position;
+				local player_Velocity = local_player.Character.HumanoidRootPart.AssemblyLinearVelocity;
+				local player_isMoving = player_Velocity.Magnitude > 0 ;
+				local ball_Position = self.Position;
+				local ball_Velocity = self.AssemblyLinearVelocity;
+				if self:FindFirstChild("zoomies") then
+					ball_Velocity = self.zoomies.VectorVelocity;
+				end
+				local ball_Direction = (local_player.Character.PrimaryPart.Position - ball_Position).Unit;
+				local ball_Distance = local_player:DistanceFromCharacter(ball_Position);
+				local ball_Dot = ball_Direction:Dot(ball_Velocity.Unit);
+				local ball_Speed = ball_Velocity.Magnitude;
+				local ball_speed_Limited = math.min(ball_Speed / 1000 , 0.1);
+				local target_Position = closest_Entity.HumanoidRootPart.Position;
+				local target_Distance = local_player:DistanceFromCharacter(target_Position);
+				local target_distance_Limited = math.min(target_Distance / 10000 , 0.1);
+				local target_Direction = (local_player.Character.PrimaryPart.Position - closest_Entity.HumanoidRootPart.Position).Unit;
+				local target_Velocity = closest_Entity.HumanoidRootPart.AssemblyLinearVelocity;
+				local target_isMoving = target_Velocity.Magnitude > 0 ;
+				local target_Dot = target_isMoving and math.max(target_Direction:Dot(target_Velocity.Unit), 0) ;
+				aura.spam_Range = math.max(ping / 12 , 12.5) + (ball_Speed / 6.15) ;
+				aura.parry_Range = math.max(math.max(ping, 3.5) + (ball_Speed / 3.25) , 9.5);
+				if target_isMoving then
+					aura.is_spamming = ((aura.hit_Count > 1) or ((target_Distance < 11) and (ball_Distance < 10))) and (ball_Dot > -0.25) ;
+				else
+					aura.is_spamming = (aura.hit_Count > 1) or ((target_Distance < 11.5) and (ball_Distance < 10)) ;
+				end
+				if (ball_Dot < -0.2) then
+					aura.ball_Warping = tick();
+				end
+				task.spawn(function()
+					if (((tick() - aura.ball_Warping) >= ((0.15 + target_distance_Limited) - ball_speed_Limited)) or (ball_Distance < 10)) then
+						aura.is_ball_Warping = false;
+						return;
+					end
+					if (((ball_Position - aura.last_target.HumanoidRootPart.Position).Magnitude > 35.5) or (target_Distance <= 12)) then
+						aura.is_ball_Warping = false;
+						return;
+					end
+					aura.is_ball_Warping = true;
+				end);
+				if ((ball_Distance <= aura.parry_Range) and  not aura.is_ball_Warping and (ball_Dot > -0.1)) then
+					parry_remote:FireServer(0, CFrame.new(camera.CFrame.Position, Vector3.new(math.random( -1000, 1000), math.random(0, 1000), math.random(100, 1000))), {
+						[closest_Entity.Name] = target_Position
+					}, {
+						target_Position.X,
+						target_Position.Y
+					}, false);
+					aura.can_parry = false;
+					aura.hit_Time = tick();
+					aura.hit_Count += 1
+					task.delay(0.2, function()
+						aura.hit_Count -= 1
+					end);
+				end
+				task.spawn(function()
+					repeat
+						RunService.PreRender:Wait();
+					until (tick() - aura.hit_Time) >= 1
+					aura.can_parry = true;
+				end);
+			end);
+		end);
+		initializate("nurysium_temp");
+	end
 end)
 MainSection:NewToggle("auto parry", "idk", function(state)
 	getgenv().toggableparry = state
@@ -474,47 +1167,47 @@ PlayerSection:NewSlider("Max Camera Zoom", "Changes zoom distance of camera", 99
 	game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = v
 end)
 PlayerSection:NewButton("Anti Lag/Low GFX", "makes you less laggy and helps boost fps/performance", function()
-	local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
-	Terrain.WaterWaveSize = 0
-	Terrain.WaterWaveSpeed = 0
-	Terrain.WaterReflectance = 0
-	Terrain.WaterTransparency = 0
-	Lighting.GlobalShadows = false
-	Lighting.FogEnd = 9e9
-	settings().Rendering.QualityLevel = 1
-	for i, v in pairs(game:GetDescendants()) do
-		if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
-			v.Material = "Plastic"
-			v.Reflectance = 0
-		elseif v:IsA("Decal") then
-			v.Transparency = 1
-		elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
-			v.Lifetime = NumberRange.new(0)
-		elseif v:IsA("Explosion") then
-			v.BlastPressure = 1
-			v.BlastRadius = 1
-		end
-	end
-	for i, v in pairs(Lighting:GetDescendants()) do
-		if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
-			v.Enabled = false
-		end
-	end
-	game:GetService("Workspace").DescendantAdded:Connect(function(child)
-		task.spawn(function()
-			if child:IsA('ForceField') then
-				RunService.Heartbeat:Wait()
-				child:Destroy()
-			elseif child:IsA('Sparkles') then
-				RunService.Heartbeat:Wait()
-				child:Destroy()
-			elseif child:IsA('Smoke') or child:IsA('Fire') then
-				RunService.Heartbeat:Wait()
-				child:Destroy()
+		local Terrain = game:GetService("Workspace"):FindFirstChildOfClass('Terrain')
+		Lighting = game:GetService("Lighting")
+		Terrain.WaterWaveSize = 0
+		Terrain.WaterWaveSpeed = 0
+		Terrain.WaterReflectance = 0
+		Terrain.WaterTransparency = 0
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 9e9
+		for i,v in pairs(game:GetDescendants()) do
+			if v:IsA("Part") or v:IsA("UnionOperation") or v:IsA("MeshPart") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+				v.Material = "Plastic"
+				v.Reflectance = 0
+			elseif v:IsA("Decal") then
+				v.Transparency = 1
+			elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+				v.Lifetime = NumberRange.new(0)
+			elseif v:IsA("Explosion") then
+				v.BlastPressure = 1
+				v.BlastRadius = 1
 			end
+		end
+		for i,v in pairs(Lighting:GetDescendants()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") then
+				v.Enabled = false
+			end
+		end
+		game:GetService("Workspace").DescendantAdded:Connect(function(child)
+			task.spawn(function()
+				if child:IsA('ForceField') then
+					game:GetService("RunService").Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Sparkles') then
+					game:GetService("RunService").Heartbeat:Wait()
+					child:Destroy()
+				elseif child:IsA('Smoke') or child:IsA('Fire') then
+					game:GetService("RunService").Heartbeat:Wait()
+					child:Destroy()
+				end
+			end)
 		end)
 	end)
-end)
 PlayerSection:NewToggle("Anti-AFK", "so you cant disconnect after 20 minutes of idling", function(state)
 	if state then
 		ANTIAFK = game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -963,191 +1656,12 @@ SettingssSection:NewButton("Save Game 2", "Saves game dont need saveinstance()",
 end)
 local Games = Window:NewTab("Games", 12689980465)
 local GamesSection = Games:NewSection("Games")
-GamesSection:NewButton("Da Hood", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(2788229376, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Arsenal", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(286090429, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Tower of Hell", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(1962086868, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("KAT", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(621129760, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Fencing", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(12109643, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Work at a Pizza Place", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(192800, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("VR Hands", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(4832438542, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Adopt Me!", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(920587237, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Jailbreak", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(606849621, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Prison Life", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(155615604, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Build A Boat For Treasure", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(537413528, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Gorilla Tag Professional", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(8690998110, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Murder Mystery 2", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(142823291, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Blox Fruits", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(2753915549, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Counter Blox", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(301549746, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Mic Up", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(6884319169, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Neighbors", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(12699642568, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Natural Disaster Survival", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(189707, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Ro-Ghoul", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(914010731, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Blade Ball", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(13772394625, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Pet Simulator X", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(13772394625, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Pet Simulator 99", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(8737899170, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Legends Of Speed", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3101667897, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Brookhaven RP", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(4924922222, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Bedwars", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(6872265039, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("CHAOS", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(6441847031, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Ninja Legends", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3956818381, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Bayside High School", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(12640491155, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("BIG Paintball!", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3527629287, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("BIG Paintball 2!", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(9865958871, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Muscle Legends", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3623096087, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Road to Grambys", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(5796917097, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Bloxburg", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(185655149, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Cursed Sea", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(14426444782, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Doors", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(6516141723, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Hide and Seek Extreme", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(205224386, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Life in Paradise", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(1662219031, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Adopt and Raise a Baby", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(383793228, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Zombie Attack", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(1240123653, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Super Simon Says", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(61846006, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Life Sentence", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(13083893317, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Rainbow Friends", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(7991339063, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Infectious Smile", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(5985232436, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Colony Survival", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(14888386963, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Red Light, Green Light", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(7540891731, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("3008", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(2768379856, game:GetService("Players").LocalPlayer)
-end)
-GamesSection:NewButton("Guess the drawing!", "Teleports you to game", function()
-	queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
-	game:GetService("TeleportService"):Teleport(3281073759, game:GetService("Players").LocalPlayer)
-end)
+	
+local gamedata = loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/tpgames.lua"))()
+
+for _, v in ipairs(gamedata) do
+	GamesSection:NewButton(v.name, "Teleports you to game", function()
+		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt'))()")
+		game:GetService("TeleportService"):Teleport(v.placeId, game:GetService("Players").LocalPlayer)
+	end)
+end
