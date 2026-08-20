@@ -316,96 +316,10 @@ end
 local Window = Library.CreateLib("Sky Hub", OptTheme)
 local Main = Window:NewTab("Main")
 local MainSection = Main:NewSection("Main")
-local Discord = Window:NewTab("Discords", 16795709379)
-local DiscordSection = Discord:NewSection("Discords")
-DiscordSection:NewButton("Discord Invite", "copys discord link", function()
-	if httprequest and not IsOnMobile then
-		httprequest({
-			Url = 'http://127.0.0.1:6463/rpc?v=1',
-			Method = 'POST',
-			Headers = {
-				['Content-Type'] = 'application/json',
-				Origin = 'https://discord.com'
-			},
-			Body = HttpService:JSONEncode({
-				cmd = 'INVITE_BROWSER',
-				nonce = HttpService:GenerateGUID(false),
-				args = {
-					code = 'xPDF3DkKhk'
-				}
-			})
-		})
-		Library.Notify("if nothing happened", "Make sure u have discord app open", 5)
-	elseif everyClipboard then
-		everyClipboard("https://discord.gg/xPDF3DkKhk")
-		Library.Notify("Copied to Clipboard", "", 5)
-	else
-		Library.Notify("DOG SHIT EXECUTOR", "https://discord.gg/xPDF3DkKhk", 5)
-	end
-end)
-DiscordSection:NewButton("Discord Invite OLD", "Copys Discord invite link", function()
-	everyClipboard(string2)
-end)
-local Admins = Window:NewTab("Admins", 10016551771)
-local AdminsSection = Admins:NewSection("Admins")
-AdminsSection:NewButton("Infinite Yield FE", "Admin", function()
-	loadstring(game:HttpGet(_G.infydtype))()
-end)
-AdminsSection:NewButton("Infinite Store", "Archived", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Infinite-Store/Infinite-Store/main/main.lua"))()
-end)
-AdminsSection:NewButton("Nameless Admin", "Admin", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/NamelessAdmin-NO-BYFRON-GUI/main/Source'))()
-end)
-AdminsSection:NewButton("fates admin", "Admin", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
-end)
-AdminsSection:NewButton("Cmd", "Admin", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/lxte/cmd/main/main.lua"))()
-end)
-AdminsSection:NewButton("Cmd (TEST)", "Admin tests", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/lxte/cmd/main/testing-main.lua"))()
-end)
-AdminsSection:NewButton("Shattervast Admin", "Admin", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/%5BFE%5D%20Shattervast.lua'))()
-end)
-AdminsSection:NewButton("Proton Free Admin", "Admin", function()
-	_G.UI_Id = "default" --set this to "default" for the default ui
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Proton%20Free'))()
-end)
-AdminsSection:NewButton("Proton 2 free Admin", "Admin", function()
-			 -- DEFAULT CMD BAR PREFIX IS ;
-			 -- DEFAULT CHAT PREFIX IS /
-	_G.UI_Id = "default" --set this to "default" for the default ui
-	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
-end)
-AdminsSection:NewButton("Reviz Admin V2", "Admin", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Reviz%20AdminV2"))()
-end)
-local Hubs = Window:NewTab("Hubs", 7360649366)
-local HubsSection = Hubs:NewSection("Hubs")
-if IsOnMobile or VREnabled then
-	HubsSection:NewButton("Mobile Keyboard Script", "For mobile users", function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+MainSection:NewButton("UnNamed ESP", "UnNamed ESP", function()
+	pcall(function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua'))()
 	end)
-end
-HubsSection:NewButton("FE Trolling GUI", "FE Scripts and more.", function()--
-	loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau'), true))()
-end)
-HubsSection:NewButton("Sirius", "cool asl", function()--
-	loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Sirius/Sirius.txt'), true))()
-end)
-HubsSection:NewButton("Orca", "cool asff", function()--
-	loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Orca/latest.lua'), true))()
-end)
-HubsSection:NewButton("Hoho Hub", "key should be and if not then do it urself", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HohoV2/main/ScriptLoad.lua"))()
-end)
-HubsSection:NewButton("Psyhub", "idk", function()
-	loadstring(game:GetObjects("rbxassetid://3014051754")[1].Source)()
-end)
-HubsSection:NewButton("VG Hub", "60+", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
 end)
 MainSection:NewButton("Solara Hub", "450+", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/samuraa1/Solara-Hub/refs/heads/main/SH.lua'))()
@@ -413,39 +327,48 @@ end)
 MainSection:NewButton("Solara Hub V3", "keyless ver", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/samuraa1/Solara-Hub/refs/heads/main/SHV3'))()
 end)
-MainSection:NewButton("Ezhub", "130+ games", function()--
-	loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug420/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()--
+MainSection:NewButton("Project Auto V4", "Auto Rob and Kill Aura USE ALT!!!", function()
+	loadstring(game:HttpGet('https://scripts.projectauto.xyz/AutoRobV4'))()
 end)
-MainSection:NewButton("CocoHub", "idk", function()
-	loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
+MainSection:NewButton("Project Auto V5", "Auto Rob and Kill Aura USE ALT!!!", function()
+	loadstring(game:HttpGet('https://scripts.projectauto.xyz/AutoRobV5'))()
 end)
-HubsSection:NewButton("MonkeHub", "idk", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeHub/main/Loader.lua"))()
+MainSection:NewButton("Jailhax", "Dropfarm", function()
+	loadstring(game:HttpGet("https://jailhax.lol/scripts/FarmFree.lua"))()
 end)
-MainSection:NewButton("UnNamed ESP", "UnNamed ESP", function()
-	pcall(function()
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua'))()
-	end)
+MainSection:NewButton("Jailhax utils", "utils", function()
+	loadstring(game:HttpGet("https://jailhax.lol/scripts/Utils.lua"))()
 end)
-MainSection:NewButton("FE Trolling GUI", "troll", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
-end)
-MainSection:NewButton("Tiger Admin", "idk", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Prison%20Life/TigerAdmin.lua.txt"))()
-end)
-MainSection:NewButton("Crash Server", "Crashes game you need Remington/Shotgun", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/Prison%20Life/crash.txt"))()
-end)
-MainSection:NewButton("Astral Hub", "hub", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/AstralHub/main/Loader.lua"))()
-end)
-MainSection:NewButton("Prizz Life Script", "script", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/elliexmln/PrizzLife/main/pladmin.lua'))()
-end)
-MainSection:NewButton("Owl Hub", "46+ how", function()
+MainSection:NewButton("Owl Hub", "Owl Hub", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))();
 end)
-MainSection:NewButton("Mobile aimbot", "if ur actually on mobile", function()
+MainSection:NewButton("VG Hub", "VG Hub", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
+end)
+MainSection:NewButton("EZ Hub", "EZ Hub", function()
+	loadstring(game:HttpGet(('https://raw.githubusercontent.com/debug42O/Ez-Industries-Launcher-Data/master/Launcher.lua'), true))()
+end)
+MainSection:NewButton("CocoHub", "CocoHub", function()
+	loadstring(game:HttpGet(('https://raw.githubusercontent.com/MarsQQ/CocoHub/master/CocoZHub'), true))()
+end)
+MainSection:NewButton("GabX", "GabX", function()
+	loadstring(game:HttpGet(('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/GabX'), true))()
+end)
+MainSection:NewButton("Chaos Hub", "Chaos Hub", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/xChaoticVoid/Chaos-Hub-v1/main/ChaosHub.lua"))()
+end)
+MainSection:NewButton("Sensation V2", "discord.gg/sensation", function()
+		-- This script is an early version of the soon to come sensation v2.
+		-- discord.gg/sensation
+	everyClipboard("xaSdW23ld")
+	local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua", true))()
+	Notification.new("set key to clipboard just paste it in if asks for key")
+	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/730854e5b6499ee91deb1080e8e12ae3.lua"))()
+end)
+MainSection:NewButton("JailMonkey", "JailMonkey", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/KuriWasTaken/MonkeyScripts/main/JailMonkey.lua"))()
+end)
+MainSection:NewButton("Mobile Aimbot", "Mobile Aimbot", function()
 	local Players = game:GetService("Players")
 	local UserInputService = game:GetService("UserInputService")
 	local RunService = game:GetService("RunService")
@@ -532,32 +455,41 @@ MainSection:NewButton("Mobile aimbot", "if ur actually on mobile", function()
 		end
 	end)
 end)
-MainSection:NewButton("FE spam sound", "if it says yes than everyone can hear if no then no one can hear", function()
-	local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua", true))()
-	local SoundService = game:GetService("SoundService")
-	if SoundService.RespectFilteringEnabled == false then
-		Notification.new("success", "Success", "Everyone can hear the sounds in this game!")
-		Notification.new("message", "YouTube : darkModz", "YouTube - darkmodz")
-	else
-		Notification.new("warning", "Warning", "Unfortunately no one else can hear it in this game, try a different one.\nMaybe an older game will work.")
-	end
-	while wait() do
-		for _, sound in next, game:GetService("Workspace"):GetDescendants() do
-			if sound:IsA("Sound") then
-				sound.Volume = 10
-				sound:Play()
-			end
-		end
-	end
+local Admins = Window:NewTab("Admins", 10016551771)
+local AdminsSection = Admins:NewSection("Admins")
+AdminsSection:NewButton("Infinite Yield FE", "Admin", function()
+	loadstring(game:HttpGet(_G.infydtype))()
 end)
-MainSection:NewButton("Prison Life Anti Abusers GUI", "Jake11Price", function()
-	loadstring(game:HttpGet("https://pastebin.com/raw/6mhZBAkh", true))()
+AdminsSection:NewButton("Infinite Store", "Archived", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Infinite-Store/Infinite-Store/main/main.lua"))()
 end)
-MainSection:NewButton("Prison Destroyer V1.6", "Jake11Price", function()
-	loadstring(game:HttpGet("https://pastebin.com/raw/4rkRHviN", true))()
+AdminsSection:NewButton("Nameless Admin", "Admin", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/NamelessAdmin-NO-BYFRON-GUI/main/Source'))()
 end)
-MainSection:NewButton("Frozen Hub", "Hub", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/FrozenScripts/frozenhubb/main/frozen777", true))()
+AdminsSection:NewButton("fates admin", "Admin", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+end)
+AdminsSection:NewButton("Cmd", "Admin", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/lxte/cmd/main/main.lua"))()
+end)
+AdminsSection:NewButton("Cmd (TEST)", "Admin tests", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/lxte/cmd/main/testing-main.lua"))()
+end)
+AdminsSection:NewButton("Shattervast Admin", "Admin", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/%5BFE%5D%20Shattervast.lua'))()
+end)
+AdminsSection:NewButton("Proton Free Admin", "Admin", function()
+	_G.UI_Id = "default" --set this to "default" for the default ui
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/DigitalityScripts/roblox-scripts/main/Proton%20Free'))()
+end)
+AdminsSection:NewButton("Proton 2 free Admin", "Admin", function()
+			 -- DEFAULT CMD BAR PREFIX IS ;
+			 -- DEFAULT CHAT PREFIX IS /
+	_G.UI_Id = "default" --set this to "default" for the default ui
+	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
+end)
+AdminsSection:NewButton("Reviz Admin V2", "Admin", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/Reviz%20AdminV2"))()
 end)
 local Player = Window:NewTab("Player", 2795572800)
 local PlayerSection = Player:NewSection("Player")
